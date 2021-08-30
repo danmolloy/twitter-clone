@@ -15,7 +15,7 @@ export const Sidebar = () => {
   return (
     <div id="side-bar" className="flex flex-col mt-0 ml-0 border-r border-gray-200 w-24 h-screen items-center">
       <Link to="/home">
-        <img src="favico.ico" className="w-12 h-auto mx-2 my-4 p-2 rounded hover:bg-gray-200"/>
+        <img src="favico.ico" className="w-12 h-auto mx-2 my-4 p-2 rounded hover:bg-blue-50"/>
       </Link>
       <Link to="/home">
         <HomeIcon className="side-icon"/>
@@ -40,7 +40,7 @@ export const Sidebar = () => {
       </Link>
         <DotsCircleHorizontalIcon className="side-icon" id="more-icon"/>
       <Link to="/compose/tweet">
-        <PencilAltIcon className="h-12 w-auto mx-2 my-1 twitter-blue rounded-full p-2 hover:bg-gray-200"/>
+        <PencilAltIcon className="h-12 w-auto mx-2 my-1 twitter-blue rounded-full p-2 hover:bg-blue-50"/>
       </Link>
       <UserCircleIcon className="h-14 w-auto mx-2 mt-28 rounded-full p-2 hover:bg-gray-200"/>
     </div>

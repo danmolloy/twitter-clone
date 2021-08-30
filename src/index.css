@@ -7,7 +7,7 @@
 }
 
 .compose-tweet-icons {
-  @apply w-10 h-auto twitter-blue p-2 hover:bg-gray-200 rounded-full;
+  @apply w-10 h-auto twitter-blue p-2 hover:bg-blue-50 rounded-full;
 }
 
 .tweet-options {
@@ -29,8 +29,10 @@
 }
 
 .twitter-blue {
+  --tw-text-opacity: 1;
   color: #1DA1F2;
 }
+
 
 .bg-blue-opacity {
   background-color: #1DA1F2;
