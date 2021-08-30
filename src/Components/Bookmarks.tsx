@@ -7,7 +7,7 @@ export const Bookmarks = () => {
         <p className="user pl-2 -pt-2 text-xs text-gray-600 mb-1.5">@dan_molloy1</p>
       </div>
       <div className="flex flex-col items-center">
-        <div className="flex flex-col w-1/2">
+        <div className="flex flex-col w-1/2 pt-8">
         <h3 className="text-3xl font-bold">
           You haven't added any Tweets to your Bookmarks yet
         </h3>
