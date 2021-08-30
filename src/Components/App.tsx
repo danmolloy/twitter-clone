@@ -18,7 +18,7 @@ import { Sidebar } from "./Sidebar";
 function App() {
   return (
     <Router>
-      <div className="flex flex-row">
+      <div className="flex flex-row w-screen">
         <Sidebar />
         <Switch>
           <Route path="/explore" component={Explore}/>

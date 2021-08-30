@@ -6,9 +6,37 @@
   @apply h-12 w-auto mx-2 my-1 rounded-full p-2 hover:bg-gray-200;
 }
 
+.compose-tweet-icons {
+  @apply w-10 h-auto twitter-blue p-2 hover:bg-gray-200 rounded-full;
+}
+
+.tweet-options {
+  @apply w-10 h-auto p-2 rounded-full;
+}
+
+.tweet-btn {
+  @apply bg-blue-opacity text-white px-3 my-3 rounded-full font-bold mr-3;
+}
+
+
+.blue-hover {
+  background-color: #1DA1F2;
+  opacity: .5;
+}
+
+.bg-twitter-blue {
+  background-color: #1DA1F2;
+}
+
 .twitter-blue {
   color: #1DA1F2;
 }
+
+.bg-blue-opacity {
+  background-color: #1DA1F2;
+  opacity: .5;
+}
+
 
 svg path {
   stroke-width: 1.5;
