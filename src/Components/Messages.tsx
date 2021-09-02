@@ -2,7 +2,7 @@ import { ArrowLeftIcon, CogIcon, PlusSmIcon, SearchIcon } from "@heroicons/react
 
 export const Messages = () => {
   return (
-    <div className="border-r w-full mr-2">
+    <div className="ml-24 border-r w-full mr-2">
       <div className="border-b flex flex-row justify-between">
         <h2 className="text-xl font-semibold pl-3 pt-3 pb-3">Messages</h2>
         <div className="flex flex-row">

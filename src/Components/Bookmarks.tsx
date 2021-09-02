@@ -1,10 +1,12 @@
+import { useAppSelector } from "../app/hooks"
 
 export const Bookmarks = () => {
+  const user = useAppSelector(state => state.user.user)
   return (
-    <div className="border-r w-full mr-2">
+    <div className="ml-24 border-r w-full mr-2">
       <div className="border-b">
         <h2 className="text-xl font-semibold pl-2 pt-2 pb-0">Bookmarks</h2>
-        <p className="user pl-2 -pt-2 text-xs text-gray-600 mb-1.5">@dan_molloy1</p>
+        <p className="user pl-2 -pt-2 text-xs text-gray-600 mb-1.5">{user.handle}</p>
       </div>
       <div className="flex flex-col items-center">
         <div className="flex flex-col w-1/2 pt-8">

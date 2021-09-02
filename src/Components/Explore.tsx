@@ -1,8 +1,8 @@
 
 export const Explore = () => {
   return (
-    <div>
-      Explore
+    <div className="ml-24">
+      
     </div>
   )
 }

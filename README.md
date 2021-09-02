@@ -66,17 +66,19 @@ Notifications
 
   Fetch:
     Current User:
-      posts
+      Username
+      email address
+      password
+      @handle
+      Name
       profile pic
       background pic
-      url
-      name
       blurb
-      posts
       Join date
       Followers
       Following
-      All posts 
+      posts 
+        Content
         Post date
         Retweets
         Likes

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,6 +14,8 @@ import { Messages } from './Messages'
 import { Notifications } from './Notifications'
 import { Profile } from './Profile'
 import { Sidebar } from "./Sidebar";
+import { useAppDispatch } from "../app/hooks";
+import { fetchUsers } from "../features/User/UserSlice"
 
 function App() {
   return (
@@ -32,7 +34,7 @@ function App() {
             <Redirect to="/home" />
           </Route>
         </Switch>
-      </div>
+        </div>
     </Router>
   );
 }
