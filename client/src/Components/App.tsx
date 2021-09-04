@@ -14,8 +14,6 @@ import { Messages } from './Messages'
 import { Notifications } from './Notifications'
 import { Profile } from './Profile'
 import { Sidebar } from "./Sidebar";
-import { useAppDispatch } from "../app/hooks";
-import { fetchUsers } from "../features/User/UserSlice"
 
 function App() {
   return (

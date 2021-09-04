@@ -11,6 +11,7 @@ import { HashtagIcon,
 } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 
+
 export const Sidebar = () => {
   return (
     <div id="side-bar" className="fixed flex flex-col mt-0 ml-0 border-r border-gray-200 h-screen items-center bg-white">

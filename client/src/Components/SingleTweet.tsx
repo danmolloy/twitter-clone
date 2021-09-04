@@ -5,9 +5,8 @@ import {
   RefreshIcon, 
   ChatIcon 
 } from '@heroicons/react/outline'
-import { basicTweet, basicUser } from '../features/User/UserSlice'
 
-export const SingleTweet = (tweet: basicTweet, user: basicUser) => {
+export const SingleTweet = (tweet: any, user: any) => {
   
   return (
     <div className="border-b">
