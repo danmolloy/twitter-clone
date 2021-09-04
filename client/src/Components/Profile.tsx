@@ -1,15 +1,36 @@
 import { ArrowLeftIcon, CalendarIcon, UserCircleIcon } from "@heroicons/react/outline"
-import { useAppSelector } from '../app/hooks'
 import { useEffect, useState } from 'react'
 import { SingleTweet } from "./SingleTweet"
+import { useQuery, gql } from '@apollo/client'
+
+export const USER = gql`
+  query Query {
+    getUser {
+      joinDate
+      name
+      handle
+      posts {
+        id
+        content
+        postDate
+      }
+      blurb
+      following
+      followers
+    }
+  }
+`;
 
 export const Profile = () => {
+  const {loading, error, data} = useQuery(USER)
 
-  const user = useAppSelector(state => state.user.user)
+  if (error) {
+    return <p>Error</p>
+  }
 
-  const renderedTweets = user.tweets.map(tweet => {
-    return SingleTweet(tweet, user)
-  })
+  if (loading) {
+    return <p>Loading</p>
+  }
 
   return (
     <div className="border-r w-full mr-2 ml-24">
@@ -17,9 +38,9 @@ export const Profile = () => {
         <ArrowLeftIcon className="w-10 p-2 h-auto ml-4 my-2" />
         <div className=" ml-2 mt-1">
         <h3 className="text-xl font-bold">
-          {user.name}
+          {data.getUser.name}
         </h3>
-        <p className="text-sm text-gray-600 -mt-1">{user.tweets.length} tweets</p>
+        <p className="text-sm text-gray-600 -mt-1">{data.getUser.posts.length} tweets</p>
         </div>
       </div>
       <div className="w-full h-full">
@@ -34,27 +55,27 @@ export const Profile = () => {
         </div>
         <div className="flex flex-col w-2/5 ml-12">
           <h3 className="font-bold text-xl">
-            {user.name}
+            {data.getUser.name}
           </h3>
           <p className="text-gray-600 text-sm">
-            {user.handle}
+            {data.getUser.handle}
           </p>
           <p className="my-2">
-            {user.blurb}
+            I love dog food!
           </p>
           <div className="flex flex-row text-gray-600">
             <CalendarIcon className="w-6 h-auto -ml-1" />
             <p className="ml-1">
-              Joined {user.joinDate}
+              Joined {data.getUser.joinDate}
             </p>
           </div>
           <div className="flex flex-row text-gray-600 my-2">
             <p>
               <span className="font-bold text-black">
-              {user.following.length}
+              {data.getUser.following.length}
               </span> following
             </p>
-            <p className="ml-2 text-black"><span className="font-bold">{user.followers.length}</span> followers</p>
+            <p className="ml-2 text-black"><span className="font-bold">{data.getUser.followers.length}</span> followers</p>
           </div>
         </div>
         <div className=" w-full h-12 mt-4 flex flex-row">
@@ -74,7 +95,7 @@ export const Profile = () => {
         </div>
       </div>
       <div className="h-auto w-full">
-        {renderedTweets}
+        
       </div>
       </div>
       

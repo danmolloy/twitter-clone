@@ -1,7 +1,5 @@
 import React from "react";
 import { act, render } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "../app/store";
 import App from "./App";
 import { unmountComponentAtNode } from "react-dom";
 import { Sidebar } from "./Sidebar";
