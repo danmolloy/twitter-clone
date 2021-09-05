@@ -6,7 +6,7 @@ import {
   ChatIcon 
 } from '@heroicons/react/outline'
 
-export const SingleTweet = (tweet: any, user: any) => {
+export const SingleTweet = (props: any) => {
   
   return (
     <div className="border-b">
@@ -15,17 +15,17 @@ export const SingleTweet = (tweet: any, user: any) => {
       <div className="ml-3 flex flex-col w-full">
         <div className="flex flex-row w-full justify-between">
           <div className="flex flex-row">
-            <h3 className="font-bold hover:underline">{user.name}</h3>
-            <h4 className="text-gray-500 ml-1">{user.handle}</h4>
+            <h3 className="font-bold hover:underline">{props.user.name}</h3>
+            <h4 className="text-gray-500 ml-1">{props.user.handle}</h4>
             <span className="text-gray-500 ml-1">•</span>
-            <h4 className="text-gray-500 ml-1 hover:underline">{tweet.postdate}</h4>
+            <h4 className="text-gray-500 ml-1 hover:underline">{props.tweet.postDate}</h4>
           </div>
           <button className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
             •••
           </button>
         </div>
         <div>
-        <p>{tweet.content}</p>
+        <p>{props.tweet.content}</p>
         </div>
       </div>
       </div>

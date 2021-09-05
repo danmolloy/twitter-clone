@@ -5,19 +5,19 @@ import { useQuery, gql } from '@apollo/client'
 
 export const USER = gql`
   query Query {
-    getUser {
-      joinDate
+    getUsers {
       name
       handle
+      blurb
+      joinDate
+      following
+      followers
       posts {
         id
         content
         postDate
       }
-      blurb
-      following
-      followers
-    }
+    } 
   }
 `;
 
@@ -38,12 +38,12 @@ export const Profile = () => {
         <ArrowLeftIcon className="w-10 p-2 h-auto ml-4 my-2" />
         <div className=" ml-2 mt-1">
         <h3 className="text-xl font-bold">
-          {data.getUser.name}
+          {data.getUsers[0].name}
         </h3>
-        <p className="text-sm text-gray-600 -mt-1">{data.getUser.posts.length} tweets</p>
+        <p className="text-sm text-gray-600 -mt-1">{data.getUsers[0].posts.length} tweets</p>
         </div>
       </div>
-      <div className="w-full h-full">
+      <div className="w-full">
       <div className="w-full h-3/5 ">
         <div className="w-full h-48 border-b">
         </div>
@@ -55,27 +55,27 @@ export const Profile = () => {
         </div>
         <div className="flex flex-col w-2/5 ml-12">
           <h3 className="font-bold text-xl">
-            {data.getUser.name}
+            {data.getUsers[0].name}
           </h3>
           <p className="text-gray-600 text-sm">
-            {data.getUser.handle}
+            {data.getUsers[0].handle}
           </p>
           <p className="my-2">
-            I love dog food!
+            {data.getUsers[0].blurb}
           </p>
           <div className="flex flex-row text-gray-600">
             <CalendarIcon className="w-6 h-auto -ml-1" />
             <p className="ml-1">
-              Joined {data.getUser.joinDate}
+              Joined {data.getUsers[0].joinDate}
             </p>
           </div>
           <div className="flex flex-row text-gray-600 my-2">
             <p>
               <span className="font-bold text-black">
-              {data.getUser.following.length}
+              {data.getUsers[0].following.length}
               </span> following
             </p>
-            <p className="ml-2 text-black"><span className="font-bold">{data.getUser.followers.length}</span> followers</p>
+            <p className="ml-2 text-black"><span className="font-bold">{data.getUsers[0].followers.length}</span> followers</p>
           </div>
         </div>
         <div className=" w-full h-12 mt-4 flex flex-row">
@@ -94,11 +94,13 @@ export const Profile = () => {
           </button>
         </div>
       </div>
-      <div className="h-auto w-full">
-        
-      </div>
-      </div>
       
+      </div>
+      <div className="h-auto w-full flex flex-col mt-0">
+        {data.getUsers[0].posts.length > 0 &&
+          <SingleTweet tweet={data.getUsers[0].posts[0]} user={data.getUsers[0]}/>
+        }
+      </div>
     </div>
   )
 }

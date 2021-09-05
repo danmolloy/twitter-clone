@@ -14,6 +14,9 @@ import { Messages } from './Messages'
 import { Notifications } from './Notifications'
 import { Profile } from './Profile'
 import { Sidebar } from "./Sidebar";
+import { useQuery, gql } from '@apollo/client'
+
+
 
 function App() {
   return (
