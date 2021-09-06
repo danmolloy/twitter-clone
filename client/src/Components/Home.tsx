@@ -38,7 +38,7 @@ export const Home = (props: any) => {
         <h2 className="text-xl font-semibold p-4">Home</h2>
         <SparklesIcon className="w-10 p-2 my-2 h-auto mr-4 hover:bg-gray-200 rounded-full " />
       </div>
-      <ComposeTweet />
+      <ComposeTweet user={props.data.currentUser}/>
       <div className="h-auto w-full flex flex-col mt-0">
         {data.followingPosts[0].posts.length > 0 &&
           data.followingPosts[0].posts.map((post: { author: any, content: string, id: string; }) => {

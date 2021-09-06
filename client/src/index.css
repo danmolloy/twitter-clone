@@ -15,6 +15,10 @@
 }
 
 .tweet-btn {
+  @apply bg-twitter-blue text-white px-3 my-3 rounded-full font-bold mr-3;
+}
+
+.tweet-btn-disabled {
   @apply bg-blue-opacity text-white px-3 my-3 rounded-full font-bold mr-3;
 }
 
