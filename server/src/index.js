@@ -11,8 +11,7 @@ const mocks = {
     handle: () => '@dan',
     posts: () => [...new Array(6)],
     blurb: () => 'Hi everyone!',
-    joinDate: () => '5 Sept 2021',
-    following: () => ['@dan', '@dan']
+    joinDate: () => '5 Sept 2021'
   }),
   Post: () => ({
     id: '1',

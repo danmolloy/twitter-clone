@@ -7,15 +7,22 @@ const typeDefs = gql`
     followingPosts(handle: [String!]): [User]
   }
 
+  type Mutation {
+    createPost(id: String!, 
+      content: String!, 
+      postDate: String! author: String!): Post
+  }
+
   type User {
     name: String!
     handle: String!
     posts: [Post]
     blurb: String!
     joinDate: String!
-    following: [String!]
-    followers: [String!]
+    following: [String!]!
+    followers: [String!]!
   }
+
   type Post {
     id: String!
     content: String!
