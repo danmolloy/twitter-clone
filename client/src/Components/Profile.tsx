@@ -1,36 +1,9 @@
 import { ArrowLeftIcon, CalendarIcon, UserCircleIcon } from "@heroicons/react/outline"
 import { useEffect, useState } from 'react'
 import { SingleTweet } from "./SingleTweet"
-import { useQuery, gql } from '@apollo/client'
 
-export const USER = gql`
-  query Query {
-    getUsers {
-      name
-      handle
-      blurb
-      joinDate
-      following
-      followers
-      posts {
-        id
-        content
-        postDate
-      }
-    } 
-  }
-`;
 
-export const Profile = () => {
-  const {loading, error, data} = useQuery(USER)
-
-  if (error) {
-    return <p>Error</p>
-  }
-
-  if (loading) {
-    return <p>Loading</p>
-  }
+export const Profile = (props: any) => {
 
   return (
     <div className="border-r w-full mr-2 ml-24">
@@ -38,9 +11,9 @@ export const Profile = () => {
         <ArrowLeftIcon className="w-10 p-2 h-auto ml-4 my-2" />
         <div className=" ml-2 mt-1">
         <h3 className="text-xl font-bold">
-          {data.getUsers[0].name}
+          {props.data.currentUser.name}
         </h3>
-        <p className="text-sm text-gray-600 -mt-1">{data.getUsers[0].posts.length} tweets</p>
+        <p className="text-sm text-gray-600 -mt-1">{props.data.currentUser.posts.length} tweets</p>
         </div>
       </div>
       <div className="w-full">
@@ -55,27 +28,31 @@ export const Profile = () => {
         </div>
         <div className="flex flex-col w-2/5 ml-12">
           <h3 className="font-bold text-xl">
-            {data.getUsers[0].name}
+            {props.data.currentUser.name}
           </h3>
           <p className="text-gray-600 text-sm">
-            {data.getUsers[0].handle}
+            {props.data.currentUser.handle}
           </p>
           <p className="my-2">
-            {data.getUsers[0].blurb}
+            {props.data.currentUser.blurb}
           </p>
           <div className="flex flex-row text-gray-600">
             <CalendarIcon className="w-6 h-auto -ml-1" />
             <p className="ml-1">
-              Joined {data.getUsers[0].joinDate}
+              Joined {props.data.currentUser.joinDate}
             </p>
           </div>
           <div className="flex flex-row text-gray-600 my-2">
             <p>
               <span className="font-bold text-black">
-              {data.getUsers[0].following.length}
+              {props.data.currentUser.following.length}
               </span> following
             </p>
-            <p className="ml-2 text-black"><span className="font-bold">{data.getUsers[0].followers.length}</span> followers</p>
+            <p>
+              <span className="font-bold text-black ml-2">
+                {props.data.currentUser.followers.length}
+              </span> followers
+            </p>
           </div>
         </div>
         <div className=" w-full h-12 mt-4 flex flex-row">
@@ -94,11 +71,12 @@ export const Profile = () => {
           </button>
         </div>
       </div>
-      
       </div>
       <div className="h-auto w-full flex flex-col mt-0">
-        {data.getUsers[0].posts.length > 0 &&
-          <SingleTweet tweet={data.getUsers[0].posts[0]} user={data.getUsers[0]}/>
+        {props.data.currentUser.posts.length > 0 &&
+          props.data.currentUser.posts.map((post: { id: string; }) => {
+            return <SingleTweet tweet={post} user={props.data.currentUser} key={post.id} />;
+          })
         }
       </div>
     </div>

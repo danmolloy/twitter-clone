@@ -12,7 +12,7 @@ import { HashtagIcon,
 import { Link } from 'react-router-dom'
 
 
-export const Sidebar = () => {
+export const Sidebar = (props: any) => {
   return (
     <div id="side-bar" className="fixed flex flex-col mt-0 ml-0 border-r border-gray-200 h-screen items-center bg-white">
       <Link to="/home">
@@ -36,7 +36,7 @@ export const Sidebar = () => {
       <Link to="/lists">
         <DocumentTextIcon className="side-icon" />
       </Link>
-      <Link to="/:user">
+      <Link to={`/${props.data.currentUser.handle.slice(1)}`}>
         <UserIcon className="side-icon"/>
       </Link>
         <DotsCircleHorizontalIcon className="side-icon" id="more-icon"/>

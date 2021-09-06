@@ -2,8 +2,36 @@ import { SparklesIcon } from '@heroicons/react/outline'
 import { useEffect } from 'react'
 import { ComposeTweet } from './ComposeTweet'
 import { SingleTweet } from './SingleTweet'
+import { gql, useQuery } from '@apollo/client'
 
-export const Home = () => {
+const FOLLOWINGPOSTS =  gql`
+  query Query($followingPostsHandle: [String!]) {
+    followingPosts(handle: $followingPostsHandle) {
+      posts {
+        author {
+          name
+          handle
+        }
+        postDate
+        content
+        id
+      }
+    }
+    
+  }
+`;
+
+export const Home = (props: any) => {
+  const { loading, error, data } = useQuery(FOLLOWINGPOSTS, {variables: {followingPostsHandles: props.data.currentUser.following}})
+
+  if (loading) {
+    return <p>Loading</p>
+  }
+
+  if (error) {
+    return <p>Error</p>
+  }
+
   return (
     <div id="home" className="ml-24 border-r w-full mr-2">
       <div className="header border-b border-gray-200 h-14 flex flex-row justify-between">
@@ -11,6 +39,13 @@ export const Home = () => {
         <SparklesIcon className="w-10 p-2 my-2 h-auto mr-4 hover:bg-gray-200 rounded-full " />
       </div>
       <ComposeTweet />
+      <div className="h-auto w-full flex flex-col mt-0">
+        {data.followingPosts[0].posts.length > 0 &&
+          data.followingPosts[0].posts.map((post: { author: any, content: string, id: string; }) => {
+            return <SingleTweet tweet={post} user={post.author} key={post.id} />;
+          })
+        }
+      </div>
     </div>
   )
 }
