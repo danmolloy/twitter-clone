@@ -15,6 +15,7 @@ import { Notifications } from './Notifications'
 import { Profile } from './Profile'
 import { Sidebar } from "./Sidebar";
 import { useQuery, gql } from '@apollo/client'
+import { ComposeTweet } from "./ComposeTweet";
 
 const CURRENTUSER = gql`
   query Query($currentUserHandle: String!) {
@@ -49,6 +50,9 @@ function App() {
       <div className="flex flex-row w-screen">
         <Sidebar data={data}/>
         <Switch>
+          <Route path="/compose/tweet">
+            <ComposeTweet user={data.currentUser}/>
+          </Route>
           <Route path="/explore" component={Explore}/>
           <Route path="/home">
             <Home data={data}/>

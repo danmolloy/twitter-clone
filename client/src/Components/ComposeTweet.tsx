@@ -3,7 +3,7 @@ import { GlobeIcon } from '@heroicons/react/solid'
 import { useQuery, useMutation, gql} from '@apollo/client'
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid'
-
+ 
 const POSTS_MUTATION = gql`
   mutation Mutation($createPostPostDate: String!, $createPostAuthor: String!, $createPostId: String!, $createPostContent: String!) {
     createPost(postDate: $createPostPostDate, author: $createPostAuthor, id: $createPostId, content: $createPostContent) {
@@ -19,6 +19,7 @@ const POSTS_MUTATION = gql`
 
 export const ComposeTweet = (props: any) => {
   const [content, setContent] = useState('')
+  const [tweetPage, setTweetPage] = useState(false)
 
   const [createTweet, { data, loading, error}] = useMutation(POSTS_MUTATION)
 
@@ -32,9 +33,15 @@ export const ComposeTweet = (props: any) => {
   });
   }
 
+  useEffect(() => {
+    if(document.location.href.match(/compose\/tweet/gi)) {
+      setTweetPage(true)
+    }
+  })
+
 
   return (
-    <div className="flex flex-col border-b">
+    <div className={tweetPage ? "flex flex-col border-b ml-24 w-full" : "flex flex-col border-b"}>
       <div className="flex flex-row">
         <UserCircleIcon className="w-12 h-auto mt-4 ml-3"/>
         <input 

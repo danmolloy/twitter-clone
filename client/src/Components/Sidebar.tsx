@@ -10,6 +10,7 @@ import { HashtagIcon,
   UserCircleIcon
 } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
+import { ComposeTweet } from './ComposeTweet'
 
 
 export const Sidebar = (props: any) => {
@@ -43,7 +44,9 @@ export const Sidebar = (props: any) => {
       <Link to="/compose/tweet">
         <PencilAltIcon className="h-12 w-auto mx-4 my-1 twitter-blue rounded-full p-2 hover:bg-blue-50"/>
       </Link>
+      <Link to={`/${props.data.currentUser.handle.slice(1)}`}>
       <UserCircleIcon className="h-14 w-auto mx-4 mt-28 rounded-full p-2 hover:bg-gray-200"/>
+      </Link>
     </div>
   )
 }
