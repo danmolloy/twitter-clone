@@ -25,12 +25,31 @@ const CURRENTUSER = gql`
         content
         id
         postDate
+        likes {
+          name
+          handle
+        }
+        retweets {
+          name
+          handle
+        }
+        comments {
+          id
+          content
+          postDate
+          author {
+            name
+            handle
+          }
+        }
       }
       handle
       blurb
       joinDate
       following
       followers
+      bgPic
+      profilePic
     }
   }
 `;

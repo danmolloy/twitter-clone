@@ -11,7 +11,9 @@ const mocks = {
     handle: () => '@dan',
     posts: () => [...new Array(6)],
     blurb: () => 'Hi everyone!',
-    joinDate: () => '5 Sept 2021'
+    joinDate: () => '5 Sept 2021',
+    bgPic: () => 'bgPic.jpg', 
+    profilePic: () => 'profilePic.jpg',
   }),
   Post: () => ({
     id: '1',

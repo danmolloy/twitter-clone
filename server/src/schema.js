@@ -16,18 +16,23 @@ const typeDefs = gql`
   type User {
     name: String!
     handle: String!
-    posts: [Post]
+    posts: [Post]!
     blurb: String!
     joinDate: String!
     following: [String!]!
     followers: [String!]!
+    bgPic: String
+    profilePic: String
   }
 
   type Post {
     id: String!
     content: String!
     postDate: String!
-    author: User
+    author: User!
+    likes: [User]!
+    retweets: [User]!
+    comments: [Post]!
   }
 `;
 

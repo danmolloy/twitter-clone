@@ -1,5 +1,6 @@
 import { ArrowLeftIcon, CalendarIcon, UserCircleIcon } from "@heroicons/react/outline"
 import { useEffect, useState } from 'react'
+import { Link } from "react-router-dom"
 import { SingleTweet } from "./SingleTweet"
 
 
@@ -8,7 +9,9 @@ export const Profile = (props: any) => {
   return (
     <div className="border-r w-full mr-2 ml-24">
       <div className="border-b flex flex-row">
+        <Link to="/home">
         <ArrowLeftIcon className="w-10 p-2 h-auto ml-4 my-2" />
+        </Link>
         <div className=" ml-2 mt-1">
         <h3 className="text-xl font-bold">
           {props.data.currentUser.name}
@@ -19,10 +22,14 @@ export const Profile = (props: any) => {
       <div className="w-full">
       <div className="w-full h-3/5 ">
         <div className="w-full h-48 border-b">
+          <img src={props.data.currentUser.bgPic}/>
         </div>
-        <div className="flex flex-row  justify-between">
-        <UserCircleIcon className="w-28 h-auto ml-12 -mt-12 border -p rounded-full"/>
-        <button className="font-bold border border-gray-300 rounded-full py-1 px-2 my-4 mr-4">
+        <div className="flex flex-row justify-between">
+          {props.data.currentUser.profilePic ?
+            <img src={props.data.currentUser.profilePic} className="rounded-full w-36 h-auto ml-4 -mt-12 -p border-4 border-white"/> :
+            <UserCircleIcon className="w-28 h-auto ml-12 -mt-12 border -p rounded-full"/>
+          }
+          <button className="font-bold border border-gray-300 rounded-full px-2 my-8 mr-8">
           Edit Profile
         </button>
         </div>

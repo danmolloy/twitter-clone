@@ -11,7 +11,9 @@ export const SingleTweet = (props: any) => {
   return (
     <div className="border-b">
       <div className="flex flex-row mt-4"> 
-      <UserCircleIcon className="w-12 h-auto ml-3"/>
+      {props.user.profilePic ? 
+      <img src={props.user.profilePic} className="w-14 h-auto ml-3 rounded-full"/>:
+      <UserCircleIcon className="w-12 h-auto ml-3"/>}
       <div className="ml-3 flex flex-col w-full">
         <div className="flex flex-row w-full justify-between">
           <div className="flex flex-row">
@@ -29,10 +31,19 @@ export const SingleTweet = (props: any) => {
         </div>
       </div>
       </div>
-      <div className="flex flex-row justify-between mx-12 my-2">
-          <ChatIcon className="hover:text-blue-500 hover:bg-blue-50 tweet-options" />
-          <RefreshIcon className="hover:text-green-500 hover:bg-green-50 tweet-options" />
-          <HeartIcon className="hover:text-red-500 hover:bg-red-50 tweet-options"/>
+      <div className="flex flex-row justify-between mx-12 my-2 text-gray-500">
+          <div className="flex flex-row items-center hover:text-blue-500">
+            <ChatIcon className=" hover:bg-blue-50 tweet-options" />
+            <p>{props.tweet.comments.length}</p>
+          </div>
+          <div className="flex flex-row items-center hover:text-green-500">
+            <RefreshIcon className="hover:bg-green-50 tweet-options" />
+            <p>{props.tweet.retweets.length}</p>
+          </div>
+          <div className="flex flex-row  items-center hover:text-red-500">
+            <HeartIcon className="hover:bg-red-50 tweet-options"/>
+            <p className=" ">{props.tweet.likes.length}</p>
+          </div>
           <UploadIcon className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
         </div>
     </div>

@@ -11,10 +11,29 @@ const FOLLOWINGPOSTS =  gql`
         author {
           name
           handle
+          profilePic
         }
         postDate
         content
         id
+        likes {
+          name
+          handle
+        }
+        retweets {
+          name
+          handle
+        }
+        comments {
+          id
+          content
+          postDate
+          author {
+            name
+            handle
+            profilePic
+          }
+        }
       }
     }
     
