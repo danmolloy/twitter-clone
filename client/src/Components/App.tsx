@@ -76,7 +76,9 @@ function App() {
           <Route path="/home">
             <Home data={data}/>
           </Route>
-          <Route path="/bookmarks" component={Bookmarks} />
+          <Route path="/bookmarks">
+            <Bookmarks currentUser={data.currentUser} />
+          </Route>
           <Route path="/lists" component={Lists} />
           <Route path="/messages" component={Messages} />
           <Route path="/notifications" component={Notifications} />

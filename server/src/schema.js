@@ -21,6 +21,7 @@ const typeDefs = gql`
     joinDate: String!
     following: [String!]!
     followers: [String!]!
+    bookmarks: [Post]!
     bgPic: String
     profilePic: String
   }
