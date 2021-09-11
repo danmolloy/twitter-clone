@@ -5,6 +5,13 @@ import { SingleTweet } from "./SingleTweet"
 
 
 export const Profile = (props: any) => {
+  const [tweetFilter, setTweetFilter] = useState('tweets')
+
+  useEffect(() => {
+    if (document.location.href.includes('media')) {
+      setTweetFilter('media')
+    }
+  })
 
   return (
     <div className="border-r w-full mr-2 ml-24">
@@ -63,19 +70,34 @@ export const Profile = (props: any) => {
           </div>
         </div>
         <div className=" w-full h-12 mt-4 flex flex-row">
-          <button className="w-1/4 border-b font-semibold hover:bg-gray-200 flex flex-col justify-between items-center pt-2">
+          <Link 
+          className={tweetFilter === 'tweets' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
+          to={`/${props.data.currentUser.handle.slice(1)}`}
+          onClick={() => setTweetFilter('tweets')}>
             Tweets 
-            <span className="tab-line"/>
-          </button>
-          <button className="w-1/4 hover:bg-gray-200 border-b">
+            {tweetFilter === 'tweets' && <span className="tab-line"/>}
+          </Link>
+          <Link 
+          className={tweetFilter === 'replies' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
+          to={`/${props.data.currentUser.handle.slice(1)}/with_replies`}
+          onClick={() => setTweetFilter('replies')}>
             Tweets & Replies
-          </button>
-          <button className="w-1/4 hover:bg-gray-200 border-b">
+            {tweetFilter === 'replies' && <span className="tab-line"/>}
+          </Link>
+          <Link 
+          className={tweetFilter === 'media' ? 'selected-tweet-filter' : 'deselected-tweet-filter'} 
+          to={`/${props.data.currentUser.handle.slice(1)}/media`}
+          onClick={() => setTweetFilter('media')}>
             Media
-          </button>
-          <button className="w-1/4 hover:bg-gray-200 border-b">
+            {tweetFilter === 'media' && <span className="tab-line"/>}
+          </Link>
+          <Link 
+          className={tweetFilter === 'likes' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
+          to={`/${props.data.currentUser.handle.slice(1)}/likes`}
+          onClick={() => setTweetFilter('likes')}>
             Likes
-          </button>
+            {tweetFilter === 'likes' && <span className="tab-line"/>}
+          </Link>
         </div>
       </div>
       </div>

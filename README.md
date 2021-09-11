@@ -15,6 +15,6 @@ This is an ongoing project, and is far from complete.
 
 In the future, I hope this to be a faithful recreation of Twitter. 
 
-I'm using this as an educational project to solidify what I've learnt of Apollo-Client (and to a smaller degree, Apollo-Server). 
+I'm using this as an educational project to solidify what I've learnt of Apollo-Client (and to a smaller degree, Apollo-Server). Currently it only queries.
 
-I've styled the app using Tailwind.
+I've styled the app using Tailwind and HeroIcons.

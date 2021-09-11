@@ -5,11 +5,12 @@ import {
   RefreshIcon, 
   ChatIcon 
 } from '@heroicons/react/outline'
+import { Link } from 'react-router-dom'
 
 export const SingleTweet = (props: any) => {
   
   return (
-    <div className="border-b">
+    <div className="border-b hover:bg-gray-50">
       <div className="flex flex-row mt-4"> 
       {props.user.profilePic ? 
       <img src={props.user.profilePic} className="w-14 h-auto ml-3 rounded-full"/>:
@@ -17,8 +18,10 @@ export const SingleTweet = (props: any) => {
       <div className="ml-3 flex flex-col w-full">
         <div className="flex flex-row w-full justify-between">
           <div className="flex flex-row">
-            <h3 className="font-bold hover:underline">{props.user.name}</h3>
-            <h4 className="text-gray-500 ml-1">{props.user.handle}</h4>
+            <Link to={`/${props.user.handle.slice(1)}`} className="flex flex-row">
+              <h3 className="font-bold hover:underline">{props.user.name}</h3>
+              <h4 className="text-gray-500 ml-1">{props.user.handle}</h4>
+            </Link>
             <span className="text-gray-500 ml-1">•</span>
             <h4 className="text-gray-500 ml-1 hover:underline">{props.tweet.postDate}</h4>
           </div>

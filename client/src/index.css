@@ -60,3 +60,13 @@ svg path {
 .tab-line {
   @apply border bg-twitter-blue h-1.5 rounded-full w-12;
 }
+
+/* Profile*/
+
+.selected-tweet-filter {
+  @apply w-1/4 border-b font-semibold hover:bg-gray-200 flex flex-col justify-between items-center pt-2;
+}
+
+.deselected-tweet-filter {
+  @apply w-1/4 hover:bg-gray-200 border-b text-center py-2;
+}
