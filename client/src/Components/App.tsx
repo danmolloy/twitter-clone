@@ -16,6 +16,7 @@ import { Profile } from './Profile'
 import { Sidebar } from "./Sidebar";
 import { useQuery, gql } from '@apollo/client'
 import { ComposeTweet } from "./ComposeTweet";
+import { MobileSidebar } from "./MobileSidebar";
 
 const CURRENTUSER = gql`
   query Query($currentUserHandle: String!) {
@@ -57,6 +58,7 @@ const CURRENTUSER = gql`
 function App() {
   const { loading, error, data } = useQuery(CURRENTUSER, {variables: {currentUserHandle: "@dan" }})
 
+
   if (loading) {
     return <p>Loading..</p>
   }
@@ -66,8 +68,8 @@ function App() {
   }
   return (
     <Router>
-      <div className="flex flex-row w-screen">
-        <Sidebar data={data}/>
+      <div className="flex border-black flex-row w-screen">
+        <Sidebar data={data} />
         <Switch>
           <Route path="/compose/tweet">
             <ComposeTweet user={data.currentUser}/>
