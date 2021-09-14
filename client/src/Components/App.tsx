@@ -16,7 +16,7 @@ import { Profile } from './Profile'
 import { Sidebar } from "./Sidebar";
 import { useQuery, gql } from '@apollo/client'
 import { ComposeTweet } from "./ComposeTweet";
-import { MobileSidebar } from "./MobileSidebar";
+import { MobileSidebar } from './Mobile'
 
 const CURRENTUSER = gql`
   query Query($currentUserHandle: String!) {
@@ -68,28 +68,28 @@ function App() {
   }
   return (
     <Router>
-      <div className="flex border-black flex-row w-screen">
+      <div className="flex border-black flex-col-reverse sm:flex-row w-screen h-screen">
         <Sidebar data={data} />
         <Switch>
-          <Route path="/compose/tweet">
-            <ComposeTweet user={data.currentUser}/>
-          </Route>
-          <Route path="/explore" component={Explore}/>
-          <Route path="/home">
-            <Home data={data}/>
-          </Route>
-          <Route path="/bookmarks">
-            <Bookmarks currentUser={data.currentUser} />
-          </Route>
-          <Route path="/lists" component={Lists} />
-          <Route path="/messages" component={Messages} />
-          <Route path="/notifications" component={Notifications} />
-          <Route path={`/${data.currentUser.handle.slice(1)}`}>
-            <Profile data={data}/>
-          </Route>
-          <Route path="/">
-            <Redirect to="/home" />
-          </Route>
+        <Route path="/compose/tweet">
+          <ComposeTweet user={data.currentUser}/>
+        </Route>
+        <Route path="/explore" component={Explore}/>
+        <Route path="/home">
+          <Home data={data}/>
+        </Route>
+        <Route path="/bookmarks">
+          <Bookmarks currentUser={data.currentUser} />
+        </Route>
+        <Route path="/lists" component={Lists} />
+        <Route path="/messages" component={Messages} />
+        <Route path="/notifications" component={Notifications} />
+        <Route path={`/${data.currentUser.handle.slice(1)}`}>
+          <Profile data={data}/>
+        </Route>
+        <Route path="/">
+          <Redirect to="/home" />
+        </Route>
         </Switch>
         </div>
     </Router>

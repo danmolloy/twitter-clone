@@ -10,12 +10,11 @@ import { HashtagIcon,
   UserCircleIcon
 } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
-import { ComposeTweet } from './ComposeTweet'
 
 
 export const Sidebar = (props: any) => {
   return (
-    <div id="side-bar" className="fixed flex flex-row sm:flex-col mt-0 ml-0 border-b sm:border-r border-gray-200 w-full sm:w-24 h-24 sm:h-screen justify-evenly items-center bg-white z-10">
+    <div id="side-bar" className="fixed flex flex-row sm:flex-col sm:mt-0 ml-0 border-t sm:border-r border-gray-200 w-full sm:w-24 h-18 sm:h-screen justify-evenly items-center bg-white z-10">
       <Link to="/home">
         <img src="favico.ico" className="hidden sm:flex w-12 h-auto mx-6 my-4 p-2 rounded hover:bg-blue-50"/>
       </Link>
