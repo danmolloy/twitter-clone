@@ -14,7 +14,7 @@ export const Profile = (props: any) => {
   })
 
   return (
-    <div className="border-r w-full mr-2 ml-24">
+    <div className="border-r w-full mr-2">
       <div className="border-b flex flex-row">
         <Link to="/home">
         <ArrowLeftIcon className="w-10 p-2 h-auto ml-4 my-2" />
@@ -28,7 +28,7 @@ export const Profile = (props: any) => {
       </div>
       <div className="w-full">
       <div className="w-full h-3/5 ">
-        <div className="w-full h-48 border-b">
+        <div className="w-full h-48">
           <img src={props.data.currentUser.bgPic}/>
         </div>
         <div className="flex flex-row justify-between">

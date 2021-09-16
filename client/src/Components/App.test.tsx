@@ -16,6 +16,7 @@ afterEach(() => {
   container = null;
 });
 
+// ROUTER
 test("/ redirects to /home", () => {
   act(() => {
     render(<App />, container);
@@ -32,3 +33,31 @@ test("sidebar renders", () => {
 
 test("sidebar links work", () => {})
 
+// HOMEPAGE
+test("create a new tweet", () => {})
+test("tweets render on homepage", () => {})
+
+// PROFILE PAGE
+test("currentUser profile page renders", () => {})
+test("filters for profile page tweets work correctly", () => {})
+
+// NOTIFICATIONS
+test("mentions filter works", () => {})
+
+// BOOKMARKS
+test("bookmarks page renders with bookmarks", () => {})
+test("bookmarks added", () => {})
+
+// LISTS
+test("lists rendered", () => {})
+test("lists added", () => {})
+
+// MESSAGES
+test("messages renders", () => {})
+test("message sent", () => {})
+test("messages searchbar works", () => {})
+
+// TWEETS
+test("like button works", () => {})
+test("retweet btn works", () => {})
+test("comments button works", () => {})
