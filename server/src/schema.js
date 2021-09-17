@@ -24,6 +24,7 @@ const typeDefs = gql`
     bookmarks: [Post]!
     bgPic: String
     profilePic: String
+    Lists: [List]!
   }
 
   type Post {
@@ -34,6 +35,17 @@ const typeDefs = gql`
     likes: [User]!
     retweets: [User]!
     comments: [Post]!
+  }
+
+  type List {
+    ListName: String!
+    ListID: String!
+    Description: String!
+    Private: Boolean!
+    Members: [User]!
+    Followers: [User]!
+    Pinned: Boolean!
+    Creator: User!
   }
 `;
 

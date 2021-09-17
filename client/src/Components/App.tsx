@@ -69,7 +69,7 @@ function App() {
     <Router>
       <div className="flex flex-row w-screen h-screen ">
         <Sidebar data={data} />
-        <div className="sm:ml-24 mb-0 border-r w-full max-w-2xl sm:mr-2">
+        <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
         <Route path="/compose/tweet">
           <ComposeTweet user={data.currentUser}/>
@@ -81,7 +81,9 @@ function App() {
         <Route path="/bookmarks">
           <Bookmarks currentUser={data.currentUser} />
         </Route>
-        <Route path="/lists" component={Lists} />
+        <Route path="/lists">
+          <Lists user={data.currentUser}/>
+        </Route>
         <Route path="/messages" component={Messages} />
         <Route path="/notifications" component={Notifications} />
         <Route path={`/${data.currentUser.handle.slice(1)}`}>
@@ -91,6 +93,9 @@ function App() {
           <Redirect to="/home" />
         </Route>
         </Switch>
+        </div>
+        <div className="hidden lg:flex bg-red-400 w-1/4">
+        A sidebar will be here
         </div>
         </div>
     </Router>

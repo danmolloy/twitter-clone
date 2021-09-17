@@ -1,7 +1,7 @@
 
 export const Notifications = () => {
   return (
-    <div className="ml-24 border-r w-full mr-2">
+    <div>
       <div className="flex flex-col border-b">
         <h2 className="text-xl font-semibold pl-3 pt-3 pb-3">
           Notifications

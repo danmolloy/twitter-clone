@@ -41,7 +41,7 @@ export const ComposeTweet = (props: any) => {
 
 
   return (
-    <div className={tweetPage ? "flex flex-col border-b ml-24 w-full" : "flex flex-col border-b"}>
+    <div className={tweetPage ? "" : "flex flex-col border-b"}>
       <div className="flex flex-row">
         {props.user.profilePic ?
         <img src={props.user.profilePic} className="w-14 h-auto mt-4 ml-3 rounded-full"/>:
