@@ -19,6 +19,9 @@ const mocks = {
     id: '1',
     content: 'Hello world',
     postDate: '5 Sept 2021'
+  }),
+  Message: () => ({
+    DateSent: '21 Sept 2021'
   })
 }
 

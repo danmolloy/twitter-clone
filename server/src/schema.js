@@ -25,6 +25,7 @@ const typeDefs = gql`
     bgPic: String
     profilePic: String
     Lists: [List]!
+    Messages: [MsgConversation]!
   }
 
   type Post {
@@ -46,6 +47,18 @@ const typeDefs = gql`
     Followers: [User]!
     Pinned: Boolean!
     Creator: User!
+  }
+
+  type MsgConversation {
+    User: User!
+    Messages: [Message]!
+    ID: String!
+  }
+
+  type Message {
+    Content: String!
+    DateSent: String!
+    Read: Boolean!
   }
 `;
 

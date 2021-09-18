@@ -84,7 +84,9 @@ function App() {
         <Route path="/lists">
           <Lists user={data.currentUser}/>
         </Route>
-        <Route path="/messages" component={Messages} />
+        <Route path="/messages">
+          <Messages currentUser={data.currentUser}/>
+        </Route>
         <Route path="/notifications" component={Notifications} />
         <Route path={`/${data.currentUser.handle.slice(1)}`}>
           <Profile data={data}/>

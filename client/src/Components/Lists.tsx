@@ -2,7 +2,7 @@ import {
   ArrowLeftIcon, 
   DocumentAddIcon
 } from "@heroicons/react/outline"
-import { gql, useMutation, useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 import { ListTile } from "./ListTile"
 
 const LIST_QUERY = gql`
