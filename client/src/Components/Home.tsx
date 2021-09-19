@@ -9,7 +9,7 @@ const FOLLOWINGPOSTS =  gql`
     followingPosts(handle: $followingPostsHandle) {
       posts {
         author {
-          name
+          name @client
           handle
           profilePic
         }

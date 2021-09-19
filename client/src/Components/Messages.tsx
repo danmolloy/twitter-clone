@@ -1,6 +1,6 @@
 import { ArrowLeftIcon, CogIcon, PlusSmIcon, SearchIcon } from "@heroicons/react/outline"
 import { gql, useQuery } from '@apollo/client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const MESSAGES = gql`
   query Query($currentUserHandle: String!) {
@@ -33,6 +33,7 @@ export const Messages = (props: any) => {
   if (error) {
     <p>error</p>
   }
+
   return (
     <div >
       <div className="border-b flex flex-row justify-between">
@@ -44,7 +45,7 @@ export const Messages = (props: any) => {
       </div>
       <div className="flex flex-row w-full border-b">
         <ArrowLeftIcon className="w-12 p-2 hover:bg-gray-300 rounded-full h-auto ml-3 my-4" />
-        <input className="p-4 border ml-2 h-10 w-11/12 rounded-full my-4 focus:outline-none focus:border-blue-500" placeholder="Search for people or groups">
+        <input id="msg-search" className="p-4 border ml-2 h-10 w-11/12 rounded-full my-4 focus:outline-none focus:border-blue-500" placeholder="Search for people or groups">
         </input>
       </div>
         {searchBarFocused ?

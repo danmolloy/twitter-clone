@@ -6,6 +6,14 @@
   @apply h-12 w-auto mx-8 sm:mx-2 my-1 rounded-full p-2 hover:bg-gray-200;
 }
 
+.lg-side-icon {
+  @apply hover:bg-gray-200 flex flex-row items-center md:ml-6;
+}
+
+.sidebar-text {
+  @apply hidden md:flex text-lg;
+}
+
 .compose-tweet-icons {
   @apply w-10 h-auto twitter-blue p-2 hover:bg-blue-50 rounded-full;
 }
