@@ -16,6 +16,7 @@ import { Profile } from './Profile'
 import { Sidebar } from "./Sidebar";
 import { useQuery, gql } from '@apollo/client'
 import { ComposeTweet } from "./ComposeTweet";
+import { RightBar }  from './RightBar'
 
 const CURRENTUSER = gql`
   query Query($currentUserHandle: String!) {
@@ -67,7 +68,7 @@ function App() {
   }
   return (
     <Router>
-      <div className="flex flex-row w-screen h-screen ">
+      <div className="flex flex-row w-screen h-screen justify-start">
         <Sidebar data={data} />
         <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
@@ -96,9 +97,7 @@ function App() {
         </Route>
         </Switch>
         </div>
-        <div className="hidden lg:flex bg-red-400 w-1/4">
-        A sidebar will be here
-        </div>
+        <RightBar />
         </div>
     </Router>
   );

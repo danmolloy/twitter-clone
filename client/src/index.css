@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .side-icon {
-  @apply h-12 w-auto mx-8 sm:mx-2 my-1 rounded-full p-2 hover:bg-gray-200;
+  @apply h-12 w-auto mx-8 sm:mx-2 rounded-full p-2 hover:bg-gray-200;
 }
 
 .lg-side-icon {
-  @apply hover:bg-gray-200 flex flex-row items-center md:ml-6;
+  @apply hover:bg-gray-200 flex flex-row items-center md:ml-6 md:pr-4 my-1 rounded-full;
 }
 
 .sidebar-text {
@@ -28,6 +28,10 @@
 
 .tweet-btn-disabled {
   @apply bg-blue-opacity text-white px-3 my-3 rounded-full font-bold mr-3;
+}
+
+.r-bar-article {
+  @apply hover:bg-gray-200 p-2 w-full;
 }
 
 
