@@ -66,7 +66,15 @@ module.exports = {
           handle: arg.handle
         },
         include: {
-          writtenPosts: true,
+          writtenPosts: {
+            include: {
+              likes: {
+                select: {
+                  handle: true
+                }
+              }
+            }
+          },
           followers: {
             select: {
               handle: true
