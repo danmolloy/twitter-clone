@@ -9,9 +9,10 @@ This is an ongoing project, and is far from complete.
 * React
 * TypeScript
 * Tailwind
-* React-Router
-* GraphQL (Apollo Client & Apollo Server) 
+* React-Router 
 * Jest
+* GraphQL (Apollo Client & Apollo Server) 
+* Prisma with SQLite
 
 In the future, I hope this to be a faithful recreation of Twitter. 
 
