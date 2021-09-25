@@ -37,15 +37,15 @@ export const SingleTweet = (props: any) => {
       <div className="flex flex-row justify-between mx-12 my-2 text-gray-500">
           <div className="flex flex-row items-center hover:text-blue-500">
             <ChatIcon className=" hover:bg-blue-50 tweet-options" />
-            <p>{props.tweet.comments.length}</p>
+            <p>{props.tweet.comments ? props.tweet.comments.length : null}</p>
           </div>
           <div className="flex flex-row items-center hover:text-green-500">
             <RefreshIcon className="hover:bg-green-50 tweet-options" />
-            <p>{props.tweet.retweets.length}</p>
+            <p>{props.tweet.retweets ? props.tweet.retweets.length : null}</p>
           </div>
           <div className="flex flex-row  items-center hover:text-red-500">
             <HeartIcon className="hover:bg-red-50 tweet-options"/>
-            <p className=" ">{props.tweet.likes.length}</p>
+            <p className=" ">{props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
           </div>
           <UploadIcon className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
         </div>

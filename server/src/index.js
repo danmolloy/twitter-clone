@@ -1,33 +1,16 @@
 const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./schema');
+const { PrismaClient } = require('@prisma/client')
+const resolvers = require('./resolvers')
 
-
-const mocks = {
-  Query: () => ({
-    getUsers: () => [...new Array(6)]
-  }),
-  User: () => ({
-    name: () => 'Dan Molloy',
-    handle: () => '@dan',
-    posts: () => [...new Array(6)],
-    blurb: () => 'Hi everyone!',
-    joinDate: () => '5 Sept 2021',
-    bgPic: () => 'bgPic.jpg', 
-    profilePic: () => 'profilePic.jpg',
-  }),
-  Post: () => ({
-    id: '1',
-    content: 'Hello world',
-    postDate: '5 Sept 2021'
-  }),
-  Message: () => ({
-    DateSent: '21 Sept 2021'
-  })
-}
+const prisma = new PrismaClient()
 
 const server = new ApolloServer({
   typeDefs,
-  mocks
+  resolvers,
+  context: {
+    prisma,
+  }
 });
 
 server.listen().then(() => {

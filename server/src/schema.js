@@ -2,30 +2,24 @@ const {gql} = require('apollo-server')
 
 const typeDefs = gql`
   type Query {
-    getUsers: [User]
     currentUser(handle: String!): User
-    followingPosts(handle: [String!]): [User]
+    followsTweets(handle: String!): [Post]
+    getUserProfile(handle: String!): User
   }
 
-  type Mutation {
-    createPost(id: String!, 
-      content: String!, 
-      postDate: String! author: String!): Post
-  }
 
   type User {
     name: String!
     handle: String!
-    posts: [Post]!
     blurb: String!
     joinDate: String!
-    following: [String!]!
-    followers: [String!]!
-    bookmarks: [Post]!
     bgPic: String
     profilePic: String
-    Lists: [List]!
-    Messages: [MsgConversation]!
+    follows: [User]
+    followers: [User]!
+    writtenPosts: [Post]
+    likedPosts: [Post]
+    retweets: [Post]
   }
 
   type Post {
@@ -33,9 +27,9 @@ const typeDefs = gql`
     content: String!
     postDate: String!
     author: User!
-    likes: [User]!
-    retweets: [User]!
-    comments: [Post]!
+    authorHandle: String!
+    likes: [User]
+    retweets: [User]
   }
 
   type List {

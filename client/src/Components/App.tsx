@@ -19,44 +19,35 @@ import { ComposeTweet } from "./ComposeTweet";
 import { RightBar }  from './RightBar'
 
 const CURRENTUSER = gql`
-  query Query($currentUserHandle: String!) {
-    currentUser(handle: $currentUserHandle) {
-      name
-      posts {
-        content
-        id
-        postDate
-        likes {
-          name
-          handle
-        }
-        retweets {
-          name
-          handle
-        }
-        comments {
-          id
-          content
-          postDate
-          author {
-            name
-            handle
-          }
-        }
-      }
+query Query($currentUserHandle: String!) {
+  currentUser(handle: $currentUserHandle) {
+    name
+    handle
+    blurb
+    joinDate
+    bgPic
+    profilePic
+    follows {
       handle
-      blurb
-      joinDate
-      following
-      followers
-      bgPic
-      profilePic
+    }
+    followers {
+      handle
+    }
+    writtenPosts {
+      id
+      content
+      postDate
+      likes {
+        handle
+      }
     }
   }
+}
+
 `;
 
 function App() {
-  const { loading, error, data } = useQuery(CURRENTUSER, {variables: {currentUserHandle: "@dan" }})
+  const { loading, error, data } = useQuery(CURRENTUSER, {variables: {currentUserHandle: "@danmolloy" }})
 
 
   if (loading) {
@@ -89,7 +80,7 @@ function App() {
           <Messages currentUser={data.currentUser}/>
         </Route>
         <Route path="/notifications" component={Notifications} />
-        <Route path={`/${data.currentUser.handle.slice(1)}`}>
+        <Route path={'/:userHandle'}>
           <Profile data={data}/>
         </Route>
         <Route path="/">

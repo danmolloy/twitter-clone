@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  name   String
+  handle String @id 
+  blurb String @default("hello")
+  joinDate String @default("21 Sept 2021")
+  bgPic String @default("bgPic.jpg")
+  profilePic String @default("profilePic.jpg")
+  follows User[] @relation("Follows")
+  followers User[] @relation("Follows")
+  writtenPosts Post[] @relation("WrittenPosts")
+  likedPosts Post[] @relation("LikedPosts")
+  retweets Post[] @relation("RetweetedPosts")
+}
+
+model Post {
+  id String @id @default(uuid())
+  content String @default("Hello world")
+  postDate String @default("21 Sept 2021")
+  author User @relation("WrittenPosts", fields: [authorHandle], references: [handle])
+  authorHandle String
+  likes User[] @relation("LikedPosts", references: [handle])
+  retweets User[] @relation("RetweetedPosts",references: [handle])
+}

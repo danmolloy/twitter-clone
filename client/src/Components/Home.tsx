@@ -5,43 +5,28 @@ import { SingleTweet } from './SingleTweet'
 import { gql, useQuery } from '@apollo/client'
 
 const FOLLOWINGPOSTS =  gql`
-  query Query($followingPostsHandle: [String!]) {
-    followingPosts(handle: $followingPostsHandle) {
-      posts {
-        author {
-          name @client
-          handle
-          profilePic
-        }
-        postDate
-        content
-        id
-        likes {
-          name
-          handle
-        }
-        retweets {
-          name
-          handle
-        }
-        comments {
-          id
-          content
-          postDate
-          author {
-            name
-            handle
-            profilePic
-          }
-        }
-      }
+query Query($followsTweetsHandle: String!) {
+  followsTweets(handle: $followsTweetsHandle) {
+    content
+    id
+    postDate
+    author {
+      name
+      handle
+      profilePic
     }
-    
+    likes {
+      handle
+    }
+    retweets {
+      handle
+    }
   }
+}
 `;
 
 export const Home = (props: any) => {
-  const { loading, error, data } = useQuery(FOLLOWINGPOSTS, {variables: {followingPostsHandles: props.data.currentUser.following}})
+  const { loading, error, data } = useQuery(FOLLOWINGPOSTS, {variables: {followsTweetsHandle: props.data.currentUser.handle}})
 
   if (loading) {
     return <p>Loading</p>
@@ -59,10 +44,10 @@ export const Home = (props: any) => {
       </div>
       <ComposeTweet user={props.data.currentUser}/>
       <div className="h-auto w-full flex flex-col mt-0">
-        {data.followingPosts[0].posts.length > 0 &&
-          data.followingPosts[0].posts.map((post: { author: any, content: string, id: string; }) => {
-            return <SingleTweet tweet={post} user={post.author} key={post.id} />;
-          })
+        {data.followsTweets && 
+        data.followsTweets.map((tweet: {id:string, author:{}}) => {
+          return <SingleTweet tweet={tweet} key={tweet.id} user={tweet.author}/>
+        })
         }
       </div>
     </div>
