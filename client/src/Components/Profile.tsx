@@ -68,7 +68,10 @@ export const Profile = (props: any) => {
         <h3 className="text-xl font-bold">
           {data && data.getUserProfile.name}
         </h3>
-        <p className="text-sm text-gray-600 -mt-1">{data && data.getUserProfile.writtenPosts ? data.getUserProfile.writtenPosts.length : 0} tweets</p>
+        <p className="text-sm text-gray-600 -mt-1">
+          {data && data.getUserProfile.writtenPosts ? 
+          data.getUserProfile.writtenPosts.length : 0} tweets
+          </p>
         </div>
       </div>
       <div className="w-full">
@@ -159,7 +162,7 @@ export const Profile = (props: any) => {
       <div className="h-auto w-full flex flex-col mt-0">
         {data && data.getUserProfile.writtenPosts && data.getUserProfile.writtenPosts.length > 0 &&
           data.getUserProfile.writtenPosts.map((tweet: { id: string; }) => {
-            return <SingleTweet tweet={tweet} user={data.getUserProfile} key={tweet.id} />;
+            return <SingleTweet tweet={tweet} user={data.getUserProfile} key={tweet.id} currentUser={props.data.currentUser}/>;
           })
         }
       </div>

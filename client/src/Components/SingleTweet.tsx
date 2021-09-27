@@ -6,8 +6,26 @@ import {
   ChatIcon 
 } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
+import { gql, useMutation } from '@apollo/client';
+
+const LIKE_POST = gql`
+  mutation Mutation($likePostHandle: String, $likePostPostId: String) {
+    likePost(handle: $likePostHandle, postID: $likePostPostId) {
+      likes {
+        handle
+      }
+    }
+  }
+`;
 
 export const SingleTweet = (props: any) => {
+
+  const [likePost, { data, loading, error }] = useMutation(LIKE_POST, {
+    variables: {
+      likePostHandle: props.currentUser.handle,
+      likePostPostId: props.tweet.id
+    }
+  })
   
   return (
     <div className="border-b hover:bg-gray-50">
@@ -43,10 +61,14 @@ export const SingleTweet = (props: any) => {
             <RefreshIcon className="hover:bg-green-50 tweet-options" />
             <p>{props.tweet.retweets ? props.tweet.retweets.length : null}</p>
           </div>
-          <div className="flex flex-row  items-center hover:text-red-500">
+          <button 
+          className="flex flex-row  items-center hover:text-red-500"
+          onClick={async () => {
+          await likePost();
+          }}>
             <HeartIcon className="hover:bg-red-50 tweet-options"/>
-            <p className=" ">{props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
-          </div>
+            <p className=" ">{data && data.likePost.likes.length > 0 ? data.likePost.likes.length : props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
+          </button>
           <UploadIcon className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
         </div>
     </div>

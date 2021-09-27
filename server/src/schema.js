@@ -5,8 +5,12 @@ const typeDefs = gql`
     currentUser(handle: String!): User
     followsTweets(handle: String!): [Post]
     getUserProfile(handle: String!): User
+    getPost(postID: String): Post
   }
 
+  type Mutation {
+    likePost(handle: String, postID: String): Post
+  }
 
   type User {
     name: String!

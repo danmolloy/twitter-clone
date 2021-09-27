@@ -58,7 +58,7 @@ export const Bookmarks = (props: any) => {
         <p className="user pl-2 -pt-2 text-xs text-gray-600 mb-1.5">{props.currentUser.handle}</p>
       </div>
       {data ? data.currentUser.bookmarks.map((post: { author: any, content: string, id: string }) => {
-            return <SingleTweet tweet={post} user={post.author} key={post.id}/>;
+            return <SingleTweet tweet={post} user={post.author} key={post.id} />;
           }) :
           <div className="flex flex-col items-center">
         <div className="flex flex-col w-1/2 pt-8">

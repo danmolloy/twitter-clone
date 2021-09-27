@@ -29,6 +29,7 @@ module.exports = {
       throw e
     }
     },
+
     followsTweets: async (_, arg, context) => {
       let followingHandles = []
       const currentUserFollowing = await context.prisma.user.findUnique({
@@ -60,6 +61,7 @@ module.exports = {
 
       return followingTweets
     },
+
     getUserProfile: async(_, arg, context) => {
       return context.prisma.user.findUnique({
         where: {
@@ -87,7 +89,76 @@ module.exports = {
           }
         }
       })
-    }
+    },
+
+    getPost: async(_, arg, context) => {
+      const getPost = await context.prisma.post.findUnique({
+        where: {
+          id: arg.postID
+        },
+        include: {
+          likes: true,
+          author: true,
+        }
+      })
+      return getPost
+    },
 
     },
+    Mutation: {
+      likePost: async (_, {postID, handle}, context) => {
+        try {
+          const getPost = await context.prisma.post.findUnique({
+            where: {
+              id: postID
+            },
+            include: {
+              likes: true
+            }
+          })
+        
+          if (getPost && getPost.likes.filter(e => e.handle === handle).length < 1) {
+        
+            const updatedPost = await context.prisma.post.update({
+              where: {
+                id: postID
+              },
+              include: {
+                likes: true
+              },
+              data: {
+                likes: {
+                  connect: {
+                    handle: handle
+                  }
+                }
+              }
+            })
+            return updatedPost
+          } else if (getPost && getPost.likes.filter(e => e.handle === handle).length === 1) {
+            const updatedPost = await context.prisma.post.update({
+              where: {
+                id: postID
+              },
+              include: {
+                likes: true
+              },
+              data: {
+                likes: {
+                  disconnect: {
+                    handle: handle
+                  }
+                }
+              }
+            })
+            return updatedPost
+          }
+          
+        }
+        catch(e) {
+          return `Error! ${e}`
+        }
+      },
+
+    }
   }

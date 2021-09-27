@@ -3,26 +3,16 @@ const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
 
 async function main() {
-  const getUserProfile = await prisma.user.findUnique({
+  const getPost = await prisma.post.findUnique({
     where: {
-      handle: "@danmolloy"
+      id: "52ec0146-9436-493c-9ce0-b44084f1ffca"
     },
     include: {
-      writtenPosts: true,
-      followers: {
-        select: {
-          handle: true
-        }
-      },
-      follows: {
-        select: {
-          handle: true
-        }
-      }
+      likes: true,
+      author: true,
     }
   })
-
-  console.log(getUserProfile)
+  console.log(getPost)
 }
 
 main()
