@@ -7,6 +7,7 @@ import {
 } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { gql, useMutation } from '@apollo/client';
+import fromUnixTime from 'date-fns/fromUnixTime'
 
 const LIKE_POST = gql`
   mutation Mutation($likePostHandle: String, $likePostPostId: String) {
@@ -18,12 +19,29 @@ const LIKE_POST = gql`
   }
 `;
 
+const RETWEET_POST = gql`
+  mutation Mutation($retweetPostHandle: String, $retweetPostPostId: String) {
+    retweetPost(handle: $retweetPostHandle, postID: $retweetPostPostId) {
+      retweets {
+        handle
+      }
+    }
+  }
+`;
+
 export const SingleTweet = (props: any) => {
 
-  const [likePost, { data, loading, error }] = useMutation(LIKE_POST, {
+  const [likePost, { data: dataLikes, loading: loadingLikes, error: errorLikes }] = useMutation(LIKE_POST, {
     variables: {
       likePostHandle: props.currentUser.handle,
       likePostPostId: props.tweet.id
+    }
+  })
+
+  const [retweetPost, { data: dataRetweets, loading: loadingRetweets, error: errorRetweets }] = useMutation(RETWEET_POST, {
+    variables: {
+      retweetPostHandle: props.currentUser.handle,
+      retweetPostPostId: props.tweet.id
     }
   })
   
@@ -41,7 +59,7 @@ export const SingleTweet = (props: any) => {
               <h4 className="text-gray-500 ml-1">{props.user.handle}</h4>
             </Link>
             <span className="text-gray-500 ml-1">•</span>
-            <h4 className="text-gray-500 ml-1 hover:underline">{props.tweet.postDate.slice(0, 21)}</h4>
+            <h4 className="text-gray-500 ml-1 hover:underline">{String(fromUnixTime(props.tweet.postDate)).slice(0, 21)}</h4>
           </div>
           <button className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
             •••
@@ -57,17 +75,21 @@ export const SingleTweet = (props: any) => {
             <ChatIcon className=" hover:bg-blue-50 tweet-options" />
             <p>{props.tweet.comments ? props.tweet.comments.length : null}</p>
           </div>
-          <div className="flex flex-row items-center hover:text-green-500">
+          <button 
+          className="flex flex-row items-center hover:text-green-500"
+          onClick={async () =>{
+            await retweetPost();
+          }}>
             <RefreshIcon className="hover:bg-green-50 tweet-options" />
-            <p>{props.tweet.retweets ? props.tweet.retweets.length : null}</p>
-          </div>
+            <p>{dataRetweets && dataRetweets.retweetPost.retweets.length > 0 ? dataRetweets.retweetPost.retweets.length: props.tweet.retweets.length > 0 ? props.tweet.retweets.length : null}</p>
+          </button>
           <button 
           className="flex flex-row  items-center hover:text-red-500"
           onClick={async () => {
           await likePost();
           }}>
             <HeartIcon className="hover:bg-red-50 tweet-options"/>
-            <p className=" ">{data && data.likePost.likes.length > 0 ? data.likePost.likes.length : props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
+            <p className=" ">{dataLikes && dataLikes.likePost.likes.length > 0 ? dataLikes.likePost.likes.length : props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
           </button>
           <UploadIcon className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
         </div>

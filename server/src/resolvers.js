@@ -17,11 +17,6 @@ module.exports = {
               handle: true
             }
           },
-          writtenPosts: {
-            include: {
-              likes: true
-            }
-          }
         }
       })
     }
@@ -31,7 +26,7 @@ module.exports = {
     },
 
     followsTweets: async (_, arg, context) => {
-      let followingHandles = []
+      let followingHandles = [arg.handle]
       const currentUserFollowing = await context.prisma.user.findUnique({
         where: {
           handle: arg.handle
@@ -53,13 +48,24 @@ module.exports = {
         where: {
           authorHandle: {in: followingHandles}
         },
+        orderBy: [
+          {
+            postDate: 'desc'
+          }
+        ],
         include: {
           author: true,
-          likes: true
+          likes: true,
+          retweets: true
         }
       })
 
-      return followingTweets
+      try {
+        return followingTweets
+      }
+      catch(e) {
+        throw e
+      }
     },
 
     getUserProfile: async(_, arg, context) => {
@@ -75,7 +81,12 @@ module.exports = {
                   handle: true
                 }
               }
-            }
+            },
+            orderBy: [
+              {
+                postDate: 'desc'
+              }
+            ],
           },
           followers: {
             select: {
@@ -110,7 +121,7 @@ module.exports = {
         await context.prisma.post.create({
           data: {
             content: arg.content,
-            postDate: Date(),
+            postDate: String(Date.now()).slice(0, -3),
             authorHandle: arg.authorHandle,
           }
         })
@@ -155,6 +166,59 @@ module.exports = {
               },
               data: {
                 likes: {
+                  disconnect: {
+                    handle: handle
+                  }
+                }
+              }
+            })
+            return updatedPost
+          }
+          
+        }
+        catch(e) {
+          return `Error! ${e}`
+        }
+      },
+      retweetPost: async (_, {postID, handle}, context) => {
+        try {
+          const getPost = await context.prisma.post.findUnique({
+            where: {
+              id: postID
+            },
+            include: {
+              retweets: true
+            }
+          })
+        
+          if (getPost && getPost.retweets.filter(e => e.handle === handle).length < 1) {
+        
+            const updatedPost = await context.prisma.post.update({
+              where: {
+                id: postID
+              },
+              include: {
+                retweets: true
+              },
+              data: {
+                retweets: {
+                  connect: {
+                    handle: handle
+                  }
+                }
+              }
+            })
+            return updatedPost
+          } else if (getPost && getPost.retweets.filter(e => e.handle === handle).length === 1) {
+            const updatedPost = await context.prisma.post.update({
+              where: {
+                id: postID
+              },
+              include: {
+                retweets: true
+              },
+              data: {
+                retweets: {
                   disconnect: {
                     handle: handle
                   }

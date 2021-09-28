@@ -26,10 +26,10 @@ query Query($followsTweetsHandle: String!) {
 `;
 
 export const Home = (props: any) => {
-  const { loading, error, data } = useQuery(FOLLOWINGPOSTS, {variables: {followsTweetsHandle: props.data.currentUser.handle}})
+  const { loading, error, data, refetch } = useQuery(FOLLOWINGPOSTS, {variables: {followsTweetsHandle: props.data.currentUser.handle}})
 
   if (loading) {
-    return <p>Loading</p>
+    return <p>Loading..</p>
   }
 
   if (error) {
@@ -40,13 +40,14 @@ export const Home = (props: any) => {
     <div id="home">
       <div className="header border-b border-gray-200 h-14 flex flex-row justify-between">
         <h2 className="text-xl font-semibold p-4">Home</h2>
+        <button onClick={() => refetch()}>Refresh</button>
         <SparklesIcon className="w-10 p-2 my-2 h-auto mr-4 hover:bg-gray-200 rounded-full " />
       </div>
       <ComposeTweet user={props.data.currentUser} />
       <div className="h-auto w-full flex flex-col mt-0">
         {data.followsTweets && 
         data.followsTweets.map((tweet: {id:string, author:{}}) => {
-          return <SingleTweet tweet={tweet} key={tweet.id} user={tweet.author} currentUser={props.data.currentUser}/>
+          return <SingleTweet tweet={tweet} key={tweet.id} user={tweet.author} currentUser={props.data.currentUser} callProps={() => alert("Hi")}/>
         })
         }
       </div>

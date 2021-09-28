@@ -11,6 +11,7 @@ const typeDefs = gql`
   type Mutation {
     writePost(content: String, authorHandle: String): Post
     likePost(handle: String, postID: String): Post
+    retweetPost(handle: String, postID: String): Post
   }
 
   type User {

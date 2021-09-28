@@ -21,12 +21,10 @@ export const ComposeTweet = (props: any) => {
     }
   })
 
-  const handleSubmit = async() => {
-    await postTweet();
-    if (data) {
-      setContent("")
-    }
-
+  const handleSubmit = (props: any) => {
+    postTweet()
+      .then(()=> setContent(""))
+      .then((props: any) => props.callProps())
   }
 
   if (loading) return <p>'Posting..'</p>;
@@ -62,7 +60,7 @@ export const ComposeTweet = (props: any) => {
       </div>
       <button 
         className={content.length === 0? "tweet-btn-disabled": "tweet-btn"}
-        onClick={() => content.length > 0 && handleSubmit()}>
+        onClick={() => content.length > 0 && handleSubmit(props)}>
         Tweet
       </button>
       </div>
