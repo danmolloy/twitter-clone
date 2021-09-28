@@ -1,47 +1,40 @@
 import { UserCircleIcon, PhotographIcon, ChartBarIcon, EmojiHappyIcon, CalendarIcon } from '@heroicons/react/outline'
 import { GlobeIcon } from '@heroicons/react/solid'
-import { useQuery, useMutation, gql} from '@apollo/client'
+import { useMutation, gql} from '@apollo/client'
 import { useEffect, useState } from 'react';
-import { nanoid } from 'nanoid'
- 
-const POSTS_MUTATION = gql`
-  mutation Mutation($createPostPostDate: String!, $createPostAuthor: String!, $createPostId: String!, $createPostContent: String!) {
-    createPost(postDate: $createPostPostDate, author: $createPostAuthor, id: $createPostId, content: $createPostContent) {
+
+const POST_TWEET = gql`
+  mutation Mutation($writePostContent: String, $writePostAuthorHandle: String) {
+    writePost(content: $writePostContent, authorHandle: $writePostAuthorHandle) {
       id
-      content
-      postDate
-      author {
-        handle
-      }
     }
   }
 `;
 
 export const ComposeTweet = (props: any) => {
   const [content, setContent] = useState('')
-  const [tweetPage, setTweetPage] = useState(false)
 
-  const [createTweet, { data, loading, error}] = useMutation(POSTS_MUTATION)
-
-  const handleSubmit = () => {
-    createTweet({ variables: {
-      createPostPostDate: new Date().toString().slice(4, 15),
-      createPostAuthor: props.user.handle,
-      createPostId: nanoid(),
-      createPostContent: content,
-    },
-  });
-  }
-
-  useEffect(() => {
-    if(document.location.href.match(/compose\/tweet/gi)) {
-      setTweetPage(true)
+  const [postTweet, {data, loading, error}] = useMutation(POST_TWEET, {
+    variables: {
+      writePostContent: content,
+      writePostAuthorHandle: props.user.handle
     }
   })
 
+  const handleSubmit = async() => {
+    await postTweet();
+    if (data) {
+      setContent("")
+    }
+
+  }
+
+  if (loading) return <p>'Posting..'</p>;
+
+  if (error) return <p>'Error posting!'</p>;
 
   return (
-    <div className={tweetPage ? "" : "flex flex-col border-b"}>
+    <div className="flex flex-col border-b">
       <div className="flex flex-row">
         {props.user.profilePic ?
         <img src={props.user.profilePic} className="w-14 h-auto mt-4 ml-3 rounded-full"/>:
@@ -69,7 +62,7 @@ export const ComposeTweet = (props: any) => {
       </div>
       <button 
         className={content.length === 0? "tweet-btn-disabled": "tweet-btn"}
-        onClick={handleSubmit}>
+        onClick={() => content.length > 0 && handleSubmit()}>
         Tweet
       </button>
       </div>

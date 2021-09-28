@@ -106,6 +106,16 @@ module.exports = {
 
     },
     Mutation: {
+      writePost: async(_, arg, context) => {
+        await context.prisma.post.create({
+          data: {
+            content: arg.content,
+            postDate: Date(),
+            authorHandle: arg.authorHandle,
+          }
+        })
+        
+      },
       likePost: async (_, {postID, handle}, context) => {
         try {
           const getPost = await context.prisma.post.findUnique({

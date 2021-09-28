@@ -41,7 +41,7 @@ export const SingleTweet = (props: any) => {
               <h4 className="text-gray-500 ml-1">{props.user.handle}</h4>
             </Link>
             <span className="text-gray-500 ml-1">•</span>
-            <h4 className="text-gray-500 ml-1 hover:underline">{props.tweet.postDate}</h4>
+            <h4 className="text-gray-500 ml-1 hover:underline">{props.tweet.postDate.slice(0, 21)}</h4>
           </div>
           <button className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
             •••
