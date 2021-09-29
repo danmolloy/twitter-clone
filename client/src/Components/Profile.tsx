@@ -27,6 +27,9 @@ const GETUSER = gql`
         likes {
           handle
         }
+        retweets {
+          handle
+        }
       }
       }
     }

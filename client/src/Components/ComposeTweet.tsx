@@ -24,7 +24,7 @@ export const ComposeTweet = (props: any) => {
   const handleSubmit = (props: any) => {
     postTweet()
       .then(()=> setContent(""))
-      .then((props: any) => props.callProps())
+      .then(props.refreshTweets)
   }
 
   if (loading) return <p>'Posting..'</p>;

@@ -47,7 +47,7 @@ export const Home = (props: any) => {
       <div className="h-auto w-full flex flex-col mt-0">
         {data.followsTweets && 
         data.followsTweets.map((tweet: {id:string, author:{}}) => {
-          return <SingleTweet tweet={tweet} key={tweet.id} user={tweet.author} currentUser={props.data.currentUser} callProps={() => alert("Hi")}/>
+          return <SingleTweet tweet={tweet} key={tweet.id} user={tweet.author} currentUser={props.data.currentUser} refreshTweets={()=> refetch}/>
         })
         }
       </div>

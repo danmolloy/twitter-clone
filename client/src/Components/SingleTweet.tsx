@@ -59,7 +59,7 @@ export const SingleTweet = (props: any) => {
               <h4 className="text-gray-500 ml-1">{props.user.handle}</h4>
             </Link>
             <span className="text-gray-500 ml-1">•</span>
-            <h4 className="text-gray-500 ml-1 hover:underline">{String(fromUnixTime(props.tweet.postDate)).slice(0, 21)}</h4>
+            <h4 className="text-gray-500 ml-1 hover:underline">{String(fromUnixTime(props.tweet.postDate)).slice(0, 20)}</h4>
           </div>
           <button className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
             •••
@@ -81,7 +81,7 @@ export const SingleTweet = (props: any) => {
             await retweetPost();
           }}>
             <RefreshIcon className="hover:bg-green-50 tweet-options" />
-            <p>{dataRetweets && dataRetweets.retweetPost.retweets.length > 0 ? dataRetweets.retweetPost.retweets.length: props.tweet.retweets.length > 0 ? props.tweet.retweets.length : null}</p>
+            <p>{dataRetweets && dataRetweets.retweetPost.retweets.length > 0 ? dataRetweets.retweetPost.retweets.length : dataRetweets && dataRetweets.retweetPost.retweets.length === 0 ? null : props.tweet.retweets && props.tweet.retweets.length > 0 ? props.tweet.retweets.length : null}</p>
           </button>
           <button 
           className="flex flex-row  items-center hover:text-red-500"
@@ -89,7 +89,7 @@ export const SingleTweet = (props: any) => {
           await likePost();
           }}>
             <HeartIcon className="hover:bg-red-50 tweet-options"/>
-            <p className=" ">{dataLikes && dataLikes.likePost.likes.length > 0 ? dataLikes.likePost.likes.length : props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
+            <p className=" ">{dataLikes && dataLikes.likePost.likes.length > 0 ? dataLikes.likePost.likes.length : dataLikes && dataLikes.likePost.likes.length === 0 ? null : props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
           </button>
           <UploadIcon className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
         </div>

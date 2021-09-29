@@ -55,8 +55,16 @@ module.exports = {
         ],
         include: {
           author: true,
-          likes: true,
-          retweets: true
+          likes: {
+            select: {
+              handle: true
+            }
+          },
+          retweets: {
+            select: {
+              handle: true
+            }
+          }
         }
       })
 
@@ -74,9 +82,15 @@ module.exports = {
           handle: arg.handle
         },
         include: {
+          retweets: true, 
           writtenPosts: {
             include: {
               likes: {
+                select: {
+                  handle: true
+                }
+              },
+              retweets: {
                 select: {
                   handle: true
                 }
