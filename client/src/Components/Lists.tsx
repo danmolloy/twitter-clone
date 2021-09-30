@@ -8,53 +8,23 @@ import { Loading } from "./Loading"
 import { Error } from "./Error"
 
 const LIST_QUERY = gql`
-  query Query($currentUserHandle: String!) {
-    currentUser(handle: $currentUserHandle) {
-      Lists {
-        ListName
-        Description
-        ListID
-        Private
-        Pinned
-        Creator {
-          name
-          handle
-          profilePic
-        }
-        Members {
-          handle
-          name
-          posts {
-            id
-            content
-            postDate
-            likes {
-              handle
-              name
-              profilePic
-            }
-            retweets {
-              name
-              handle
-              profilePic
-            }
-            comments {
-              id
-              content
-              postDate
-              author {
-                name
-                profilePic
-                handle
-              }
-            }
-            author {
-              name
-              handle
-              profilePic
-            }
-          }
-        }
+  query Query($getAuthoredListsHandle: String) {
+    getAuthoredLists(handle: $getAuthoredListsHandle) {
+      id
+      name
+      picture
+      description
+      private
+      authorHandle
+      author {
+        name
+        profilePic
+      }
+      members {
+        handle
+      }
+      followers {
+        handle
       }
     }
   }
@@ -93,8 +63,8 @@ export const Lists = (props: any) => {
         <h2 className="text-xl font-extrabold pl-2 pt-2 pb-1">Your Lists</h2>
         <div className="flex flex-col">
         {data ? 
-          data.currentUser.Lists.map((List: {ListName: string, ID: string, Private: boolean, Creator: {}}) => {
-          return <ListTile ListName={List.ListName} key={List.ID} private={List.Private} Creator={List.Creator}/>
+          data.getAuthoredLists.map((list: {}) => {
+          return <ListTile list={list}/>
         }): 
         <p>You haven't created or followed any Lists. When you do, they'll show up here.</p>}
         </div>

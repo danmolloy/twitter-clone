@@ -6,6 +6,7 @@ const typeDefs = gql`
     followsTweets(handle: String!): [Post]
     getUserProfile(handle: String!): User
     getPost(postID: String): Post
+    getAuthoredLists(handle: String): [List]
   }
 
   type Mutation {
@@ -40,14 +41,15 @@ const typeDefs = gql`
   }
 
   type List {
-    ListName: String!
-    ListID: String!
-    Description: String!
-    Private: Boolean!
-    Members: [User]!
-    Followers: [User]!
-    Pinned: Boolean!
-    Creator: User!
+    id: String!
+    name: String!
+    picture: String!
+    description: String!
+    private: Boolean!
+    authorHandle: String!
+    author: User!
+    members: [User] 
+    followers: [User]
   }
 
   type MsgConversation {

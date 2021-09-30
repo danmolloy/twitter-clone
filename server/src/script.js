@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-  const postsTweets = await prisma.post.findMany({
+  /*const postsTweets = await prisma.post.findMany({
     where: {
       authorHandle: "@danmolloy",
       OR: [
@@ -13,7 +13,8 @@ async function main() {
         }
       ]
     },
-  })
+  })*/
+
 }
 
 main()

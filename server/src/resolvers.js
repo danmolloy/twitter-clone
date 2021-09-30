@@ -149,6 +149,33 @@ module.exports = {
       })
       return getPost
     },
+    getAuthoredLists: async(_, arg, context) => {
+      const lists = await context.prisma.list.findMany({
+        where: {
+          authorHandle: arg.handle
+        },
+        include: {
+          author: {
+            select: {
+              name: true,
+              profilePic: true
+            }
+          },
+          members: {
+            select: {
+              handle: true
+            }
+          },
+          followers: {
+            select: {
+              handle: true
+            }
+          }
+        }
+      })
+    
+      return lists
+    }
 
     },
     Mutation: {
