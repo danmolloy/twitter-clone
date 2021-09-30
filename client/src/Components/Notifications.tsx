@@ -1,7 +1,8 @@
+import { Loading } from "./Loading"
 
 export const Notifications = () => {
   return (
-    <div>
+    <div className="w-full h-full">
       <div className="flex flex-col border-b">
         <h2 className="text-xl font-semibold pl-3 pt-3 pb-3">
           Notifications
@@ -16,6 +17,9 @@ export const Notifications = () => {
           <span className="" />
         </button>
         </div>
+      </div>
+      <div className="w-full h-full">
+        <Loading />
       </div>
     </div>
   )
