@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client'
+import { Error } from './Error'
 import { Loading } from './Loading'
 import { SingleTweet } from './SingleTweet'
 
@@ -49,7 +50,7 @@ export const Bookmarks = (props: any) => {
   }
 
   if (error) {
-    <p>error</p>
+    return <Error />
   }
 
   return (
