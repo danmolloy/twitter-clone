@@ -17,6 +17,27 @@ module.exports = {
               handle: true
             }
           },
+          bookmarks: {
+            include: {
+              author: {
+                select: {
+                  name: true,
+                  handle: true,
+                  profilePic: true
+                }
+              },
+              likes: {
+                select: {
+                  handle: true
+                }
+              },
+              retweets: {
+                select: {
+                  handle: true
+                }
+              }
+            }
+          }
         }
       })
     }

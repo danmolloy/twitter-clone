@@ -54,7 +54,7 @@ export const SingleTweet = (props: any) => {
       <div className="ml-3 flex flex-col w-full">
         <div className="flex flex-row w-full justify-between">
           <div className="flex flex-row">
-            <Link to={`/${props.user.handle.slice(1)}`} className="flex flex-row">
+            <Link to={props.user.handle && `/${props.user.handle.slice(1)}`} className="flex flex-row">
               <h3 className="font-bold hover:underline">{props.user.name}</h3>
               <h4 className="text-gray-500 ml-1">{props.user.handle}</h4>
             </Link>

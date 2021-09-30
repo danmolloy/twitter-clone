@@ -26,6 +26,7 @@ const typeDefs = gql`
     writtenPosts: [Post]
     likedPosts: [Post]
     retweets: [Post]
+    bookmarks: [Post]
   }
 
   type Post {

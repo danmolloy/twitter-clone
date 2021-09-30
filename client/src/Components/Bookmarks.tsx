@@ -7,8 +7,8 @@ const BOOKMARKS = gql`
   query Query($currentUserHandle: String!) {
     currentUser(handle: $currentUserHandle) {
       bookmarks {
-        id
         content
+        id
         postDate
         author {
           name
@@ -21,21 +21,6 @@ const BOOKMARKS = gql`
         retweets {
           handle
         }
-        comments {
-          content
-          postDate
-          author {
-            handle
-            name
-            profilePic
-          }
-          likes {
-            handle
-          }
-          retweets {
-            handle
-          }
-        }
       }
     }
   }
@@ -43,7 +28,7 @@ const BOOKMARKS = gql`
 
 
 export const Bookmarks = (props: any) => {
-  const { loading, error, data } = useQuery(BOOKMARKS, {variables: {currentUserHandle: "@dan" }})
+  const { loading, error, data } = useQuery(BOOKMARKS, {variables: {currentUserHandle: "@danmolloy" }})
 
   if (loading) {
     <Loading />
@@ -60,7 +45,7 @@ export const Bookmarks = (props: any) => {
         <p className="user pl-2 -pt-2 text-xs text-gray-600 mb-1.5">{props.currentUser.handle}</p>
       </div>
       {data ? data.currentUser.bookmarks.map((post: { author: any, content: string, id: string }) => {
-            return <SingleTweet tweet={post} user={post.author} key={post.id} />;
+            return <SingleTweet tweet={post} user={post.author} key={post.id} currentUser={props.currentUser}/>;
           }) :
           <div className="flex flex-col items-center">
         <div className="flex flex-col w-1/2 pt-8">
