@@ -17,6 +17,7 @@ import { Sidebar } from "./Sidebar";
 import { useQuery, gql } from '@apollo/client'
 import { ComposeTweet } from "./ComposeTweet";
 import { RightBar }  from './RightBar'
+import { Loading } from "./Loading";
 
 const CURRENTUSER = gql`
 query Query($currentUserHandle: String!) {
@@ -51,7 +52,7 @@ function App() {
 
 
   if (loading) {
-    return <p>Loading..</p>
+    return <Loading />
   }
 
   if (error) {

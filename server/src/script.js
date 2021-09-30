@@ -4,15 +4,16 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-  const userProfile = await prisma.user.findUnique({
+  const postsTweets = await prisma.post.findMany({
     where: {
-      handle: "@danmolloy"
+      authorHandle: "@danmolloy",
+      OR: [
+        {
+          // retweets contains @danmolloy
+        }
+      ]
     },
-    select: {
-      retweets: true
-    }
   })
-  console.log(userProfile)
 }
 
 main()

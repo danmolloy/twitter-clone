@@ -1,6 +1,7 @@
 import { ArrowLeftIcon, CogIcon, PlusSmIcon, SearchIcon } from "@heroicons/react/outline"
 import { gql, useQuery } from '@apollo/client'
 import { useState, useEffect } from 'react'
+import { Loading } from "./Loading";
 
 const MESSAGES = gql`
   query Query($currentUserHandle: String!) {
@@ -27,7 +28,7 @@ export const Messages = (props: any) => {
   const [searchBarFocused, setSearchBarFocused] = useState(false)
 
   if (loading) {
-    <p>Loading</p>
+    return <Loading />
   }
 
   if (error) {

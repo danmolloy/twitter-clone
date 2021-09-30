@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { ComposeTweet } from './ComposeTweet'
 import { SingleTweet } from './SingleTweet'
 import { gql, useQuery } from '@apollo/client'
+import { Loading } from './Loading'
 
 const FOLLOWINGPOSTS =  gql`
 query Query($followsTweetsHandle: String!) {
@@ -29,7 +30,7 @@ export const Home = (props: any) => {
   const { loading, error, data, refetch } = useQuery(FOLLOWINGPOSTS, {variables: {followsTweetsHandle: props.data.currentUser.handle}})
 
   if (loading) {
-    return <p>Loading..</p>
+    return <Loading />
   }
 
   if (error) {

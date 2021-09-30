@@ -4,6 +4,7 @@ import {
 } from "@heroicons/react/outline"
 import { gql, useQuery } from '@apollo/client'
 import { ListTile } from "./ListTile"
+import { Loading } from "./Loading"
 
 const LIST_QUERY = gql`
   query Query($currentUserHandle: String!) {
@@ -63,7 +64,7 @@ export const Lists = (props: any) => {
   const { loading, error, data } = useQuery(LIST_QUERY, {variables: {currentUserHandle: "@dan" }})
   
   if (loading) {
-    <p>Loading</p>
+    return <Loading />
   }
 
   if (error) {

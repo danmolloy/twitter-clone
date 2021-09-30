@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
 import { SingleTweet } from "./SingleTweet"
 import { gql, useQuery } from "@apollo/client"
+import { Loading } from "./Loading"
 
 const GETUSER = gql`
   query Query($getUserProfileHandle: String!) {
@@ -54,7 +55,7 @@ export const Profile = (props: any) => {
   })
 
   if (loading) {
-    <p>Loading</p>
+    <Loading />
   }
 
   if (error) {
