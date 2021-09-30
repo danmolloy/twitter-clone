@@ -5,6 +5,7 @@ import {
 import { gql, useQuery } from '@apollo/client'
 import { ListTile } from "./ListTile"
 import { Loading } from "./Loading"
+import { Error } from "./Error"
 
 const LIST_QUERY = gql`
   query Query($currentUserHandle: String!) {
@@ -68,7 +69,7 @@ export const Lists = (props: any) => {
   }
 
   if (error) {
-    <p>error</p>
+    return <Error />
   }
 
   return (

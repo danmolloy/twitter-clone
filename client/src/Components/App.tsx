@@ -18,6 +18,7 @@ import { useQuery, gql } from '@apollo/client'
 import { ComposeTweet } from "./ComposeTweet";
 import { RightBar }  from './RightBar'
 import { Loading } from "./Loading";
+import { Error } from "./Error";
 
 const CURRENTUSER = gql`
 query Query($currentUserHandle: String!) {
@@ -56,7 +57,7 @@ function App() {
   }
 
   if (error) {
-    return <p>Error</p>
+    return <Error />
   }
   return (
     <Router>

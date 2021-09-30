@@ -2,6 +2,7 @@ import { ArrowLeftIcon, CogIcon, PlusSmIcon, SearchIcon } from "@heroicons/react
 import { gql, useQuery } from '@apollo/client'
 import { useState, useEffect } from 'react'
 import { Loading } from "./Loading";
+import { Error } from "./Error";
 
 const MESSAGES = gql`
   query Query($currentUserHandle: String!) {
@@ -32,7 +33,7 @@ export const Messages = (props: any) => {
   }
 
   if (error) {
-    <p>error</p>
+    return <Error />
   }
 
   return (

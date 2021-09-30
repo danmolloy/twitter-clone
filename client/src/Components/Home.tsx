@@ -4,6 +4,7 @@ import { ComposeTweet } from './ComposeTweet'
 import { SingleTweet } from './SingleTweet'
 import { gql, useQuery } from '@apollo/client'
 import { Loading } from './Loading'
+import { Error } from './Error'
 
 const FOLLOWINGPOSTS =  gql`
 query Query($followsTweetsHandle: String!) {
@@ -34,7 +35,7 @@ export const Home = (props: any) => {
   }
 
   if (error) {
-    return <p>Error</p>
+    return <Error />
   }
 
   return (

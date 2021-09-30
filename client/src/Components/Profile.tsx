@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom"
 import { SingleTweet } from "./SingleTweet"
 import { gql, useQuery } from "@apollo/client"
 import { Loading } from "./Loading"
+import { Error } from "./Error"
 
 const GETUSER = gql`
   query Query($getUserProfileHandle: String!) {
@@ -59,7 +60,7 @@ export const Profile = (props: any) => {
   }
 
   if (error) {
-    <p>Error</p>
+    return <Error />
   }
 
   return (

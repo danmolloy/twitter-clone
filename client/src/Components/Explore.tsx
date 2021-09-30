@@ -1,8 +1,9 @@
+import { Error } from "./Error"
 
 export const Explore = () => {
   return (
-    <div className="ml-24">
-      
+    <div className="w-full h-full">
+      <Error />
     </div>
   )
 }
