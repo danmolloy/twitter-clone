@@ -1,63 +1,72 @@
-import React from "react";
-import { act, render } from "@testing-library/react";
-import App from "./App";
+import TestRenderer from 'react-test-renderer'
+import { Loading } from './Loading'
+import { Error } from './Error'
+import { MockedProvider } from '@apollo/client/testing';
+import App, { CURRENTUSER } from "./App";
 import { unmountComponentAtNode } from "react-dom";
 import { Sidebar } from "./Sidebar";
 import pretty from "pretty";
+import { render } from "@testing-library/react";
 
-let container: any = null;
-beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
-afterEach(() => {
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
+const {act} = TestRenderer;
 
-// ROUTER
-test("/ redirects to /home", () => {
-  act(() => {
-    render(<App />, container);
-  });
-  expect(window.location.pathname).toEqual("/home");
-});
+const mockedCurrentUser: any = [
+  {
+    request: {
+      query: CURRENTUSER,
+      variables: {
+        currentUserHandle: "@danmolloy"
+      },
+    },
+    result: {
+      data: {
+        "currentUser": {
+          "name": "Dan Molloy",
+          "handle": "@danmolloy",
+          "blurb": "hello world",
+          "joinDate": "21 Sept 2021",
+          "bgPic": "bgPic.jpg",
+          "profilePic": "profilePic.jpg",
+          "follows": [
+            {
+              "handle": "@fizzlekelly"
+            },
+            {
+              "handle": "@thebigfirkinband"
+            }
+          ],
+          "followers": [
+            {
+              "handle": "@egg"
+            }
+          ],
+          "writtenPosts": null
+        }
+      }
+    }
+    }
+];
 
-test("sidebar renders", () => {
-  act(() => {
-    render(<Sidebar />, container);
-  });
-  expect(pretty(container.innerHTML)).toMatchInlineSnapshot(`""`);
-});
 
-test("sidebar links work", () => {})
+it("initially renders Loading component without error", () => {
 
-// HOMEPAGE
-test("create a new tweet", () => {})
-test("tweets render on homepage", () => {})
+  const component = TestRenderer.create(
+    <MockedProvider mocks={mockedCurrentUser} addTypename={false}>
+      <App />
+    </MockedProvider>
+  );
 
-// PROFILE PAGE
-test("currentUser profile page renders", () => {})
-test("filters for profile page tweets work correctly", () => {})
+  const tree: any = component.toJSON();
+  expect(tree.props.id).toEqual("loading-component");
+  expect(tree.children.length).toEqual(2);
+})
 
-// NOTIFICATIONS
-test("mentions filter works", () => {})
+it("Error component renders", () => {
+  const component  = TestRenderer.create(
+    <Error />
+  )
+  const tree: any = component.toJSON();
 
-// BOOKMARKS
-test("bookmarks page renders with bookmarks", () => {})
-test("bookmarks added", () => {})
-
-// LISTS
-test("lists rendered", () => {})
-test("lists added", () => {})
-
-// MESSAGES
-test("messages renders", () => {})
-test("message sent", () => {})
-test("messages searchbar works", () => {})
-
-// TWEETS
-test("like button works", () => {})
-test("retweet btn works", () => {})
-test("comments button works", () => {})
+  expect(tree.props.id).toEqual('error-page');
+  expect(tree.children.length).toEqual(3);
+})

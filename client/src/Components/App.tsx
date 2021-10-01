@@ -20,7 +20,7 @@ import { RightBar }  from './RightBar'
 import { Loading } from "./Loading";
 import { Error } from "./Error";
 
-const CURRENTUSER = gql`
+export const CURRENTUSER = gql`
 query Query($currentUserHandle: String!) {
   currentUser(handle: $currentUserHandle) {
     name
@@ -61,7 +61,7 @@ function App() {
   }
   return (
     <Router>
-      <div className="flex flex-row w-screen h-screen justify-start">
+      <div id="main-content" className="flex flex-row w-screen h-screen justify-start">
         <Sidebar data={data} />
         <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
