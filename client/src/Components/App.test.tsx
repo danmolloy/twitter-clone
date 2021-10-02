@@ -2,12 +2,15 @@ import TestRenderer from 'react-test-renderer'
 import { MockedProvider } from '@apollo/client/testing';
 import { Home } from './Home';
 import { Notifications } from './Notifications';
-import { MemoryRouter, Router } from 'react-router';
+import { MemoryRouter } from 'react-router-dom';
 import { mocks } from './testMocks';
 import { Loading } from './Loading';
 import { Error } from './Error';
 import { Sidebar } from './Sidebar';
 import { Profile } from './Profile';
+import App from './App';
+import ReactTestUtils from 'react-dom/test-utils'
+
 
 const {act} = TestRenderer
 

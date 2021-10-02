@@ -6,6 +6,39 @@ import { gql, useQuery } from "@apollo/client"
 import { Loading } from "./Loading"
 import { Error } from "./Error"
 
+interface Post {
+  id: string
+  content: string
+  postDate: string;
+  authorHandle: string;
+  likes: string[]
+  retweets: string[]
+}
+
+interface Follow {
+  handle: string
+}
+
+interface getUserProfile {
+  name: string;
+  handle: string;
+  blurb: string;
+  joinDate: string;
+  bgPic: string;
+  profilePic: string;
+  follows: Follow[];
+  followers: Follow[];
+  writtenPosts: Post[]
+  }
+
+interface GetUserProfileVar {
+  getUserProfileHandle: string;
+}
+
+interface getUserProfileData {
+  getUserProfile: getUserProfile
+}
+
 export const GETUSER = gql`
   query Query($getUserProfileHandle: String!) {
     getUserProfile(handle: $getUserProfileHandle) {
@@ -40,7 +73,7 @@ export const GETUSER = gql`
 export const Profile = (props: any) => {
   const [currentUser, setCurrentUser] = useState(false)
   const {userHandle} = useParams<{ userHandle: string}>()
-  const { loading, error, data } = useQuery(GETUSER, { variables: { getUserProfileHandle: `@${userHandle}` }})
+  const { loading, error, data } = useQuery<getUserProfileData, GetUserProfileVar>(GETUSER, { variables: { getUserProfileHandle: `@${userHandle}` }})
   const [tweetFilter, setTweetFilter] = useState('tweets')
 
   useEffect(() => {
@@ -93,7 +126,7 @@ export const Profile = (props: any) => {
           <button className="font-bold border border-gray-300 rounded-full px-2 my-8 mr-8">
             Edit Profile
           </button>: 
-            data && data.getUserProfile.followers.filter((e: { handle: string}) => e.handle === props.data.currentUser.handle).length > 0 ?
+            data && data.getUserProfile.followers.filter((e: Follow) => e.handle === props.data.currentUser.handle).length > 0 ?
           <button className="font-bold border border-gray-300 rounded-full py-2 px-4 my-8 mr-8">
             Following
           </button> :
@@ -135,28 +168,28 @@ export const Profile = (props: any) => {
         <div className=" w-full h-12 mt-4 flex flex-row">
           <Link 
           className={tweetFilter === 'tweets' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
-          to={data && `/${data.getUserProfile.handle.slice(1)}`}
+          to={data ? `/${data.getUserProfile.handle.slice(1)}` : '/home'}
           onClick={() => setTweetFilter('tweets')}>
             Tweets 
             {tweetFilter === 'tweets' && <span className="tab-line"/>}
           </Link>
           <Link 
           className={tweetFilter === 'replies' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
-          to={data && `/${data.getUserProfile.handle.slice(1)}/with_replies`}
+          to={data ? `/${data.getUserProfile.handle.slice(1)}/with_replies`: '/home'}
           onClick={() => setTweetFilter('replies')}>
             Tweets & Replies
             {tweetFilter === 'replies' && <span className="tab-line"/>}
           </Link>
           <Link 
           className={tweetFilter === 'media' ? 'selected-tweet-filter' : 'deselected-tweet-filter'} 
-          to={data && `/${data.getUserProfile.handle.slice(1)}/media`}
+          to={data ? `/${data.getUserProfile.handle.slice(1)}/media`: '/home'}
           onClick={() => setTweetFilter('media')}>
             Media
             {tweetFilter === 'media' && <span className="tab-line"/>}
           </Link>
           <Link 
           className={tweetFilter === 'likes' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
-          to={data && `/${data.getUserProfile.handle.slice(1)}/likes`}
+          to={data ? `/${data.getUserProfile.handle.slice(1)}/likes`: '/home'}
           onClick={() => setTweetFilter('likes')}>
             Likes
             {tweetFilter === 'likes' && <span className="tab-line"/>}

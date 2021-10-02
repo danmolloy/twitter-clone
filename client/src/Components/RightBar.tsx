@@ -1,6 +1,6 @@
 export const RightBar = () => {
   return (
-    <div className="hidden lg:flex flex-col items-center w-1/4 mx-4 h-screen">
+    <div id="right-bar" className="hidden lg:flex flex-col items-center w-1/4 mx-4 h-screen">
       <input placeholder="Search Twitter" className="border h-10 w-full m-2 rounded-full bg-gray-100 pl-2" />
       <div className="bg-gray-50 w-full m-2 rounded-2xl">
         <h2 className="font-bold text-lg p-2">What's happening</h2>
