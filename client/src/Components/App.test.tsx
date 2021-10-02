@@ -1,72 +1,89 @@
 import TestRenderer from 'react-test-renderer'
-import { Loading } from './Loading'
-import { Error } from './Error'
 import { MockedProvider } from '@apollo/client/testing';
-import App, { CURRENTUSER } from "./App";
-import { unmountComponentAtNode } from "react-dom";
-import { Sidebar } from "./Sidebar";
-import pretty from "pretty";
-import { render } from "@testing-library/react";
+import { Home } from './Home';
+import { Notifications } from './Notifications';
+import { MemoryRouter, Router } from 'react-router';
+import { mocks } from './testMocks';
+import { Loading } from './Loading';
+import { Error } from './Error';
+import { Sidebar } from './Sidebar';
+import { Profile } from './Profile';
 
-const {act} = TestRenderer;
+const {act} = TestRenderer
 
-const mockedCurrentUser: any = [
-  {
-    request: {
-      query: CURRENTUSER,
-      variables: {
-        currentUserHandle: "@danmolloy"
-      },
-    },
-    result: {
-      data: {
-        "currentUser": {
-          "name": "Dan Molloy",
-          "handle": "@danmolloy",
-          "blurb": "hello world",
-          "joinDate": "21 Sept 2021",
-          "bgPic": "bgPic.jpg",
-          "profilePic": "profilePic.jpg",
-          "follows": [
-            {
-              "handle": "@fizzlekelly"
-            },
-            {
-              "handle": "@thebigfirkinband"
-            }
-          ],
-          "followers": [
-            {
-              "handle": "@egg"
-            }
-          ],
-          "writtenPosts": null
-        }
-      }
-    }
-    }
-];
-
-
-it("initially renders Loading component without error", () => {
-
+it("Loading component renders without error", () => {
   const component = TestRenderer.create(
-    <MockedProvider mocks={mockedCurrentUser} addTypename={false}>
-      <App />
+    <Loading />
+  );
+  const tree = component.toJSON()
+  expect(tree.props.id).toEqual('loading-component');
+})
+
+it("Error component renders without error", () => {
+  const component = TestRenderer.create(
+    <Error />
+  );
+  const tree = component.toJSON()
+  expect(tree.props.id).toEqual('error-page')
+})
+
+it("Sidebar component renders without error", async () => {
+  const component = TestRenderer.create(
+    <MockedProvider>
+      <MemoryRouter>
+        <Sidebar data={mocks[0].result.data}/>
+      </MemoryRouter>
     </MockedProvider>
   );
 
-  const tree: any = component.toJSON();
-  expect(tree.props.id).toEqual("loading-component");
-  expect(tree.children.length).toEqual(2);
+  await act( async() => {
+    await new Promise(resolve => setTimeout(resolve, 10));
+  })
+
+  const tree = component.toJSON();
+  expect(tree.props.id).toEqual('side-bar')
 })
 
-it("Error component renders", () => {
-  const component  = TestRenderer.create(
-    <Error />
-  )
-  const tree: any = component.toJSON();
+it("Home component renders without error", async() => {
+  const component = TestRenderer.create(
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <MemoryRouter>
+        <Home data={mocks[0].result.data}/>
+      </MemoryRouter>
+    </MockedProvider>
+  );
 
-  expect(tree.props.id).toEqual('error-page');
-  expect(tree.children.length).toEqual(3);
+  await act( async () => {
+    await new Promise(resolve => setTimeout(resolve, 1));
+  })
+
+  const tree = component.toJSON();
+  expect(tree.props.id).toEqual('home');
+  expect(tree.children[0].props.id).toEqual('home-header');
+  expect(tree.children[1].props.id).toEqual('compose-tweet');
+})
+
+it("Notifications component renders without error", () => {
+  const component = TestRenderer.create(
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <Notifications />
+    </MockedProvider>
+  );
+
+  const tree = component.toJSON();
+  expect(tree.props.id).toEqual('notifications-component')
+})
+
+it("Profile component renders without error", async () => {
+    const component = TestRenderer.create(
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <MemoryRouter initialEntries={["/@cheese"]}>
+        <Profile data={mocks[0].result.data}/>
+      </MemoryRouter>
+    </MockedProvider>
+  );
+
+  const tree = component.toJSON();
+  expect(tree.props.id).toEqual('profile-component')
+
 })

@@ -6,7 +6,7 @@ import { gql, useQuery } from "@apollo/client"
 import { Loading } from "./Loading"
 import { Error } from "./Error"
 
-const GETUSER = gql`
+export const GETUSER = gql`
   query Query($getUserProfileHandle: String!) {
     getUserProfile(handle: $getUserProfileHandle) {
       name
@@ -64,7 +64,7 @@ export const Profile = (props: any) => {
   }
 
   return (
-    <div className="border-r w-full mr-2">
+    <div id="profile-component"className="border-r w-full mr-2">
       <div className="border-b flex flex-row">
         <Link to="/home">
         <ArrowLeftIcon className="w-10 p-2 h-auto ml-4 my-2" />

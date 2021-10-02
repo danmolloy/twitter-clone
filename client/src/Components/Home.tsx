@@ -6,7 +6,7 @@ import { gql, useQuery } from '@apollo/client'
 import { Loading } from './Loading'
 import { Error } from './Error'
 
-const FOLLOWINGPOSTS =  gql`
+export const FOLLOWINGPOSTS =  gql`
 query Query($followsTweetsHandle: String!) {
   followsTweets(handle: $followsTweetsHandle) {
     content
@@ -40,7 +40,7 @@ export const Home = (props: any) => {
 
   return (
     <div id="home">
-      <div className="header border-b border-gray-200 h-14 flex flex-row justify-between">
+      <div id="home-header" className="header border-b border-gray-200 h-14 flex flex-row justify-between">
         <h2 className="text-xl font-semibold p-4">Home</h2>
         <button onClick={() => refetch()}>Refresh</button>
         <SparklesIcon className="w-10 p-2 my-2 h-auto mr-4 hover:bg-gray-200 rounded-full " />

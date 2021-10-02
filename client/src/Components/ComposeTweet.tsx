@@ -32,7 +32,7 @@ export const ComposeTweet = (props: any) => {
   if (error) return <p>'Error posting!'</p>;
 
   return (
-    <div className="flex flex-col border-b">
+    <div id="compose-tweet" className="flex flex-col border-b">
       <div className="flex flex-row">
         {props.user.profilePic ?
         <img src={props.user.profilePic} className="w-14 h-auto mt-4 ml-3 rounded-full"/>:
