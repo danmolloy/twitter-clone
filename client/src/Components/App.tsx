@@ -98,31 +98,7 @@ function App() {
 
 export default App;
 
-interface CurrentUserData {
-  currentUser: CurrentUser
-}
-
-interface CurrentUserVar {
-  currentUserHandle: string
-}
-
-interface Follows {
-  handle: string;
-}
-
-interface LikesRetweets {
-  handle: string;
-}
-
-interface Post {
-  id: string;
-  content: string;
-  postDate: string;
-  likes: LikesRetweets[]
-  retweets: LikesRetweets[]
-}
-
-interface CurrentUser {
+export interface CurrentUser {
   name: string;
   handle: string;
   blurb: string;
@@ -133,3 +109,42 @@ interface CurrentUser {
   followers: Follows[];
   writtenPosts: Post[];
 }
+
+export interface Post {
+  id: string;
+  content: string;
+  postDate: string;
+  likes: LikesRetweets[]
+  retweets: LikesRetweets[]
+}
+
+
+export interface Follows {
+  handle: string;
+}
+
+export interface LikesRetweets {
+  handle: string;
+}
+
+export interface CurrentUserData {
+  currentUser: CurrentUser
+}
+
+export interface CurrentUserVar {
+  currentUserHandle: string
+}
+
+export interface Post {
+  id: string;
+  content: string;
+  postDate: string;
+  likes: LikesRetweets[]
+  retweets: LikesRetweets[]
+}
+
+
+export interface Follows {
+  handle: string;
+}
+ 

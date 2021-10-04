@@ -1,6 +1,6 @@
-import App, { CURRENTUSER } from "./App";
-import { Home, FOLLOWINGPOSTS } from './Home';
-import { GETUSER } from './Profile'
+import App, { CURRENTUSER } from "../Components/App";
+import { Home, FOLLOWINGPOSTS } from '../Components/Home';
+import { GETUSER } from '../Components/Profile'
 
 export const mocks: any = [
   {

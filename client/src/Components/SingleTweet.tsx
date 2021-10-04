@@ -46,7 +46,7 @@ export const SingleTweet = (props: any) => {
   })
   
   return (
-    <div className="border-b hover:bg-gray-50">
+    <div id="single-tweet" className="border-b hover:bg-gray-50">
       <div className="flex flex-row mt-4"> 
       {props.user.profilePic ? 
       <img src={props.user.profilePic} className="w-14 h-auto ml-3 rounded-full"/>:
@@ -84,6 +84,7 @@ export const SingleTweet = (props: any) => {
             <p>{dataRetweets && dataRetweets.retweetPost.retweets.length > 0 ? dataRetweets.retweetPost.retweets.length : dataRetweets && dataRetweets.retweetPost.retweets.length === 0 ? null : props.tweet.retweets && props.tweet.retweets.length > 0 ? props.tweet.retweets.length : null}</p>
           </button>
           <button 
+          id="like-button"
           className="flex flex-row  items-center hover:text-red-500"
           onClick={async () => {
           await likePost();

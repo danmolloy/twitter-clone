@@ -1,14 +1,15 @@
 import { act } from "react-dom/test-utils";
 import { unmountComponentAtNode, render } from "react-dom";
-import App from "./App";
+import App from "../Components/App";
 import { mocks } from './testMocks';
 import { MemoryRouter } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
-import { Sidebar } from "./Sidebar";
-import { Error } from "./Error";
-import { Loading } from "./Loading";
+import { Sidebar } from "../Components/Sidebar";
+import { Error } from "../Components/Error";
+import { Loading } from "../Components/Loading";
 import { fireEvent } from "@testing-library/dom";
 import { getByText } from "@testing-library/dom";
+import pretty from "pretty";
 
 
 let container: any = null;
@@ -51,11 +52,32 @@ describe("App component", () => {
     });
 
     expect(container.textContent).toMatch(/Loading.../gi)
+    expect(location.pathname).toEqual('/')
       
     await act( async () => {
       await new Promise(resolve => setTimeout(resolve, 1))
     })
     expect(container.textContent).toMatch(/What's happening/gi)
+    expect(location.pathname).toEqual('/home')
+  })
+})
+
+describe("Home component", () => {
+  it("likes a tweet", async() => {
+    act(() => {
+      render(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <MemoryRouter>
+            <App />
+          </MemoryRouter>
+        </MockedProvider>, container)
+    })
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    expect(document.location.pathname).toEqual('/home')
+    const firstTweet = (document.querySelector("#single-tweet"))
+    console.log(firstTweet)
   })
 })
 
