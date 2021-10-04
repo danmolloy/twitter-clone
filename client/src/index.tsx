@@ -4,8 +4,6 @@ import './index.css';
 import App from './Components/App';
 import * as serviceWorker from './serviceWorker';
 import {ApolloClient, InMemoryCache, ApolloProvider, gql} from '@apollo/client';
-import faker from 'faker'
-
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000',

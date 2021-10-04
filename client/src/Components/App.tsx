@@ -49,7 +49,7 @@ query Query($currentUserHandle: String!) {
 `;
 
 function App() {
-  const { loading, error, data } = useQuery(CURRENTUSER, {variables: {currentUserHandle: "@danmolloy" }})
+  const { loading, error, data } = useQuery<CurrentUserData, CurrentUserVar>(CURRENTUSER, {variables: {currentUserHandle: "@danmolloy" }})
 
 
   if (loading) {
@@ -66,20 +66,20 @@ function App() {
         <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
         <Route path="/compose/tweet">
-          <ComposeTweet user={data.currentUser}/>
+          <ComposeTweet user={data && data.currentUser}/>
         </Route>
         <Route path="/explore" component={Explore}/>
         <Route path="/home">
           <Home data={data}/>
         </Route>
         <Route path="/bookmarks">
-          <Bookmarks currentUser={data.currentUser} />
+          <Bookmarks currentUser={data && data.currentUser} />
         </Route>
         <Route path="/lists">
-          <Lists user={data.currentUser}/>
+          <Lists user={data && data.currentUser}/>
         </Route>
         <Route path="/messages">
-          <Messages currentUser={data.currentUser}/>
+          <Messages currentUser={data && data.currentUser}/>
         </Route>
         <Route path="/notifications" component={Notifications} />
         <Route path={'/:userHandle'}>
@@ -97,3 +97,39 @@ function App() {
 }
 
 export default App;
+
+interface CurrentUserData {
+  currentUser: CurrentUser
+}
+
+interface CurrentUserVar {
+  currentUserHandle: string
+}
+
+interface Follows {
+  handle: string;
+}
+
+interface LikesRetweets {
+  handle: string;
+}
+
+interface Post {
+  id: string;
+  content: string;
+  postDate: string;
+  likes: LikesRetweets[]
+  retweets: LikesRetweets[]
+}
+
+interface CurrentUser {
+  name: string;
+  handle: string;
+  blurb: string;
+  joinDate: string;
+  bgPic: string;
+  profilePic: string;
+  follows: Follows[];
+  followers: Follows[];
+  writtenPosts: Post[];
+}
