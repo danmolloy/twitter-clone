@@ -5,6 +5,7 @@ import { SingleTweet } from './SingleTweet'
 import { gql, useQuery } from '@apollo/client'
 import { Loading } from './Loading'
 import { Error } from './Error'
+import { CurrentUser } from '../types'
 
 export const FOLLOWINGPOSTS =  gql`
 query Query($followsTweetsHandle: String!) {
@@ -27,8 +28,8 @@ query Query($followsTweetsHandle: String!) {
 }
 `;
 
-export const Home = (props: any) => {
-  const { loading, error, data, refetch } = useQuery(FOLLOWINGPOSTS, {variables: {followsTweetsHandle: props.data.currentUser.handle}})
+export const Home = (props: {currentUser: CurrentUser | undefined}) => {
+  const { loading, error, data, refetch } = useQuery(FOLLOWINGPOSTS, {variables: {followsTweetsHandle: props.currentUser && props.currentUser.handle}})
 
   if (loading) {
     return <Loading />
@@ -45,11 +46,11 @@ export const Home = (props: any) => {
         <button onClick={() => refetch()}>Refresh</button>
         <SparklesIcon className="w-10 p-2 my-2 h-auto mr-4 hover:bg-gray-200 rounded-full " />
       </div>
-      <ComposeTweet user={props.data.currentUser} />
+      <ComposeTweet currentUser={props.currentUser} />
       <div className="h-auto w-full flex flex-col mt-0">
         {data.followsTweets && 
         data.followsTweets.map((tweet: {id:string, author:{}}) => {
-          return <SingleTweet tweet={tweet} key={tweet.id} user={tweet.author} currentUser={props.data.currentUser} refreshTweets={()=> refetch}/>
+          return <SingleTweet tweet={tweet} key={tweet.id} user={tweet.author} currentUser={props.currentUser} refreshTweets={()=> refetch}/>
         })
         }
       </div>

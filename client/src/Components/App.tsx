@@ -19,6 +19,7 @@ import { ComposeTweet } from "./ComposeTweet";
 import { RightBar }  from './RightBar'
 import { Loading } from "./Loading";
 import { Error } from "./Error";
+import { CurrentUserData, CurrentUserVar } from '../types'
 
 export const CURRENTUSER = gql`
 query Query($currentUserHandle: String!) {
@@ -66,11 +67,11 @@ function App() {
         <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
         <Route path="/compose/tweet">
-          <ComposeTweet user={data && data.currentUser}/>
+          <ComposeTweet currentUser={data && data.currentUser}/>
         </Route>
         <Route path="/explore" component={Explore}/>
         <Route path="/home">
-          <Home data={data}/>
+          <Home currentUser={data && data.currentUser}/>
         </Route>
         <Route path="/bookmarks">
           <Bookmarks currentUser={data && data.currentUser} />
@@ -97,54 +98,3 @@ function App() {
 }
 
 export default App;
-
-export interface CurrentUser {
-  name: string;
-  handle: string;
-  blurb: string;
-  joinDate: string;
-  bgPic: string;
-  profilePic: string;
-  follows: Follows[];
-  followers: Follows[];
-  writtenPosts: Post[];
-}
-
-export interface Post {
-  id: string;
-  content: string;
-  postDate: string;
-  likes: LikesRetweets[]
-  retweets: LikesRetweets[]
-}
-
-
-export interface Follows {
-  handle: string;
-}
-
-export interface LikesRetweets {
-  handle: string;
-}
-
-export interface CurrentUserData {
-  currentUser: CurrentUser
-}
-
-export interface CurrentUserVar {
-  currentUserHandle: string
-}
-
-export interface Post {
-  id: string;
-  content: string;
-  postDate: string;
-  likes: LikesRetweets[]
-  retweets: LikesRetweets[]
-}
-
-
-export interface Follows {
-  handle: string;
-}
- 

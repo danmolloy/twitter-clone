@@ -2,6 +2,7 @@ import { UserCircleIcon, PhotographIcon, ChartBarIcon, EmojiHappyIcon, CalendarI
 import { GlobeIcon } from '@heroicons/react/solid'
 import { useMutation, gql} from '@apollo/client'
 import { useEffect, useState } from 'react';
+import { CurrentUser } from '../types';
 
 const POST_TWEET = gql`
   mutation Mutation($writePostContent: String, $writePostAuthorHandle: String) {
@@ -11,13 +12,13 @@ const POST_TWEET = gql`
   }
 `;
 
-export const ComposeTweet = (props: any) => {
+export const ComposeTweet = (props: {currentUser: CurrentUser | undefined}) => {
   const [content, setContent] = useState('')
 
   const [postTweet, {data, loading, error}] = useMutation(POST_TWEET, {
     variables: {
       writePostContent: content,
-      writePostAuthorHandle: props.user.handle
+      writePostAuthorHandle: props.currentUser && props.currentUser.handle
     }
   })
 
@@ -34,8 +35,8 @@ export const ComposeTweet = (props: any) => {
   return (
     <div id="compose-tweet" className="flex flex-col border-b">
       <div className="flex flex-row">
-        {props.user.profilePic ?
-        <img src={props.user.profilePic} className="w-14 h-auto mt-4 ml-3 rounded-full"/>:
+        {props.currentUser ?
+        <img src={props.currentUser.profilePic} className="w-14 h-auto mt-4 ml-3 rounded-full"/>:
         <UserCircleIcon className="w-12 h-auto mt-4 ml-3"/>}
         <input 
         className="text-lg w-full mt-2 h-16 ml-3 focus:outline-none" 

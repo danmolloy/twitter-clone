@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client'
+import { CurrentUser, CurrentUserData } from '../types'
 import { Error } from './Error'
 import { Loading } from './Loading'
 import { SingleTweet } from './SingleTweet'
@@ -27,7 +28,7 @@ const BOOKMARKS = gql`
 `
 
 
-export const Bookmarks = (props: any) => {
+export const Bookmarks = (props: {currentUser: CurrentUser | undefined}) => {
   const { loading, error, data } = useQuery(BOOKMARKS, {variables: {currentUserHandle: "@danmolloy" }})
 
   if (loading) {
@@ -42,7 +43,7 @@ export const Bookmarks = (props: any) => {
     <div>
       <div className="border-b">
         <h2 className="text-xl font-semibold pl-2 pt-2 pb-0">Bookmarks</h2>
-        <p className="user pl-2 -pt-2 text-xs text-gray-600 mb-1.5">{props.currentUser.handle}</p>
+        <p className="user pl-2 -pt-2 text-xs text-gray-600 mb-1.5">{props.currentUser && props.currentUser.handle}</p>
       </div>
       {data ? data.currentUser.bookmarks.map((post: { author: any, content: string, id: string }) => {
             return <SingleTweet tweet={post} user={post.author} key={post.id} currentUser={props.currentUser}/>;

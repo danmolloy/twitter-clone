@@ -29,6 +29,7 @@ export const RETWEET_POST = gql`
   }
 `;
 
+
 export const SingleTweet = (props: any) => {
 
   const [likePost, { data: dataLikes, loading: loadingLikes, error: errorLikes }] = useMutation(LIKE_POST, {
