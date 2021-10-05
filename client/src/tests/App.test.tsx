@@ -10,6 +10,8 @@ import { Loading } from "../Components/Loading";
 import { fireEvent } from "@testing-library/dom";
 import { getByText } from "@testing-library/dom";
 import pretty from "pretty";
+import { Home } from "../Components/Home";
+import { SingleTweet } from "../Components/SingleTweet";
 
 
 let container: any = null;
@@ -62,22 +64,39 @@ describe("App component", () => {
   })
 })
 
-describe("Home component", () => {
-  it("likes a tweet", async() => {
+describe("SingleTweet component", () => {
+  it("fetches data without error", () => {
+    act(() => {
+      render(
+        <MockedProvider>
+          <MemoryRouter>
+            <SingleTweet currentUser={mocks[0].result.data.currentUser} user={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+          </MemoryRouter>
+        </MockedProvider>, container)
+    })
+    expect(pretty(container.innerHTML)).toMatch(/This is a tweet/gi)
+  })
+  it("likes a tweet without error", async () => {
     act(() => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-            <App />
+            <SingleTweet currentUser={mocks[0].result.data.currentUser} user={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })
-    await act(async () => {
-      await new Promise(resolve => setTimeout(resolve, 100))
+
+    await act( async () => {
+      await new Promise(resolve => setTimeout(resolve, 1000))
     })
-    expect(document.location.pathname).toEqual('/home')
-    const firstTweet = (document.querySelector("#single-tweet"))
-    console.log(firstTweet)
+
+    expect(container.querySelector("#like-count").textContent).toEqual("")
+    fireEvent.click(container.querySelector("#like-button"))
+    await act( async () => {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+    })
+    expect(container.querySelector("#like-count").textContent).toEqual("1")
+
   })
 })
 

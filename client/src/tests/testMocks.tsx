@@ -1,6 +1,7 @@
 import App, { CURRENTUSER } from "../Components/App";
 import { Home, FOLLOWINGPOSTS } from '../Components/Home';
 import { GETUSER } from '../Components/Profile'
+import { LIKE_POST, RETWEET_POST } from '../Components/SingleTweet'
 
 export const mocks: any = [
   {
@@ -48,7 +49,7 @@ export const mocks: any = [
         data: {
           "followsTweets": [
             {
-              "content": "fdlkajfsdfas2erwe",
+              "content": "This is a tweet",
               "postDate": "1633026546",
               "id": "f6a55a4a-a833-4296-992e-5c5ffc22c2a7",
               "author": {
@@ -246,5 +247,25 @@ export const mocks: any = [
       }
     }
   },
-  
+  {
+    request: {
+      query: LIKE_POST,
+      variables: {
+        "likePostHandle":"@danmolloy",
+        "likePostPostId":"f6a55a4a-a833-4296-992e-5c5ffc22c2a7"
+      }
+    },
+    result: {
+      data: {
+        "likePost": {
+          "id": "f6a55a4a-a833-4296-992e-5c5ffc22c2a7",
+          "likes": [
+            {
+              "handle": "@danmolloy"
+            }
+          ]
+        }
+      }
+    }
+  },
 ];

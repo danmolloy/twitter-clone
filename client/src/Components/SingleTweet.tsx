@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { gql, useMutation } from '@apollo/client';
 import fromUnixTime from 'date-fns/fromUnixTime'
 
-const LIKE_POST = gql`
+export const LIKE_POST = gql`
   mutation Mutation($likePostHandle: String, $likePostPostId: String) {
     likePost(handle: $likePostHandle, postID: $likePostPostId) {
       likes {
@@ -19,7 +19,7 @@ const LIKE_POST = gql`
   }
 `;
 
-const RETWEET_POST = gql`
+export const RETWEET_POST = gql`
   mutation Mutation($retweetPostHandle: String, $retweetPostPostId: String) {
     retweetPost(handle: $retweetPostHandle, postID: $retweetPostPostId) {
       retweets {
@@ -90,7 +90,7 @@ export const SingleTweet = (props: any) => {
           await likePost();
           }}>
             <HeartIcon className="hover:bg-red-50 tweet-options"/>
-            <p className=" ">{dataLikes && dataLikes.likePost.likes.length > 0 ? dataLikes.likePost.likes.length : dataLikes && dataLikes.likePost.likes.length === 0 ? null : props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
+            <p id="like-count">{dataLikes && dataLikes.likePost.likes.length > 0 ? dataLikes.likePost.likes.length : dataLikes && dataLikes.likePost.likes.length === 0 ? null : props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
           </button>
           <UploadIcon className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
         </div>
