@@ -13,7 +13,6 @@ import pretty from "pretty";
 import { Home } from "../Components/Home";
 import { SingleTweet } from "../Components/SingleTweet";
 
-
 let container: any = null;
 
 beforeEach(() => {
@@ -43,7 +42,7 @@ it('Loading component renders', () => {
 
 describe("App component", () => {
 
-  it('renders Home component after Loading component', async () => {
+  it('Home component fetches data and renders after Loading component', async () => {
     act(() => {
       render(
       <MockedProvider mocks={mocks} addTypename={false}>
@@ -76,6 +75,7 @@ describe("SingleTweet component", () => {
     })
     expect(pretty(container.innerHTML)).toMatch(/This is a tweet/gi)
   })
+
   it("likes a tweet without error", async () => {
     act(() => {
       render(
@@ -92,11 +92,34 @@ describe("SingleTweet component", () => {
 
     expect(container.querySelector("#like-count").textContent).toEqual("")
     fireEvent.click(container.querySelector("#like-button"))
+
     await act( async () => {
       await new Promise(resolve => setTimeout(resolve, 1000))
     })
+
     expect(container.querySelector("#like-count").textContent).toEqual("1")
 
+    })
+
+  it("retweets a tweet without error", async () => {
+    act(() => {
+      render(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <MemoryRouter>
+            <SingleTweet currentUser={mocks[0].result.data.currentUser} user={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+          </MemoryRouter>
+        </MockedProvider>, container)
+    })
+
+    await act( async () => {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+    })
+    expect(container.querySelector("#retweet-count").textContent).toEqual("")
+    fireEvent.click(container.querySelector("#retweet-button"))
+    await act( async () => {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+    })
+    expect(container.querySelector("#retweet-count").textContent).toEqual("1")
   })
 })
 

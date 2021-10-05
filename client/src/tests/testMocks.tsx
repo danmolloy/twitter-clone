@@ -268,4 +268,25 @@ export const mocks: any = [
       }
     }
   },
+  {
+    request: {
+      query: RETWEET_POST,
+      variables: {
+        "retweetPostHandle": "@danmolloy",
+        "retweetPostPostId": "f6a55a4a-a833-4296-992e-5c5ffc22c2a7"
+      }
+    },
+    result: {
+      data: {
+        "retweetPost": {
+          "id": "f6a55a4a-a833-4296-992e-5c5ffc22c2a7",
+          "retweets": [
+            {
+              "handle": "@danmolloy"
+            }
+          ]
+        }
+      }
+    }
+  },
 ];

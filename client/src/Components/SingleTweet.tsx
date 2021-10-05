@@ -76,12 +76,13 @@ export const SingleTweet = (props: any) => {
             <p>{props.tweet.comments ? props.tweet.comments.length : null}</p>
           </div>
           <button 
+          id="retweet-button"
           className="flex flex-row items-center hover:text-green-500"
           onClick={async () =>{
             await retweetPost();
           }}>
             <RefreshIcon className="hover:bg-green-50 tweet-options" />
-            <p>{dataRetweets && dataRetweets.retweetPost.retweets.length > 0 ? dataRetweets.retweetPost.retweets.length : dataRetweets && dataRetweets.retweetPost.retweets.length === 0 ? null : props.tweet.retweets && props.tweet.retweets.length > 0 ? props.tweet.retweets.length : null}</p>
+            <p id="retweet-count">{dataRetweets && dataRetweets.retweetPost.retweets.length > 0 ? dataRetweets.retweetPost.retweets.length : dataRetweets && dataRetweets.retweetPost.retweets.length === 0 ? null : props.tweet.retweets && props.tweet.retweets.length > 0 ? props.tweet.retweets.length : null}</p>
           </button>
           <button 
           id="like-button"
