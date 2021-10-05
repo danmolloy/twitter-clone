@@ -5,39 +5,7 @@ import { SingleTweet } from "./SingleTweet"
 import { gql, useQuery } from "@apollo/client"
 import { Loading } from "./Loading"
 import { Error } from "./Error"
-
-interface Post {
-  id: string
-  content: string
-  postDate: string;
-  authorHandle: string;
-  likes: string[]
-  retweets: string[]
-}
-
-interface Follow {
-  handle: string
-}
-
-interface getUserProfile {
-  name: string;
-  handle: string;
-  blurb: string;
-  joinDate: string;
-  bgPic: string;
-  profilePic: string;
-  follows: Follow[];
-  followers: Follow[];
-  writtenPosts: Post[]
-  }
-
-interface GetUserProfileVar {
-  getUserProfileHandle: string;
-}
-
-interface getUserProfileData {
-  getUserProfile: getUserProfile
-}
+import { User, UserHandles, Post, GetUserProfileData, GetUserProfileVar  } from "../types"
 
 export const GETUSER = gql`
   query Query($getUserProfileHandle: String!) {
@@ -70,14 +38,14 @@ export const GETUSER = gql`
     }
 `;
 
-export const Profile = (props: any) => {
+export const Profile = (props: {currentUser: User | undefined}) => {
   const [currentUser, setCurrentUser] = useState(false)
   const {userHandle} = useParams<{ userHandle: string}>()
-  const { loading, error, data } = useQuery<getUserProfileData, GetUserProfileVar>(GETUSER, { variables: { getUserProfileHandle: `@${userHandle}` }})
+  const { loading, error, data } = useQuery<GetUserProfileData, GetUserProfileVar>(GETUSER, { variables: { getUserProfileHandle: `@${userHandle}` }})
   const [tweetFilter, setTweetFilter] = useState('tweets')
 
   useEffect(() => {
-    if (data && data.getUserProfile.name === props.data.currentUser.name) {
+    if (data && props.currentUser && data.getUserProfile.name === props.currentUser.name) {
       setCurrentUser(true)
     }
   })
@@ -126,7 +94,9 @@ export const Profile = (props: any) => {
           <button className="font-bold border border-gray-300 rounded-full px-2 my-8 mr-8">
             Edit Profile
           </button>: 
-            data && data.getUserProfile.followers.filter((e: Follow) => e.handle === props.data.currentUser.handle).length > 0 ?
+            data && 
+            data.getUserProfile.followers.filter(
+              (e: UserHandles) => props.currentUser && e.handle === props.currentUser.handle).length > 0 ?
           <button className="font-bold border border-gray-300 rounded-full py-2 px-4 my-8 mr-8">
             Following
           </button> :
@@ -199,8 +169,8 @@ export const Profile = (props: any) => {
       </div>
       <div className="h-auto w-full flex flex-col mt-0">
         {data && data.getUserProfile.writtenPosts && data.getUserProfile.writtenPosts.length > 0 &&
-          data.getUserProfile.writtenPosts.map((tweet: { id: string; }) => {
-            return <SingleTweet tweet={tweet} user={data.getUserProfile} key={tweet.id} currentUser={props.data.currentUser}/>;
+          data.getUserProfile.writtenPosts.map((tweet: Post) => {
+            return <SingleTweet tweet={tweet} user={data && data.getUserProfile} key={tweet.id} currentUser={props.currentUser}/>;
           })
         }
       </div>

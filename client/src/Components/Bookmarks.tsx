@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client'
-import { CurrentUser, CurrentUserData } from '../types'
+import { User, CurrentUserData } from '../types'
 import { Error } from './Error'
 import { Loading } from './Loading'
 import { SingleTweet } from './SingleTweet'
@@ -28,7 +28,7 @@ const BOOKMARKS = gql`
 `
 
 
-export const Bookmarks = (props: {currentUser: CurrentUser | undefined}) => {
+export const Bookmarks = (props: {currentUser: User | undefined}) => {
   const { loading, error, data } = useQuery(BOOKMARKS, {variables: {currentUserHandle: "@danmolloy" }})
 
   if (loading) {

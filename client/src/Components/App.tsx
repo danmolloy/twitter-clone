@@ -77,14 +77,14 @@ function App() {
           <Bookmarks currentUser={data && data.currentUser} />
         </Route>
         <Route path="/lists">
-          <Lists user={data && data.currentUser}/>
+          <Lists currentUser={data && data.currentUser}/>
         </Route>
         <Route path="/messages">
           <Messages currentUser={data && data.currentUser}/>
         </Route>
         <Route path="/notifications" component={Notifications} />
         <Route path={'/:userHandle'}>
-          <Profile data={data}/>
+          <Profile currentUser={data && data.currentUser}/>
         </Route>
         <Route path="/">
           <Redirect to="/home" />

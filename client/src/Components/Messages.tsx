@@ -3,6 +3,7 @@ import { gql, useQuery } from '@apollo/client'
 import { useState, useEffect } from 'react'
 import { Loading } from "./Loading";
 import { Error } from "./Error";
+import { User } from "../types";
 
 const MESSAGES = gql`
   query Query($currentUserHandle: String!) {
@@ -24,8 +25,8 @@ const MESSAGES = gql`
   }
 `;
 
-export const Messages = (props: any) => {
-  const { loading, error, data } = useQuery(MESSAGES, {variables: {currentUserHandle: props.currentUser.handle }});  
+export const Messages = (props: {currentUser: User | undefined}) => {
+  const { loading, error, data } = useQuery(MESSAGES, {variables: {currentUserHandle: props.currentUser && props.currentUser.handle }});  
   const [searchBarFocused, setSearchBarFocused] = useState(false)
 
   if (loading) {

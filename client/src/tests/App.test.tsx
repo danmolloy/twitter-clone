@@ -124,7 +124,7 @@ describe("SingleTweet component", () => {
 })
 
 describe("React Router", () => {
-  it("renders correct pathnames without error", async () => {
+  it("Sidebar links to correct pathnames without error", async () => {
     act(() => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>

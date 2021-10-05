@@ -2,7 +2,7 @@ import { UserCircleIcon, PhotographIcon, ChartBarIcon, EmojiHappyIcon, CalendarI
 import { GlobeIcon } from '@heroicons/react/solid'
 import { useMutation, gql} from '@apollo/client'
 import { useEffect, useState } from 'react';
-import { CurrentUser } from '../types';
+import { User } from '../types';
 
 const POST_TWEET = gql`
   mutation Mutation($writePostContent: String, $writePostAuthorHandle: String) {
@@ -12,7 +12,7 @@ const POST_TWEET = gql`
   }
 `;
 
-export const ComposeTweet = (props: {currentUser: CurrentUser | undefined}) => {
+export const ComposeTweet = (props: {currentUser: User | undefined}) => {
   const [content, setContent] = useState('')
 
   const [postTweet, {data, loading, error}] = useMutation(POST_TWEET, {

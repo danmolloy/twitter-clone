@@ -5,7 +5,7 @@ import { SingleTweet } from './SingleTweet'
 import { gql, useQuery } from '@apollo/client'
 import { Loading } from './Loading'
 import { Error } from './Error'
-import { CurrentUser } from '../types'
+import { User } from '../types'
 
 export const FOLLOWINGPOSTS =  gql`
 query Query($followsTweetsHandle: String!) {
@@ -28,7 +28,7 @@ query Query($followsTweetsHandle: String!) {
 }
 `;
 
-export const Home = (props: {currentUser: CurrentUser | undefined}) => {
+export const Home = (props: {currentUser: User | undefined}) => {
   const { loading, error, data, refetch } = useQuery(FOLLOWINGPOSTS, {variables: {followsTweetsHandle: props.currentUser && props.currentUser.handle}})
 
   if (loading) {
