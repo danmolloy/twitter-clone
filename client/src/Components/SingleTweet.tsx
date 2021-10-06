@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom'
 import { gql, useMutation } from '@apollo/client';
 import fromUnixTime from 'date-fns/fromUnixTime'
+import { useState } from 'react';
 
 export const LIKE_POST = gql`
   mutation Mutation($likePostHandle: String, $likePostPostId: String) {
@@ -31,6 +32,7 @@ export const RETWEET_POST = gql`
 
 
 export const SingleTweet = (props: any) => {
+  const [showMenu, setShowMenu] = useState(false)
 
   const [likePost, { data: dataLikes, loading: loadingLikes, error: errorLikes }] = useMutation(LIKE_POST, {
     variables: {
@@ -51,7 +53,7 @@ export const SingleTweet = (props: any) => {
       <div className="flex flex-row mt-4"> 
       {props.user.profilePic ? 
       <img src={props.user.profilePic} className="w-14 h-auto ml-3 rounded-full"/>:
-      <UserCircleIcon className="w-12 h-auto ml-3"/>}
+      <UserCircleIcon className="w-12 h-12 ml-3"/>}
       <div className="ml-3 flex flex-col w-full">
         <div className="flex flex-row w-full justify-between">
           <div className="flex flex-row">
@@ -62,9 +64,22 @@ export const SingleTweet = (props: any) => {
             <span className="text-gray-500 ml-1">•</span>
             <h4 className="text-gray-500 ml-1 hover:underline">{String(fromUnixTime(props.tweet.postDate)).slice(0, 15)}</h4>
           </div>
-          <button className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
+          <div
+          onBlur={() => setShowMenu(false)}
+          onFocus={() => setShowMenu(true)}
+          >
+          {showMenu ? 
+          <ul 
+          className="shadow mr-2 z-10" >
+            { props.currentUser.handle}
+            <li>Delete Tweet</li>
+            <li>Unfollow</li>
+          </ul> : 
+          <button 
+          className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
             •••
-          </button>
+          </button>}
+          </div>
         </div>
         <div>
         <p>{props.tweet.content}</p>
