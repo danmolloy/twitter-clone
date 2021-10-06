@@ -57,7 +57,7 @@ function App() {
     return <Loading />
   }
 
-  if (error) {
+  if (error ) {
     return <Error />
   }
   return (

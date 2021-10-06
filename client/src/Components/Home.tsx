@@ -5,7 +5,7 @@ import { SingleTweet } from './SingleTweet'
 import { gql, useQuery } from '@apollo/client'
 import { Loading } from './Loading'
 import { Error } from './Error'
-import { User } from '../types'
+import { Post, User } from '../types'
 
 export const FOLLOWINGPOSTS =  gql`
 query Query($followsTweetsHandle: String!) {
@@ -49,8 +49,8 @@ export const Home = (props: {currentUser: User | undefined}) => {
       <ComposeTweet currentUser={props.currentUser} />
       <div className="h-auto w-full flex flex-col mt-0">
         {data.followsTweets && 
-        data.followsTweets.map((tweet: {id:string, author:{}}) => {
-          return <SingleTweet tweet={tweet} key={tweet.id} user={tweet.author} currentUser={props.currentUser} refreshTweets={()=> refetch}/>
+        data.followsTweets.map((tweet: Post) => {
+          return <SingleTweet tweet={tweet} key={tweet.id} author={tweet.author} currentUser={props.currentUser && props.currentUser}/>
         })
         }
       </div>

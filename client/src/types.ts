@@ -1,4 +1,4 @@
-// App
+// App, Home, Profile etc
 
 export interface User {
   name: string;
@@ -20,14 +20,28 @@ export interface CurrentUserVar {
   currentUserHandle: string
 }
 
-// Home feed
+export interface GetUserProfileVar {
+  getUserProfileHandle: string;
+}
+
+export interface GetUserProfileData {
+  getUserProfile: User
+}
+
+export interface Author {
+  name: string
+  handle: string
+  profilePic: string
+}
 
 export interface Post {
   id: string;
   content: string;
-  postDate: string;
+  postDate: number;
   likes: UserHandles[]
   retweets: UserHandles[]
+  author: User
+  comments? : any
 }
 
 
@@ -56,14 +70,4 @@ export interface List {
 
 export interface ListData {
   getAuthoredLists: List[]
-}
-
-// Profile 
-
-export interface GetUserProfileVar {
-  getUserProfileHandle: string;
-}
-
-export interface GetUserProfileData {
-  getUserProfile: User
 }

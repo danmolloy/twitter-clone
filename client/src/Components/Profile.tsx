@@ -168,9 +168,11 @@ export const Profile = (props: {currentUser: User | undefined}) => {
       </div>
       </div>
       <div className="h-auto w-full flex flex-col mt-0">
-        {data && data.getUserProfile.writtenPosts && data.getUserProfile.writtenPosts.length > 0 &&
+        {data && 
+        data.getUserProfile.writtenPosts && 
+        data.getUserProfile.writtenPosts.length > 0 &&
           data.getUserProfile.writtenPosts.map((tweet: Post) => {
-            return <SingleTweet tweet={tweet} user={data && data.getUserProfile} key={tweet.id} currentUser={props.currentUser}/>;
+            return <SingleTweet tweet={tweet} author={data && data.getUserProfile} key={tweet.id} currentUser={props.currentUser}/>;
           })
         }
       </div>
