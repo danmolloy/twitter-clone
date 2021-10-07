@@ -50,7 +50,7 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
   })
   
   return (
-    <div id="single-tweet" className="border-b hover:bg-gray-50">
+    <div id="single-tweet" className={`border-b ${!showMenu && "hover:bg-gray-50"}`}>
       <div className="flex flex-row mt-4"> 
       {props.author && props.author.profilePic ? 
       <img src={props.author && props.author.profilePic} className="w-14 h-auto ml-3 rounded-full"/>:
@@ -69,17 +69,15 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
           onBlur={() => setShowMenu(false)}
           onFocus={() => setShowMenu(true)}
           >
-          {showMenu ? 
-          <ul 
-          className="shadow mr-2 z-10" >
-            { props.currentUser &&props.currentUser.handle}
-            <li>Delete Tweet</li>
-            <li>Unfollow</li>
-          </ul> : 
+            {showMenu && <ul className="shadow z-10 bg-white absolute -ml-24 w-32 rounded">
+            { props.author && props.currentUser && props.currentUser.handle === props.author.handle ?
+            <li className="hover:bg-gray-50 p-2">Delete Tweet</li> :
+            <li>Unfollow</li>}
+          </ul>}
           <button 
           className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
             •••
-          </button>}
+          </button>
           </div>
         </div>
         <div>
