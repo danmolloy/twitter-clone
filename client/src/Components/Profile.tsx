@@ -39,6 +39,8 @@ export const GETUSER = gql`
 `;
 
 export const Profile = (props: {currentUser: User | undefined}) => {
+  const [showFollowing, setShowFollowing] = useState(false)
+  const [showFollowers, setShowFollowers] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
   const {userHandle} = useParams<{ userHandle: string}>()
   const { loading, error, data } = useQuery<GetUserProfileData, GetUserProfileVar>(GETUSER, { variables: { getUserProfileHandle: `@${userHandle}` }})
@@ -119,20 +121,48 @@ export const Profile = (props: {currentUser: User | undefined}) => {
             </p>
           </div>
           <div className="flex flex-row text-gray-600 my-2">
-            <p>
+            <div 
+            onClick={() => setShowFollowing(true)}
+            onBlur={() => setShowFollowing(false)}>
+              {showFollowing && 
+            <div className="shadow z-10 bg-white absolute  w-48 round text-black bg-white">
+              <h3 className="p-2 font-semibold border-b">Following</h3>
+              <ul>
+              {data && data.getUserProfile.follows.map((user: UserHandles) => {
+                return <li key={user.handle} className="hover:bg-gray-50 p-2">
+                  <Link to={`/${user.handle.slice(1)}`}>{user.handle}</Link>
+                  </li>
+              })}
+              </ul>
+            </div>}
+            <button>
               <span className="font-bold text-black">
               {data && data.getUserProfile.follows ?
               data.getUserProfile.follows.length :
               0
               }
               </span> following
-            </p>
-            <p>
+            </button>
+            </div>
+            <div onClick={() => setShowFollowers(true)} onBlur={() => setShowFollowers(false)}>
+            {showFollowers && 
+            <div className="shadow z-10 bg-white absolute  w-48 round text-black bg-white">
+              <h3 className="p-2 font-semibold border-b">Followers</h3>
+              <ul>
+              {data && data.getUserProfile.followers.map((user: UserHandles) => {
+                return <li key={user.handle} className="hover:bg-gray-50 p-2">
+                  <Link to={`/${user.handle.slice(1)}`}>{user.handle}</Link>
+                  </li>
+              })}
+              </ul>
+            </div>}
+            <button>
               <span className="font-bold text-black ml-2">
                 {data && data.getUserProfile.followers ?
                 data.getUserProfile.followers.length : 0}
               </span> followers
-            </p>
+            </button>
+            </div>
           </div>
         </div>
         <div className=" w-full h-12 mt-4 flex flex-row">

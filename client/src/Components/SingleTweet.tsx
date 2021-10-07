@@ -72,7 +72,7 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
             {showMenu && <ul className="shadow z-10 bg-white absolute -ml-24 w-32 rounded">
             { props.author && props.currentUser && props.currentUser.handle === props.author.handle ?
             <li className="hover:bg-gray-50 p-2">Delete Tweet</li> :
-            <li>Unfollow</li>}
+            <li className="hover:bg-gray-50 p-2">Unfollow</li>}
           </ul>}
           <button 
           className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
