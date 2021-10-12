@@ -156,6 +156,7 @@ describe("SingleTweet component", () => {
   })
 })
 
+
 describe("React Router", () => {
   it("Sidebar links to correct pathnames without error", async () => {
     act(() => {
@@ -172,6 +173,7 @@ describe("React Router", () => {
       await new Promise(resolve => setTimeout(resolve, 1))
     })
 
+    fireEvent.click(container.querySelector("#twitter-home-link"))
     expect(document.location.pathname).toEqual('/home')
 
     fireEvent.click(getByText(container, 'Explore'))
