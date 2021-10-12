@@ -12,6 +12,7 @@ import { getByText } from "@testing-library/dom";
 import pretty from "pretty";
 import { Home } from "../Components/Home";
 import { SingleTweet } from "../Components/SingleTweet";
+import { Profile } from "../Components/Profile";
 
 let container: any = null;
 
@@ -26,23 +27,9 @@ afterEach(() => {
     container = null;
 });
 
-it('Error component renders', () => {
-  act(() => {
-    render(<Error />, container);
-  })
-  expect(container.textContent).toMatch(/An error occurred/gi)
-})
-
-it('Loading component renders', () => {
-  act(() => {
-    render(<Loading />, container);
-  });
-  expect(container.textContent).toMatch(/Loading.../gi)
-})
-
 describe("App component", () => {
 
-  it('Home component fetches data and renders after Loading component', async () => {
+  it('App component fetches data and renders Home component after Loading component', async () => {
     act(() => {
       render(
       <MockedProvider mocks={mocks} addTypename={false}>
@@ -60,8 +47,54 @@ describe("App component", () => {
     })
     expect(container.textContent).toMatch(/What's happening/gi)
     expect(location.pathname).toEqual('/home')
+    fireEvent.click(getByText(container, 'Profile'))
+  })
+  it('Error component renders', () => {
+    act(() => {
+      render(<Error />, container);
+    })
+    expect(container.textContent).toMatch(/An error occurred/gi)
+  })
+  
+  it('Loading component renders', () => {
+    act(() => {
+      render(<Loading />, container);
+    });
+    expect(container.textContent).toMatch(/Loading.../gi)
   })
 })
+
+describe("Home component", () => {
+  it("renders without error", async () => {
+    act(() => {
+      render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <MemoryRouter>
+          <Home currentUser={mocks[0].result.data.currentUser}/>
+        </MemoryRouter>
+      </MockedProvider>, container)
+    })
+
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+
+    expect(container.textContent).toMatch(/Home/gi)
+  })
+})
+
+describe("Profile component", () => {
+})
+
+describe("Bookmarks component", () => {})
+describe("Lists component", () => {})
+describe("ListTile component", () => {})
+describe("Notifications component", () => {})
+describe("ComposeTweet component", () => {})
+describe("Explore component", () => {})
+describe("Messages component", () => {})
+describe("RightBar component", () => {})
+describe("SideBar component", () => {})
 
 describe("SingleTweet component", () => {
   it("fetches data without error", () => {
@@ -69,7 +102,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider>
           <MemoryRouter>
-            <SingleTweet currentUser={mocks[0].result.data.currentUser} user={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+            <SingleTweet currentUser={mocks[0].result.data.currentUser} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })
@@ -81,7 +114,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-            <SingleTweet currentUser={mocks[0].result.data.currentUser} user={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+            <SingleTweet currentUser={mocks[0].result.data.currentUser} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })
@@ -106,7 +139,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-            <SingleTweet currentUser={mocks[0].result.data.currentUser} user={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+            <SingleTweet currentUser={mocks[0].result.data.currentUser} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })

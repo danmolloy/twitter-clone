@@ -1,9 +1,20 @@
+import { DocumentNode } from "graphql";
 import App, { CURRENTUSER } from "../Components/App";
 import { Home, FOLLOWINGPOSTS } from '../Components/Home';
 import { GETUSER } from '../Components/Profile'
 import { LIKE_POST, RETWEET_POST } from '../Components/SingleTweet'
 
-export const mocks: any = [
+interface Mock {
+  request: {
+    query: DocumentNode,
+    variables: {}
+  },
+  result: {
+    data: any
+  }
+}
+
+export const mocks: Mock[] = [
   {
     request: {
       query: CURRENTUSER,
@@ -162,93 +173,6 @@ export const mocks: any = [
   },
   {
     request: {
-      query: GETUSER,
-      variables: {
-        getUserProfileHandle: "@hank"
-      }
-    },
-    result: {
-      data: {
-        "getUserProfile": {
-          "name": "Dan Molloy",
-          "handle": "@danmolloy",
-          "blurb": "hello world",
-          "joinDate": "21 Sept 2021",
-          "bgPic": "bgPic.jpg",
-          "profilePic": "profilePic.jpg",
-          "follows": [
-            {
-              "handle": "@fizzlekelly"
-            },
-            {
-              "handle": "@thebigfirkinband"
-            }
-          ],
-          "followers": [
-            {
-              "handle": "@egg"
-            }
-          ],
-          "writtenPosts": [
-            {
-              "id": "f6a55a4a-a833-4296-992e-5c5ffc22c2a7",
-              "content": "fdlkajfsdfas2erwe",
-              "postDate": "1633026546",
-              "authorHandle": "@danmolloy",
-              "likes": [],
-              "retweets": []
-            },
-            {
-              "id": "d4345c7e-ec51-4448-8ea1-26a08829a412",
-              "content": "Hi",
-              "postDate": "1632926959",
-              "authorHandle": "@danmolloy",
-              "likes": [
-                {
-                  "handle": "@danmolloy"
-                }
-              ],
-              "retweets": [
-                {
-                  "handle": "@danmolloy"
-                }
-              ]
-            },
-            {
-              "id": "cd22a05e-a219-4c64-ab40-6ff19480d433",
-              "content": "New tweet!",
-              "postDate": "1632926857",
-              "authorHandle": "@danmolloy",
-              "likes": [
-                {
-                  "handle": "@danmolloy"
-                }
-              ],
-              "retweets": []
-            },
-            {
-              "id": "72335b85-ffdd-477f-aca6-5f5134231852",
-              "content": "I'm writing a tweet.",
-              "postDate": " 1632812946",
-              "authorHandle": "@danmolloy",
-              "likes": [
-                {
-                  "handle": "@danmolloy"
-                }
-              ],
-              "retweets": [
-                {
-                  "handle": "@danmolloy"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  },
-  {
-    request: {
       query: LIKE_POST,
       variables: {
         "likePostHandle":"@danmolloy",
@@ -289,4 +213,123 @@ export const mocks: any = [
       }
     }
   },
+  {
+    request: {
+      query: GETUSER,
+      variables: {
+        getUserProfileHandle: "@danmolloy"
+      }
+    },
+    result: {
+      data: {
+        "getUserProfile": {
+          "name": "Dan Molloy",
+          "handle": "@danmolloy",
+          "blurb": "hello world",
+          "joinDate": "21 Sept 2021",
+          "bgPic": "bgPic.jpg",
+          "profilePic": "profilePic.jpg",
+          "follows": [
+            {
+              "handle": "@fizzlekelly"
+            },
+            {
+              "handle": "@thebigfirkinband"
+            }
+          ],
+          "followers": [
+            {
+              "handle": "@egg"
+            }
+          ],
+          "writtenPosts": [
+            {
+              "id": "772e3267-8a53-4ccf-a29a-7e40f811622b",
+              "content": "fdsa",
+              "postDate": "1633448133",
+              "authorHandle": "@danmolloy",
+              "likes": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ],
+              "retweets": []
+            },
+            {
+              "id": "bdef33d4-33d4-40bd-bfb0-e711d02f516f",
+              "content": "k",
+              "postDate": "1633190729",
+              "authorHandle": "@danmolloy",
+              "likes": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ],
+              "retweets": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ]
+            },
+            {
+              "id": "f6a55a4a-a833-4296-992e-5c5ffc22c2a7",
+              "content": "fdlkajfsdfas2erwe",
+              "postDate": "1633026546",
+              "authorHandle": "@danmolloy",
+              "likes": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ],
+              "retweets": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ]
+            },
+            {
+              "id": "d4345c7e-ec51-4448-8ea1-26a08829a412",
+              "content": "Hi",
+              "postDate": "1632926959",
+              "authorHandle": "@danmolloy",
+              "likes": [],
+              "retweets": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ]
+            },
+            {
+              "id": "cd22a05e-a219-4c64-ab40-6ff19480d433",
+              "content": "New tweet!",
+              "postDate": "1632926857",
+              "authorHandle": "@danmolloy",
+              "likes": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ],
+              "retweets": []
+            },
+            {
+              "id": "72335b85-ffdd-477f-aca6-5f5134231852",
+              "content": "I'm writing a tweet.",
+              "postDate": " 1632812946",
+              "authorHandle": "@danmolloy",
+              "likes": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ],
+              "retweets": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
 ];
