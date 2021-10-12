@@ -2,6 +2,7 @@ import { DocumentNode } from "graphql";
 import App, { CURRENTUSER } from "../Components/App";
 import { Home, FOLLOWINGPOSTS } from '../Components/Home';
 import { GETUSER } from '../Components/Profile'
+import { BOOKMARKS } from '../Components/Bookmarks'
 import { LIKE_POST, RETWEET_POST } from '../Components/SingleTweet'
 
 interface Mock {
@@ -9,6 +10,7 @@ interface Mock {
     query: DocumentNode,
     variables: {}
   },
+  error?: any
   result: {
     data: any
   }
@@ -217,7 +219,7 @@ export const mocks: Mock[] = [
     request: {
       query: GETUSER,
       variables: {
-        getUserProfileHandle: "@danmolloy"
+        getUserProfileHandle: "@undefined"
       }
     },
     result: {

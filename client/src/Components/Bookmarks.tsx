@@ -4,7 +4,7 @@ import { Error } from './Error'
 import { Loading } from './Loading'
 import { SingleTweet } from './SingleTweet'
 
-const BOOKMARKS = gql`
+export const BOOKMARKS = gql`
   query Query($currentUserHandle: String!) {
     currentUser(handle: $currentUserHandle) {
       bookmarks {

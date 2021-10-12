@@ -13,6 +13,7 @@ import pretty from "pretty";
 import { Home } from "../Components/Home";
 import { SingleTweet } from "../Components/SingleTweet";
 import { Profile } from "../Components/Profile";
+import { Bookmarks } from "../Components/Bookmarks";
 
 let container: any = null;
 
@@ -28,7 +29,6 @@ afterEach(() => {
 });
 
 describe("App component", () => {
-
   it('App component fetches data and renders Home component after Loading component', async () => {
     act(() => {
       render(
@@ -78,15 +78,33 @@ describe("Home component", () => {
     await act(async() => {
       await new Promise(resolve => setTimeout(resolve, 100))
     })
-
+    
     expect(container.textContent).toMatch(/Home/gi)
   })
 })
 
 describe("Profile component", () => {
+  it("loads without error", async () => {
+    act(() => {
+      render(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <MemoryRouter initialEntries={["/danmolloy"]}>
+            <Profile currentUser={mocks[0].result.data.currentUser}/>
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    expect(container.textContent).toMatch(/Dan Molloy/gi)
+  })
 })
 
-describe("Bookmarks component", () => {})
+describe("Bookmarks component", () => {
+
+})
+
 describe("Lists component", () => {})
 describe("ListTile component", () => {})
 describe("Notifications component", () => {})
