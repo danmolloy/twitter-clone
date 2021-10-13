@@ -8,7 +8,7 @@ import { Loading } from "./Loading"
 import { Error } from "./Error"
 import { User, ListData, List, CurrentUserVar } from "../types"
 
-const LIST_QUERY = gql`
+export const LIST_QUERY = gql`
   query Query($getAuthoredListsHandle: String) {
     getAuthoredLists(handle: $getAuthoredListsHandle) {
       id
@@ -33,7 +33,7 @@ const LIST_QUERY = gql`
 
 
 export const Lists = (props: {currentUser: User | undefined}) => {
-  const { loading, error, data } = useQuery<ListData, CurrentUserVar>(LIST_QUERY, {variables: {currentUserHandle: "@dan" }})
+  const { loading, error, data } = useQuery<ListData, CurrentUserVar>(LIST_QUERY, {variables: {currentUserHandle: `${props.currentUser && props.currentUser.handle}` }})
   
   if (loading) {
     return <Loading />
@@ -65,7 +65,7 @@ export const Lists = (props: {currentUser: User | undefined}) => {
         <div className="flex flex-col">
         {data ? 
           data.getAuthoredLists.map((list: List) => {
-            return <ListTile list={list}/>
+            return <ListTile list={list} key={list.id}/>
           }): 
         <p>You haven't created or followed any Lists. When you do, they'll show up here.</p>}
         </div>

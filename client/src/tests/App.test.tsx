@@ -14,8 +14,15 @@ import { Home } from "../Components/Home";
 import { SingleTweet } from "../Components/SingleTweet";
 import { Profile } from "../Components/Profile";
 import { Bookmarks } from "../Components/Bookmarks";
+import { RightBar } from "../Components/RightBar";
+import { Notifications } from "../Components/Notifications";
+import { Lists } from "../Components/Lists";
+import { ListTile } from "../Components/ListTile";
+import { Explore } from "../Components/Explore";
+import { ComposeTweet } from "../Components/ComposeTweet";
 
 let container: any = null;
+const currentUserProp = mocks[0].result.data.currentUser
 
 beforeEach(() => {
   container = document.createElement('div');
@@ -70,7 +77,7 @@ describe("Home component", () => {
       render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <MemoryRouter>
-          <Home currentUser={mocks[0].result.data.currentUser}/>
+          <Home currentUser={currentUserProp}/>
         </MemoryRouter>
       </MockedProvider>, container)
     })
@@ -89,7 +96,7 @@ describe("Profile component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter initialEntries={["/danmolloy"]}>
-            <Profile currentUser={mocks[0].result.data.currentUser}/>
+            <Profile currentUser={currentUserProp}/>
           </MemoryRouter>
         </MockedProvider>, container
       )
@@ -107,7 +114,7 @@ describe("Bookmarks component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-            <Bookmarks currentUser={mocks[0].result.data.currentUser}/>
+            <Bookmarks currentUser={currentUserProp}/>
           </MemoryRouter>
         </MockedProvider>, container
       )
@@ -119,13 +126,108 @@ describe("Bookmarks component", () => {
   })
 })
 
-describe("Lists component", () => {})
-describe("ListTile component", () => {})
-describe("Notifications component", () => {})
-describe("ComposeTweet component", () => {})
-describe("Explore component", () => {})
+describe("Lists component", () => {
+  it("renders without error", async() => {
+    act(() => {
+      render(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <MemoryRouter>
+            <Lists currentUser={currentUserProp}/>
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    expect(container.textContent).toMatch(/Lists/gi)
+    expect(container.innerHTML).toMatch(/list-tile/gi)
+  })
+})
+
+describe("ListTile component", () => {
+  it("renders without error", async () => {
+    act(() => {
+      render(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <MemoryRouter>
+            <ListTile list={mocks[6].result.data["getAuthoredLists"][0]}/>
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    expect(container.textContent).toMatch(/My List/gi)
+    expect(container.innerHTML).toMatch(/list-tile/gi)
+  })
+})
+
+describe("Notifications component", () => {
+  it("renders without error", () => {
+    act(() => {
+      render(
+        <MockedProvider>
+          <MemoryRouter>
+            <Notifications />
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    expect(container.innerHTML).toMatch(/notifications-component/gi)
+    expect(container.textContent).toMatch(/Notifications/gi)
+  })
+})
+
+describe("ComposeTweet component", () => {
+  it("renders withour error", async () => {
+    act(() => {
+      render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <MemoryRouter>
+          <ComposeTweet currentUser={currentUserProp}/>
+        </MemoryRouter>
+      </MockedProvider>, container)
+    })
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    expect(container.innerHTML).toMatch(/compose-tweet/gi)
+  })
+})
+
+describe("Explore component", () => {
+  it("renders without error", () => {
+    act(() => {
+      render(
+        <MockedProvider>
+          <MemoryRouter>
+            <Explore />
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    expect(container.innerHTML).toMatch(/explore-component/gi)
+  })
+})
+
 describe("Messages component", () => {})
-describe("RightBar component", () => {})
+
+describe("RightBar component", () => {
+  it("renders without error", () => {
+    act(() => {
+      render(
+        <MockedProvider>
+          <MemoryRouter>
+            <RightBar />
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    expect(container.textContent).toMatch(/What's happening/gi)
+  })
+})
 
 describe("SideBar component", () => {
   it("renders without error", () => {
@@ -133,7 +235,7 @@ describe("SideBar component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-            <Sidebar currentUser={mocks[0].result.data.currentUser}/>
+            <Sidebar currentUser={currentUserProp}/>
           </MemoryRouter>
         </MockedProvider>, container
       )
@@ -148,7 +250,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider>
           <MemoryRouter>
-            <SingleTweet currentUser={mocks[0].result.data.currentUser} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+            <SingleTweet currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })
@@ -160,7 +262,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-            <SingleTweet currentUser={mocks[0].result.data.currentUser} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+            <SingleTweet currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })
@@ -185,7 +287,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-            <SingleTweet currentUser={mocks[0].result.data.currentUser} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+            <SingleTweet currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })
@@ -238,7 +340,7 @@ describe("React Router", () => {
     expect(document.location.pathname).toEqual('/lists')
 
     fireEvent.click(getByText(container, 'Profile'))
-    expect(document.location.pathname).toEqual(`/${mocks[0].result.data.currentUser.handle.slice(1)}`)
+    expect(document.location.pathname).toEqual(`/${currentUserProp.handle.slice(1)}`)
 
     fireEvent.click(getByText(container, 'Home'))
     expect(document.location.pathname).toEqual('/home')

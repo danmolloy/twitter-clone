@@ -4,7 +4,7 @@ import { List } from '../types'
 
 export const ListTile = (props: {list: List | undefined}) => {
   return (
-    <div className="px-2 py-2 w-full flex flex-row hover:bg-gray-100">
+    <div className="px-2 py-2 w-full flex flex-row hover:bg-gray-100 list-tile">
       <DocumentTextIcon className="w-10 h-auto"/>
       <div className="flex flex-col pl-2">
         <div className="flex flex-row">
