@@ -102,7 +102,21 @@ describe("Profile component", () => {
 })
 
 describe("Bookmarks component", () => {
-
+  it("loads without error", async () => {
+    act(() => {
+      render(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <MemoryRouter>
+            <Bookmarks currentUser={mocks[0].result.data.currentUser}/>
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    expect(container.textContent).toMatch(/Firkin Band/gi)
+  })
 })
 
 describe("Lists component", () => {})
@@ -112,7 +126,21 @@ describe("ComposeTweet component", () => {})
 describe("Explore component", () => {})
 describe("Messages component", () => {})
 describe("RightBar component", () => {})
-describe("SideBar component", () => {})
+
+describe("SideBar component", () => {
+  it("renders without error", () => {
+    act(() => {
+      render(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <MemoryRouter>
+            <Sidebar currentUser={mocks[0].result.data.currentUser}/>
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    expect(container.innerHTML).toMatch(/side-bar/gi)
+  })
+})
 
 describe("SingleTweet component", () => {
   it("fetches data without error", () => {

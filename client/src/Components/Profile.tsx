@@ -146,7 +146,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
             </div>
             <div onClick={() => setShowFollowers(true)} onBlur={() => setTimeout(() => setShowFollowers(false), 100)}>
             {showFollowers && 
-            <div className="shadow z-10 bg-white absolute  w-48 round text-black bg-white">
+            <div className="shadow z-10 bg-white absolute w-48 round text-black bg-white">
               <h3 className="p-2 font-semibold border-b">Followers</h3>
               <ul>
               {data && data.getUserProfile.followers.map((user: UserHandles) => {

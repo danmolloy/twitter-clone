@@ -333,5 +333,44 @@ export const mocks: Mock[] = [
         }
       }
     }
+  },
+  {
+    request: {
+      query: BOOKMARKS,
+      variables: {
+        currentUserHandle: "@danmolloy"
+      }
+    },
+    result: {
+      data: {
+        "currentUser": {
+          "bookmarks": [
+            {
+              "content": "Live! First Sunday of each month. Venue TBC",
+              "id": "52ec0146-9436-493c-9ce0-b44084f1ffca",
+              "postDate": " 1632812919",
+              "author": {
+                "name": "The Big Firkin Band",
+                "handle": "@thebigfirkinband",
+                "profilePic": "eoghan.png"
+              },
+              "likes": [
+                {
+                  "handle": "@danmolloy"
+                },
+                {
+                  "handle": "@fizzlekelly"
+                }
+              ],
+              "retweets": [
+                {
+                  "handle": "@danmolloy"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
   }
 ];
