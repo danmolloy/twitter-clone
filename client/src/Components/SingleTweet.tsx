@@ -31,6 +31,14 @@ export const RETWEET_POST = gql`
   }
 `;
 
+export const DELETE_POST = gql`
+  mutation Mutation($postId: String) {
+    deletePost(postId: $postId) {
+      id
+    }
+  }
+`
+
 
 export const SingleTweet = (props: {author: User | undefined, currentUser: User | undefined, tweet: Post |undefined}) => {
   const [showMenu, setShowMenu] = useState(false)
@@ -46,6 +54,12 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
     variables: {
       retweetPostHandle: props.currentUser &&props.currentUser.handle,
       retweetPostPostId: props.tweet && props.tweet.id
+    }
+  })
+
+  const [deletePost, { data: dataDelete, loading: loadingDelete, error: errorDelete}] = useMutation(DELETE_POST, {
+    variables: {
+      postId: props.tweet && props.tweet.id
     }
   })
   
@@ -66,14 +80,22 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
             <h4 className="text-gray-500 ml-1 hover:underline">{props.tweet && String(fromUnixTime(props.tweet.postDate)).slice(0, 15)}</h4>
           </div>
           <div
-          onBlur={() => setShowMenu(false)}
+          id="tweet-options"
+          onBlur={() => setTimeout(() => setShowMenu(false), 100)}
           onFocus={() => setShowMenu(true)}
           >
-            {showMenu && <ul className="shadow z-10 bg-white absolute -ml-24 w-32 rounded">
+            {showMenu && <div id="options-button" className="shadow z-10 bg-white absolute -ml-24 w-32 rounded">
             { props.author && props.currentUser && props.currentUser.handle === props.author.handle ?
-            <li className="hover:bg-gray-50 p-2">Delete Tweet</li> :
-            <li className="hover:bg-gray-50 p-2">Unfollow</li>}
-          </ul>}
+            <button 
+            id="delete-button"
+            className="hover:bg-gray-50 p-2" 
+            onClick={async() => {
+              await deletePost();
+              }}>
+              Delete Tweet
+              </button> :
+            <button className="hover:bg-gray-50 p-2">Unfollow</button>}
+          </div>}
           <button 
           className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
             •••

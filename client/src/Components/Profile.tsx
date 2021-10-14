@@ -123,7 +123,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
           <div className="flex flex-row text-gray-600 my-2">
             <div 
             onClick={() => setShowFollowing(true)}
-            onBlur={() => setTimeout(() => setShowFollowing(false), 100)}>
+            onBlur={() => setTimeout(() => setShowFollowing(false), 150)}>
               {showFollowing && 
             <div className="shadow z-10 bg-white absolute  w-48 round text-black bg-white">
               <h3 className="p-2 font-semibold border-b">Following</h3>
@@ -144,7 +144,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
               </span> following
             </button>
             </div>
-            <div onClick={() => setShowFollowers(true)} onBlur={() => setTimeout(() => setShowFollowers(false), 100)}>
+            <div onClick={() => setShowFollowers(true)} onBlur={() => setTimeout(() => setShowFollowers(false), 150)}>
             {showFollowers && 
             <div className="shadow z-10 bg-white absolute w-48 round text-black bg-white">
               <h3 className="p-2 font-semibold border-b">Followers</h3>
