@@ -13,6 +13,7 @@ const typeDefs = gql`
     writePost(content: String, authorHandle: String): Post
     likePost(handle: String, postID: String): Post
     retweetPost(handle: String, postID: String): Post
+    deletePost(postId: String): Post
   }
 
   type User {

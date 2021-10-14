@@ -295,6 +295,19 @@ module.exports = {
           return `Error! ${e}`
         }
       },
+      deletePost: async (_, { postId }, context) => {
+        try {
+          const deletePost = await context.prisma.post.delete({
+            where: {
+              id: postId
+            }
+          })
 
+          return deletePost
+        }
+        catch(e) {
+          return `Error! ${e}`
+        }
+      }
     }
   }

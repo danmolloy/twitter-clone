@@ -4,17 +4,13 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-  /*const postsTweets = await prisma.post.findMany({
+  const selectedTweet = await prisma.post.delete({
     where: {
-      authorHandle: "@danmolloy",
-      OR: [
-        {
-          // retweets contains @danmolloy
-        }
-      ]
-    },
-  })*/
+      id: 
+    }
+  })
 
+  console.log(selectedTweet)
 }
 
 main()
