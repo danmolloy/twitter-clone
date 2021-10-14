@@ -40,7 +40,7 @@ export const DELETE_POST = gql`
 `
 
 
-export const SingleTweet = (props: {author: User | undefined, currentUser: User | undefined, tweet: Post |undefined}) => {
+export const SingleTweet = (props: {author: User | undefined, currentUser: User | undefined, tweet: Post |undefined, updatePage: any}) => {
   const [showMenu, setShowMenu] = useState(false)
 
   const [likePost, { data: dataLikes, loading: loadingLikes, error: errorLikes }] = useMutation(LIKE_POST, {
@@ -91,6 +91,7 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
             className="hover:bg-gray-50 p-2" 
             onClick={async() => {
               await deletePost();
+              props.updatePage()
               }}>
               Delete Tweet
               </button> :

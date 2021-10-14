@@ -67,7 +67,7 @@ function App() {
         <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
         <Route path="/compose/tweet">
-          <ComposeTweet currentUser={data && data.currentUser}/>
+          <ComposeTweet currentUser={data && data.currentUser} updatePage={() => alert('Posted!')}/>
         </Route>
         <Route path="/explore" component={Explore}/>
         <Route path="/home">

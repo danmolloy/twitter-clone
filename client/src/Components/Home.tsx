@@ -31,6 +31,10 @@ query Query($followsTweetsHandle: String!) {
 export const Home = (props: {currentUser: User | undefined}) => {
   const { loading, error, data, refetch } = useQuery(FOLLOWINGPOSTS, {variables: {followsTweetsHandle: props.currentUser && props.currentUser.handle}})
 
+  const updatePage = () => {
+    refetch()
+  }
+
   if (loading) {
     return <Loading />
   }
@@ -43,14 +47,13 @@ export const Home = (props: {currentUser: User | undefined}) => {
     <div id="home">
       <div id="home-header" className="header border-b border-gray-200 h-14 flex flex-row justify-between">
         <h2 className="text-xl font-semibold p-4">Home</h2>
-        <button onClick={() => refetch()}>Refresh</button>
         <SparklesIcon className="w-10 p-2 my-2 h-auto mr-4 hover:bg-gray-200 rounded-full " />
       </div>
-      <ComposeTweet currentUser={props.currentUser} />
+      <ComposeTweet currentUser={props.currentUser} updatePage={updatePage}/>
       <div className="h-auto w-full flex flex-col mt-0">
         {data.followsTweets && 
         data.followsTweets.map((tweet: Post) => {
-          return <SingleTweet tweet={tweet} key={tweet.id} author={tweet.author} currentUser={props.currentUser && props.currentUser}/>
+          return <SingleTweet tweet={tweet} key={tweet.id} author={tweet.author} currentUser={props.currentUser && props.currentUser} updatePage={updatePage}/>
         })
         }
       </div>

@@ -65,6 +65,10 @@ export const Profile = (props: {currentUser: User | undefined}) => {
 
   const [tweetFilter, setTweetFilter] = useState('tweets')
 
+  const updatePage = () => {
+    refetch()
+  }
+
   useEffect(() => {
     if (dataProfileData && props.currentUser && dataProfileData.getUserProfile.name === props.currentUser.name) {
       setCurrentUser(true)
@@ -77,14 +81,15 @@ export const Profile = (props: {currentUser: User | undefined}) => {
     }
   })
 
-  const updateProfile = () => {
+  const updateProfile = async () => {
     setEditNameBlurb(false)
-    editProfile({
+    await editProfile({
       variables: {
         handle: props.currentUser && props.currentUser.handle,
         userName: newName,
         blurb: newBlurb,
       }})
+    refetch()
   }
 
   if (loadingProfileData) {
@@ -248,7 +253,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
         dataProfileData.getUserProfile.writtenPosts && 
         dataProfileData.getUserProfile.writtenPosts.length > 0 &&
         dataProfileData.getUserProfile.writtenPosts.map((tweet: Post) => {
-            return <SingleTweet tweet={tweet} author={dataProfileData && dataProfileData.getUserProfile} key={tweet.id} currentUser={props.currentUser}/>;
+            return <SingleTweet tweet={tweet} author={dataProfileData && dataProfileData.getUserProfile} key={tweet.id} currentUser={props.currentUser} updatePage={updatePage}/>;
           })
         }
       </div>

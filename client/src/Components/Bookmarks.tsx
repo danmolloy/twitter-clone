@@ -29,7 +29,11 @@ export const BOOKMARKS = gql`
 
 
 export const Bookmarks = (props: {currentUser: User | undefined}) => {
-  const { loading, error, data } = useQuery(BOOKMARKS, {variables: {currentUserHandle: "@danmolloy" }})
+  const { loading, error, data, refetch } = useQuery(BOOKMARKS, {variables: {currentUserHandle: "@danmolloy" }})
+
+  const updatePage = () => {
+    refetch()
+  }
 
   if (loading) {
     <Loading />
@@ -47,7 +51,7 @@ export const Bookmarks = (props: {currentUser: User | undefined}) => {
       </div>
       {data && props.currentUser ? 
       data.currentUser.bookmarks.map((post: Post) => {
-            return <SingleTweet tweet={post} author={post.author} key={post.id} currentUser={props.currentUser}/>;
+            return <SingleTweet tweet={post} author={post.author} key={post.id} currentUser={props.currentUser} updatePage={updatePage}/>;
           }) :
           <div className="flex flex-col items-center">
         <div className="flex flex-col w-1/2 pt-8">

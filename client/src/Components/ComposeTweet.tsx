@@ -12,7 +12,7 @@ const POST_TWEET = gql`
   }
 `;
 
-export const ComposeTweet = (props: {currentUser: User | undefined}) => {
+export const ComposeTweet = (props: {currentUser: User | undefined, updatePage: any}) => {
   const [content, setContent] = useState('')
 
   const [postTweet, {data, loading, error}] = useMutation(POST_TWEET, {
@@ -26,6 +26,7 @@ export const ComposeTweet = (props: {currentUser: User | undefined}) => {
     postTweet()
       .then(()=> setContent(""))
       .then(props.refreshTweets)
+      .then(props.updatePage)
   }
 
   if (loading) return <p>'Posting..'</p>;
