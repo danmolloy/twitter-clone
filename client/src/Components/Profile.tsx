@@ -2,7 +2,7 @@ import { ArrowLeftIcon, CalendarIcon, UserCircleIcon } from "@heroicons/react/ou
 import { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
 import { SingleTweet } from "./SingleTweet"
-import { gql, useQuery } from "@apollo/client"
+import { gql, useMutation, useQuery } from "@apollo/client"
 import { Loading } from "./Loading"
 import { Error } from "./Error"
 import { User, UserHandles, Post, GetUserProfileData, GetUserProfileVar  } from "../types"
@@ -38,16 +38,35 @@ export const GETUSER = gql`
     }
 `;
 
+const EDIT_PROFILE = gql`
+  mutation Mutation($handle: String, $userName: String, $blurb: String) {
+    editProfile(handle: $handle, userName: $userName, blurb: $blurb) {
+      name
+      handle
+      blurb
+    }
+  }
+`;
+
 export const Profile = (props: {currentUser: User | undefined}) => {
+  const [editNameBlurb, setEditNameBlurb] = useState(false)
   const [showFollowing, setShowFollowing] = useState(false)
   const [showFollowers, setShowFollowers] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
   const {userHandle} = useParams<{ userHandle: string}>()
-  const { loading, error, data } = useQuery<GetUserProfileData, GetUserProfileVar>(GETUSER, { variables: { getUserProfileHandle: `@${userHandle}` }})
+  const [newBlurb, setNewBlurb] = useState(props.currentUser && props.currentUser.blurb)
+  const [newName, setNewName] = useState(props.currentUser && props.currentUser.name)
+  const { loading: loadingProfileData, error: errorProfileData, data: dataProfileData, refetch } = useQuery<GetUserProfileData, GetUserProfileVar>(GETUSER, { variables: { getUserProfileHandle: `@${userHandle}` }})
+  
+  const [editProfile, 
+    {data: editProfileData, 
+      loading: editProfileLoading, 
+      error: editProfileError}] = useMutation(EDIT_PROFILE)
+
   const [tweetFilter, setTweetFilter] = useState('tweets')
 
   useEffect(() => {
-    if (data && props.currentUser && data.getUserProfile.name === props.currentUser.name) {
+    if (dataProfileData && props.currentUser && dataProfileData.getUserProfile.name === props.currentUser.name) {
       setCurrentUser(true)
     }
   })
@@ -58,11 +77,21 @@ export const Profile = (props: {currentUser: User | undefined}) => {
     }
   })
 
-  if (loading) {
+  const updateProfile = () => {
+    setEditNameBlurb(false)
+    editProfile({
+      variables: {
+        handle: props.currentUser && props.currentUser.handle,
+        userName: newName,
+        blurb: newBlurb,
+      }})
+  }
+
+  if (loadingProfileData) {
     <Loading />
   }
 
-  if (error) {
+  if (errorProfileData) {
     return <Error />
   }
 
@@ -72,32 +101,42 @@ export const Profile = (props: {currentUser: User | undefined}) => {
         <Link to="/home">
         <ArrowLeftIcon className="w-10 p-2 h-auto ml-4 my-2" />
         </Link>
-        <div className=" ml-2 mt-1">
+        <div className=" ml-2 mt-1"> 
         <h3 className="text-xl font-bold">
-          {data && data.getUserProfile.name}
+          {dataProfileData && dataProfileData.getUserProfile.name}
         </h3>
         <p className="text-sm text-gray-600 -mt-1">
-          {data && data.getUserProfile.writtenPosts ? 
-          data.getUserProfile.writtenPosts.length : 0} tweets
+          {dataProfileData && dataProfileData.getUserProfile.writtenPosts ? 
+          dataProfileData.getUserProfile.writtenPosts.length : 0} tweets
           </p>
         </div>
       </div>
       <div className="w-full">
       <div className="w-full h-3/5 ">
         <div className="w-full h-48">
-          <img src={data && data.getUserProfile.bgPic}/>
+          <img src={dataProfileData && dataProfileData.getUserProfile.bgPic}/>
         </div>
         <div className="flex flex-row justify-between">
-          {data && data.getUserProfile.profilePic ?
-            <img src={data.getUserProfile.profilePic} className="rounded-full w-36 h-auto ml-4 -mt-12 -p border-4 border-white"/> :
+          {dataProfileData && dataProfileData.getUserProfile.profilePic ?
+            <img src={dataProfileData.getUserProfile.profilePic} className="rounded-full w-36 h-auto ml-4 -mt-12 -p border-4 border-white"/> :
             <UserCircleIcon className="w-28 h-auto ml-12 -mt-12 border -p rounded-full"/>
           }
-          {currentUser ? 
-          <button className="font-bold border border-gray-300 rounded-full px-2 my-8 mr-8">
+          {currentUser && editNameBlurb === true ? 
+          <button 
+          id="edit-profile-btn"
+          onClick={() => updateProfile()}
+          className="font-bold border border-gray-300 bg-twitter-blue text-white rounded-full px-2 my-8 mr-8">
+            Save Changes
+          </button>:
+          currentUser ?
+          <button 
+          id="edit-profile-btn"
+          onClick={() => setEditNameBlurb(true)}
+          className="font-bold border border-gray-300 rounded-full px-2 my-8 mr-8">
             Edit Profile
           </button>: 
-            data && 
-            data.getUserProfile.followers.filter(
+            dataProfileData && 
+            dataProfileData.getUserProfile.followers.filter(
               (e: UserHandles) => props.currentUser && e.handle === props.currentUser.handle).length > 0 ?
           <button className="font-bold border border-gray-300 rounded-full py-2 px-4 my-8 mr-8">
             Following
@@ -105,19 +144,26 @@ export const Profile = (props: {currentUser: User | undefined}) => {
             <button className="font-bold bg-black text-white rounded-full py-2 px-4 my-8 mr-8">Follow</button>}
         </div>
         <div className="flex flex-col w-2/5 ml-12">
+        {editNameBlurb === true ?
+          <input 
+          value={newName} 
+          onChange={(e) => setNewName(e.target.value)}
+          className="font-bold text-xl border border-black"/>:
           <h3 className="font-bold text-xl">
-            {data && data.getUserProfile.name}
-          </h3>
+            {dataProfileData && dataProfileData.getUserProfile.name}
+          </h3>}
           <p className="text-gray-600 text-sm">
-            {data && data.getUserProfile.handle}
+            {dataProfileData && dataProfileData.getUserProfile.handle}
           </p>
+          {editNameBlurb === true ?
+          <input value={newBlurb} onChange={(e) => setNewBlurb(e.target.value)} className="my-2 border border-black"/> :
           <p className="my-2">
-            {data && data.getUserProfile.blurb}
-          </p>
+            {dataProfileData && dataProfileData.getUserProfile.blurb}
+          </p>}
           <div className="flex flex-row text-gray-600">
             <CalendarIcon className="w-6 h-auto -ml-1" />
             <p className="ml-1">
-              Joined {data && data.getUserProfile.joinDate}
+              Joined {dataProfileData && dataProfileData.getUserProfile.joinDate}
             </p>
           </div>
           <div className="flex flex-row text-gray-600 my-2">
@@ -128,7 +174,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
             <div className="shadow z-10 bg-white absolute  w-48 round text-black bg-white">
               <h3 className="p-2 font-semibold border-b">Following</h3>
               <ul>
-              {data && data.getUserProfile.follows.map((user: UserHandles) => {
+              {dataProfileData && dataProfileData.getUserProfile.follows.map((user: UserHandles) => {
                 return <li key={user.handle} className="hover:bg-gray-50 p-2">
                   <Link to={`/${user.handle.slice(1)}`}>{user.handle}</Link>
                   </li>
@@ -137,8 +183,8 @@ export const Profile = (props: {currentUser: User | undefined}) => {
             </div>}
             <button>
               <span className="font-bold text-black">
-              {data && data.getUserProfile.follows ?
-              data.getUserProfile.follows.length :
+              {dataProfileData && dataProfileData.getUserProfile.follows ?
+              dataProfileData.getUserProfile.follows.length :
               0
               }
               </span> following
@@ -149,7 +195,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
             <div className="shadow z-10 bg-white absolute w-48 round text-black bg-white">
               <h3 className="p-2 font-semibold border-b">Followers</h3>
               <ul>
-              {data && data.getUserProfile.followers.map((user: UserHandles) => {
+              {dataProfileData && dataProfileData.getUserProfile.followers.map((user: UserHandles) => {
                 return <li key={user.handle} className="hover:bg-gray-50 p-2">
                   <Link to={`/${user.handle.slice(1)}`}>{user.handle}</Link>
                   </li>
@@ -158,8 +204,8 @@ export const Profile = (props: {currentUser: User | undefined}) => {
             </div>}
             <button>
               <span className="font-bold text-black ml-2">
-                {data && data.getUserProfile.followers ?
-                data.getUserProfile.followers.length : 0}
+                {dataProfileData && dataProfileData.getUserProfile.followers ?
+                dataProfileData.getUserProfile.followers.length : 0}
               </span> followers
             </button>
             </div>
@@ -168,28 +214,28 @@ export const Profile = (props: {currentUser: User | undefined}) => {
         <div className=" w-full h-12 mt-4 flex flex-row">
           <Link 
           className={tweetFilter === 'tweets' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
-          to={data ? `/${data.getUserProfile.handle.slice(1)}` : '/home'}
+          to={dataProfileData ? `/${dataProfileData.getUserProfile.handle.slice(1)}` : '/home'}
           onClick={() => setTweetFilter('tweets')}>
             Tweets 
             {tweetFilter === 'tweets' && <span className="tab-line"/>}
           </Link>
           <Link 
           className={tweetFilter === 'replies' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
-          to={data ? `/${data.getUserProfile.handle.slice(1)}/with_replies`: '/home'}
+          to={dataProfileData ? `/${dataProfileData.getUserProfile.handle.slice(1)}/with_replies`: '/home'}
           onClick={() => setTweetFilter('replies')}>
             Tweets & Replies
             {tweetFilter === 'replies' && <span className="tab-line"/>}
           </Link>
           <Link 
           className={tweetFilter === 'media' ? 'selected-tweet-filter' : 'deselected-tweet-filter'} 
-          to={data ? `/${data.getUserProfile.handle.slice(1)}/media`: '/home'}
+          to={dataProfileData ? `/${dataProfileData.getUserProfile.handle.slice(1)}/media`: '/home'}
           onClick={() => setTweetFilter('media')}>
             Media
             {tweetFilter === 'media' && <span className="tab-line"/>}
           </Link>
           <Link 
           className={tweetFilter === 'likes' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
-          to={data ? `/${data.getUserProfile.handle.slice(1)}/likes`: '/home'}
+          to={dataProfileData ? `/${dataProfileData.getUserProfile.handle.slice(1)}/likes`: '/home'}
           onClick={() => setTweetFilter('likes')}>
             Likes
             {tweetFilter === 'likes' && <span className="tab-line"/>}
@@ -198,11 +244,11 @@ export const Profile = (props: {currentUser: User | undefined}) => {
       </div>
       </div>
       <div className="h-auto w-full flex flex-col mt-0">
-        {data && 
-        data.getUserProfile.writtenPosts && 
-        data.getUserProfile.writtenPosts.length > 0 &&
-          data.getUserProfile.writtenPosts.map((tweet: Post) => {
-            return <SingleTweet tweet={tweet} author={data && data.getUserProfile} key={tweet.id} currentUser={props.currentUser}/>;
+        {dataProfileData && 
+        dataProfileData.getUserProfile.writtenPosts && 
+        dataProfileData.getUserProfile.writtenPosts.length > 0 &&
+        dataProfileData.getUserProfile.writtenPosts.map((tweet: Post) => {
+            return <SingleTweet tweet={tweet} author={dataProfileData && dataProfileData.getUserProfile} key={tweet.id} currentUser={props.currentUser}/>;
           })
         }
       </div>

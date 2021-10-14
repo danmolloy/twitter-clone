@@ -4,13 +4,7 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-  const selectedTweet = await prisma.post.delete({
-    where: {
-      id: 
-    }
-  })
-
-  console.log(selectedTweet)
+  
 }
 
 main()

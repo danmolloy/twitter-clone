@@ -308,6 +308,23 @@ module.exports = {
         catch(e) {
           return `Error! ${e}`
         }
+      },
+      editProfile: async(_, {userName, handle, blurb}, context) => {
+        try {
+          const updateUser = await context.prisma.user.update({
+            where: {
+              handle: handle
+            },
+            data: {
+              name: userName,
+              blurb: blurb
+            }
+          })
+          return updateUser
+        }
+        catch(e) {
+          return `Error! ${e}`
+        }
       }
     }
   }

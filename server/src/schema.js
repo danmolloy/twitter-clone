@@ -14,6 +14,7 @@ const typeDefs = gql`
     likePost(handle: String, postID: String): Post
     retweetPost(handle: String, postID: String): Post
     deletePost(postId: String): Post
+    editProfile(handle: String, userName: String, blurb: String): User
   }
 
   type User {
