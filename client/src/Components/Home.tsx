@@ -31,6 +31,7 @@ query Query($followsTweetsHandle: String!) {
 export const Home = (props: {currentUser: User | undefined}) => {
   const { loading, error, data, refetch } = useQuery(FOLLOWINGPOSTS, {variables: {followsTweetsHandle: props.currentUser && props.currentUser.handle}})
 
+
   const updatePage = () => {
     refetch()
   }

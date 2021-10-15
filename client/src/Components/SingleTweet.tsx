@@ -42,7 +42,8 @@ export const DELETE_POST = gql`
 
 export const SingleTweet = (props: {author: User | undefined, currentUser: User | undefined, tweet: Post |undefined, updatePage: any}) => {
   const [showMenu, setShowMenu] = useState(false)
-
+  const [showBookmarksMenu, setShowBookmarksMenu] = useState(false)
+ 
   const [likePost, { data: dataLikes, loading: loadingLikes, error: errorLikes }] = useMutation(LIKE_POST, {
     variables: {
       likePostHandle: props.currentUser &&props.currentUser.handle,
@@ -64,7 +65,7 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
   })
   
   return (
-    <div id="single-tweet" className={`border-b ${!showMenu && "hover:bg-gray-50"}`}>
+    <div id="single-tweet" className={`border-b ${!showMenu && !showBookmarksMenu && "hover:bg-gray-50"}`}>
       <div className="flex flex-row mt-4"> 
       {props.author && props.author.profilePic ? 
       <img src={props.author && props.author.profilePic} className="w-14 h-auto ml-3 rounded-full"/>:
@@ -131,7 +132,15 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
             <HeartIcon className="hover:bg-red-50 tweet-options"/>
             <p id="like-count">{dataLikes && dataLikes.likePost.likes.length > 0 ? dataLikes.likePost.likes.length : dataLikes && dataLikes.likePost.likes.length === 0 ? null : props.tweet && props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
           </button>
+          <div 
+          onFocus={() => setShowBookmarksMenu(true)} 
+          onBlur={() => setTimeout(() => setShowBookmarksMenu(false))}>
+            {showBookmarksMenu === true && 
+            <div className="shadow z-10 bg-white absolute -ml-24 w-32 rounded p-2 text-black hover:bg-gray-50">
+              <button>Bookmark</button>
+            </div>}
           <UploadIcon className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
+          </div>
         </div>
     </div>
   )

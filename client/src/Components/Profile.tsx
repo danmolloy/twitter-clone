@@ -70,6 +70,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
   }
 
   useEffect(() => {
+    updatePage()
     if (dataProfileData && props.currentUser && dataProfileData.getUserProfile.name === props.currentUser.name) {
       setCurrentUser(true)
     }
