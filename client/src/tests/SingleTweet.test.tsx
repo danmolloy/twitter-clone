@@ -27,7 +27,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider>
           <MemoryRouter>
-            <SingleTweet currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+            <SingleTweet updatePage={() => {}} currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })
@@ -39,7 +39,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-            <SingleTweet currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+            <SingleTweet updatePage={() => {}} currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })
@@ -64,7 +64,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-            <SingleTweet currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+            <SingleTweet updatePage={() => {}} currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container)
     })
@@ -85,7 +85,7 @@ describe("SingleTweet component", () => {
       render(
         <MockedProvider mocks={mocks} addTypename={false}>
           <MemoryRouter>
-          <SingleTweet currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
+          <SingleTweet updatePage={() => {}} currentUser={currentUserProp} author={mocks[0].result.data.currentUser} tweet={mocks[1].result.data.followsTweets[0]}/>
           </MemoryRouter>
         </MockedProvider>, container
       )
