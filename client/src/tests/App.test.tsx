@@ -12,6 +12,7 @@ import pretty from "pretty";
 import { RightBar } from "../Components/RightBar";
 import { Notifications } from "../Components/Notifications";
 import { Explore } from "../Components/Explore";
+import { AUTH_TOKEN } from "../constants";
 
 let container: any = null;
 const currentUserProp = mocks[0].result.data.currentUser
@@ -19,15 +20,33 @@ const currentUserProp = mocks[0].result.data.currentUser
 beforeEach(() => {
   container = document.createElement('div');
   document.body.appendChild(container);
+  global.localStorage.setItem(AUTH_TOKEN, 'auth-token')
 });
 
 afterEach(() => {
   unmountComponentAtNode(container);
     container.remove();
     container = null;
+    global.localStorage.removeItem(AUTH_TOKEN)
 });
 
 describe("App component", () => {
+  it("Sign in component renders if no auth-token", async () => {
+    act(() => {
+      global.localStorage.removeItem(AUTH_TOKEN)
+      render(<MockedProvider mocks={mocks} addTypename={false}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container)
+    })
+
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    expect(container.textContent).toMatch(/password/gi)
+  })
+
   it('App component fetches data and renders Home component after Loading component', async () => {
     act(() => {
       render(

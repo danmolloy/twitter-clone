@@ -10,10 +10,12 @@ import { HashtagIcon,
   UserCircleIcon
 } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
+import { AUTH_TOKEN } from '../constants'
 import { User } from '../types'
 
 
 export const Sidebar = (props: {currentUser: User | undefined}) => {
+  const authToken = localStorage.getItem(AUTH_TOKEN)
   return (
     <div id="side-bar" 
     className="self-end fixed flex flex-row sm:flex-col sm:mt-0 ml-0
@@ -51,13 +53,14 @@ export const Sidebar = (props: {currentUser: User | undefined}) => {
         <UserIcon className="side-icon hidden sm:flex"/>
         <label htmlFor="profile-link" className="sidebar-text">Profile</label>
       </Link>
-      <div className="lg-side-icon">
+      <button className="lg-side-icon" onClick={() => authToken ? alert(`token: ${localStorage.getItem(AUTH_TOKEN)}`) : alert("No token")}>
         <DotsCircleHorizontalIcon className="side-icon hidden sm:flex" id="more-icon"/>
         <label htmlFor="more-link" className="sidebar-text">More</label>
-      </div>
+      </button>
       <Link to="/compose/tweet" className="md:ml-4">
         <PencilAltIcon className="hidden sm:flex h-12 w-auto mx-4 my-1 twitter-blue rounded-full p-2 hover:bg-blue-50"/>
       </Link>
+      <Link to="/login" onClick={() => localStorage.removeItem(AUTH_TOKEN)}>Log off</Link>
       <Link to={props.currentUser ? `/${props.currentUser.handle.slice(1)}` : '/'} className="md:ml-4">
         {props.currentUser && props.currentUser.profilePic ?
         <img src={props.currentUser && props.currentUser.profilePic} className="hidden sm:flex h-14 w-auto mx-4 mt-28 rounded-full p-2 hover:bg-gray-200"/>

@@ -64,9 +64,7 @@ export const Lists = (props: {currentUser: User | undefined}) => {
         <h2 className="text-xl font-extrabold pl-2 pt-2 pb-1">Your Lists</h2>
         <div className="flex flex-col">
         {data ? 
-          data.getAuthoredLists.map((list: List) => {
-            return <ListTile list={list} key={list.id}/>
-          }): 
+          <p className="text-center text-gray-500">This feature has not yet been implemented.</p>: 
         <p>You haven't created or followed any Lists. When you do, they'll show up here.</p>}
         </div>
       </div>

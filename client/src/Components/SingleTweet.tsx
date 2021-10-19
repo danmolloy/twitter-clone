@@ -31,6 +31,16 @@ export const RETWEET_POST = gql`
   }
 `;
 
+export const BOOKMARK_POST = gql`
+  mutation Mutation($postId: String, $handle: String) {
+    bookmarkPost(postID: $postId, handle: $handle) {
+      bookmarks {
+        handle
+      }
+    }
+  }
+`;
+
 export const DELETE_POST = gql`
   mutation Mutation($postId: String) {
     deletePost(postId: $postId) {
@@ -55,6 +65,13 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
     variables: {
       retweetPostHandle: props.currentUser &&props.currentUser.handle,
       retweetPostPostId: props.tweet && props.tweet.id
+    }
+  })
+
+  const [bookmarkPost, { data: dataBookmarks, loading: loadingBookmarks, error: errorBookmarks }] = useMutation(BOOKMARK_POST, {
+    variables: {
+      postId: props.tweet && props.tweet.id,
+      handle: props.currentUser &&props.currentUser.handle, 
     }
   })
 
@@ -132,15 +149,17 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
             <HeartIcon className="hover:bg-red-50 tweet-options"/>
             <p id="like-count">{dataLikes && dataLikes.likePost.likes.length > 0 ? dataLikes.likePost.likes.length : dataLikes && dataLikes.likePost.likes.length === 0 ? null : props.tweet && props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
           </button>
-          <div 
-          onFocus={() => setShowBookmarksMenu(true)} 
-          onBlur={() => setTimeout(() => setShowBookmarksMenu(false))}>
+          <button 
+          id="bookmark-options"
+          onBlur={() => setTimeout(() => setShowBookmarksMenu(false), 200)}
+          onFocus={() => setShowBookmarksMenu(true)}
+          className="">
             {showBookmarksMenu === true && 
-            <div className="shadow z-10 bg-white absolute -ml-24 w-32 rounded p-2 text-black hover:bg-gray-50">
-              <button>Bookmark</button>
+            <div className="shadow z-10 bg-white absolute -ml-20 w-32 rounded p-2 text-black hover:bg-gray-50">
+              <button onClick={async () => {await bookmarkPost()}}>Bookmark</button>
             </div>}
-          <UploadIcon className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
-          </div>
+          <UploadIcon onFocus={() => alert('Hi')} className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
+          </button>
         </div>
     </div>
   )

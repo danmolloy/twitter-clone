@@ -1,3 +1,7 @@
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const { APP_SECRET, getUserId } = require('./utils')
+
 module.exports = {
   Query: {
     currentUser: async (_, arg, context) => {
@@ -187,7 +191,58 @@ module.exports = {
             authorHandle: arg.authorHandle,
           }
         })
+      },
+      bookmarkPost: async(_, {postID, handle}, context) => {
+        try {
+          const bookmarkPost = await context.prisma.post.findUnique({
+            where: {
+              id: postID
+            },
+            include: {
+              bookmarks: true
+            }
+          })
         
+          if (bookmarkPost.bookmarks.filter(e => e.handle === handle).length >= 1) {
+            const unBookmarked = await context.prisma.post.update({
+              where: {
+                id: postID
+              },
+              include: {
+                bookmarks: true
+              },
+              data: {
+                bookmarks: {
+                  disconnect: {
+                    handle: handle
+                  }
+                }
+              }
+            })
+            return unBookmarked
+          } else if (bookmarkPost.bookmarks.filter(e => e.handle === handle).length === 0) {
+            const bookmarked = await context.prisma.post.update({
+              where: {
+                id: postID
+              },
+              include: {
+                bookmarks: true
+              },
+              data: {
+                bookmarks: {
+                  connect: {
+                    handle: handle
+                  }
+                }
+              }
+            })
+            return bookmarked
+          }
+
+          }
+          catch(e) {
+            return `Error! ${e}`
+          }
       },
       likePost: async (_, {postID, handle}, context) => {
         try {
@@ -310,6 +365,7 @@ module.exports = {
         }
       },
       editProfile: async(_, {userName, handle, blurb}, context) => {
+  
         try {
           const updateUser = await context.prisma.user.update({
             where: {
@@ -325,6 +381,83 @@ module.exports = {
         catch(e) {
           return `Error! ${e}`
         }
-      }
+      },
+      followUnfollowUser: async(_, {followHandle, currentUserHandle}, context) => {
+        const user = await context.prisma.user.findUnique({
+          where: {
+            handle: followHandle
+          },
+          include: {
+            followers: true
+          }
+        })
+      
+        
+        if (user.followers.filter(e => e.handle === currentUserHandle).length < 1) {
+          const followUser = await context.prisma.user.update({
+            where: {
+              handle: followHandle
+            },
+            include: {
+              followers: true
+            },
+            data: {
+              followers: {
+                connect: {
+                  handle: currentUserHandle
+                }
+              }
+            }
+          })
+          return followUser
+        } else {
+          const unfollowUser = await context.prisma.user.update({
+            where: {
+              handle: followHandle
+            },
+            include: {
+              followers: true
+            },
+            data: {
+              followers: {
+                disconnect: {
+                  handle: currentUserHandle
+                }
+              }
+            }
+          })
+          return unfollowUser
+        }
+      },
+      signUp: async(_, args, context) => {
+        const password = await bcrypt.hash(args.password, 10)
+
+        const user = await context.prisma.user.create({ data: { ...args, password } })
+
+        const token = jwt.sign({ userHandle: user.handle }, APP_SECRET)
+        
+        return {
+          token,
+          user,
+        }
+      },
+      login: async(_, args, context) => {
+        const user = await context.prisma.user.findUnique({ where: { handle: args.handle } })
+        if (!user) {
+          throw new Error('No such user found')
+        }
+
+        const valid = await bcrypt.compare(args.password, user.password)
+        if (!valid) {
+          throw new Error('Invalid password')
+        }
+
+        const token = jwt.sign({ userHandle: user.handle }, APP_SECRET)
+
+        return {
+          token,
+          user,
+        }
+      },
     }
   }

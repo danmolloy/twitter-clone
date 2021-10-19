@@ -11,10 +11,19 @@ const typeDefs = gql`
 
   type Mutation {
     writePost(content: String, authorHandle: String): Post
+    bookmarkPost(postID: String, handle: String): Post
     likePost(handle: String, postID: String): Post
     retweetPost(handle: String, postID: String): Post
     deletePost(postId: String): Post
+    followUnfollowUser(followHandle: String, currentUserHandle: String): User
     editProfile(handle: String, userName: String, blurb: String): User
+    signUp(handle: String!, password: String!, name: String!): AuthPayload
+    login(handle: String!, password: String!): AuthPayload
+  }
+
+  type AuthPayload {
+    token: String
+    user: User
   }
 
   type User {
@@ -40,6 +49,7 @@ const typeDefs = gql`
     authorHandle: String!
     likes: [User]
     retweets: [User]
+    bookmarks: [User]
   }
 
   type List {

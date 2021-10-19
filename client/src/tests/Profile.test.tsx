@@ -4,6 +4,7 @@ import { mocks } from './testMocks';
 import { MemoryRouter } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
 import { Profile } from "../Components/Profile";
+import { AUTH_TOKEN } from "../constants";
 
 let container: any = null;
 const currentUserProp = mocks[0].result.data.currentUser
@@ -11,12 +12,14 @@ const currentUserProp = mocks[0].result.data.currentUser
 beforeEach(() => {
   container = document.createElement('div');
   document.body.appendChild(container);
+  global.localStorage.setItem(AUTH_TOKEN, 'auth-token')
 });
 
 afterEach(() => {
   unmountComponentAtNode(container);
     container.remove();
     container = null;
+    global.localStorage.removeItem(AUTH_TOKEN)
 });
 
 
@@ -37,3 +40,5 @@ describe("Profile component", () => {
     expect(container.textContent).toMatch(/Dan Molloy/gi)
   })
 })
+
+// Mock refetching

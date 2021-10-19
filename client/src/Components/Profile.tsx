@@ -38,12 +38,23 @@ export const GETUSER = gql`
     }
 `;
 
-const EDIT_PROFILE = gql`
+export const EDIT_PROFILE = gql`
   mutation Mutation($handle: String, $userName: String, $blurb: String) {
     editProfile(handle: $handle, userName: $userName, blurb: $blurb) {
       name
       handle
       blurb
+    }
+  }
+`;
+
+export const FOLLOW_UNFOLLOW = gql`
+  mutation Mutation($followHandle: String, $currentUserHandle: String) {
+    followUnfollowUser(followHandle: $followHandle, currentUserHandle: $currentUserHandle) {
+      name
+      followers {
+        handle
+      }
     }
   }
 `;
@@ -58,6 +69,8 @@ export const Profile = (props: {currentUser: User | undefined}) => {
   const [newName, setNewName] = useState(props.currentUser && props.currentUser.name)
   const { loading: loadingProfileData, error: errorProfileData, data: dataProfileData, refetch } = useQuery<GetUserProfileData, GetUserProfileVar>(GETUSER, { variables: { getUserProfileHandle: `@${userHandle}` }})
   
+  const [followUnfollow, {data: dataFollowing, loading: loadingFollowing, error: errorFollowing}] = useMutation(FOLLOW_UNFOLLOW)
+
   const [editProfile, 
     {data: editProfileData, 
       loading: editProfileLoading, 
@@ -85,6 +98,14 @@ export const Profile = (props: {currentUser: User | undefined}) => {
     }
   })
 
+  const followUnfollowUser = async() => {
+    await followUnfollow({
+      variables: {
+        followHandle: dataProfileData && dataProfileData.getUserProfile.handle, 
+        currentUserHandle: props.currentUser && props.currentUser.handle
+      }})
+  }
+
   const updateProfile = async () => {
     setEditNameBlurb(false)
     await editProfile({
@@ -101,7 +122,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
   }
 
   if (errorProfileData) {
-    return <Error />
+    return <p>{errorProfileData}</p>
   }
 
   return (
@@ -147,10 +168,16 @@ export const Profile = (props: {currentUser: User | undefined}) => {
             dataProfileData && 
             dataProfileData.getUserProfile.followers.filter(
               (e: UserHandles) => props.currentUser && e.handle === props.currentUser.handle).length > 0 ?
-          <button className="font-bold border border-gray-300 rounded-full py-2 px-4 my-8 mr-8">
+          <button 
+          className="font-bold border border-gray-300 rounded-full py-2 px-4 my-8 mr-8"
+          onClick={() => followUnfollowUser()}>
             Following
           </button> :
-            <button className="font-bold bg-black text-white rounded-full py-2 px-4 my-8 mr-8">Follow</button>}
+            <button 
+            onClick={() => followUnfollowUser()}
+            className="font-bold bg-black text-white rounded-full py-2 px-4 my-8 mr-8">
+              Follow
+            </button>}
         </div>
         <div className="flex flex-col w-2/5 ml-12">
         {editNameBlurb === true ?

@@ -20,6 +20,8 @@ import { RightBar }  from './RightBar'
 import { Loading } from "./Loading";
 import { Error } from "./Error";
 import { CurrentUserData, CurrentUserVar } from '../types'
+import { SignIn } from "./SignIn";
+import { AUTH_TOKEN } from '../constants'
 
 export const CURRENTUSER = gql`
 query Query($currentUserHandle: String!) {
@@ -46,11 +48,12 @@ query Query($currentUserHandle: String!) {
     }
   }
 }
-
 `;
 
 function App() {
   const { loading, error, data } = useQuery<CurrentUserData, CurrentUserVar>(CURRENTUSER, {variables: {currentUserHandle: "@danmolloy" }})
+  
+  const authToken = localStorage.getItem(AUTH_TOKEN)
 
 
   if (loading) {
@@ -60,10 +63,15 @@ function App() {
   if (error ) {
     return <Error />
   }
+
+  if (!authToken) {
+    return  <SignIn />
+  }
+
   return (
     <Router>
       <div id="main-content" className="flex flex-row w-screen h-screen justify-start">
-        <Sidebar currentUser={data && data.currentUser} />
+        {authToken && <Sidebar currentUser={data && data.currentUser} />}
         <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
         <Route path="/compose/tweet">
@@ -82,12 +90,15 @@ function App() {
         <Route path="/messages">
           <Messages currentUser={data && data.currentUser}/>
         </Route>
+        <Route exact path="/login">
+          <SignIn />
+        </Route>
         <Route path="/notifications" component={Notifications} />
         <Route path={'/:userHandle'}>
           <Profile currentUser={data && data.currentUser}/>
         </Route>
         <Route path="/">
-          <Redirect to="/home" />
+          <Redirect to={authToken ? "/home" : "/login"} />
         </Route>
         </Switch>
         </div>

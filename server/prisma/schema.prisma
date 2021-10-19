@@ -9,6 +9,7 @@ datasource db {
 
 model User {
   name   String
+  password String @default("password")
   handle String @id 
   blurb String @default("hello")
   joinDate String @default("21 Sept 2021")
