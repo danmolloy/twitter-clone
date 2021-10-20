@@ -1,11 +1,9 @@
-import { ArrowLeftIcon, CalendarIcon, UserCircleIcon } from "@heroicons/react/outline"
 import { useEffect, useState } from 'react'
-import { Link, useParams } from "react-router-dom"
-import { SingleTweet } from "./SingleTweet"
+import { useParams } from "react-router-dom"
 import { gql, useQuery } from "@apollo/client"
 import { Loading } from "./Loading"
 import { Error } from "./Error"
-import { User, UserHandles, Post, GetUserProfileData, GetUserProfileVar  } from "../types"
+import { User, GetUserProfileData, GetUserProfileVar  } from "../types"
 import { ProfileTweets } from "./ProfileTweets"
 import { ProfileHeader } from "./ProfileHeader"
 import { ProfileDetails } from "./ProfileDetails"
@@ -56,8 +54,6 @@ export const Profile = (props: {currentUser: User | undefined}) => {
       setTweetFilter('media')
     }
   })
-
-  
 
   if (loadingProfileData) {
     <Loading />

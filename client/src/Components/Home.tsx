@@ -1,11 +1,9 @@
 import { SparklesIcon } from '@heroicons/react/outline'
-import { useEffect } from 'react'
 import { ComposeTweet } from './ComposeTweet'
-import { SingleTweet } from './SingleTweet'
 import { gql, useQuery } from '@apollo/client'
 import { Loading } from './Loading'
 import { Error } from './Error'
-import { Post, User } from '../types'
+import { User } from '../types'
 import { HomeFeed } from './HomeFeed'
 
 export const FOLLOWINGPOSTS =  gql`

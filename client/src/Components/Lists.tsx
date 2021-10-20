@@ -3,7 +3,6 @@ import {
   DocumentAddIcon
 } from "@heroicons/react/outline"
 import { gql, useQuery } from '@apollo/client'
-import { ListTile } from "./ListTile"
 import { Loading } from "./Loading"
 import { Error } from "./Error"
 import { User, ListData, List, CurrentUserVar } from "../types"

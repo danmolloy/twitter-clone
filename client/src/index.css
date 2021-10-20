@@ -60,6 +60,12 @@ svg path {
   stroke-width: 1.5;
 }
 
+.side-bar {
+  @apply self-end fixed flex flex-row sm:flex-col sm:mt-0 ml-0 w-full 
+  sm:w-24 md:w-60 sm:h-screen border-t sm:border-t-0 sm:border-r 
+  border-gray-200 md:items-start justify-center sm:justify-start items-center bg-white;
+}
+
 /* Home */
 .home-header {
   @apply border-b border-gray-200 h-14 flex flex-row justify-between;

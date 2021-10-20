@@ -18,10 +18,7 @@ export const Sidebar = (props: {currentUser: User | undefined}) => {
   const authToken = localStorage.getItem(AUTH_TOKEN)
   return (
     <div id="side-bar" 
-    className="self-end fixed flex flex-row sm:flex-col sm:mt-0 ml-0
-    w-full sm:w-24 md:w-60 h-18 sm:h-screen
-    border-t sm:border-t-0 sm:border-r border-gray-200 md:items-start
-    justify-center sm:justify-start items-center bg-white">
+    className="side-bar">
       <Link to="/home" className="md:ml-2" id="twitter-home-link">
         <img src="favico.ico" className="hidden sm:flex w-12 h-auto mx-6 my-4 p-2 rounded hover:bg-blue-50"/>
       </Link>
