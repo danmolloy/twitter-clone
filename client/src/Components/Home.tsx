@@ -48,7 +48,7 @@ export const Home = (props: {currentUser: User | undefined}) => {
   return (
     <div id="home">
       <div id="home-header" className="home-header">
-        <h2 className="h2">Home</h2>
+        <h2 className="h2 p-4">Home</h2>
         <SparklesIcon className="w-10 p-2 my-2 h-auto mr-4 hover:bg-gray-200 rounded-full " />
       </div>
       <ComposeTweet currentUser={props.currentUser} updatePage={updatePage}/>

@@ -7,6 +7,7 @@ const typeDefs = gql`
     getUserProfile(handle: String!): User
     getPost(postID: String): Post
     getAuthoredLists(handle: String): [List]
+    loggedInUser(handle: String): AuthPayload
   }
 
   type Mutation {

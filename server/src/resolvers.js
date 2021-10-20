@@ -4,6 +4,28 @@ const { APP_SECRET, getUserId } = require('./utils')
 
 module.exports = {
   Query: {
+    loggedInUser: async (_, args, context) => {
+
+      try {
+        const user = await context.prisma.user.findUnique({ where: { handle: args.handle } })
+        if (!user) {
+          throw new Error('No such user found')
+        }
+
+        const token = jwt.sign({ userHandle: user.handle }, APP_SECRET)
+
+        if (context.headers.authorization === user.password) {
+          return token, user
+        } else {
+          return null
+        }
+        
+      }
+      catch(e) {
+        return `Error! ${e}`
+      }
+     
+    },
     currentUser: async (_, arg, context) => {
       try {
         return context.prisma.user.findUnique({

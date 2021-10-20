@@ -1,7 +1,8 @@
 import { DocumentNode } from "graphql";
 import App, { CURRENTUSER } from "../Components/App";
 import { Home, FOLLOWINGPOSTS } from '../Components/Home';
-import { GETUSER, EDIT_PROFILE } from '../Components/Profile'
+import { GETUSER } from '../Components/Profile'
+import { EDIT_PROFILE } from "../Components/ProfileDetails"
 import { BOOKMARKS } from '../Components/Bookmarks'
 import { LIKE_POST, RETWEET_POST } from '../Components/SingleTweet'
 import { LIST_QUERY } from '../Components/Lists'

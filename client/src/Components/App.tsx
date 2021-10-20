@@ -74,35 +74,35 @@ function App() {
         {authToken && <Sidebar currentUser={data && data.currentUser} />}
         <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
-        <Route path="/compose/tweet">
-          <ComposeTweet currentUser={data && data.currentUser} updatePage={() => alert('Posted!')}/>
-        </Route>
-        <Route path="/explore" component={Explore}/>
-        <Route path="/home">
-          <Home currentUser={data && data.currentUser}/>
-        </Route>
-        <Route path="/bookmarks">
-          <Bookmarks currentUser={data && data.currentUser} />
-        </Route>
-        <Route path="/lists">
-          <Lists currentUser={data && data.currentUser}/>
-        </Route>
-        <Route path="/messages">
-          <Messages currentUser={data && data.currentUser}/>
-        </Route>
-        <Route exact path="/login">
-          <SignIn />
-        </Route>
-        <Route path="/notifications" component={Notifications} />
-        <Route path={'/:userHandle'}>
-          <Profile currentUser={data && data.currentUser}/>
-        </Route>
-        <Route path="/">
-          <Redirect to={authToken ? "/home" : "/login"} />
-        </Route>
+          <Route path="/compose/tweet">
+            <ComposeTweet currentUser={data && data.currentUser} updatePage={() => alert('Posted!')}/>
+          </Route>
+          <Route path="/explore" component={Explore}/>
+          <Route path="/home">
+            <Home currentUser={data && data.currentUser}/>
+          </Route>
+          <Route path="/bookmarks">
+            <Bookmarks currentUser={data && data.currentUser} />
+          </Route>
+          <Route path="/lists">
+            <Lists currentUser={data && data.currentUser}/>
+          </Route>
+          <Route path="/messages">
+            <Messages currentUser={data && data.currentUser}/>
+          </Route>
+          <Route exact path="/login">
+            <SignIn />
+          </Route>
+          <Route path="/notifications" component={Notifications} />
+          <Route path={'/:userHandle'}>
+            <Profile currentUser={data && data.currentUser}/>
+          </Route>
+          <Route path="/">
+            <Redirect to={authToken ? "/home" : "/login"} />
+          </Route>
         </Switch>
         </div>
-        <RightBar />
+          <RightBar />
         </div>
     </Router>
   );

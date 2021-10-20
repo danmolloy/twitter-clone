@@ -60,6 +60,15 @@ svg path {
   stroke-width: 1.5;
 }
 
+/* Home */
+.home-header {
+  @apply border-b border-gray-200 h-14 flex flex-row justify-between;
+}
+
+.h2 {
+  @apply text-xl font-semibold;
+}
+
 /* Notifications */
 .notification-btn-selected {
   @apply font-semibold w-1/2 h-12 hover:bg-gray-200 flex flex-col items-center justify-between pt-2;

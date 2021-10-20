@@ -44,16 +44,21 @@ export const Bookmarks = (props: {currentUser: User | undefined}) => {
   }
 
   return (
-    <div>
-      <div className="border-b">
-        <h2 className="text-xl font-semibold pl-2 pt-2 pb-0">Bookmarks</h2>
+    <div id="bookmarks-component">
+      <div id="bookmarks-header" className="border-b">
+        <h2 className="h2 pl-2 pt-2 pb-0">Bookmarks</h2>
         <p className="user pl-2 -pt-2 text-xs text-gray-600 mb-1.5">{props.currentUser && props.currentUser.handle}</p>
       </div>
-      {data && props.currentUser ? 
-      data.currentUser.bookmarks.map((post: Post) => {
-            return <SingleTweet tweet={post} author={post.author} key={post.id} currentUser={props.currentUser} updatePage={updatePage}/>;
-          }) :
-          <div className="flex flex-col items-center">
+      {data && props.currentUser 
+      ? data.currentUser.bookmarks.map((post: Post) => {
+            return <SingleTweet 
+            tweet={post} 
+            author={post.author} 
+            key={post.id} 
+            currentUser={props.currentUser} 
+            updatePage={updatePage}/>;
+          }) 
+      : <div className="flex flex-col items-center">
         <div className="flex flex-col w-1/2 pt-8">
         <h3 className="text-3xl font-bold">
         You haven't added any Tweets to your Bookmarks yet
@@ -61,7 +66,7 @@ export const Bookmarks = (props: {currentUser: User | undefined}) => {
         <p className="text-s text-gray-600">When you do, they'll show up here.</p>
         </div>
       </div>
-          }
+      }
     </div>
   )
 }

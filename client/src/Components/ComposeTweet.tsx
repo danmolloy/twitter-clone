@@ -29,6 +29,10 @@ export const ComposeTweet = (props: {currentUser: User | undefined, updatePage: 
       .then(props.updatePage)
   }
 
+  const iconAlert = () => {
+    alert("This feature is not yet implemented.")
+  }
+
   if (loading) return <p>'Posting..'</p>;
 
   if (error) return <p>'Error posting!'</p>;
@@ -36,14 +40,16 @@ export const ComposeTweet = (props: {currentUser: User | undefined, updatePage: 
   return (
     <div id="compose-tweet" className="flex flex-col border-b">
       <div className="flex flex-row">
-        {props.currentUser ?
-        <img src={props.currentUser.profilePic} className="w-14 h-auto mt-4 ml-3 rounded-full"/>:
-        <UserCircleIcon className="w-12 h-auto mt-4 ml-3"/>}
+        {props.currentUser 
+        ? <img src={props.currentUser.profilePic} className="w-14 h-auto mt-4 ml-3 rounded-full"/>
+        : <UserCircleIcon className="w-12 h-auto mt-4 ml-3"/>
+        }
         <input 
+        id="compose-tweet-content"
         className="text-lg w-full mt-2 h-16 ml-3 focus:outline-none" 
         placeholder="What's happening?"
-         value={content}
-         onChange={(e) => setContent(e.target.value)}
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
         />
       </div>
       {content !== '' && 
@@ -54,11 +60,11 @@ export const ComposeTweet = (props: {currentUser: User | undefined, updatePage: 
         </div>
       </div>}
       <div className="flex flex-row ml-16 justify-between">
-      <div className="flex flex-row py-2">
-        <PhotographIcon className="compose-tweet-icons"/>
-        <ChartBarIcon className="compose-tweet-icons"/>
-        <EmojiHappyIcon className="compose-tweet-icons" />
-        <CalendarIcon className="compose-tweet-icons" />
+      <div id="compose-tweet-icons" className="flex flex-row py-2">
+        <PhotographIcon className="compose-tweet-icons" onClick={() => iconAlert()}/>
+        <ChartBarIcon className="compose-tweet-icons" onClick={() => iconAlert()}/>
+        <EmojiHappyIcon className="compose-tweet-icons" onClick={() => iconAlert()}/>
+        <CalendarIcon className="compose-tweet-icons" onClick={() => iconAlert()}/>
       </div>
       <button 
         className={content.length === 0? "tweet-btn-disabled": "tweet-btn"}
