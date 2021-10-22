@@ -24,8 +24,8 @@ import { SignIn } from "./SignIn";
 import { AUTH_TOKEN } from '../constants'
 
 export const CURRENTUSER = gql`
-query Query($currentUserHandle: String!) {
-  currentUser(handle: $currentUserHandle) {
+query Query {
+  currentUser {
     name
     handle
     blurb
@@ -51,10 +51,12 @@ query Query($currentUserHandle: String!) {
 `;
 
 function App() {
-  const { loading, error, data } = useQuery<CurrentUserData, CurrentUserVar>(CURRENTUSER, {variables: {currentUserHandle: "@danmolloy" }})
-  
+  const { loading, error, data } = useQuery<CurrentUserData, CurrentUserVar>(CURRENTUSER)
   const authToken = localStorage.getItem(AUTH_TOKEN)
 
+  if (!authToken) {
+    return  <SignIn />
+  }
 
   if (loading) {
     return <Loading />
@@ -64,14 +66,10 @@ function App() {
     return <Error />
   }
 
-  if (!authToken) {
-    return  <SignIn />
-  }
-
   return (
     <Router>
       <div id="main-content" className="flex flex-row w-screen h-screen justify-start">
-        {authToken && <Sidebar currentUser={data && data.currentUser} />}
+        {authToken && <Sidebar currentUser={data && data.currentUser}/>}
         <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
           <Route path="/compose/tweet">

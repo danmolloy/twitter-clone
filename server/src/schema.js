@@ -2,12 +2,12 @@ const {gql} = require('apollo-server')
 
 const typeDefs = gql`
   type Query {
-    currentUser(handle: String!): User
+    currentUser: User
     followsTweets(handle: String!): [Post]
     getUserProfile(handle: String!): User
     getPost(postID: String): Post
     getAuthoredLists(handle: String): [List]
-    loggedInUser(handle: String): AuthPayload
+    loggedInUser: User
   }
 
   type Mutation {
@@ -35,7 +35,7 @@ const typeDefs = gql`
     bgPic: String
     profilePic: String
     follows: [User]
-    followers: [User]!
+    followers: [User]
     writtenPosts: [Post]
     likedPosts: [Post]
     retweets: [Post]

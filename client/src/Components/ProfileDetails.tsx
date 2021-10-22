@@ -29,7 +29,7 @@ export const FOLLOW_UNFOLLOW = gql`
 export const ProfileDetails = (props: {
   getUserProfile: User | undefined,
   currentUser: User | undefined,
-  refetch: any
+  updatePage: any
 }) => {
   const [editNameBlurb, setEditNameBlurb] = useState(false)
   const [isCurrentUser, setIsCurrentUser] = useState(false)
@@ -45,7 +45,7 @@ export const ProfileDetails = (props: {
 
 
   useEffect(() => {
-    props.refetch()
+    props.updatePage()
     if (props.getUserProfile && props.currentUser && props.getUserProfile.name === props.currentUser.name) {
       setIsCurrentUser(true)
     }
@@ -70,7 +70,7 @@ export const ProfileDetails = (props: {
         userName: newName,
         blurb: newBlurb,
       }})
-    props.refetch()
+    props.updatePage()
   }
 
   return (

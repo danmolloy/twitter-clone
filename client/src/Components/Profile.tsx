@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
-import { gql, useQuery } from "@apollo/client"
+import { gql, useLazyQuery, useQuery } from "@apollo/client"
 import { Loading } from "./Loading"
 import { Error } from "./Error"
 import { User, GetUserProfileData, GetUserProfileVar  } from "../types"
@@ -42,7 +42,7 @@ export const GETUSER = gql`
 export const Profile = (props: {currentUser: User | undefined}) => {
   const {userHandle} = useParams<{ userHandle: string}>()
   const { loading: loadingProfileData, error: errorProfileData, data: dataProfileData, refetch } = useQuery<GetUserProfileData, GetUserProfileVar>(GETUSER, { variables: { getUserProfileHandle: `@${userHandle}` }})
-  
+  const [fetched, setFetched] = useState(false)
   const [tweetFilter, setTweetFilter] = useState('tweets')
 
   const updatePage = () => {
@@ -53,7 +53,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
     if (document.location.href.includes('media')) {
       setTweetFilter('media')
     }
-  })
+  }, [])
 
   if (loadingProfileData) {
     <Loading />
@@ -69,7 +69,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
       <ProfileDetails 
         getUserProfile={dataProfileData?.getUserProfile}
         currentUser={props.currentUser && props.currentUser}
-        refetch={updatePage}
+        updatePage={updatePage}
       />
       <ProfileTweets 
         getUserProfile={dataProfileData && dataProfileData.getUserProfile} 
