@@ -4,17 +4,34 @@ import { HashtagIcon,
   UserIcon, 
   BellIcon,
   InboxIcon,
-  PencilAltIcon,
   UserCircleIcon,
-  LogoutIcon
+  LogoutIcon,
+  TrashIcon
 } from '@heroicons/react/outline'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AUTH_TOKEN } from '../constants'
 import { User } from '../types'
+import { useMutation, gql } from '@apollo/client'
+
+const DELETE_USER = gql`
+  mutation SignUpMutation {
+    deleteUser {
+      name
+    }
+  }
+`;
 
 
 export const Sidebar = (props: {currentUser: User | undefined}) => {
+
+  const [deleteUser] = useMutation(DELETE_USER, {
+    onCompleted: ({ deleteUser }) => {
+      alert('User deleted!')
+      localStorage.removeItem(AUTH_TOKEN);
+      window.location.reload();
+    }
+  })
 
   const onSignOut = () => {
     localStorage.removeItem(AUTH_TOKEN)
@@ -55,8 +72,9 @@ export const Sidebar = (props: {currentUser: User | undefined}) => {
         <LogoutIcon className="side-icon hidden sm:flex" id="more-icon"/>
         <label htmlFor="sign-out" className="sidebar-text">Sign Out</label>
       </Link>
-      <Link to="/compose/tweet" className="md:ml-4">
-        <PencilAltIcon className="hidden sm:flex h-12 w-auto mx-4 my-1 twitter-blue rounded-full p-2 hover:bg-blue-50"/>
+      <Link to="/home" className="lg-side-icon hover:bg-red-50" onClick={() => deleteUser()}>
+        <TrashIcon id="delete-icon" className="side-icon hidden sm:flex text-red-500 hover:bg-red-50"/>
+        <label htmlFor="delete-icon" className="sidebar-text text-red-500">Delete User</label>
       </Link>
       <Link to={props.currentUser ? `/${props.currentUser.handle.slice(1)}` : '/'} className="md:ml-4">
         {props.currentUser && props.currentUser.profilePic ?

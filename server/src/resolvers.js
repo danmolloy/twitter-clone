@@ -479,5 +479,18 @@ module.exports = {
           user,
         }
       },
+      deleteUser: async(_, __, context) => {
+        try {
+          const deleteUser = await context.prisma.user.delete({
+            where: {
+              handle: context.user.userHandle
+            }
+          })
+          return deleteUser
+        }
+        catch(e) {
+          return `Error! ${e}`
+        }
+      }
     }
   }

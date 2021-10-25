@@ -20,6 +20,7 @@ const typeDefs = gql`
     editProfile(handle: String, userName: String, blurb: String): User
     signUp(handle: String!, password: String!, name: String!): AuthPayload
     login(handle: String!, password: String!): AuthPayload
+    deleteUser: User
   }
 
   type AuthPayload {
