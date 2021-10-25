@@ -18,6 +18,7 @@ export const Sidebar = (props: {currentUser: User | undefined}) => {
 
   const onSignOut = () => {
     localStorage.removeItem(AUTH_TOKEN)
+    window.location.reload()
   }
 
   return (
@@ -50,9 +51,9 @@ export const Sidebar = (props: {currentUser: User | undefined}) => {
         <UserIcon className="side-icon hidden sm:flex"/>
         <label htmlFor="profile-link" className="sidebar-text">Profile</label>
       </Link>
-      <Link className="lg-side-icon" to="/login" onClick={() => onSignOut()}>
+      <Link className="lg-side-icon" to="/home" onClick={() => onSignOut()}>
         <LogoutIcon className="side-icon hidden sm:flex" id="more-icon"/>
-        <label htmlFor="more-link" className="sidebar-text">Sign Out</label>
+        <label htmlFor="sign-out" className="sidebar-text">Sign Out</label>
       </Link>
       <Link to="/compose/tweet" className="md:ml-4">
         <PencilAltIcon className="hidden sm:flex h-12 w-auto mx-4 my-1 twitter-blue rounded-full p-2 hover:bg-blue-50"/>

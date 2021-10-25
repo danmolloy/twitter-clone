@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useMutation, gql } from '@apollo/client'
 import { AUTH_TOKEN } from "../constants";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 
 const LOGIN = gql`
@@ -29,12 +29,12 @@ const SIGNUP = gql`
 
 
 export const SignIn = () => {
-  let history = useHistory();
   const [signUpForm, setSignUpForm] = useState(true)
   const [name, setName] = useState("")
   const [handle, setHandle] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
+
   const [login] = useMutation(LOGIN, { 
     variables: { 
       handle: handle, 
@@ -42,19 +42,19 @@ export const SignIn = () => {
     },
     onCompleted: ({ login }) => {
       localStorage.setItem(AUTH_TOKEN, login.token);
-      history.push(`/`);
+      window.location.reload()
     }
   })
 
-  const [signup] = useMutation(SIGNUP, { 
+  const [signup, {data, loading, error}] = useMutation(SIGNUP, { 
     variables: { 
       name: name,
       handle: handle, 
       password: password
     },
-    onCompleted: ({ signup }) => {
-      localStorage.setItem(AUTH_TOKEN, signup.token);
-      history.push(`/`);
+    onCompleted: ({ signUp }) => {
+      localStorage.setItem(AUTH_TOKEN, signUp.token);
+      window.location.reload();
     }
   })
 

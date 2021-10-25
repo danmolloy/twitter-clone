@@ -10,18 +10,13 @@ export const RightBar = () => {
         </article>
         <article className="r-bar-article">
           <p>Use the navigation on the left side to explore the app.</p> 
-          <p><b>Explore</b>shows a list of users you can interact with.</p>
+          <p><b>Explore</b> shows a list of users you can interact with.</p>
           <p><b>Notifications</b> will alert you to any new activity on your profile.</p>
           <p>Use <b>Messages</b> to contact other users.</p>
           <p>See a tweet that interests you? Add it to your <b>Bookmarks</b>.</p>
           <p> Check out your own profile! View your information or edit your name and blurb.</p>
         </article>
-        <article className="r-bar-article">
-          <p>If you're not so keen on my posts, feel free to unfollow me. You can find others to follow in the Explore section.</p>
-        </article>
-        <article className="r-bar-article">
-          <p>You can also send messages to other users.</p>
-        </article>
+
       </div>
     </div>
   )
