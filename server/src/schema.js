@@ -8,6 +8,7 @@ const typeDefs = gql`
     getPost(postID: String): Post
     getAuthoredLists(handle: String): [List]
     loggedInUser: User
+    getAllUsers: [User]
   }
 
   type Mutation {

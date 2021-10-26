@@ -75,7 +75,9 @@ function App() {
           <Route path="/compose/tweet">
             <ComposeTweet currentUser={data && data.currentUser} updatePage={() => alert('Posted!')}/>
           </Route>
-          <Route path="/explore" component={Explore}/>
+          <Route path="/explore">
+            <Explore currentUserHandle={data && data.currentUser.handle}/>
+          </Route>
           <Route path="/home">
             <Home currentUser={data && data.currentUser}/>
           </Route>

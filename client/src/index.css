@@ -97,3 +97,11 @@ svg path {
 .deselected-tweet-filter {
   @apply w-1/4 hover:bg-gray-200 border-b text-center py-2;
 }
+
+.follow-btn {
+  @apply font-bold bg-black text-white rounded-full py-2 px-4 my-8 mr-8;
+}
+
+.unfollow-btn {
+  @apply font-bold border border-gray-300 rounded-full py-2 px-4 my-8 mr-8;
+}

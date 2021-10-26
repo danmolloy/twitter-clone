@@ -12,6 +12,14 @@ export interface User {
   writtenPosts: Post[];
 }
 
+export interface ExploreUser {
+  name: string;
+  handle: string;
+  blurb: string;
+  profilePic: string;
+  followers: UserHandles[];
+}
+
 export interface CurrentUserData {
   currentUser: User
 }

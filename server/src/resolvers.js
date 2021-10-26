@@ -69,7 +69,29 @@ module.exports = {
       throw e
     }
     },
+    getAllUsers: async (_, __, context) => {
+      try {
+        const allUsers = await context.prisma.user.findMany({
+          where: {
+            handle: {
+              not: context.user.userHandle
+            },
+          },
+            include: {
+              followers: {
+                select: {
+                  handle: true
+                }
+              }
+          }
+        })
 
+        return allUsers
+      }
+      catch(e) {
+        return `Error! ${e}`
+      }
+    },
     followsTweets: async (_, arg, context) => {
       let followingHandles = [arg.handle]
       const currentUserFollowing = await context.prisma.user.findUnique({
@@ -452,7 +474,11 @@ module.exports = {
       signUp: async(_, args, context) => {
         const password = await bcrypt.hash(args.password, 10)
 
-        const user = await context.prisma.user.create({ data: { ...args, password } })
+        const user = await context.prisma.user.create({ data: { 
+          ...args, 
+          password,
+          
+        } })
 
         const token = jwt.sign({ userHandle: user.handle }, APP_SECRET)
         

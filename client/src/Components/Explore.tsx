@@ -1,22 +1,31 @@
 import { Error } from "./Error"
 import { gql, useQuery } from "@apollo/client"
+import { UserExplore } from "./UserExplore";
+import { ExploreUser } from "../types";
 
-const GET_USER = gql`
+const ALL_USERS = gql`
   query Query {
-    loggedInUser {
-      handle
+    getAllUsers {
       name
+      handle
+      blurb
+      profilePic
+      followers {
+        handle
+      }
     }
   }
 `;
 
 
-export const Explore = () => {
-  const {loading, error, data} = useQuery(GET_USER)
+export const Explore = (props: {currentUserHandle: string | undefined}) => {
+  const {loading, error, data} = useQuery(ALL_USERS)
+
   return (
     <div className="w-full h-full" id="explore-component">
-     <p className="text-center text-gray-500">This feature has not yet been implemented.</p>
-     {data && JSON.stringify(data)}
+      {data && data.getAllUsers.map((i: ExploreUser) => {
+        return <UserExplore currentUserHandle={props.currentUserHandle && props.currentUserHandle} user={i} key={i.handle}/>
+      })}
     </div>
   )
 }
