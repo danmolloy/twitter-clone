@@ -8,7 +8,6 @@ import { HashtagIcon,
   LogoutIcon,
   TrashIcon
 } from '@heroicons/react/outline'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AUTH_TOKEN } from '../constants'
 import { User } from '../types'

@@ -9,7 +9,6 @@ import {
 import { Home } from './Home'
 import { Explore } from './Explore'
 import { Bookmarks } from './Bookmarks'
-import { Lists } from './Lists'
 import { Messages } from './Messages'
 import { Notifications } from './Notifications'
 import { Profile } from './Profile'
@@ -83,9 +82,6 @@ function App() {
           </Route>
           <Route path="/bookmarks">
             <Bookmarks currentUser={data && data.currentUser} />
-          </Route>
-          <Route path="/lists">
-            <Lists currentUser={data && data.currentUser}/>
           </Route>
           <Route path="/messages">
             <Messages currentUser={data && data.currentUser}/>

@@ -71,9 +71,6 @@ describe("React Router", () => {
     fireEvent.click(getByText(container, 'Bookmarks'))
     expect(document.location.pathname).toEqual('/bookmarks')
 
-    fireEvent.click(getByText(container, 'Lists'))
-    expect(document.location.pathname).toEqual('/lists')
-
     fireEvent.click(getByText(container, 'Profile'))
     expect(document.location.pathname).toEqual(`/${currentUserProp.handle.slice(1)}`)
     

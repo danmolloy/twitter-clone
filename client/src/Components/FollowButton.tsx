@@ -14,7 +14,6 @@ export const FOLLOW_UNFOLLOW = gql`
 export const FollowButton = (props: {
     user: any,
     currentUserHandle: string | undefined,
-    refetch: any
   }) => {
   const [followUnfollow, {data, loading, error}] = useMutation(FOLLOW_UNFOLLOW)
   const followUnfollowUser = async() => {

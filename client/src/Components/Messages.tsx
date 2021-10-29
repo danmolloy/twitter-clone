@@ -5,37 +5,9 @@ import { Loading } from "./Loading";
 import { Error } from "./Error";
 import { User } from "../types";
 
-const MESSAGES = gql`
-  query Query($currentUserHandle: String!) {
-    currentUser(handle: $currentUserHandle) {
-      Messages {
-        User {
-          name
-          handle
-          profilePic
-        }
-        Messages {
-          Content
-          DateSent
-          Read
-        }
-        ID
-      }
-    }
-  }
-`;
 
 export const Messages = (props: {currentUser: User | undefined}) => {
-  const { loading, error, data } = useQuery(MESSAGES, {variables: {currentUserHandle: props.currentUser && props.currentUser.handle }});  
   const [searchBarFocused, setSearchBarFocused] = useState(false)
-
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
 
   return (
     <div >
@@ -55,32 +27,9 @@ export const Messages = (props: {currentUser: User | undefined}) => {
               <div className="w-full h-full flex flex-col text-center">
                 <p className="text-s text-gray-600 mt-6">Try searching for people or groups</p>
                 </div>:
-                data ? data.currentUser.Messages.map((message: {ID: string, User: UserObj, Messages: MessageObj[]}) => {
-                  return <div key={message.ID} className="flex flex-row hover:bg-gray-100 justify-between">
-                    <div className="flex flex-row">
-                    <img src={message.User.profilePic} className="w-12 h-auto rounded-full ml-4 my-4"/>
-                    <div className="flex flex-col my-4 ml-4">
-                      <h3 className="font-semibold">{message.User.name}</h3>
-                      <p className="text-sm">{message.Messages[message.Messages.length-1].Content}</p>
-                    </div>
-                    </div>
-                    <p className="mt-2 mr-2 text-gray-600 text-sm">{message.Messages[message.Messages.length-1].DateSent}</p>
-                    </div>
-                }) : null
+                null
                 }
 
     </div>
   )
-}
-
-interface UserObj {
-  name: string
-  handle: string
-  profilePic: string
-}
-
-interface MessageObj {
-  Content: string
-  DateSent: string
-  Read: boolean
 }

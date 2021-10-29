@@ -6,7 +6,6 @@ const typeDefs = gql`
     followsTweets(handle: String!): [Post]
     getUserProfile(handle: String!): User
     getPost(postID: String): Post
-    getAuthoredLists(handle: String): [List]
     loggedInUser: User
     getAllUsers: [User]
   }
@@ -55,29 +54,6 @@ const typeDefs = gql`
     bookmarks: [User]
   }
 
-  type List {
-    id: String!
-    name: String!
-    picture: String!
-    description: String!
-    private: Boolean!
-    authorHandle: String!
-    author: User!
-    members: [User] 
-    followers: [User]
-  }
-
-  type MsgConversation {
-    User: User!
-    Messages: [Message]!
-    ID: String!
-  }
-
-  type Message {
-    Content: String!
-    DateSent: String!
-    Read: Boolean!
-  }
 `;
 
 module.exports = typeDefs;

@@ -5,7 +5,6 @@ import { GETUSER } from '../Components/Profile'
 import { EDIT_PROFILE } from "../Components/ProfileDetails"
 import { BOOKMARKS } from '../Components/Bookmarks'
 import { LIKE_POST, RETWEET_POST } from '../Components/SingleTweet'
-import { LIST_QUERY } from '../Components/Lists'
 
 interface Mock {
   request: {
@@ -394,40 +393,5 @@ export const mocks: Mock[] = [
       }
     }
   },
-  {
-    request: {
-      query: LIST_QUERY,
-      variables: {
-        currentUserHandle: "@danmolloy"
-      }
-    },
-    result: {
-      data: {
-        "getAuthoredLists": [
-          {
-            "id": "68d30f0d-ebe4-40fa-95d9-458556d6f4c5",
-            "name": "My List",
-            "picture": "bgPic.jpg",
-            "description": "My first list",
-            "private": true,
-            "authorHandle": "@danmolloy",
-            "author": {
-              "name": "Dan Molloy",
-              "profilePic": "profilePic.jpg"
-            },
-            "members": [
-              {
-                "handle": "@egg"
-              }
-            ],
-            "followers": [
-              {
-                "handle": "@fizzlekelly"
-              }
-            ]
-          }
-        ]
-      }
-    }
-  }
+  
 ];

@@ -37,6 +37,7 @@ module.exports = {
               handle: true
             }
           },
+          writtenPosts: true,
           bookmarks: {
             include: {
               author: {
@@ -55,7 +56,7 @@ module.exports = {
                 select: {
                   handle: true
                 }
-              }
+              },
             }
           }
         }
@@ -195,33 +196,6 @@ module.exports = {
       })
       return getPost
     },
-    getAuthoredLists: async(_, arg, context) => {
-      const lists = await context.prisma.list.findMany({
-        where: {
-          authorHandle: arg.handle
-        },
-        include: {
-          author: {
-            select: {
-              name: true,
-              profilePic: true
-            }
-          },
-          members: {
-            select: {
-              handle: true
-            }
-          },
-          followers: {
-            select: {
-              handle: true
-            }
-          }
-        }
-      })
-    
-      return lists
-    }
 
     },
     Mutation: {
@@ -477,14 +451,42 @@ module.exports = {
         const user = await context.prisma.user.create({ data: { 
           ...args, 
           password,
-          
-        } })
+          blurb: "Click Edit Profile!",
+          follows: {
+            connect: {
+              handle: "@danmolloy"
+            }
+          },
+          followers: {
+            connect: {
+              handle: "@danmolloy"
+            }
+          },
+        },
+        include: {
+          follows: {
+            select: {
+              handle: true
+            }, 
+          },
+          followers: {
+            select: {
+              handle: true
+            }
+          },
+          writtenPosts: true
+        }
+       })
 
         const token = jwt.sign({ userHandle: user.handle }, APP_SECRET)
         
-        return {
+        try {
+          return {
           token,
           user,
+        }}
+        catch(e) {
+          return e
         }
       },
       login: async(_, args, context) => {
