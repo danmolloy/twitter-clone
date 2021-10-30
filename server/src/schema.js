@@ -41,6 +41,7 @@ const typeDefs = gql`
     likedPosts: [Post]
     retweets: [Post]
     bookmarks: [Post]
+    messages: [Chat]
   }
 
   type Post {
@@ -52,6 +53,20 @@ const typeDefs = gql`
     likes: [User]
     retweets: [User]
     bookmarks: [User]
+  }
+
+
+  type Chat {
+    id: String!
+    content: [Message]
+    users: [User]
+  }
+
+  type Message {
+    time: String!
+    author: User!
+    content: String!
+    read: Boolean!
   }
 
 `;

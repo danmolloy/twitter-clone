@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { User } from "../types"
 import { ProfileButton } from "./ProfileButton"
 import { ProfileFollowers } from "./ProfileFollowers"
+import fromUnixTime from 'date-fns/fromUnixTime'
 
 export const EDIT_PROFILE = gql`
   mutation Mutation($handle: String, $userName: String, $blurb: String) {
@@ -110,7 +111,7 @@ export const ProfileDetails = (props: {
           <div className="flex flex-row text-gray-600">
             <CalendarIcon className="w-6 h-auto -ml-1" />
             <p className="ml-1">
-              Joined {props.getUserProfile?.joinDate}
+              Joined {props.getUserProfile && String(fromUnixTime(Number(props.getUserProfile.joinDate))).slice(4, 15)}
             </p>
           </div>
           <ProfileFollowers getUserProfile={props.getUserProfile}/>

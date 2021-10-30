@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  name   String
+  name String
   password String @default("password")
   handle String @id 
   blurb String @default("Click edit profile!")
@@ -21,9 +21,6 @@ model User {
   likedPosts Post[] @relation("LikedPosts")
   retweets Post[] @relation("RetweetedPosts")
   bookmarks Post [] @relation("Bookmarks")
-  authoredLists List[] @relation("ListAuthor")
-  listsFollowed List[] @relation("ListFollowers")
-  listMember List[] @relation("ListMember")
   }
 
 model Post {
@@ -35,16 +32,4 @@ model Post {
   likes User[] @relation("LikedPosts", references: [handle])
   retweets User[] @relation("RetweetedPosts",references: [handle])
   bookmarks User[] @relation("Bookmarks", references: [handle])
-}
-
-model List {
-  id String @id @default(uuid())
-  name String @default("My List")
-  picture String @default("bgPic.jpg")
-  description String @default("My list of musicians")
-  private Boolean @default(true)
-  authorHandle String
-  author User @relation("ListAuthor", fields: [authorHandle], references: [handle])
-  members User[] @relation("ListMember")
-  followers User[] @relation("ListFollowers")
 }

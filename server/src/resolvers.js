@@ -451,6 +451,7 @@ module.exports = {
         const user = await context.prisma.user.create({ data: { 
           ...args, 
           password,
+          joinDate: String(Date.now()).slice(0, -3),
           blurb: "Click Edit Profile!",
           follows: {
             connect: {
