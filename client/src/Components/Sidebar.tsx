@@ -41,7 +41,7 @@ export const Sidebar = (props: {currentUser: User | undefined}) => {
     <div id="side-bar" 
     className="side-bar">
       <Link to="/home" className="md:ml-2" id="twitter-home-link">
-        <img src="favico.ico" className="hidden sm:flex w-12 h-auto mx-6 my-4 p-2 rounded hover:bg-blue-50"/>
+        <img src="/favico.ico" className="hidden sm:flex w-12 h-auto mx-6 my-4 p-2 rounded hover:bg-blue-50"/>
       </Link>
       <Link to="/home" className="lg-side-icon" id="home-link">
         <HomeIcon className="side-icon"/>
@@ -77,7 +77,7 @@ export const Sidebar = (props: {currentUser: User | undefined}) => {
       </Link>
       <Link to={props.currentUser ? `/${props.currentUser.handle.slice(1)}` : '/'} className="md:ml-4">
         {props.currentUser && props.currentUser.profilePic ?
-        <img src={props.currentUser && props.currentUser.profilePic} className="hidden sm:flex h-14 w-auto mx-4 mt-28 rounded-full p-2 hover:bg-gray-200"/>
+        <img src={props.currentUser && `${props.currentUser.profilePic}`} className="hidden sm:flex h-14 w-auto mx-4 mt-28 rounded-full p-2 hover:bg-gray-200"/>
         :
         <UserCircleIcon className="hidden sm:flex h-14 w-auto mx-4 mt-28 rounded-full p-2 hover:bg-gray-200"/>
         }

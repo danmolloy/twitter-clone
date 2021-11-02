@@ -21,6 +21,7 @@ import { Error } from "./Error";
 import { CurrentUserData, CurrentUserVar } from '../types'
 import { SignIn } from "./SignIn";
 import { AUTH_TOKEN } from '../constants'
+import { Chat } from "./Chat";
 
 export const CURRENTUSER = gql`
 query Query {
@@ -82,6 +83,9 @@ function App() {
           </Route>
           <Route path="/bookmarks">
             <Bookmarks currentUser={data && data.currentUser} />
+          </Route>
+          <Route path="/messages/:chatId">
+            <Chat currentUser={data && data.currentUser}/>
           </Route>
           <Route path="/messages">
             <Messages currentUser={data && data.currentUser}/>

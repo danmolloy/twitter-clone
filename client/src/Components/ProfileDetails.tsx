@@ -7,13 +7,14 @@ import { ProfileFollowers } from "./ProfileFollowers"
 import fromUnixTime from 'date-fns/fromUnixTime'
 
 export const EDIT_PROFILE = gql`
-  mutation Mutation($handle: String, $userName: String, $blurb: String) {
-    editProfile(handle: $handle, userName: $userName, blurb: $blurb) {
-      name
-      handle
-      blurb
-    }
+mutation Mutation($handle: String, $userName: String, $blurb: String, $profilePic: String) {
+  editProfile(handle: $handle, userName: $userName, blurb: $blurb, profilePic: $profilePic) {
+    name
+    blurb
+    handle
+    profilePic
   }
+}
 `;
 
 export const FOLLOW_UNFOLLOW = gql`
@@ -36,6 +37,7 @@ export const ProfileDetails = (props: {
   const [isCurrentUser, setIsCurrentUser] = useState(false)
   const [newBlurb, setNewBlurb] = useState(props.currentUser && props.currentUser.blurb)
   const [newName, setNewName] = useState(props.currentUser && props.currentUser.name)
+  const [newProfilePic, setNewProfilePic] = useState("")
 
   const [followUnfollow, {data: dataFollowing, loading: loadingFollowing, error: errorFollowing}] = useMutation(FOLLOW_UNFOLLOW)
 
@@ -70,6 +72,7 @@ export const ProfileDetails = (props: {
         handle: props.currentUser && props.currentUser.handle,
         userName: newName,
         blurb: newBlurb,
+        profilePic: newProfilePic
       }})
     props.updatePage()
   }
@@ -92,6 +95,9 @@ export const ProfileDetails = (props: {
           updateProfile={updateProfile}/>
         </div>
         <div className="flex flex-col w-2/5 ml-12">
+          {editNameBlurb 
+          && <input placeholder="Profile Picture html" value={newProfilePic} onChange={(e) => setNewProfilePic(e.target.value)} className="my-2 border border-black"/>
+          }
         {editNameBlurb === true ?
           <input 
           value={newName} 

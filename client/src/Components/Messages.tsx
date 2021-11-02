@@ -4,10 +4,39 @@ import { useState, useEffect } from 'react'
 import { Loading } from "./Loading";
 import { Error } from "./Error";
 import { User } from "../types";
+import { ChatPreview } from "./ChatPreview";
+
+const GET_CHATS = gql`
+  query Query {
+    getChats {
+      id
+      users {
+        handle
+        name
+        profilePic
+      }
+      content {
+        time
+        messageText
+        authorHandle
+        read
+      }
+    }
+  }
+`;
 
 
 export const Messages = (props: {currentUser: User | undefined}) => {
   const [searchBarFocused, setSearchBarFocused] = useState(false)
+  const {loading, error, data} = useQuery(GET_CHATS)
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Error />
+  }
 
   return (
     <div >
@@ -29,7 +58,9 @@ export const Messages = (props: {currentUser: User | undefined}) => {
                 </div>:
                 null
                 }
-
+    {data && data.getChats.map((i: any) => {
+      return <ChatPreview key={i.id} chat={i}/>
+    })}
     </div>
   )
 }
