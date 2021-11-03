@@ -21,6 +21,9 @@ model User {
   likedPosts Post[] @relation("LikedPosts")
   retweets Post[] @relation("RetweetedPosts")
   bookmarks Post [] @relation("Bookmarks")
+  chats Chat[] @relation("Chats", references: [id])
+  messages Message[] @relation("Sent Messages")
+  notifications Notification[] @relation("Notifications")
   }
 
 model Post {
@@ -33,3 +36,30 @@ model Post {
   retweets User[] @relation("RetweetedPosts",references: [handle])
   bookmarks User[] @relation("Bookmarks", references: [handle])
 }
+
+  model Chat {
+    id String @id @default(uuid())
+    content Message[] @relation("Messages")
+    users User[] @relation("Chats", references: [handle])
+  }
+
+  model Message {
+    chat Chat @relation("Messages", fields: [chatId], references: [id])
+    chatId String @default(uuid())
+    messageId String @id @default(uuid())
+    time String @default("21 Sept 2021")
+    author User @relation("Sent Messages", fields: [authorHandle], references: [handle])
+    authorHandle String
+    messageText String
+    read Boolean @default(false)
+  }
+
+  model Notification {
+    id String @id @default(uuid())
+    text String 
+    tweetId String? 
+    notifiedUserHandle String
+    notifiedUser User @relation("Notifications", fields: [notifiedUserHandle], references: [handle])
+    sentFromUser String
+    read Boolean @default(false)
+  }

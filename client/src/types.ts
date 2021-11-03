@@ -10,7 +10,11 @@ export interface User {
   follows: UserHandles[];
   followers: UserHandles[];
   writtenPosts: Post[];
+  chats: any
+  notifications: any
 }
+
+
 
 export interface ExploreUser {
   name: string;

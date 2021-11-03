@@ -8,6 +8,8 @@ const typeDefs = gql`
     getPost(postID: String): Post
     loggedInUser: User
     getAllUsers: [User]
+    getChats: [Chat]
+    getChatById(chatId: String!): Chat
   }
 
   type Mutation {
@@ -17,10 +19,12 @@ const typeDefs = gql`
     retweetPost(handle: String, postID: String): Post
     deletePost(postId: String): Post
     followUnfollowUser(followHandle: String, currentUserHandle: String): User
-    editProfile(handle: String, userName: String, blurb: String): User
+    editProfile(handle: String, userName: String, blurb: String, profilePic: String): User
     signUp(handle: String!, password: String!, name: String!): AuthPayload
     login(handle: String!, password: String!): AuthPayload
     deleteUser: User
+    newMessage(content: String!, chatId: String!): Message
+    readMessages(chatId: String!): BatchPayload
   }
 
   type AuthPayload {
@@ -41,7 +45,9 @@ const typeDefs = gql`
     likedPosts: [Post]
     retweets: [Post]
     bookmarks: [Post]
-    messages: [Chat]
+    chats: [Chat]
+    messages: [Message]
+    notifications: [Notification]
   }
 
   type Post {
@@ -63,9 +69,27 @@ const typeDefs = gql`
   }
 
   type Message {
-    time: String!
-    author: User!
-    content: String!
+    chat: Chat!
+    chatId: String!
+    messageId: String!
+    time: String! 
+    author: User
+    authorHandle: String!
+    messageText: String!
+    read: Boolean!
+  }
+
+  type BatchPayload {
+    count: Int
+  }
+
+  type Notification {
+    id: String!
+    text: String!
+    tweetId: String
+    notifiedUserHandle: String!
+    notifiedUser: User
+    sentFromUser: String!
     read: Boolean!
   }
 

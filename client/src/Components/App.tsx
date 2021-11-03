@@ -32,11 +32,23 @@ query Query {
     joinDate
     bgPic
     profilePic
+    chats {
+      content {
+        read
+      }
+    }
     follows {
       handle
     }
     followers {
       handle
+    }
+    notifications {
+      id
+      text
+      sentFromUser
+      read
+      tweetId
     }
     writtenPosts {
       id
@@ -69,7 +81,7 @@ function App() {
   return (
     <Router>
       <div id="main-content" className="flex flex-row w-screen h-screen justify-start">
-        {authToken && <Sidebar currentUser={data && data.currentUser}/>}
+        {authToken && <Sidebar />}
         <div className="sm:ml-24 md:ml-60 mb-0 border-r w-full max-w-2xl sm:mr-2">
         <Switch>
           <Route path="/compose/tweet">

@@ -4,7 +4,7 @@ import { useQuery, useMutation, gql } from '@apollo/client'
 import { Loading } from "./Loading"
 import { Error } from "./Error"
 import { ChatMessage } from "./ChatMessage"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 const GET_CHAT_BY_ID = gql`
@@ -15,6 +15,7 @@ const GET_CHAT_BY_ID = gql`
         messageText
         authorHandle
         messageId
+        read
         author {
           name
           profilePic
@@ -25,6 +26,14 @@ const GET_CHAT_BY_ID = gql`
         name
         profilePic
       }
+    }
+  }
+`;
+
+const READ_MESSAGE = gql`
+  mutation Mutation($chatId: String!) {
+    readMessages(chatId: $chatId) {
+      count
     }
   }
 `;
@@ -51,14 +60,19 @@ export const Chat = (props: any) => {
   const [sendMessage] = useMutation(NEW_MESSAGE, {variables: {
     content: newMessage,
     chatId: chatId
-  },
-  onCompleted: () => refetch()
-})
+    },
+    onCompleted: () => refetch()
+  })
+  const [readMessage] = useMutation(READ_MESSAGE, {variables: { chatId: chatId}})
 
   const handleClick = async () => {
     await sendMessage();
     setNewMessage("");
   }
+
+  useEffect(() => {
+    readMessage()
+  }, [])
 
   if (loading) {
     return <Loading />

@@ -29,7 +29,8 @@ module.exports = {
         include: {
           follows: {
             select: {
-              handle: true
+              handle: true,
+              name: true
             }
           },
           followers: {
@@ -38,6 +39,16 @@ module.exports = {
             }
           },
           writtenPosts: true,
+          notifications: true,
+          chats: {
+            select: {
+              content: {
+                select: {
+                  read: true
+                }
+              }
+            }
+          },
           bookmarks: {
             include: {
               author: {
@@ -196,6 +207,73 @@ module.exports = {
       })
       return getPost
     },
+    getChats: async(_, __, context) => {
+      const getUserChats = await context.prisma.chat.findMany({
+        where: {
+          users: {
+            some: {
+              handle: context.user.userHandle
+            }
+          }
+        },
+        include: {
+          content: {
+            select: {
+              time: true,
+              messageText: true,
+              read: true,
+              authorHandle: true,
+            }
+          },
+          users: {
+            select: {
+              handle: true,
+              name: true,
+              profilePic: true
+            }
+          }
+        }
+      })
+      return getUserChats
+    },
+    getChatById: async(_, arg, context) => {
+      const getChatById = await context.prisma.chat.findUnique({
+        where: {
+          id: arg.chatId
+        },
+        include: {
+          content: {
+            select: {
+              time: true,
+              messageText: true,
+              read: true,
+              authorHandle: true,
+              messageId: true,
+              author: {
+                select: {
+                  name: true,
+                  profilePic: true
+                }
+              }
+            }
+          },
+          users: {
+            select: {
+              handle: true,
+              name: true,
+              profilePic: true
+            }
+          }
+        }
+      })
+
+      try {
+        return getChatById
+      }
+      catch(e) {
+        console.log(e)
+      }
+    }
 
     },
     Mutation: {
@@ -380,7 +458,7 @@ module.exports = {
           return `Error! ${e}`
         }
       },
-      editProfile: async(_, {userName, handle, blurb}, context) => {
+      editProfile: async(_, {userName, handle, blurb, profilePic}, context) => {
   
         try {
           const updateUser = await context.prisma.user.update({
@@ -389,13 +467,14 @@ module.exports = {
             },
             data: {
               name: userName,
-              blurb: blurb
+              blurb: blurb,
+              profilePic: profilePic
             }
           })
           return updateUser
         }
         catch(e) {
-          return `Error! ${e}`
+          console.log(e)
         }
       },
       followUnfollowUser: async(_, {followHandle, currentUserHandle}, context) => {
@@ -519,6 +598,39 @@ module.exports = {
         }
         catch(e) {
           return `Error! ${e}`
+        }
+      },
+      newMessage: async(_, args, context) => {
+        try {
+          const newMessage = await context.prisma.message.create({
+            data: {
+              chatId: args.chatId,
+              time: String(Date.now()).slice(0, -3),
+              authorHandle: context.user.userHandle,
+              messageText: args.content
+              }
+            })
+            return newMessage
+          }
+        
+        catch(e) {
+          console.log(`Error! ${e}`)
+        }
+      },
+      readMessages: async(_, args, context) => {
+        try {
+          const readMessages = await context.prisma.message.updateMany({
+            where: {
+              chatId: args.chatId,
+            },
+            data: {
+              read: true
+            }
+          })
+          return readMessages
+        }
+        catch(e) {
+          console.log(`Error! ${e}`)
         }
       }
     }
