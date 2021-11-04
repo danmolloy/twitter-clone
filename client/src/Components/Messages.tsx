@@ -50,8 +50,8 @@ export const Messages = (props: {currentUser: User | undefined}) => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col">
-        {searchUsers && <SearchUsers />}
+      <div className="flex flex-col items-center w-full">
+        {searchUsers && <SearchUsers close={() => setSearchUsers(false)}/>}
         {data && data.getChats.map((i: any) => {
         return <ChatPreview key={i.id} chat={i} currentUser={props.currentUser}/>
       })}

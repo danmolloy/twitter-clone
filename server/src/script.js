@@ -4,18 +4,8 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-  const newNotification = await prisma.notification.update({
-    where: {
-      id: "191f7f18-42d1-49dc-8675-f63a2d11f6ca"
-    },
-    data: {
-      read: true
-    }
-  }) 
-
-  console.log(newNotification)
-
-  /* const newChat = await prisma.chat.create({
+  /* 
+    const newChat = await prisma.chat.create({
     data: {
       users: {
         connect: [
@@ -25,18 +15,8 @@ async function main() {
       },
     }
   })
-
- const getUserChats = await prisma.chat.findMany({
-    where: {
-      users: {
-        some: {
-          handle: "@danmolloy"
-        }
-      }
-    }
-  }) */
-
-  /* const getChat = await prisma.chat.findMany({
+  
+  const getChat = await prisma.chat.findMany({
     where: {
       users: {
         some: {

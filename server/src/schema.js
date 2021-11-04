@@ -25,6 +25,7 @@ const typeDefs = gql`
     deleteUser: User
     newMessage(content: String!, chatId: String!): Message
     readMessages(chatId: String!): BatchPayload
+    createOrGetChat(handle: String!): Chat
   }
 
   type AuthPayload {

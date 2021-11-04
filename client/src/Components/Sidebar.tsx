@@ -10,7 +10,6 @@ import { HashtagIcon,
 } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { AUTH_TOKEN } from '../constants'
-import { User } from '../types'
 import { useMutation, gql, useQuery } from '@apollo/client'
 import { Error } from './Error'
 import { Loading } from './Loading'
@@ -43,7 +42,7 @@ const GET_USER = gql`
 
 export const Sidebar = () => {
 
-  const {loading, error, data} = useQuery(GET_USER)
+  const { loading, error, data } = useQuery(GET_USER)
 
   const [deleteUser] = useMutation(DELETE_USER, {
     onCompleted: ({ deleteUser }) => {
@@ -81,9 +80,9 @@ export const Sidebar = () => {
         <label htmlFor="explore-link" className="sidebar-text">Explore</label>
       </Link>
       <Link to="/notifications" className="lg-side-icon" id="notifications-link">
-      {data && data.currentUser.notifications.map((i: any) => i.read).includes(false) 
+      {data && data.currentUser.notifications.map(
+        (i: any) => i.read).includes(false) 
       && <div className="bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0" />}
-
         <BellIcon className="side-icon"/>
         <label htmlFor="notifications-link" className="sidebar-text">Notifications</label>
       </Link>

@@ -4,22 +4,6 @@ const { APP_SECRET, getUserId } = require('./utils')
 
 module.exports = {
   Query: {
-    loggedInUser: async (_, __, context) => {
-
-      try {
-        const user = await context.prisma.user.findUnique({ where: { handle: context.user.userHandle } })
-        if (!user) {
-          throw new Error('No such user found')
-        }
-
-        return user
-        
-      }
-      catch(e) {
-        return `Error! ${e}`
-      }
-     
-    },
     currentUser: async (_, __, context) => {
       try {
         const user = await context.prisma.user.findUnique({
@@ -44,7 +28,12 @@ module.exports = {
             select: {
               content: {
                 select: {
-                  read: true
+                  read: true,
+                }
+              },
+              users: {
+                select: {
+                  handle: true
                 }
               }
             }
@@ -628,6 +617,40 @@ module.exports = {
             }
           })
           return readMessages
+        }
+        catch(e) {
+          console.log(`Error! ${e}`)
+        }
+      },
+      createOrGetChat: async(_, args, context) => {
+        try {
+          const getChat = await context.prisma.chat.findFirst({
+            where: {
+              users: {
+                some: {
+                  handle: context.user.userHandle,
+                  handle: args.handle
+                }
+              }
+            }
+          })
+        
+          if (getChat === null) {
+            const newChat = await context.prisma.chat.create({
+              data: {
+                users: {
+                  connect: [
+                    {handle: context.user.userHandle},
+                    {handle: args.handle}
+                  ]
+                },
+              }
+            })
+            return newChat
+          }
+          else {
+            return getChat
+          }
         }
         catch(e) {
           console.log(`Error! ${e}`)

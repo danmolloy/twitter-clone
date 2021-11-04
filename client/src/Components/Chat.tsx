@@ -87,7 +87,7 @@ export const Chat = (props: any) => {
         <Link to="/messages">
         <ArrowLeftIcon className="w-8"/>
         </Link>
-        <img src={data && `${data.getChatById.users[0].profilePic}`} className="rounded-full w-12 h-12 ml-4" />
+        <img src={data && `${data.getChatById.users.filter((i: any) => i.handle !== props.currentUser.handle)[0].profilePic}`} className="rounded-full w-12 h-12 ml-4" />
         <h3 className="ml-4 font-semibold">
         {data && data.getChatById.users.map((i: any) => i.name !== props.currentUser.name && i.name)}
         </h3>
