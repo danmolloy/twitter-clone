@@ -57,7 +57,8 @@ model Post {
   model Notification {
     id String @id @default(uuid())
     text String 
-    tweetId String? 
+    tweetId String?
+    time String @default("1634217714")
     notifiedUserHandle String
     notifiedUser User @relation("Notifications", fields: [notifiedUserHandle], references: [handle])
     sentFromUser String

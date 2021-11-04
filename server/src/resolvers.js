@@ -355,7 +355,17 @@ module.exports = {
                 }
               }
             })
-            return updatedPost
+            
+            const newNotification = await context.prisma.notification.create({
+              data: {
+                sentFromUser: context.user.userHandle,
+                tweetId: postID,
+                text: `${context.user.userHandle} liked your tweet: ${getPost.content}`,
+                notifiedUserHandle: getPost.authorHandle
+              }
+            })
+            return updatedPost, newNotification
+
           } else if (getPost && getPost.likes.filter(e => e.handle === handle).length === 1) {
             const updatedPost = await context.prisma.post.update({
               where: {
@@ -655,6 +665,17 @@ module.exports = {
         catch(e) {
           console.log(`Error! ${e}`)
         }
+      },
+      readNotifications: async (_, __, context) => {
+        const readNotifications = await context.prisma.notification.updateMany({
+          where: {
+            notifiedUserHandle: context.user.userHandle
+          },
+          data: {
+            read: true
+          }
+        })
+        return readNotifications
       }
     }
   }

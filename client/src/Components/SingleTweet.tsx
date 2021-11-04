@@ -147,7 +147,16 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
           await likePost();
           }}>
             <HeartIcon className="hover:bg-red-50 tweet-options"/>
-            <p id="like-count">{dataLikes && dataLikes.likePost.likes.length > 0 ? dataLikes.likePost.likes.length : dataLikes && dataLikes.likePost.likes.length === 0 ? null : props.tweet && props.tweet.likes ? props.tweet.likes.length === 0 ? null : props.tweet.likes.length : null}</p>
+            <p id="like-count">
+              {dataLikes && JSON.stringify(dataLikes)}
+              {/* {dataLikes && dataLikes.likePost.likes.length > 0 
+              ? dataLikes.likePost.likes.length 
+              : dataLikes && dataLikes.likePost.likes.length === 0 
+              ? null 
+              : props.tweet && props.tweet.likes 
+              ? props.tweet.likes.length === 0 
+              ? null : props.tweet.likes.length 
+              : null} */}</p>
           </button>
           <button 
           id="bookmark-options"

@@ -26,6 +26,7 @@ const typeDefs = gql`
     newMessage(content: String!, chatId: String!): Message
     readMessages(chatId: String!): BatchPayload
     createOrGetChat(handle: String!): Chat
+    readNotifications: BatchPayload
   }
 
   type AuthPayload {
@@ -88,6 +89,7 @@ const typeDefs = gql`
     id: String!
     text: String!
     tweetId: String
+    time: String!
     notifiedUserHandle: String!
     notifiedUser: User
     sentFromUser: String!

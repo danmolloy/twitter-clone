@@ -54,10 +54,10 @@ export const ComposeTweet = (props: {currentUser: User | undefined, updatePage: 
       </div>
       {content !== '' && 
       <div className="flex flex-row ml-16 border-b py-2">
-        <div className="hover:bg-blue-50 flex flex-row items-center px-2 rounded-full">
+        <button className="hover:bg-blue-50 flex flex-row items-center px-2 rounded-full" onClick={() => iconAlert()}>
           <GlobeIcon className="w-4 twitter-blue"/>
           <p className="twitter-blue text-sm font-bold ml-1">Everyone can reply</p>
-        </div>
+        </button>
       </div>}
       <div className="flex flex-row ml-16 justify-between">
       <div id="compose-tweet-icons" className="flex flex-row py-2">
