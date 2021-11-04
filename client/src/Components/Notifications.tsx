@@ -9,6 +9,7 @@ const GET_NOTIFICATIONS = gql`
       notifications {
         id
         text
+        time
         sentFromUser
         read
         tweetId

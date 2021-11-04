@@ -13,7 +13,7 @@ export const ChatPreview = (props: any) => {
           ? 
        <p className={props.chat && props.chat.content.filter((i: any) => 
         i.authorHandle !== props.currentUser.handle
-        && i.read === false).length > 0 ? "font-bold": "font-medium"}>
+        && i.read === false).length > 0 ? "font-bold": "font-normal"}>
           {`${props.chat.content[props.chat.content.length -1].authorHandle}: 
           ${props.chat.content[props.chat.content.length -1].messageText}`
         }{props.chat && props.chat.content[props.chat.content.length -1].messageText.length > 19 && <span className="text-gray-400"> ...</span>}
