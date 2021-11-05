@@ -8,7 +8,6 @@ import {
 } from "react-router-dom"
 import { Home } from './Home'
 import { Explore } from './Explore'
-import { Bookmarks } from './Bookmarks'
 import { Messages } from './Messages'
 import { Notifications } from './Notifications'
 import { Profile } from './Profile'
@@ -92,9 +91,6 @@ function App() {
           </Route>
           <Route path="/home">
             <Home currentUser={data && data.currentUser}/>
-          </Route>
-          <Route path="/bookmarks">
-            <Bookmarks currentUser={data && data.currentUser} />
           </Route>
           <Route path="/messages/:chatId">
             <Chat currentUser={data && data.currentUser}/>

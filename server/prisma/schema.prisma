@@ -22,7 +22,6 @@ model User {
   writtenPosts Post[] @relation("WrittenPosts")
   likedPosts Post[] @relation("LikedPosts")
   retweets Post[] @relation("RetweetedPosts")
-  bookmarks Post [] @relation("Bookmarks")
   comments Comment[]
 
   chats Chat[] @relation("Chats", references: [id])
@@ -39,7 +38,6 @@ model Post {
   authorHandle String
   likes User[] @relation("LikedPosts", references: [handle])
   retweets User[] @relation("RetweetedPosts",references: [handle])
-  bookmarks User[] @relation("Bookmarks", references: [handle])
   comments Comment[]
 }
 

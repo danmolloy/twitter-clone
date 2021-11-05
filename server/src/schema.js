@@ -14,7 +14,6 @@ const typeDefs = gql`
 
   type Mutation {
     writePost(content: String, authorHandle: String): Post
-    bookmarkPost(postID: String, handle: String): Post
     likePost(handle: String, postID: String): Post
     retweetPost(handle: String, postID: String): Post
     deletePost(postId: String): Post
@@ -47,7 +46,6 @@ const typeDefs = gql`
     writtenPosts: [Post]
     likedPosts: [Post]
     retweets: [Post]
-    bookmarks: [Post]
     chats: [Chat]
     messages: [Message]
     notifications: [Notification]
@@ -61,7 +59,6 @@ const typeDefs = gql`
     authorHandle: String!
     likes: [User]
     retweets: [User]
-    bookmarks: [User]
     comments: [Comment]
   }
 

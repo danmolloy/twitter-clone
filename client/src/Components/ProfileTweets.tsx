@@ -20,24 +20,10 @@ export const ProfileTweets = (props: {
         {props.tweetFilter === 'tweets' && <span className="tab-line"/>}
       </Link>
       <Link 
-      className={props.tweetFilter === 'replies' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
-      to={props.getUserProfile ? `/${props.getUserProfile.handle.slice(1)}/with_replies`: '/home'}
-      onClick={() => props.setTweetFilter('replies')}>
-        Tweets & Replies
-        {props.tweetFilter === 'replies' && <span className="tab-line"/>}
-      </Link>
-      <Link 
-      className={props.tweetFilter === 'media' ? 'selected-tweet-filter' : 'deselected-tweet-filter'} 
-      to={props.getUserProfile ? `/${props.getUserProfile.handle.slice(1)}/media`: '/home'}
-      onClick={() => props.setTweetFilter('media')}>
-        Media
-        {props.tweetFilter === 'media' && <span className="tab-line"/>}
-      </Link>
-      <Link 
-      className={props.tweetFilter === 'likes' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
-      to={props.getUserProfile ? `/${props.getUserProfile.handle.slice(1)}/likes`: '/home'}
+        className={props.tweetFilter === 'retweets' ? 'selected-retweet-filter' : 'deselected-tweet-filter'}
+      to={props.getUserProfile ? `/${props.getUserProfile.handle.slice(1)}/retweets` : `/home`}
       onClick={() => props.setTweetFilter('likes')}>
-        Likes
+        Retweets
         {props.tweetFilter === 'likes' && <span className="tab-line"/>}
       </Link>
       </div>

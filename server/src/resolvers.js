@@ -52,27 +52,6 @@ module.exports = {
               }
             }
           },
-          bookmarks: {
-            include: {
-              author: {
-                select: {
-                  name: true,
-                  handle: true,
-                  profilePic: true
-                }
-              },
-              likes: {
-                select: {
-                  handle: true
-                }
-              },
-              retweets: {
-                select: {
-                  handle: true
-                }
-              },
-            }
-          }
         }
       })
       if (!user) {
@@ -299,58 +278,6 @@ module.exports = {
             authorHandle: arg.authorHandle,
           }
         })
-      },
-      bookmarkPost: async(_, {postID, handle}, context) => {
-        try {
-          const bookmarkPost = await context.prisma.post.findUnique({
-            where: {
-              id: postID
-            },
-            include: {
-              bookmarks: true
-            }
-          })
-        
-          if (bookmarkPost.bookmarks.filter(e => e.handle === handle).length >= 1) {
-            const unBookmarked = await context.prisma.post.update({
-              where: {
-                id: postID
-              },
-              include: {
-                bookmarks: true
-              },
-              data: {
-                bookmarks: {
-                  disconnect: {
-                    handle: handle
-                  }
-                }
-              }
-            })
-            return unBookmarked
-          } else if (bookmarkPost.bookmarks.filter(e => e.handle === handle).length === 0) {
-            const bookmarked = await context.prisma.post.update({
-              where: {
-                id: postID
-              },
-              include: {
-                bookmarks: true
-              },
-              data: {
-                bookmarks: {
-                  connect: {
-                    handle: handle
-                  }
-                }
-              }
-            })
-            return bookmarked
-          }
-
-          }
-          catch(e) {
-            return `Error! ${e}`
-          }
       },
       likePost: async (_, {postID, handle}, context) => {
         try {
