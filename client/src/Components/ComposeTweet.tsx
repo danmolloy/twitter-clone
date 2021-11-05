@@ -1,7 +1,6 @@
-import { UserCircleIcon, PhotographIcon, ChartBarIcon, EmojiHappyIcon, CalendarIcon } from '@heroicons/react/outline'
-import { GlobeIcon } from '@heroicons/react/solid'
+import { UserCircleIcon, BookOpenIcon } from '@heroicons/react/outline'
 import { useMutation, gql} from '@apollo/client'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { User } from '../types';
 
 const POST_TWEET = gql`
@@ -49,23 +48,18 @@ export const ComposeTweet = (props: {currentUser: User | undefined, updatePage: 
         className="text-lg w-full mt-2 h-16 ml-3 focus:outline-none" 
         placeholder="What's happening?"
         value={content}
+        maxLength={140}
         onChange={(e) => setContent(e.target.value)}
         />
       </div>
-      {content !== '' && 
+      {content && 
       <div className="flex flex-row ml-16 border-b py-2">
-        <button className="hover:bg-blue-50 flex flex-row items-center px-2 rounded-full" onClick={() => iconAlert()}>
-          <GlobeIcon className="w-4 twitter-blue"/>
-          <p className="twitter-blue text-sm font-bold ml-1">Everyone can reply</p>
-        </button>
+        <div className="hover:bg-blue-50 flex flex-row items-center px-2 rounded-full" onClick={() => iconAlert()}>
+          <BookOpenIcon className="twitter-blue h-6 w-auto"/>
+          <p className="twitter-blue text-sm font-bold ml-1">{140 - content.length} / 140</p>
+        </div>
       </div>}
-      <div className="flex flex-row ml-16 justify-between">
-      <div id="compose-tweet-icons" className="flex flex-row py-2">
-        <PhotographIcon className="compose-tweet-icons" onClick={() => iconAlert()}/>
-        <ChartBarIcon className="compose-tweet-icons" onClick={() => iconAlert()}/>
-        <EmojiHappyIcon className="compose-tweet-icons" onClick={() => iconAlert()}/>
-        <CalendarIcon className="compose-tweet-icons" onClick={() => iconAlert()}/>
-      </div>
+      <div className="flex flex-row ml-16 justify-end">
       <button 
         className={content.length === 0? "tweet-btn-disabled": "tweet-btn"}
         onClick={() => content.length > 0 && handleSubmit(props)}>

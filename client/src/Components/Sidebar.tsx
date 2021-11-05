@@ -94,10 +94,6 @@ export const Sidebar = () => {
         <InboxIcon className="side-icon"/>
         <label htmlFor="messages-link" className="sidebar-text">Messages</label>
       </Link>
-      <Link to="/bookmarks" className="lg-side-icon">
-        <BookmarkIcon className="side-icon hidden sm:flex"/>
-        <label htmlFor="bookmarks-link" className="sidebar-text">Bookmarks</label>
-      </Link>
       <Link to={data ? `/${data.currentUser.handle.slice(1)}`: '/'} className="lg-side-icon">
         <UserIcon className="side-icon hidden sm:flex"/>
         <label htmlFor="profile-link" className="sidebar-text">Profile</label>

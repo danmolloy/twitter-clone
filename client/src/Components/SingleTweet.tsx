@@ -157,17 +157,6 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
               ? null : props.tweet.likes.length 
               : null}</p>
           </button>
-          <button 
-          id="bookmark-options"
-          onBlur={() => setTimeout(() => setShowBookmarksMenu(false), 200)}
-          onFocus={() => setShowBookmarksMenu(true)}
-          className="">
-            {showBookmarksMenu === true && 
-            <div className="shadow z-10 bg-white absolute -ml-20 w-32 rounded p-2 text-black hover:bg-gray-50">
-              <button onClick={async () => {await bookmarkPost()}}>Bookmark</button>
-            </div>}
-          <UploadIcon onFocus={() => alert('Hi')} className="hover:text-blue-500 hover:bg-blue-50 tweet-options"/>
-          </button>
         </div>
     </div>
   )
