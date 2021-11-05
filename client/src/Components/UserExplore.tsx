@@ -4,7 +4,7 @@ import { FollowButton } from "./FollowButton"
 
 export const UserExplore = (props: {user: ExploreUser, currentUserHandle: string | undefined}) => {
   return (
-       <div className="border flex flex-row justify-between hover:bg-gray-100">
+       <div className="border-b flex flex-row justify-between hover:bg-gray-100">
         <Link to={`/${props.user.handle.slice(1)}`} className="flex flex-row m-4">
         <img src={props.user.profilePic} className="w-16 rounded-full" />
         <div className="flex flex-col ml-4">
