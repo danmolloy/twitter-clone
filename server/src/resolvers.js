@@ -22,7 +22,21 @@ module.exports = {
               handle: true
             }
           },
-          writtenPosts: true,
+          writtenPosts: {
+            include: {
+              comments: {
+                include: {
+                  author: {
+                    select: {
+                      name: true,
+                      handle: true,
+                      profilePic: true
+                    }
+                  }
+                }
+              },
+            }
+          },
           notifications: true,
           chats: {
             select: {
@@ -123,6 +137,17 @@ module.exports = {
         ],
         include: {
           author: true,
+          comments: {
+            include: {
+              author: {
+                select: {
+                  name: true,
+                  handle: true,
+                  profilePic: true
+                }
+              }
+            }
+          },
           likes: {
             select: {
               handle: true
@@ -676,6 +701,22 @@ module.exports = {
           }
         })
         return readNotifications
+      },
+      newComment: async (_, args, context) => {
+        const newComment = await context.prisma.comment.create({
+          data: {
+            authorHandle: context.user.userHandle,
+            text: args.text,
+            time: String(Date.now()).slice(0, -3),
+            postId: args.postId
+          }
+        })
+        try {
+          return newComment
+        }
+        catch(e) {
+          console.log(e)
+        }
       }
     }
   }

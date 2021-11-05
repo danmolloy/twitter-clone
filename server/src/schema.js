@@ -27,6 +27,7 @@ const typeDefs = gql`
     readMessages(chatId: String!): BatchPayload
     createOrGetChat(handle: String!): Chat
     readNotifications: BatchPayload
+    newComment(postId: String!, text: String!): Comment
   }
 
   type AuthPayload {
@@ -61,6 +62,17 @@ const typeDefs = gql`
     likes: [User]
     retweets: [User]
     bookmarks: [User]
+    comments: [Comment]
+  }
+
+  type Comment {
+    commentId: String!
+    post: Post!
+    author: User!
+    postId: String!
+    authorHandle: String!
+    time: String!
+    text: String!
   }
 
 

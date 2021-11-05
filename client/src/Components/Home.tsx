@@ -17,6 +17,16 @@ query Query($followsTweetsHandle: String!) {
       handle
       profilePic
     }
+    comments {
+      commentId
+      text
+      time
+      author {
+        name
+        handle
+        profilePic
+      }
+    }
     likes {
       handle
     }
