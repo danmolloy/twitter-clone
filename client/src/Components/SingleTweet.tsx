@@ -10,6 +10,7 @@ import { gql, useMutation } from '@apollo/client';
 import fromUnixTime from 'date-fns/fromUnixTime'
 import { useState } from 'react';
 import { User, Post } from '../types';
+import { TweetComments } from './TweetComments';
 
 export const LIKE_POST = gql`
   mutation Mutation($likePostHandle: String, $likePostPostId: String) {
@@ -53,6 +54,7 @@ export const DELETE_POST = gql`
 export const SingleTweet = (props: {author: User | undefined, currentUser: User | undefined, tweet: Post |undefined, updatePage: any}) => {
   const [showMenu, setShowMenu] = useState(false)
   const [showBookmarksMenu, setShowBookmarksMenu] = useState(false)
+  const [showComments, setShowComments] = useState(false)
  
   const [likePost, { data: dataLikes, loading: loadingLikes, error: errorLikes }] = useMutation(LIKE_POST, {
     variables: {
@@ -80,10 +82,12 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
       postId: props.tweet && props.tweet.id
     }
   })
+
   
   return (
-    <div id="single-tweet" className={`border-b ${!showMenu && !showBookmarksMenu && "hover:bg-gray-50"}`}>
-      <div className="flex flex-row mt-4"> 
+    <div id="single-tweet" className={`border-b ${!showMenu && !showBookmarksMenu && "hover:bg-gray-50"} flex flex-col items-center`}>
+      {showComments && <TweetComments currentUser={props.currentUser} tweet={props.tweet} close={() => setShowComments(false)}/>}
+      <div className="flex flex-row mt-4 w-full"> 
       {props.author && props.author.profilePic ? 
       <img src={props.author && props.author.profilePic} className="w-14 h-auto ml-3 rounded-full"/>:
       <UserCircleIcon className="w-12 h-12 ml-3"/>}
@@ -126,11 +130,11 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
         </div>
       </div>
       </div>
-      <div className="flex flex-row justify-between mx-12 my-2 text-gray-500">
-          <div className="flex flex-row items-center hover:text-blue-500">
+      <div className="flex flex-row justify-between px-12 my-2 text-gray-500 w-full">
+          <button className="flex flex-row items-center hover:text-blue-500" onClick={() => setShowComments(true)}>
             <ChatIcon className=" hover:bg-blue-50 tweet-options" />
             <p>{props.tweet && props.tweet.comments ? props.tweet.comments.length : null}</p>
-          </div>
+          </button>
           <button 
           id="retweet-button"
           className="flex flex-row items-center hover:text-green-500"
@@ -148,15 +152,10 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
           }}>
             <HeartIcon className="hover:bg-red-50 tweet-options"/>
             <p id="like-count">
-              {dataLikes && JSON.stringify(dataLikes)}
-              {/* {dataLikes && dataLikes.likePost.likes.length > 0 
-              ? dataLikes.likePost.likes.length 
-              : dataLikes && dataLikes.likePost.likes.length === 0 
-              ? null 
-              : props.tweet && props.tweet.likes 
+              {props.tweet && props.tweet.likes 
               ? props.tweet.likes.length === 0 
               ? null : props.tweet.likes.length 
-              : null} */}</p>
+              : null}</p>
           </button>
           <button 
           id="bookmark-options"
