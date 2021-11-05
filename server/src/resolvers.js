@@ -154,7 +154,17 @@ module.exports = {
           handle: arg.handle
         },
         include: {
-          retweets: true, 
+          retweets: {
+            include: {
+              author: {
+                select: {
+                  name: true,
+                  handle: true,
+                  profilePic: true
+                }
+              }
+            }
+          }, 
           writtenPosts: {
             include: {
               likes: {

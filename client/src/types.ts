@@ -12,6 +12,7 @@ export interface User {
   writtenPosts: Post[];
   chats: any
   notifications: any
+  retweets: any
 }
 
 

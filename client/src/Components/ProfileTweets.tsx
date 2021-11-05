@@ -20,14 +20,24 @@ export const ProfileTweets = (props: {
         {props.tweetFilter === 'tweets' && <span className="tab-line"/>}
       </Link>
       <Link 
-        className={props.tweetFilter === 'retweets' ? 'selected-retweet-filter' : 'deselected-tweet-filter'}
+        className={props.tweetFilter === 'retweets' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
       to={props.getUserProfile ? `/${props.getUserProfile.handle.slice(1)}/retweets` : `/home`}
-      onClick={() => props.setTweetFilter('likes')}>
+      onClick={() => props.setTweetFilter('retweets')}>
         Retweets
-        {props.tweetFilter === 'likes' && <span className="tab-line"/>}
+        {props.tweetFilter === 'retweets' && <span className="tab-line"/>}
       </Link>
       </div>
-      <div className="h-auto w-full flex flex-col mt-0">
+      {props.tweetFilter === 'retweets' 
+      ? <div className="h-auto w-full flex flex-col mt-0">
+      {props.getUserProfile && 
+      props.getUserProfile.retweets && 
+      props.getUserProfile.retweets.length > 0 &&
+      props.getUserProfile.retweets.map((tweet: Post) => {
+          return <SingleTweet tweet={tweet} author={tweet.author} key={tweet.id} currentUser={props.currentUser} updatePage={props.updatePage}/>;
+        })
+      }
+    </div>
+      : <div className="h-auto w-full flex flex-col mt-0">
         {props.getUserProfile && 
         props.getUserProfile.writtenPosts && 
         props.getUserProfile.writtenPosts.length > 0 &&
@@ -35,7 +45,7 @@ export const ProfileTweets = (props: {
             return <SingleTweet tweet={tweet} author={props.getUserProfile && props.getUserProfile} key={tweet.id} currentUser={props.currentUser} updatePage={props.updatePage}/>;
           })
         }
-      </div>
+      </div>}
     </div>
   )
 }

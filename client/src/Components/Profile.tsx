@@ -35,6 +35,16 @@ export const GETUSER = gql`
           handle
         }
       }
+      retweets {
+        id
+        content
+        postDate
+        author {
+          name
+          handle
+          profilePic
+        }
+      }
       }
     }
 `;

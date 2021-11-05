@@ -79,7 +79,7 @@ export const ProfileDetails = (props: {
 
   return (
     <div id="profile-details" className="w-full h-3/5 ">
-        <img id="profile-banner" className="w-full h-48" src={props.getUserProfile?.bgPic}/>
+        <img id="profile-banner" className="w-full h-48" src={`/${props.getUserProfile?.bgPic}`}/>
         <div className="flex flex-row justify-between">
           {props.getUserProfile?.profilePic ?
             <img src={props.getUserProfile.profilePic} className="rounded-full w-36 h-auto ml-4 -mt-12 -p border-4 border-white"/> :
