@@ -4,7 +4,7 @@ import { UserExplore } from "./UserExplore";
 import { ExploreUser } from "../types";
 import { Header } from "./Header";
 
-const ALL_USERS = gql`
+export const ALL_USERS = gql`
   query Query {
     getAllUsers {
       name

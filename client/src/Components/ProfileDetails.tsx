@@ -5,6 +5,9 @@ import { User } from "../types"
 import { ProfileButton } from "./ProfileButton"
 import { ProfileFollowers } from "./ProfileFollowers"
 import fromUnixTime from 'date-fns/fromUnixTime'
+import { GETUSER } from './Profile'
+import { EditProfile } from './EditProfile'
+import { FollowButton } from "./FollowButton"
 
 export const EDIT_PROFILE = gql`
 mutation Mutation($handle: String, $userName: String, $blurb: String, $profilePic: String) {
@@ -31,51 +34,10 @@ export const FOLLOW_UNFOLLOW = gql`
 export const ProfileDetails = (props: {
   getUserProfile: User | undefined,
   currentUser: User | undefined,
-  updatePage: any
+  updatePage: any,
+  profileHandle: string
 }) => {
-  const [editNameBlurb, setEditNameBlurb] = useState(false)
-  const [isCurrentUser, setIsCurrentUser] = useState(false)
-  const [newBlurb, setNewBlurb] = useState(props.currentUser && props.currentUser.blurb)
-  const [newName, setNewName] = useState(props.currentUser && props.currentUser.name)
-  const [newProfilePic, setNewProfilePic] = useState("")
 
-  const [followUnfollow, {data: dataFollowing, loading: loadingFollowing, error: errorFollowing}] = useMutation(FOLLOW_UNFOLLOW)
-
-  const [editProfile, 
-    {data: editProfileData, 
-      loading: editProfileLoading, 
-      error: editProfileError}] = useMutation(EDIT_PROFILE)
-
-
-  useEffect(() => {
-    props.updatePage()
-    if (props.getUserProfile && props.currentUser && props.getUserProfile.name === props.currentUser.name) {
-      setIsCurrentUser(true)
-    }
-    else {
-      setIsCurrentUser(false)
-    }
-  })
-
-  const followUnfollowUser = async() => {
-    await followUnfollow({
-      variables: {
-        followHandle: props.getUserProfile && props.getUserProfile.handle, 
-        currentUserHandle: props.currentUser && props.currentUser.handle
-      }})
-  }
-
-  const updateProfile = async () => {
-    setEditNameBlurb(false)
-    await editProfile({
-      variables: {
-        handle: props.currentUser && props.currentUser.handle,
-        userName: newName,
-        blurb: newBlurb,
-        profilePic: newProfilePic
-      }})
-    props.updatePage()
-  }
 
   return (
     <div id="profile-details" className="w-full h-3/5 ">
@@ -83,37 +45,22 @@ export const ProfileDetails = (props: {
         <div className="flex flex-row justify-between">
           {props.getUserProfile?.profilePic ?
             <img src={props.getUserProfile.profilePic} className="rounded-full w-36 h-auto ml-4 -mt-12 -p border-4 border-white"/> :
-            <UserCircleIcon className="w-28 h-auto ml-12 -mt-12 border -p rounded-full"/>
-          }
-          <ProfileButton 
-          isCurrentUser={isCurrentUser} 
-          currentUser={props.currentUser}
-          getUserProfile={props.getUserProfile} 
-          editNameBlurb={editNameBlurb} 
-          followUnfollowUser={followUnfollowUser} 
-          setEditNameBlurb={setEditNameBlurb} 
-          updateProfile={updateProfile}/>
+            <UserCircleIcon className="w-28 h-auto ml-12 -mt-12 border -p rounded-full"/>}
+        {props.profileHandle === props.currentUser?.handle.slice(1) 
+        ? <EditProfile />
+        : <FollowButton currentUserHandle={props.currentUser?.handle} user={props.getUserProfile}/>
+      }
         </div>
         <div className="flex flex-col w-2/5 ml-12">
-          {editNameBlurb 
-          && <input placeholder="Profile Picture html" value={newProfilePic} onChange={(e) => setNewProfilePic(e.target.value)} className="my-2 border border-black"/>
-          }
-        {editNameBlurb === true ?
-          <input 
-          value={newName} 
-          onChange={(e) => setNewName(e.target.value)}
-          className="font-bold text-xl border border-black"/>:
           <h3 className="font-bold text-xl">
             {props.getUserProfile?.name}
-          </h3>}
+          </h3>
           <p className="text-gray-600 text-sm">
             {props.getUserProfile?.handle}
           </p>
-          {editNameBlurb === true ?
-          <input value={newBlurb} onChange={(e) => setNewBlurb(e.target.value)} className="my-2 border border-black"/> :
           <p className="my-2">
             {props.getUserProfile?.blurb}
-          </p>}
+          </p>
           <div className="flex flex-row text-gray-600">
             <CalendarIcon className="w-6 h-auto -ml-1" />
             <p className="ml-1">

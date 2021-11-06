@@ -60,8 +60,8 @@ export const Profile = (props: {currentUser: User | undefined}) => {
   }
 
   useEffect(() => {
-    if (document.location.href.includes('media')) {
-      setTweetFilter('media')
+    if (document.location.href.includes('retweets')) {
+      setTweetFilter('retweets')
     }
   }, [])
 
@@ -78,6 +78,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
       <ProfileHeader getUserProfile={dataProfileData?.getUserProfile}/>
       <ProfileDetails 
         getUserProfile={dataProfileData?.getUserProfile}
+        profileHandle={userHandle}
         currentUser={props.currentUser && props.currentUser}
         updatePage={updatePage}
       />

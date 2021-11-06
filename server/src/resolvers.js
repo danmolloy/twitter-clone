@@ -37,7 +37,11 @@ module.exports = {
               },
             }
           },
-          notifications: true,
+          notifications: {
+            orderBy: {
+              time: "desc"
+            }
+          },
           chats: {
             select: {
               content: {
@@ -323,7 +327,8 @@ module.exports = {
                 sentFromUser: context.user.userHandle,
                 tweetId: postID,
                 text: `${context.user.userHandle} liked your tweet: ${getPost.content}`,
-                notifiedUserHandle: getPost.authorHandle
+                notifiedUserHandle: getPost.authorHandle,
+                time: String(Date.now()).slice(0, -3)
               }
             })
             return updatedPost, newNotification
@@ -380,6 +385,15 @@ module.exports = {
                 }
               }
             })
+            const newNotification = await context.prisma.notification.create({
+              data: {
+                sentFromUser: context.user.userHandle,
+                tweetId: postID,
+                text: `${context.user.userHandle} retweeted your tweet: "${getPost.content}"`,
+                notifiedUserHandle: getPost.authorHandle,
+                time: String(Date.now()).slice(0, -3)
+              }
+            })
             return updatedPost
           } else if (getPost && getPost.retweets.filter(e => e.handle === handle).length === 1) {
             const updatedPost = await context.prisma.post.update({
@@ -419,12 +433,12 @@ module.exports = {
           return `Error! ${e}`
         }
       },
-      editProfile: async(_, {userName, handle, blurb, profilePic}, context) => {
+      editProfile: async(_, {userName, blurb, profilePic}, context) => {
   
         try {
           const updateUser = await context.prisma.user.update({
             where: {
-              handle: handle
+              handle: context.user.userHandle
             },
             data: {
               name: userName,
@@ -463,6 +477,14 @@ module.exports = {
                   handle: currentUserHandle
                 }
               }
+            }
+          })
+          const newNotification = await context.prisma.notification.create({
+            data: {
+              sentFromUser: context.user.userHandle,
+              text: `${context.user.userHandle} has started following you.`,
+              notifiedUserHandle: followHandle,
+              time: String(Date.now()).slice(0, -3)
             }
           })
           return followUser
@@ -640,6 +662,13 @@ module.exports = {
         return readNotifications
       },
       newComment: async (_, args, context) => {
+
+        const getPost = await context.prisma.post.findUnique({
+          where: {
+            id: args.postId
+          }
+        })
+
         const newComment = await context.prisma.comment.create({
           data: {
             authorHandle: context.user.userHandle,
@@ -648,8 +677,17 @@ module.exports = {
             postId: args.postId
           }
         })
+        const newNotification = await context.prisma.notification.create({
+          data: {
+            sentFromUser: context.user.userHandle,
+            tweetId: args.postId,
+            text: `${context.user.userHandle} commented on your tweet: ${context.user.userHandle}: "${args.text}"`,
+            notifiedUserHandle: getPost.authorHandle,
+            time: String(Date.now()).slice(0, -3)
+          }
+        })
         try {
-          return newComment
+          return newComment, newNotification
         }
         catch(e) {
           console.log(e)
