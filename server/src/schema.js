@@ -1,30 +1,35 @@
 const {gql} = require('apollo-server')
-
 const typeDefs = gql`
+
   type Query {
+    getAllHandles: [User]
     currentUser: User
-    followsTweets(handle: String!): [Post]
+    getAllUsers: [User]
+    followsTweets: [Post]
     getUserProfile(handle: String!): User
     getPost(postID: String): Post
-    loggedInUser: User
-    getAllUsers: [User]
     getChats: [Chat]
     getChatById(chatId: String!): Chat
+
   }
 
   type Mutation {
-    writePost(content: String, authorHandle: String): Post
-    likePost(handle: String, postID: String): Post
-    retweetPost(handle: String, postID: String): Post
+    writePost(content: String): Post
+    likePost(postID: String): Post
+    retweetPost(postID: String): Post
     deletePost(postId: String): Post
-    followUnfollowUser(followHandle: String, currentUserHandle: String): User
+
+    followUnfollowUser(followHandle: String): User
     editProfile(handle: String, userName: String, blurb: String, profilePic: String): User
+  
     signUp(handle: String!, password: String!, name: String!): AuthPayload
     login(handle: String!, password: String!): AuthPayload
     deleteUser: User
+
     newMessage(content: String!, chatId: String!): Message
     readMessages(chatId: String!): BatchPayload
     createOrGetChat(handle: String!): Chat
+
     readNotifications: BatchPayload
     newComment(postId: String!, text: String!): Comment
   }
@@ -32,6 +37,9 @@ const typeDefs = gql`
   type AuthPayload {
     token: String
     user: User
+    newNotification: Notification
+    newChat: Chat
+    newMessage: Message
   }
 
   type User {
@@ -53,23 +61,23 @@ const typeDefs = gql`
 
   type Post {
     id: String!
-    content: String!
-    postDate: String!
-    author: User!
-    authorHandle: String!
+    content: String
+    postDate: String
+    author: User
+    authorHandle: String
     likes: [User]
     retweets: [User]
     comments: [Comment]
   }
 
   type Comment {
-    commentId: String!
-    post: Post!
-    author: User!
-    postId: String!
-    authorHandle: String!
-    time: String!
-    text: String!
+    commentId: String
+    post: Post
+    author: User
+    postId: String
+    authorHandle: String
+    time: String
+    text: String
   }
 
 
@@ -77,17 +85,19 @@ const typeDefs = gql`
     id: String!
     content: [Message]
     users: [User]
+    lastMessageTime: String
   }
 
+
   type Message {
-    chat: Chat!
-    chatId: String!
-    messageId: String!
+    chat: Chat
+    chatId: String
+    messageId: String
     time: String! 
     author: User
-    authorHandle: String!
-    messageText: String!
-    read: Boolean!
+    authorHandle: String
+    messageText: String
+    read: Boolean
   }
 
   type BatchPayload {

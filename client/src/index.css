@@ -31,7 +31,11 @@
 }
 
 .r-bar-article {
-  @apply hover:bg-gray-200 p-2 w-full;
+  @apply p-2 w-full;
+}
+
+.welcome-background {
+  background-image: linear-gradient(to bottom right, #ffffff, #1da1f2);
 }
 
 
@@ -104,4 +108,8 @@ svg path {
 
 .unfollow-btn {
   @apply font-bold border border-gray-300 rounded-full py-2 px-4 my-8 mr-8;
+}
+
+textarea {
+  resize: none
 }

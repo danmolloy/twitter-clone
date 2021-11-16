@@ -55,6 +55,7 @@ model Chat {
   id String @id @default(uuid())
   content Message[] @relation("Messages")
   users User[] @relation("Chats", references: [handle])
+  lastMessageTime String? 
 }
 
 model Message {
