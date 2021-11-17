@@ -8,7 +8,7 @@ import { setContext } from '@apollo/client/link/context';
 import { AUTH_TOKEN } from './constants';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000'
+  uri: 'https://twitr-clone.herokuapp.com/'
 });
 
 const authLink = setContext((_, { headers }) => {
