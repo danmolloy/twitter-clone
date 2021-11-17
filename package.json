@@ -1,6 +1,9 @@
 {
   "name": "twitter-clone",
   "version": "0.1.0",
+  "engines" : { 
+    "node" : "14.x"
+  },
   "scripts": {
     "postinstall": "yarn add --prefix server && yarn add --prefix client"
   }
