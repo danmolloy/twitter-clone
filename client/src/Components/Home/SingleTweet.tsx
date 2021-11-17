@@ -104,7 +104,7 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
       <div className="ml-3 flex flex-col w-full">
         <div className="flex flex-row w-full justify-between">
           <div className="flex flex-row">
-            <Link to={props.author && props.author.handle ? `/${props.author.handle.slice(1)}` : '/'} className="flex flex-row">
+            <Link id="user-profile-link" to={props.author && props.author.handle ? `/${props.author.handle.slice(1)}` : '/'} className="flex flex-row">
               <h3 className="font-bold hover:underline">{props.author && props.author.name}</h3>
               <h4 className="text-gray-500 ml-1">{props.author && props.author.handle}</h4>
             </Link>

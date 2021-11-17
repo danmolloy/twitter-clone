@@ -140,8 +140,34 @@ describe("SingleTweet component", () => {
   })
 
   it("retweets post and unretweets post", () => {})
+
   it("deletes post", () => {})
-  it("links to user's profile", () => {})
+
+  it("links to user's profile", async () => {
+    act(() => {
+      render(
+        <MockedProvider mocks={HomeMock} addTypename={false}>
+          <MemoryRouter>
+            <SingleTweet 
+            updatePage={() => jest.fn()}
+            tweet={HomeMock[0].result.data.followsTweets[0]} 
+            author={HomeMock[0].result.data.followsTweets[0].author}
+            currentUser={currentUser}/>
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    console.log(pretty(container.querySelector("#user-profile-link").innerHTML))
+    expect(document.location.pathname).toMatch(/\//)
+    fireEvent.click(container.querySelector("#user-profile-link"))
+    console.log(document.location.pathname)
+
+  })
 })
 
-describe("TweetComment component", () => {})
+describe("TweetComment component", () => {
+  
+})

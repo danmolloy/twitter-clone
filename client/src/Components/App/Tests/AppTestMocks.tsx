@@ -11,7 +11,6 @@ export interface Mock {
   error?: any
   result: {
     data: any
-    refetch?: any
   }
 }
 

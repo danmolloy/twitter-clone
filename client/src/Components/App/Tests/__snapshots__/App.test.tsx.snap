@@ -31,7 +31,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/ed\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/ed\\">
                     <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
@@ -62,7 +62,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/ed\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/ed\\">
                     <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
@@ -93,7 +93,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/ed\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/ed\\">
                     <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
@@ -124,7 +124,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/ed\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/ed\\">
                     <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
@@ -155,7 +155,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/danmolloy\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/danmolloy\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/danmolloy\\">
                     <h3 class=\\"font-bold hover:underline\\">Dan Molloy</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@danmolloy</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
@@ -186,7 +186,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/danmolloy\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/danmolloy\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/danmolloy\\">
                     <h3 class=\\"font-bold hover:underline\\">Dan Molloy</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@danmolloy</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
@@ -217,7 +217,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/danmolloy\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/danmolloy\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/danmolloy\\">
                     <h3 class=\\"font-bold hover:underline\\">Dan Molloy</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@danmolloy</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
@@ -248,7 +248,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/egg\\"><img src=\\"/eoghan.png\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/egg\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/egg\\">
                     <h3 class=\\"font-bold hover:underline\\">Eoghan</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@egg</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
@@ -279,7 +279,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/thebigfirkinband\\"><img src=\\"/eoghan.png\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/thebigfirkinband\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/thebigfirkinband\\">
                     <h3 class=\\"font-bold hover:underline\\">The Big Firkin Band</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@thebigfirkinband</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
@@ -310,7 +310,7 @@ exports[`App component App component fetches data and renders Home component aft
           <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/fizzlekelly\\"><img src=\\"/fiona.png\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
             <div class=\\"ml-3 flex flex-col w-full\\">
               <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-row\\"><a class=\\"flex flex-row\\" href=\\"/fizzlekelly\\">
+                <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/fizzlekelly\\">
                     <h3 class=\\"font-bold hover:underline\\">Fiona Kelly</h3>
                     <h4 class=\\"text-gray-500 ml-1\\">@fizzlekelly</h4>
                   </a><span class=\\"text-gray-500 ml-1\\">•</span>
