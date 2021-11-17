@@ -5,6 +5,6 @@
     "node" : "14.x"
   },
   "scripts": {
-    "postinstall": "yarn add --prefix server && yarn add --prefix client"
+    "postinstall": "cd server && yarn add && cd client && yarn add"
   }
 }
