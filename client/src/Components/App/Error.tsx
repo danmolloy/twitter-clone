@@ -15,11 +15,10 @@ export const Error = () => {
       <p className="text-gray-600">An error occurred. Please check your connection and try again.</p>
       <button className="tweet-btn py-1 flex flex-row" onClick={() => window.location.reload()}>
         <RefreshIcon className="h-6 w-auto"/>
-        <p className="font-semibold px-1">"Retry"</p>
+        <p className="font-semibold px-1">Retry</p>
       </button>
       <button className="tweet-btn py-1 flex flex-row" onClick={() => handleClick()}>
-        <RefreshIcon className="h-6 w-auto"/>
-        <p className="font-semibold px-1">"Sign in again"</p>
+        <p className="font-semibold px-1">Sign in again</p>
       </button>
     </div>
   )
