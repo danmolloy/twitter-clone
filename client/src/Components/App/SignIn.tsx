@@ -87,6 +87,16 @@ export const SignIn = () => {
     }
   }
 
+  const checkUser = () => {
+    if (data && data.getAllHandles.map((i: any) => 
+    i.handle.slice(1)).includes(handle)) {
+      login()
+    }
+    else {
+      alert("User not found.")
+    }
+  }
+
   return (
     <div className="welcome-background flex flex-col items-center border fixed w-full h-full">
       <div className="flex rounded shadow-md flex-col sm:self-start sm:ml-8 sm:ml-24 items-center mt-8 border bg-white z-10">
@@ -118,7 +128,7 @@ export const SignIn = () => {
         <button onClick={signUpForm ? () => {
           ValidateSignUp(name, handle)}
           : () => {
-            login()}
+            checkUser()}
           } className="tweet-btn shadow-md">Submit</button>
       </div>
       <button onClick={() => setSignUpForm(!signUpForm)} className="hover:underline twitter-blue py-2">{signUpForm ? "Already have an account?" : "Create an account"}</button>
