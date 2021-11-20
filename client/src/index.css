@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .side-icon {
-  @apply h-12 w-auto mx-8 sm:mx-2 rounded-full p-2 hover:bg-gray-200;
+  @apply h-10 sm:h-12 w-auto m-2 sm:mx-8 sm:mx-2 rounded-full sm:p-2 hover:bg-gray-200;
 }
 
 .lg-side-icon {
@@ -65,7 +65,7 @@ svg path {
 }
 
 .side-bar {
-  @apply self-end fixed flex flex-row sm:flex-col sm:mt-0 ml-0 w-full 
+  @apply self-end fixed flex flex-row justify-between sm:flex-col sm:mt-0 ml-0 w-full 
   sm:w-24 md:w-60 sm:h-screen border-t sm:border-t-0 sm:border-r 
   border-gray-200 md:items-start justify-center sm:justify-start items-center bg-white;
 }
@@ -103,11 +103,11 @@ svg path {
 }
 
 .follow-btn {
-  @apply font-bold bg-black text-white rounded-full py-2 px-4 my-8 mr-8;
+  @apply font-bold bg-black text-white rounded-full sm:py-2 py-1 sm:px-4 px-2 sm:my-8 sm:mr-8 my-2 mr-2;
 }
 
 .unfollow-btn {
-  @apply font-bold border border-gray-300 rounded-full py-2 px-4 my-8 mr-8;
+  @apply font-bold border border-gray-300 rounded-full sm:py-2 py-1 sm:px-4 px-2 sm:my-8 sm:mr-8 my-2 mr-2;
 }
 
 textarea {

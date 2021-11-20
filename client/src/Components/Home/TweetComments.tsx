@@ -43,17 +43,17 @@ export const TweetComments = (props: any) => {
   }
 
   return (
-    <div className="flex flex-col top-12 border bg-white fixed items-center justify-center h-auto w-auto rounded-lg shadow-md">
+    <div className="flex flex-col top-0 sm:top-12 border bg-white fixed items-center justify-center h-auto w-auto rounded-lg shadow-md">
       <div className="flex flex-row p-4 w-full border-b ">
         <img src={props.tweet.author.profilePic} className="w-14 h-auto rounded-full"/>
         <div className="ml-3 flex flex-col w-full">
           <div className="flex flex-row w-full justify-between">
             <div className="flex flex-row">
-              <div className="flex flex-row">
+              <div className="flex flex-row flex-wrap">
                 <h3 className="font-bold hover:underline">{props.tweet && props.tweet.author.name}</h3>
                 <h4 className="text-gray-500 ml-1">{props.tweet && props.tweet.author.handle}</h4>
               </div>
-              <span className="text-gray-500 ml-1">•</span>
+              <span className="sm:flex hidden text-gray-500 ml-1">•</span>
               <h4 className="text-gray-500 ml-1 hover:underline">{props.tweet && String(fromUnixTime(props.tweet.postDate)).slice(0, 15)}</h4>
             </div>
           </div>

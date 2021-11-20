@@ -48,7 +48,7 @@ export const ProfileDetails = (props: {
         : <FollowButton currentUserHandle={props.currentUser?.handle} user={props.getUserProfile}/>
       }
         </div>
-        <div className="flex flex-col w-2/5 ml-12">
+        <div className="flex flex-col w-4/5 sm:w-2/5 ml-12">
           <h3 className="font-bold text-xl">
             {props.getUserProfile?.name}
           </h3>

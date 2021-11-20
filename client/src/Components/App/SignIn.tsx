@@ -99,7 +99,10 @@ export const SignIn = () => {
 
   return (
     <div className="welcome-background flex flex-col items-center border fixed w-full h-full">
-      <div className="flex rounded shadow-md flex-col sm:self-start sm:ml-8 sm:ml-24 items-center mt-8 border bg-white z-10">
+      <div className="sm:hidden flex flex-row items-center">
+      <img src="/whiteTwitterLogo.png" className="w-8 h-auto"/>
+      </div>
+      <div className="flex rounded shadow-md flex-col sm:self-start sm:ml-8 sm:ml-24 items-center sm:mt-8 border bg-white z-10">
       <h2 className="text-lg font-semibold">{signUpForm ? "Sign Up" : "Sign In"}</h2>
       <div className="flex flex-col p-2 max-w-xs">
           {signUpForm &&
@@ -133,7 +136,7 @@ export const SignIn = () => {
       </div>
       <button onClick={() => setSignUpForm(!signUpForm)} className="hover:underline twitter-blue py-2">{signUpForm ? "Already have an account?" : "Create an account"}</button>
     </div>
-    <img src="/whiteTwitterLogo.png" className="sm:fixed w-1/2 sm:w-3/4 h-auto sm:justify-end sm:ml-24 sm:ml-48 md:mt-48 lg:mt-0"/>
+    <img src="/whiteTwitterLogo.png" className="hidden sm:flex sm:fixed w-1/2 sm:w-3/4 h-auto sm:justify-end sm:ml-24 sm:ml-48 md:mt-48 lg:mt-0"/>
     </div>
   )
 }

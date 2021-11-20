@@ -96,18 +96,6 @@ export const Sidebar = () => {
         <InboxIcon className="side-icon"/>
         <label htmlFor="messages-link" className="sidebar-text">Messages</label>
       </Link>
-      <Link id="profile-link" to={data ? `/${data.currentUser.handle.slice(1)}`: '/'} title="Profile" className="lg-side-icon">
-        <UserIcon className="side-icon hidden sm:flex"/>
-        <label htmlFor="profile-link" className="sidebar-text">Profile</label>
-      </Link>
-      <Link title="Sign out" id="sign-out-btn" className="lg-side-icon" to="/home" onClick={() => onSignOut()}>
-        <LogoutIcon className="side-icon hidden sm:flex" id="more-icon"/>
-        <label htmlFor="sign-out" className="sidebar-text">Sign Out</label>
-      </Link>
-      <Link title="Delete user" to="/home" className="lg-side-icon hover:bg-red-50" onClick={() => deleteUser()}>
-        <TrashIcon id="delete-icon" className="side-icon hidden sm:flex text-red-500 hover:bg-red-50"/>
-        <label htmlFor="delete-icon" className="sidebar-text text-red-500">Delete User</label>
-      </Link>
       <button className="sm:hidden lg-side-icon" title="User options" onClick={() => setShowUserOptions(!showUserOptions)} >
         {showUserOptions 
         && <UserOptions 
@@ -117,6 +105,18 @@ export const Sidebar = () => {
         close={() => setShowUserOptions(false)}/>}
         <img src={data && data.currentUser?.profilePic} className="side-icon rounded-full"/>
       </button>
+      <Link id="profile-link" to={data ? `/${data.currentUser.handle.slice(1)}`: '/'} title="Profile" className="hidden sm:flex lg-side-icon">
+        <UserIcon className="side-icon hidden sm:flex"/>
+        <label htmlFor="profile-link" className="sidebar-text">Profile</label>
+      </Link>
+      <Link title="Sign out" id="sign-out-btn" className="hidden sm:flex lg-side-icon" to="/home" onClick={() => onSignOut()}>
+        <LogoutIcon className="side-icon hidden sm:flex" id="more-icon"/>
+        <label htmlFor="sign-out" className="sidebar-text">Sign Out</label>
+      </Link>
+      <Link title="Delete user" to="/home" className="hidden sm:flex lg-side-icon hover:bg-red-50" onClick={() => deleteUser()}>
+        <TrashIcon id="delete-icon" className="side-icon hidden sm:flex text-red-500 hover:bg-red-50"/>
+        <label htmlFor="delete-icon" className="sidebar-text text-red-500">Delete User</label>
+      </Link>
     </div>
   )
 }

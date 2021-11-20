@@ -98,17 +98,17 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
       <div className="flex flex-row mt-4 w-full"> 
       <Link to={props.author && props.author.handle ? `/${props.author.handle.slice(1)}` : '/'}>
         {props.author && props.author.profilePic ? 
-        <img src={props.author && props.author.profilePic} className="w-14 h-auto ml-3 rounded-full"/>:
+        <img src={props.author && props.author.profilePic} className="w-14 h-auto mx-3 border border-red rounded-full"/>:
         <UserCircleIcon className="w-12 h-12 ml-3"/>}
       </Link>
       <div className="ml-3 flex flex-col w-full">
         <div className="flex flex-row w-full justify-between">
-          <div className="flex flex-row">
-            <Link id="user-profile-link" to={props.author && props.author.handle ? `/${props.author.handle.slice(1)}` : '/'} className="flex flex-row">
+          <div className="flex flex-col sm:flex-row ">
+            <Link id="user-profile-link" to={props.author && props.author.handle ? `/${props.author.handle.slice(1)}` : '/'} className="flex flex-row flex-wrap">
               <h3 className="font-bold hover:underline">{props.author && props.author.name}</h3>
               <h4 className="text-gray-500 ml-1">{props.author && props.author.handle}</h4>
             </Link>
-            <span className="text-gray-500 ml-1">•</span>
+            <span className="hidden sm:flex text-gray-500 ml-1">•</span>
             <h4 className="text-gray-500 ml-1 hover:underline">{props.tweet && String(fromUnixTime(props.tweet.postDate)).slice(0, 15)}</h4>
           </div>
           <div
