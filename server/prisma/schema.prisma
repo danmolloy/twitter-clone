@@ -20,8 +20,8 @@ model User {
   notifications Notification[] @relation("Notifications")
   writtenPosts  Post[]         @relation("WrittenPosts")
   chats         Chat[]         @relation("Chats")
-  User_B        User[]         @relation("Follows")
-  User_A        User[]         @relation("Follows")
+  follows       User[]         @relation("Follows")
+  followers     User[]         @relation("Follows")
   likedPosts    Post[]         @relation("LikedPosts")
   retweets      Post[]         @relation("RetweetedPosts")
 }
