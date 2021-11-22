@@ -8,74 +8,70 @@ datasource db {
 }
 
 model User {
-  name String
-  password String @default("password")
-  handle String @id 
-  blurb String @default("Click edit profile!")
-  joinDate String @default("21 Sept 2021") 
-  bgPic String @default("bgPic.jpg")
-  profilePic String @default("profilePic.jpg")
-
-  follows User[] @relation("Follows")
-  followers User[] @relation("Follows")
-
-  writtenPosts Post[] @relation("WrittenPosts")
-  likedPosts Post[] @relation("LikedPosts")
-  retweets Post[] @relation("RetweetedPosts")
-  comments Comment[]
-
-  chats Chat[] @relation("Chats", references: [id])
-  messages Message[] @relation("Sent Messages")
-
+  name          String
+  password      String         @default("password")
+  handle        String         @id
+  blurb         String         @default("Click edit profile!")
+  joinDate      String         @default("21 Sept 2021")
+  bgPic         String         @default("bgPic.jpg")
+  profilePic    String         @default("profilePic.jpg")
+  comments      Comment[]
+  messages      Message[]      @relation("Sent Messages")
   notifications Notification[] @relation("Notifications")
-  }
+  writtenPosts  Post[]         @relation("WrittenPosts")
+  chats         Chat[]         @relation("Chats")
+  User_B        User[]         @relation("Follows")
+  User_A        User[]         @relation("Follows")
+  likedPosts    Post[]         @relation("LikedPosts")
+  retweets      Post[]         @relation("RetweetedPosts")
+}
 
 model Post {
-  id String @id @default(uuid())
-  content String @default("Hello world")
-  postDate String @default("21 Sept 2021")
-  author User @relation("WrittenPosts", fields: [authorHandle], references: [handle])
+  id           String    @id @default(uuid())
+  content      String    @default("Hello world")
+  postDate     String    @default("21 Sept 2021")
   authorHandle String
-  likes User[] @relation("LikedPosts", references: [handle])
-  retweets User[] @relation("RetweetedPosts",references: [handle])
-  comments Comment[]
+  author       User      @relation("WrittenPosts", fields: [authorHandle], references: [handle])
+  comments     Comment[]
+  likes        User[]    @relation("LikedPosts")
+  retweets     User[]    @relation("RetweetedPosts")
 }
 
 model Comment {
-  commentId String @id @default(uuid())
-  post Post @relation(fields: [postId], references: [id])
-  author User @relation(fields: [authorHandle], references: [handle])
-  postId String 
+  commentId    String @id @default(uuid())
+  postId       String
   authorHandle String
-  time String
-  text String
+  time         String
+  text         String
+  author       User   @relation(fields: [authorHandle], references: [handle])
+  post         Post   @relation(fields: [postId], references: [id])
 }
 
 model Chat {
-  id String @id @default(uuid())
-  content Message[] @relation("Messages")
-  users User[] @relation("Chats", references: [handle])
-  lastMessageTime String? 
+  id              String    @id @default(uuid())
+  lastMessageTime String?
+  content         Message[] @relation("Messages")
+  users           User[]    @relation("Chats")
 }
 
 model Message {
-  chat Chat @relation("Messages", fields: [chatId], references: [id])
-  chatId String @default(uuid())
-  messageId String @id @default(uuid())
-  time String @default("21 Sept 2021")
-  author User @relation("Sent Messages", fields: [authorHandle], references: [handle])
+  chatId       String  @default(uuid())
+  messageId    String  @id @default(uuid())
+  time         String  @default("21 Sept 2021")
   authorHandle String
-  messageText String
-  read Boolean @default(false)
+  messageText  String
+  read         Boolean @default(false)
+  author       User    @relation("Sent Messages", fields: [authorHandle], references: [handle])
+  chat         Chat    @relation("Messages", fields: [chatId], references: [id])
 }
 
 model Notification {
-  id String @id @default(uuid())
-  text String 
-  tweetId String?
-  time String @default("1634217714")
+  id                 String  @id @default(uuid())
+  text               String
+  tweetId            String?
+  time               String  @default("1634217714")
   notifiedUserHandle String
-  notifiedUser User @relation("Notifications", fields: [notifiedUserHandle], references: [handle])
-  sentFromUser String
-  read Boolean @default(false)
+  sentFromUser       String
+  read               Boolean @default(false)
+  notifiedUser       User    @relation("Notifications", fields: [notifiedUserHandle], references: [handle])
 }
