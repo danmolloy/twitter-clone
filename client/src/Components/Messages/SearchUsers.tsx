@@ -3,7 +3,7 @@ import { XCircleIcon } from "@heroicons/react/outline";
 import { Error } from "../App/Error";
 import { Loading } from "../App/Loading";
 
-const GET_FOLLOWING = gql`
+export const GET_FOLLOWING = gql`
   query Query {
     currentUser {
       follows {
@@ -15,7 +15,7 @@ const GET_FOLLOWING = gql`
   }
 `;
 
-const GET_CREATE_CHAT = gql`
+export const GET_CREATE_CHAT = gql`
   mutation Mutation($handle: String!) {
     createOrGetChat(handle: $handle) {
       id

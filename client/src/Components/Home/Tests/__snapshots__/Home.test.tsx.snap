@@ -123,3 +123,5 @@ exports[`SingleTweet component renders without error 1`] = `
     </button></div>
 </div>"
 `;
+
+exports[`TweetComment component renders without error 1`] = `"Fiona Kelly@fizzlekelly•Tue Sep 28 2021I play the flute!ReplyEdward Parr@ed•Thu Nov 11 2021Can I please have lessons?"`;

@@ -4,7 +4,7 @@ import { Error } from "../App/Error";
 import { SingleNotification } from "./SingleNotification";
 import { useEffect } from "react";
 
-const GET_NOTIFICATIONS = gql`
+export const GET_NOTIFICATIONS = gql`
   query Query {
     currentUser {
       notifications {
@@ -19,7 +19,7 @@ const GET_NOTIFICATIONS = gql`
   }
 `;
 
-const READ_NOTIFICATIONS = gql`
+export const READ_NOTIFICATIONS = gql`
   mutation Mutation {
     readNotifications {
       count

@@ -7,7 +7,7 @@ import { User } from "../../types";
 import { ChatPreview } from "./ChatPreview";
 import { SearchUsers } from "./SearchUsers";
 
-const GET_CHATS = gql`
+export const GET_CHATS = gql`
   query Query {
     getChats {
       id

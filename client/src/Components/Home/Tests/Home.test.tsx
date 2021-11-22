@@ -11,6 +11,7 @@ import { userMock } from '../../App/Tests/AppTestMocks'
 import { HomeFeed } from "../HomeFeed";
 import { SingleTweet } from "../SingleTweet";
 import { fireEvent } from "@testing-library/dom";
+import { TweetComments } from "../TweetComments";
 
 let container: any = null
 
@@ -112,37 +113,6 @@ describe("SingleTweet component", () => {
 
   })
 
-  it("likes tweet and unlikes tweet in home feed", async () => {
-    act(() => {
-      render(
-        <MockedProvider mocks={HomeMock} addTypename={false}>
-          <MemoryRouter>
-            <SingleTweet 
-            updatePage={() => jest.fn()}
-            tweet={HomeMock[0].result.data.followsTweets[0]} 
-            author={HomeMock[0].result.data.followsTweets[0].author}
-            currentUser={currentUser}/>
-          </MemoryRouter>
-        </MockedProvider>, container
-      )
-    })
-
-    await act(async() => {
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
-    expect(container.querySelector("#like-count").textContent).toMatch(/1/)
-    fireEvent.click(container.querySelector("#like-button"))
-    await act(async() => {
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
-    expect(container.querySelector("#like-count").textContent).toMatch(/2/)
-
-  })
-
-  it("retweets post and unretweets post in home feed", () => {})
-
-  it("deletes post in home feed", () => {})
-
   it("links to user's profile", async () => {
     act(() => {
       render(
@@ -169,5 +139,21 @@ describe("SingleTweet component", () => {
 })
 
 describe("TweetComment component", () => {
-  
+  it("renders without error", async () => {
+    act(() => {
+      render(
+        <MockedProvider mocks={HomeMock}>
+          <MemoryRouter>
+            <TweetComments tweet={HomeMock[0].result.data.followsTweets[0]}/>
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    
+    expect(pretty(container.textContent)).toMatchSnapshot();
+  })
 })

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import { GET_USER } from '../App/Sidebar'
 
 
-const GET_CHAT_BY_ID = gql`
+export const GET_CHAT_BY_ID = gql`
   query Query($chatId: String!) {
     getChatById(chatId: $chatId) {
       id
@@ -31,7 +31,7 @@ const GET_CHAT_BY_ID = gql`
   }
 `;
 
-const READ_MESSAGE = gql`
+export const READ_MESSAGE = gql`
   mutation Mutation($chatId: String!) {
     readMessages(chatId: $chatId) {
       count
@@ -39,7 +39,7 @@ const READ_MESSAGE = gql`
   }
 `;
 
-const NEW_MESSAGE = gql`
+export const NEW_MESSAGE = gql`
   mutation Mutation($content: String!, $chatId: String!) {
     newMessage(content: $content, chatId: $chatId) {
       author {
