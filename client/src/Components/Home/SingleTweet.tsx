@@ -97,8 +97,8 @@ export const SingleTweet = (props: {author: User | undefined, currentUser: User 
       {showComments && <TweetComments currentUser={props.currentUser} tweet={props.tweet} close={() => setShowComments(false)}/>}
       <div className="flex flex-row mt-4 w-full"> 
       <Link to={props.author && props.author.handle ? `/${props.author.handle.slice(1)}` : '/'}>
-        {props.author && props.author.profilePic ? 
-        <img src={props.author && props.author.profilePic} className="w-14 h-auto mx-3 border border-red rounded-full"/>:
+        {props.author && props.author.profilePic ?
+        <img src={props.author && props.author.profilePic} className="w-14 h-auto mx-3 rounded-full"/>:
         <UserCircleIcon className="w-12 h-12 ml-3"/>}
       </Link>
       <div className="ml-3 flex flex-col w-full">

@@ -20,13 +20,13 @@ exports[`Home component renders without error 1`] = `
   </div>
   <div class=\\"h-screen w-full flex flex-col mt-0 border-r\\">
     <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-      <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/fizzlekelly\\"><img src=\\"/fiona.png\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
+      <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/fizzlekelly\\"><img src=\\"/fiona.png\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
         <div class=\\"ml-3 flex flex-col w-full\\">
           <div class=\\"flex flex-row w-full justify-between\\">
-            <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/fizzlekelly\\">
+            <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/fizzlekelly\\">
                 <h3 class=\\"font-bold hover:underline\\">Fiona Kelly</h3>
                 <h4 class=\\"text-gray-500 ml-1\\">@fizzlekelly</h4>
-              </a><span class=\\"text-gray-500 ml-1\\">•</span>
+              </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
               <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
             </div>
             <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
@@ -57,13 +57,13 @@ exports[`Home component renders without error 1`] = `
 exports[`HomeFeed component renders without error 1`] = `
 "<div class=\\"h-screen w-full flex flex-col mt-0 border-r\\">
   <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-    <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/fizzlekelly\\"><img src=\\"/fiona.png\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
+    <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/fizzlekelly\\"><img src=\\"/fiona.png\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
       <div class=\\"ml-3 flex flex-col w-full\\">
         <div class=\\"flex flex-row w-full justify-between\\">
-          <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/fizzlekelly\\">
+          <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/fizzlekelly\\">
               <h3 class=\\"font-bold hover:underline\\">Fiona Kelly</h3>
               <h4 class=\\"text-gray-500 ml-1\\">@fizzlekelly</h4>
-            </a><span class=\\"text-gray-500 ml-1\\">•</span>
+            </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
             <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
           </div>
           <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
@@ -92,13 +92,13 @@ exports[`HomeFeed component renders without error 1`] = `
 
 exports[`SingleTweet component renders without error 1`] = `
 "<div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-  <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/fizzlekelly\\"><img src=\\"/fiona.png\\" class=\\"w-14 h-auto ml-3 rounded-full\\"></a>
+  <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/fizzlekelly\\"><img src=\\"/fiona.png\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
     <div class=\\"ml-3 flex flex-col w-full\\">
       <div class=\\"flex flex-row w-full justify-between\\">
-        <div class=\\"flex flex-row\\"><a id=\\"user-profile-link\\" class=\\"flex flex-row\\" href=\\"/fizzlekelly\\">
+        <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/fizzlekelly\\">
             <h3 class=\\"font-bold hover:underline\\">Fiona Kelly</h3>
             <h4 class=\\"text-gray-500 ml-1\\">@fizzlekelly</h4>
-          </a><span class=\\"text-gray-500 ml-1\\">•</span>
+          </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
           <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
         </div>
         <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>

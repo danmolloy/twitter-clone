@@ -5,7 +5,7 @@ export const UserOptions = (props: any) => {
 
   
   return (
-    <div className="flex flex-col items-start fixed bg-white mb-40 -ml-20 border z-20">
+    <div className="flex flex-col items-start fixed bg-white border z-20 bottom-4 right-4">
       <button onClick={() => props.close()} className="self-end" title="Hide Menu">
           <XCircleIcon className="w-10 p-1 h-auto text-red-500 hover:bg-red-50 rounded-full mr-2"/>
         </button>

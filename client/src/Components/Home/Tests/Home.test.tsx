@@ -112,7 +112,7 @@ describe("SingleTweet component", () => {
 
   })
 
-  it("likes tweet and unlikes tweet", async () => {
+  it("likes tweet and unlikes tweet in home feed", async () => {
     act(() => {
       render(
         <MockedProvider mocks={HomeMock} addTypename={false}>
@@ -139,9 +139,9 @@ describe("SingleTweet component", () => {
 
   })
 
-  it("retweets post and unretweets post", () => {})
+  it("retweets post and unretweets post in home feed", () => {})
 
-  it("deletes post", () => {})
+  it("deletes post in home feed", () => {})
 
   it("links to user's profile", async () => {
     act(() => {

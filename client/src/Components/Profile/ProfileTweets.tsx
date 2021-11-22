@@ -47,18 +47,33 @@ export const ProfileTweets = (props: {
       </div>}
       {props.getUserProfile?.handle === props.currentUser?.handle 
       && props.getUserProfile?.writtenPosts.length === 0 
-      && props.tweetFilter === "tweets" ?
-      <div className="mt-4">
+      && props.tweetFilter === "tweets" 
+      ? <div className="mt-4">
         <h3 className="text-xl font-bold">You haven't posted any tweets.</h3>
         <p>When you do, they'll appear here.</p> 
       </div>
       : props.getUserProfile?.handle === props.currentUser?.handle 
-      && props.getUserProfile?.writtenPosts.length === 0 
+      && props.getUserProfile?.retweets.length === 0 
       && props.tweetFilter === "retweets" ?
       <div className="mt-4">
         <h3 className="text-xl font-bold">You haven't retweeted any tweets.</h3>
         <p>When you do, they'll appear here.</p> 
-      </div> : null
+      </div> 
+      : props.getUserProfile?.handle !== props.currentUser?.handle
+      && props.getUserProfile?.writtenPosts.length === 0 
+      && props.tweetFilter === "tweets" 
+      ? <div className="mt-4">
+          <h3 className="text-xl font-bold">This user hasn't posted any tweets.</h3>
+          <p>When they do, they'll appear here.</p> 
+        </div>
+      : props.getUserProfile?.handle !== props.currentUser?.handle 
+      && props.getUserProfile?.retweets.length === 0 
+      && props.tweetFilter === "retweets" ?
+        <div className="mt-4">
+          <h3 className="text-xl font-bold">This user hasn't retweeted any posts.</h3>
+          <p>When they do, they'll appear here.</p> 
+        </div>
+      : null
       }
     </div>
   )
