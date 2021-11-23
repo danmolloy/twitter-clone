@@ -332,7 +332,7 @@ const secondMessage = await context.prisma.message.create({
         chatId: newChat.id,
         time: String(Date.now()).slice(0, -3),
         authorHandle: "@danmolloy",
-        messageText: `Once finished, either sign out or delete your account. Upon delete, all trace of you will be erased. Cheers, Dan`
+        messageText: `Once finished, you can sign out. Soon afterwards your account will be automatically deleted. Cheers, Dan`
         }
       })
 
