@@ -31,9 +31,6 @@ export const ComposeTweet = (props: {currentUser: User | undefined}) => {
       .then(props.refreshTweets)
   }
 
-  const iconAlert = () => {
-    alert("This feature is not yet implemented.")
-  }
 
   if (loading) return <p>'Posting..'</p>;
 
@@ -57,7 +54,7 @@ export const ComposeTweet = (props: {currentUser: User | undefined}) => {
       </div>
       {content && 
       <div className="flex flex-row ml-16 border-b py-2">
-        <div className="hover:bg-blue-50 flex flex-row items-center px-2 rounded-full" onClick={() => iconAlert()}>
+        <div className="flex flex-row items-center px-2 rounded-full">
           <BookOpenIcon className="twitter-blue h-6 w-auto"/>
           <p className="twitter-blue text-sm font-bold ml-1">{140 - content.length} / 140</p>
         </div>

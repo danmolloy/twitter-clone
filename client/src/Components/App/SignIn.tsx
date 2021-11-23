@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useQuery, useMutation, gql } from '@apollo/client'
 import { AUTH_TOKEN } from "../../constants";
 import { Redirect, useHistory } from "react-router-dom";
+import { UserHandles } from "../../types";
 
 
 const USER_HANDLES = gql`
@@ -71,7 +72,7 @@ export const SignIn = () => {
   })
 
   const ValidateSignUp = (fullName: string, userName: string) => {
-    if (data && data.getAllHandles.map((i: any) => 
+    if (data && data.getAllHandles.map((i: UserHandles) => 
       i.handle.slice(1)).includes(userName) ) {
       return alert("Username is already taken. Please try another name.")
       }
@@ -88,7 +89,7 @@ export const SignIn = () => {
   }
 
   const checkUser = () => {
-    if (data && data.getAllHandles.map((i: any) => 
+    if (data && data.getAllHandles.map((i: UserHandles) => 
     i.handle.slice(1)).includes(handle)) {
       login()
     }

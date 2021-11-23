@@ -1,7 +1,9 @@
-export const ChatMessage = (props: any) => {
+import { Message, User } from "../../types"
+
+export const ChatMessage = (props: {message: Message, currentUser: User | undefined}) => {
   return (
     <>
-    {props.currentUser.handle === props.message.authorHandle 
+    {props.currentUser?.handle === props.message.authorHandle 
     ? <div className="flex flex-row m-1 justify-end">
     <div 
       className="py-1 px-2 m-4 max-w-xs rounded-md text-center bg-twitter-blue text-white">

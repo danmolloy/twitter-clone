@@ -31,17 +31,16 @@ export const FOLLOW_UNFOLLOW = gql`
 export const ProfileDetails = (props: {
   getUserProfile: User | undefined,
   currentUser: User | undefined,
-  updatePage: any,
   profileHandle: string
 }) => {
 
 
   return (
     <div id="profile-details" className="w-full h-3/5 ">
-        <img id="profile-banner" className="w-full h-48" src={`/${props.getUserProfile?.bgPic}`}/>
+        <img id="profile-banner" alt="Default profile background photo" className="w-full h-48" src={`/${props.getUserProfile?.bgPic}`}/>
         <div className="flex flex-row justify-between">
           {props.getUserProfile?.profilePic ?
-            <img src={props.getUserProfile.profilePic} className="rounded-full w-36 h-auto ml-4 -mt-12 -p border-4 border-white"/> :
+            <img src={props.getUserProfile.profilePic} alt={`Profile picture of ${props.getUserProfile.name}`} className="rounded-full w-36 h-auto ml-4 -mt-12 -p border-4 border-white"/> :
             <UserCircleIcon className="w-28 h-auto ml-12 -mt-12 border -p rounded-full"/>}
         {props.profileHandle === props.currentUser?.handle.slice(1) 
         ? <EditProfile />

@@ -1,6 +1,7 @@
 import { XCircleIcon } from "@heroicons/react/outline"
 import { useState } from "react"
-import { User } from "../../types"
+import { User, FollowingUser } from "../../types"
+
 
 export const ProfileFollowers = (props: {getUserProfile: User | undefined}) => {
   const [showFollowing, setShowFollowing] = useState(false)
@@ -27,7 +28,7 @@ export const ProfileFollowers = (props: {getUserProfile: User | undefined}) => {
         </div>        
         {props.getUserProfile?.follows.map((user: any) => {
           return <button key={user.handle} onClick={() => handleClick(user.handle)} className=" p-2 border-b w-full hover:bg-gray-100 flex flex-row items-center">
-            <img src={user.profilePic} className="w-8 h-auto rounded-full"/>
+            <img src={user.profilePic} alt={`Profile picture of ${user.name}`} className="w-8 h-auto rounded-full"/>
               <p className="ml-2">{user.name}</p>
             </button>
         })}
@@ -63,7 +64,7 @@ export const ProfileFollowers = (props: {getUserProfile: User | undefined}) => {
       </div>}
       <button>
         <span className="font-bold text-black ml-2">
-          {props.getUserProfile &&props.getUserProfile.followers ?
+          {props.getUserProfile && props.getUserProfile.followers ?
           props.getUserProfile.followers.length : 0}
         </span> followers
       </button>

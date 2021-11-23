@@ -13,6 +13,7 @@ import { Error } from './Error'
 import { Loading } from './Loading'
 import { useState } from 'react'
 import { UserOptions } from './UserOptions'
+import { Message, Notification } from '../../types'
 
 export const DELETE_USER = gql`
   mutation SignUpMutation {
@@ -46,14 +47,6 @@ export const Sidebar = () => {
 
   const { loading, error, data } = useQuery(GET_USER)
 
-  const [deleteUser] = useMutation(DELETE_USER, {
-    onCompleted: ({ deleteUser }) => {
-      alert('User deleted!')
-      localStorage.removeItem(AUTH_TOKEN);
-      window.location.reload();
-    }
-  })
-
   const onSignOut = () => {
     localStorage.removeItem(AUTH_TOKEN)
     window.location.reload()
@@ -83,7 +76,7 @@ export const Sidebar = () => {
       </Link>
       <Link to="/notifications" title="Notifications" className="lg-side-icon" id="notifications-link">
       {data && data.currentUser.notifications.map(
-        (i: any) => i.read).includes(false) 
+        (i: Notification) => i.read).includes(false) 
       && <div className="bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0" />}
         <BellIcon className="side-icon"/>
         <label htmlFor="notifications-link" className="sidebar-text">Notifications</label>
@@ -91,7 +84,7 @@ export const Sidebar = () => {
       <Link to="/messages" title="Messages" className="lg-side-icon">
       {data && data.currentUser.chats[0] !== undefined
       && data.currentUser.chats[0].content.filter(
-        (i:any) => i.read === false && i.authorHandle !== data.currentUser.handle).length > 0
+        (i:Message) => i.read === false && i.authorHandle !== data.currentUser.handle).length > 0
         && <div className="bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0" />}
         <InboxIcon className="side-icon"/>
         <label htmlFor="messages-link" className="sidebar-text">Messages</label>
@@ -101,7 +94,6 @@ export const Sidebar = () => {
         && <UserOptions 
         currentUser={data && data.currentUser} 
         onSignOut={() => onSignOut()} 
-        deleteUser={() => deleteUser()}
         close={() => setShowUserOptions(false)}/>}
         <img src={data && data.currentUser?.profilePic} className="side-icon rounded-full"/>
       </button>
@@ -112,10 +104,6 @@ export const Sidebar = () => {
       <Link title="Sign out" id="sign-out-btn" className="hidden sm:flex lg-side-icon" to="/home" onClick={() => onSignOut()}>
         <LogoutIcon className="side-icon hidden sm:flex" id="more-icon"/>
         <label htmlFor="sign-out" className="sidebar-text">Sign Out</label>
-      </Link>
-      <Link title="Delete user" to="/home" className="hidden sm:flex lg-side-icon hover:bg-red-50" onClick={() => deleteUser()}>
-        <TrashIcon id="delete-icon" className="side-icon hidden sm:flex text-red-500 hover:bg-red-50"/>
-        <label htmlFor="delete-icon" className="sidebar-text text-red-500">Delete User</label>
       </Link>
     </div>
   )

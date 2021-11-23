@@ -88,6 +88,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
   }
 
   if (errorProfileData) {
+    console.log(errorProfileData)
     return <Error />
   }
 
@@ -98,13 +99,12 @@ export const Profile = (props: {currentUser: User | undefined}) => {
         getUserProfile={dataProfileData?.getUserProfile}
         profileHandle={userHandle}
         currentUser={props.currentUser && props.currentUser}
-        updatePage={updatePage}
       />
       <ProfileTweets 
         getUserProfile={dataProfileData && dataProfileData.getUserProfile} 
         tweetFilter={tweetFilter} 
         setTweetFilter={setTweetFilter}
-        updatePage={updatePage}
+        updatePage={() => updatePage()}
         currentUser={props.currentUser && props.currentUser} 
       />
     </div>

@@ -6,6 +6,7 @@ import { Error } from "../App/Error"
 import { ChatMessage } from "./ChatMessage"
 import { useEffect, useState } from "react"
 import { GET_USER } from '../App/Sidebar'
+import { Author, User } from "../../types"
 
 
 export const GET_CHAT_BY_ID = gql`
@@ -54,14 +55,14 @@ export const NEW_MESSAGE = gql`
   }
 `;
 
-export const Chat = (props: any) => {
+export const Chat = (props: {currentUser: User | undefined}) => {
   const [newMessage, setNewMessage] = useState("")
   let { chatId } = useParams<{chatId: string}>()
 
   let history = useHistory();
 
   function handleLink() {
-    history.push(`/${data && data.getChatById.users.filter((i: any) => i.handle !== props.currentUser.handle)[0].handle.slice(1)}`);
+    history.push(`/${data && data.getChatById.users.filter((i: Author) => i.handle !== props.currentUser?.handle)[0].handle.slice(1)}`);
   }
   const { loading, error, data } = useQuery(GET_CHAT_BY_ID, {variables: { chatId: chatId}})
   const [sendMessage] = useMutation(NEW_MESSAGE, {variables: {
@@ -106,9 +107,9 @@ export const Chat = (props: any) => {
         <ArrowLeftIcon className="w-10 hover:bg-gray-100 rounded p-1"/>
         </Link>
         <button className="flex flex-row items-center hover:bg-gray-100 rounded justify-center" onClick={() => handleLink()}>
-          <img src={data && `${data.getChatById.users.filter((i: any) => i.handle !== props.currentUser.handle)[0].profilePic}`} className="rounded-full w-12 h-12 ml-4" />
+          <img src={data && `${data.getChatById.users.filter((i: any) => i.handle !== props.currentUser?.handle)[0].profilePic}`} className="rounded-full w-12 h-12 ml-4" />
           <h3 className="mx-4 font-semibold">
-          { data && data.getChatById.users.map((i: any) => i.name !== props.currentUser.name && i.name)}
+          { data && data.getChatById.users.map((i: any) => i.name !== props.currentUser?.name && i.name)}
           </h3>
         </button>
       </div>

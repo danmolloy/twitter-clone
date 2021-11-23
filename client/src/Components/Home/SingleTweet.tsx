@@ -43,7 +43,10 @@ export const DELETE_POST = gql`
 `
 
 
-export const SingleTweet = (props: {author: User | undefined, currentUser: User | undefined, tweet: Post |undefined, updatePage: any}) => {
+export const SingleTweet = (props: {
+  author: User | undefined, 
+  currentUser: User | undefined, 
+  tweet: Post |undefined, updatePage: any}) => {
   const [showMenu, setShowMenu] = useState(false)
   const [showComments, setShowComments] = useState(false)
  

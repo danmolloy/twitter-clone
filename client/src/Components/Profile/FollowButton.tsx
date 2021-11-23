@@ -1,6 +1,8 @@
 import { gql, useMutation } from '@apollo/client'
 import { ALL_USERS } from '../Explore/Explore'
 import { GETUSER } from './Profile'
+import { ExploreUser, User } from '../../types'
+import { UserHandles } from '../../types'
 
 export const FOLLOW_UNFOLLOW = gql`
   mutation Mutation($followHandle: String) {
@@ -14,7 +16,7 @@ export const FOLLOW_UNFOLLOW = gql`
 `;
 
 export const FollowButton = (props: {
-    user: any,
+    user: ExploreUser | User | undefined,
     currentUserHandle: string | undefined,
   }) => {
   const [followUnfollow, {data, loading, error}] = useMutation(FOLLOW_UNFOLLOW)
@@ -38,9 +40,10 @@ export const FollowButton = (props: {
 
   return (
     <div>
-      {props.user?.followers.filter((i: any) => i.handle === props.currentUserHandle).length ? 
+      {props.user?.followers.filter((i: UserHandles) => i.handle === props.currentUserHandle).length ? 
       <button className="unfollow-btn" onClick={() => followUnfollowUser()}>Unfollow</button>
       : <button className="follow-btn" onClick={() => followUnfollowUser()}>Follow</button>}
+      {data && JSON.stringify(data)}
     </div>
   )
 }

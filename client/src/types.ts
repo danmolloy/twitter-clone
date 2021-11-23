@@ -1,4 +1,3 @@
-// App, Home, Profile etc
 
 export interface User {
   name: string;
@@ -10,12 +9,43 @@ export interface User {
   follows: UserHandles[];
   followers: UserHandles[];
   writtenPosts: Post[];
-  chats: any
-  notifications: any
-  retweets: any
+  chats: Chat[]
+  notifications: Notification[]
+  retweets: Post[]
 }
 
+export interface Notification {
+  id: string;
+  text: string;
+  sentFromUser: string;
+  read: boolean;
+  tweetId?: string;
+  time: string;
+}
 
+export interface Message {
+  chat: Chat;
+  chatId: string;
+  messageId: string;
+  time: string;
+  author: User;
+  authorHandle: string;
+  messageText: string;
+  read: boolean;
+}
+
+export interface Chat {
+    id: string;
+    content: Message[];
+    users: User[];
+    lastMessageTime: string;
+}
+
+export interface FollowingUser {
+  handle: string;
+  name: string;
+  profilePic: string;
+}
 
 export interface ExploreUser {
   name: string;
@@ -54,33 +84,25 @@ export interface Post {
   likes: UserHandles[]
   retweets: UserHandles[]
   author: User
-  comments? : any
+  comments? : Comment[]
 }
 
+export interface Comment {
+  commentId: string;
+  post: Post;
+  author: User;
+  postId: string;
+  authorHandle: string;
+  time: string;
+  text: string;
+}
+
+export interface HeaderType {
+  pageTitle: string;
+  blurb: string;
+}
 
 export interface UserHandles {
   handle: string;
 }
 
-// Lists
-
-export interface ListAuthor {
-  name: string
-  profilePic: string
-}
-
-export interface List {
-  id: string
-  name: string
-  picture: string
-  description: string
-  private: boolean
-  authorHandle: string
-  author: ListAuthor
-  members: UserHandles[]
-  followers: UserHandles[]
-}
-
-export interface ListData {
-  getAuthoredLists: List[]
-}

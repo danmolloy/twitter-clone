@@ -6,7 +6,7 @@ export const UserExplore = (props: {user: ExploreUser, currentUserHandle: string
   return (
        <div className="border-b flex flex-row justify-between hover:bg-gray-100 ">
         <Link to={`/${props.user.handle.slice(1)}`} className="flex flex-row m-4">
-        <img src={props.user.profilePic} className="w-12 sm:w-16 h-auto rounded-full " />
+        <img src={props.user.profilePic} alt={`Profile picture of ${props.user.name}`} className="w-12 sm:w-16 h-auto rounded-full " />
         <div className="flex flex-col ml-4">
           <h3 className="font-semibold">{props.user.name}</h3>
           <p className="text-gray-500">{props.user.handle}</p>

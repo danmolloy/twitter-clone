@@ -4,6 +4,7 @@ import fromUnixTime from 'date-fns/fromUnixTime'
 import {  useState } from 'react'
 import { FOLLOWINGPOSTS } from './Home'
 import { GETUSER } from '../Profile/Profile'
+import { Comment, Post, User } from '../../types'
 
 export const POST_COMMENT = gql`
   mutation Mutation($postId: String!, $text: String!) {
@@ -20,7 +21,10 @@ export const POST_COMMENT = gql`
   }
 `;
 
-export const TweetComments = (props: any) => {
+export const TweetComments = (props: {
+  tweet: Post | undefined, 
+  currentUser: User | undefined, 
+  close: any}) => {
   const [postComment] = useMutation(POST_COMMENT)
 
   const [commentText, setCommentText] = useState("")
@@ -29,7 +33,7 @@ export const TweetComments = (props: any) => {
     if (commentText.length > 0) {
       await postComment({
         variables: {
-          postId: props.tweet.id,
+          postId: props.tweet?.id,
           text: commentText
         },
         refetchQueries: window.location.pathname === "/home" 
@@ -45,7 +49,7 @@ export const TweetComments = (props: any) => {
   return (
     <div className="flex flex-col top-0 sm:top-12 border bg-white fixed items-center justify-center h-auto w-auto rounded-lg shadow-md">
       <div className="flex flex-row p-4 w-full border-b ">
-        <img src={props.tweet.author.profilePic} className="w-14 h-auto rounded-full"/>
+        <img src={props.tweet?.author.profilePic} alt={`Profile picture of ${props.tweet?.author.name}`} className="w-14 h-auto rounded-full"/>
         <div className="ml-3 flex flex-col w-full">
           <div className="flex flex-row w-full justify-between">
             <div className="flex flex-row">
@@ -64,14 +68,16 @@ export const TweetComments = (props: any) => {
         </button>
       </div>
       <div className="flex flex-row mt-4 py-2 justify-between items-center border-b">
-        <img src={props.currentUser && props.currentUser.profilePic} className="w-14 h-auto rounded-full"/>
+        <img src={props.currentUser && props.currentUser.profilePic} alt="Your profile picture." className="w-14 h-auto rounded-full"/>
         <input placeholder="Tweet your reply" maxLength={50} className="mx-4 h-8 w-full p-1 rounded-full border" value={commentText} onChange={(e) => setCommentText(e.target.value) }/>
         <button className="tweet-btn h-8" onClick={() => handleClick()}>Reply</button>
       </div>
-      {props.tweet && props.tweet.comments.map((i: any) => {
+      {props.tweet && props.tweet.comments?.map((i: Comment) => {
         return <div key={i.commentId}>
           <div className="flex flex-row border-b py-4">
-            <img src={i.author.profilePic} className="w-14 h-auto rounded-full"/>
+            <img src={i.author.profilePic} 
+            alt={`Profile picture of ${i.author.name}`} 
+            className="w-14 h-auto rounded-full"/>
             <div className="ml-3 flex flex-col w-full">
               <div className="flex flex-row w-full justify-between">
                 <div className="flex flex-row">

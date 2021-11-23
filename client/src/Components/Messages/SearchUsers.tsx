@@ -24,7 +24,7 @@ export const GET_CREATE_CHAT = gql`
   
 `;
 
-export const SearchUsers = (props: any) => {
+export const SearchUsers = (props: {close: any}) => {
   const { loading, error, data } = useQuery(GET_FOLLOWING)
   const [createOrGetChat, {data: chatData}] = useMutation(GET_CREATE_CHAT)
   

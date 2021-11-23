@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client"
 import { UserExplore } from "./UserExplore";
 import { ExploreUser } from "../../types";
 import { Header } from "../App/Header";
+import { Loading } from "../App/Loading";
 
 export const ALL_USERS = gql`
   query Query {
@@ -21,6 +22,15 @@ export const ALL_USERS = gql`
 
 export const Explore = (props: {currentUserHandle: string | undefined}) => {
   const {loading, error, data} = useQuery(ALL_USERS)
+
+  if (error) {
+    console.log(error)
+    return <Error />
+  }
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <div className="w-full h-screen" id="explore-component">

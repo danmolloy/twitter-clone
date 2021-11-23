@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client'
 import { useState } from 'react'
 import { Loading } from "../App/Loading";
 import { Error } from "../App/Error";
-import { User } from "../../types";
+import { User, Chat } from "../../types";
 import { ChatPreview } from "./ChatPreview";
 import { SearchUsers } from "./SearchUsers";
 
@@ -53,7 +53,7 @@ export const Messages = (props: {currentUser: User | undefined}) => {
       </div>
       <div className="flex flex-col items-center w-full border-r min-h-screen">
         {searchUsers && <SearchUsers close={() => setSearchUsers(false)}/>}
-        {data && data.getChats.map((i: any) => {
+        {data && data.getChats.map((i: Chat) => {
         return <ChatPreview key={i.id} chat={i} currentUser={props.currentUser}/>
       })}
       </div>
