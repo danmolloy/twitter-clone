@@ -38,6 +38,7 @@ export const Messages = (props: {currentUser: User | undefined}) => {
   }
 
   if (error) {
+    console.log(error)
     return <Error />
   }
 
@@ -46,7 +47,7 @@ export const Messages = (props: {currentUser: User | undefined}) => {
       <div className="border-b flex flex-row justify-between border-r">
         <h2 className="text-xl font-semibold pl-3 pt-3 pb-3">Messages</h2>
         <div className="flex flex-row">
-          <button onClick={() => setSearchUsers(true)}>
+          <button className="search-following" onClick={() => setSearchUsers(true)}>
             <PlusSmIcon className="w-9 p1 h-auto hover:bg-gray-300 my-2 rounded-full mr-3"/>
           </button>
         </div>

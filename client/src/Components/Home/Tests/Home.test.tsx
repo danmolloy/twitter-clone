@@ -130,9 +130,13 @@ describe("SingleTweet component", () => {
     await act(async() => {
       await new Promise(resolve => setTimeout(resolve, 100))
     })
-    console.log(pretty(container.querySelector("#user-profile-link").innerHTML))
+    console.log(pretty(container.querySelector(".user-profile-link").innerHTML))
     expect(document.location.pathname).toMatch(/\//)
-    fireEvent.click(container.querySelector("#user-profile-link"))
+    await act(async() => {
+      fireEvent.click(container.querySelector(".user-profile-link"))
+
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
     console.log(document.location.pathname)
 
   })

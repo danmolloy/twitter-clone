@@ -8,6 +8,7 @@ import { fireEvent } from "@testing-library/dom";
 import { NotificationsMock } from "./NotificationsMock";
 import { Notifications } from "../Notifications";
 import { SingleNotification } from "../SingleNotification";
+import App from "../../App/App";
 
 let container: any = null
 
@@ -25,32 +26,19 @@ afterEach(() => {
   global.localStorage.removeItem(AUTH_TOKEN)
 })
 
-describe("Notifications component", () => {
-  it("renders without error", async () => {
+describe("Notifications", () => {
+  it("renders page error", async () => {
     act(() => {
-      render(<MockedProvider mocks={NotificationsMock}>
-        <MemoryRouter>
-          <Notifications />
+      render(
+      <MockedProvider mocks={NotificationsMock}>
+        <MemoryRouter initialEntries={["/notifications"]} >
+          <App />
         </MemoryRouter>
       </MockedProvider>, container)
     })
     await act(async() => {
       await new Promise(resolve => setTimeout(resolve, 100))
     })
-  })
-})
-
-describe("SingleNotification component", () => {
-  it("renders without error", async () => {
-    act(() => {
-      render(<MockedProvider mocks={NotificationsMock}>
-        <MemoryRouter>
-          <SingleNotification />
-        </MemoryRouter>
-      </MockedProvider>, container)
-    })
-    await act(async() => {
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
+    console.log(location.pathname)
   })
 })

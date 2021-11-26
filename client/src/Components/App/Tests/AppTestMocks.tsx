@@ -564,13 +564,10 @@ export const userMock: Mock[] = [{
       },
       result: {
         data: {
-          "currentUser": {
+          "getNotifications": {
             "notifications": [
               {
-                "read": true
-              },
-              {
-                "read": true
+                "read": false
               }
             ],
             "chats": [
@@ -578,25 +575,29 @@ export const userMock: Mock[] = [{
                 "content": [
                   {
                     "read": true,
-                    "authorHandle": "@ed"
+                    "authorHandle": "@danmolloy"
                   },
                   {
                     "read": true,
-                    "authorHandle": "@ed"
-                  }
-                ]
-              },
-              {
-                "content": [
+                    "authorHandle": "@danmolloy"
+                  },
                   {
                     "read": true,
-                    "authorHandle": "@ed"
+                    "authorHandle": "@danmolloy"
+                  },
+                  {
+                    "read": true,
+                    "authorHandle": "@danmolloy"
+                  },
+                  {
+                    "read": false,
+                    "authorHandle": "@leGuin"
                   }
                 ]
               }
             ],
-            "handle": "@ed",
-            "profilePic": "/profilePic.jpg"
+            "handle": "@leGuin",
+            "profilePic": "profilePic.jpg"
           }
         }
       }

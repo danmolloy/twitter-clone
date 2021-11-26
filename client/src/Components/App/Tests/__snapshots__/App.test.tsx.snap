@@ -1,341 +1,341 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App component App component fetches data and renders Home component after Loading component 1`] = `
-"<div id=\\"main-content\\" class=\\"flex flex-row w-screen h-screen justify-start\\">
-  <div id=\\"side-bar\\" class=\\"side-bar\\"><a class=\\"md:ml-2\\" id=\\"twitter-home-link\\" title=\\"Home\\" href=\\"/home\\"><img src=\\"/favico.ico\\" class=\\"hidden sm:flex w-12 h-auto mx-6 my-4 p-2 rounded hover:bg-blue-50\\"></a><a class=\\"lg-side-icon\\" id=\\"home-link\\" title=\\"Home\\" href=\\"/home\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
-        <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\\"></path>
-      </svg><label for=\\"home-link\\" class=\\"sidebar-text\\">Home</label></a><a title=\\"Explore\\" class=\\"lg-side-icon\\" id=\\"explore-link\\" href=\\"/explore\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
-        <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M7 20l4-16m2 16l4-16M6 9h14M4 15h14\\"></path>
-      </svg><label for=\\"explore-link\\" class=\\"sidebar-text\\">Explore</label></a><a title=\\"Notifications\\" class=\\"lg-side-icon\\" id=\\"notifications-link\\" href=\\"/notifications\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
-        <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9\\"></path>
-      </svg><label for=\\"notifications-link\\" class=\\"sidebar-text\\">Notifications</label></a><a title=\\"Messages\\" class=\\"lg-side-icon\\" href=\\"/messages\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
-        <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4\\"></path>
-      </svg><label for=\\"messages-link\\" class=\\"sidebar-text\\">Messages</label></a><button class=\\"sm:hidden lg-side-icon\\" title=\\"User options\\"><img src=\\"/profilePic.jpg\\" class=\\"side-icon rounded-full\\"></button><a id=\\"profile-link\\" title=\\"Profile\\" class=\\"hidden sm:flex lg-side-icon\\" href=\\"/ed\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon hidden sm:flex\\">
-        <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z\\"></path>
-      </svg><label for=\\"profile-link\\" class=\\"sidebar-text\\">Profile</label></a><a title=\\"Sign out\\" id=\\"sign-out-btn\\" class=\\"hidden sm:flex lg-side-icon\\" href=\\"/home\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon hidden sm:flex\\" id=\\"more-icon\\">
-        <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1\\"></path>
-      </svg><label for=\\"sign-out\\" class=\\"sidebar-text\\">Sign Out</label></a><a title=\\"Delete user\\" class=\\"hidden sm:flex lg-side-icon hover:bg-red-50\\" href=\\"/home\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" id=\\"delete-icon\\" class=\\"side-icon hidden sm:flex text-red-500 hover:bg-red-50\\">
-        <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16\\"></path>
-      </svg><label for=\\"delete-icon\\" class=\\"sidebar-text text-red-500\\">Delete User</label></a></div>
-  <div class=\\"sm:ml-24 md:ml-60 mb-0 w-full max-w-2xl sm:mr-2 md:mr-0\\">
-    <div id=\\"home border-r min-h-screen border-r\\">
-      <div id=\\"home-header\\" class=\\"home-header border-r\\">
-        <h2 class=\\"h2 p-4\\">Home</h2>
-      </div>
-      <div id=\\"compose-tweet\\" class=\\"flex flex-col border-b border-r w-full\\">
-        <div class=\\"flex flex-row\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mt-4 ml-3 rounded-full\\"><textarea id=\\"compose-tweet-content\\" class=\\"text-lg w-full p-2 mt-2 h-auto ml-3 focus:outline-none\\" placeholder=\\"What's happening?\\" maxlength=\\"140\\"></textarea></div>
-        <div class=\\"flex flex-row ml-16 justify-end\\"><button class=\\"tweet-btn-disabled\\">Tweet</button></div>
-      </div>
-      <div class=\\"h-screen w-full flex flex-col mt-0 border-r\\">
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/ed\\">
-                    <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Sun Nov 07 2021</h4>
-                </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">A new post...</p>
-              </div>
-            </div>
-          </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>5</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">1</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\">1</p>
-            </button></div>
+exports[`App component fetches user data and renders Home component after Loading component 1`] = `
+"<div>
+  <div id=\\"main-content\\" class=\\"flex flex-row w-screen h-screen justify-start\\">
+    <div id=\\"side-bar\\" class=\\"side-bar\\"><a class=\\"md:ml-2\\" id=\\"twitter-home-link\\" title=\\"Home\\" href=\\"/home\\"><img src=\\"/favico.ico\\" class=\\"hidden sm:flex w-12 h-auto mx-6 my-4 p-2 rounded hover:bg-blue-50\\"></a><a class=\\"lg-side-icon\\" id=\\"home-link\\" title=\\"Home\\" href=\\"/home\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
+          <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\\"></path>
+        </svg><label for=\\"home-link\\" class=\\"sidebar-text\\">Home</label></a><a title=\\"Explore\\" class=\\"lg-side-icon\\" id=\\"explore-link\\" href=\\"/explore\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
+          <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M7 20l4-16m2 16l4-16M6 9h14M4 15h14\\"></path>
+        </svg><label for=\\"explore-link\\" class=\\"sidebar-text\\">Explore</label></a><a title=\\"Notifications\\" class=\\"lg-side-icon\\" id=\\"notifications-link\\" href=\\"/notifications\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
+          <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9\\"></path>
+        </svg><label for=\\"notifications-link\\" class=\\"sidebar-text\\">Notifications</label></a><a title=\\"Messages\\" class=\\"lg-side-icon\\" href=\\"/messages\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
+          <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4\\"></path>
+        </svg><label for=\\"messages-link\\" class=\\"sidebar-text\\">Messages</label></a><button class=\\"sm:hidden lg-side-icon\\" title=\\"User options\\"><img src=\\"/profilePic.jpg\\" class=\\"side-icon rounded-full\\"></button><a id=\\"profile-link\\" title=\\"Profile\\" class=\\"hidden sm:flex lg-side-icon\\" href=\\"/ed\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon hidden sm:flex\\">
+          <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z\\"></path>
+        </svg><label for=\\"profile-link\\" class=\\"sidebar-text\\">Profile</label></a><a title=\\"Sign out\\" id=\\"sign-out-btn\\" class=\\"hidden sm:flex lg-side-icon\\" href=\\"/home\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon hidden sm:flex\\" id=\\"more-icon\\">
+          <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1\\"></path>
+        </svg><label for=\\"sign-out\\" class=\\"sidebar-text\\">Sign Out</label></a></div>
+    <div class=\\"sm:ml-24 md:ml-60 mb-0 w-full max-w-2xl sm:mr-2 md:mr-0\\">
+      <div id=\\"home border-r min-h-screen border-r\\">
+        <div id=\\"home-header\\" class=\\"home-header border-r\\">
+          <h2 class=\\"h2 p-4\\">Home</h2>
         </div>
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/ed\\">
-                    <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Thu Nov 04 2021</h4>
-                </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">hi</p>
-              </div>
-            </div>
-          </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>3</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">1</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\">1</p>
-            </button></div>
+        <div id=\\"compose-tweet\\" class=\\"flex flex-col border-b border-r w-full\\">
+          <div class=\\"flex flex-row\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mt-4 ml-3 rounded-full\\"><textarea id=\\"compose-tweet-content\\" class=\\"text-lg w-full p-2 mt-2 h-auto ml-3 focus:outline-none\\" placeholder=\\"What's happening?\\" maxlength=\\"140\\"></textarea></div>
+          <div class=\\"flex flex-row ml-16 justify-end\\"><button class=\\"tweet-btn-disabled\\">Tweet</button></div>
         </div>
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/ed\\">
-                    <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Oct 26 2021</h4>
+        <div class=\\"h-screen w-full flex flex-col mt-0 border-r\\">
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/ed\\">
+                      <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Sun Nov 07 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">Hi!</p>
+                <div>
+                  <p class=\\" mr-2\\">A new post...</p>
+                </div>
               </div>
             </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>5</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">1</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\">1</p>
+              </button></div>
           </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>4</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">1</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\">1</p>
-            </button></div>
-        </div>
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/ed\\">
-                    <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Sat Oct 16 2021</h4>
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/ed\\">
+                      <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Thu Nov 04 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">Hello</p>
+                <div>
+                  <p class=\\" mr-2\\">hi</p>
+                </div>
               </div>
             </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>3</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">1</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\">1</p>
+              </button></div>
           </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>2</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">1</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\"></p>
-            </button></div>
-        </div>
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/danmolloy\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/danmolloy\\">
-                    <h3 class=\\"font-bold hover:underline\\">Dan Molloy</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@danmolloy</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Fri Oct 15 2021</h4>
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/ed\\">
+                      <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Oct 26 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">Another tweet..</p>
+                <div>
+                  <p class=\\" mr-2\\">Hi!</p>
+                </div>
               </div>
             </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>4</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">1</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\">1</p>
+              </button></div>
           </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>1</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">1</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\">2</p>
-            </button></div>
-        </div>
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/danmolloy\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/danmolloy\\">
-                    <h3 class=\\"font-bold hover:underline\\">Dan Molloy</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@danmolloy</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Thu Oct 14 2021</h4>
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/ed\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/ed\\">
+                      <h3 class=\\"font-bold hover:underline\\">Edward Parr</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@ed</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Sat Oct 16 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">Hi!</p>
+                <div>
+                  <p class=\\" mr-2\\">Hello</p>
+                </div>
               </div>
             </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>2</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">1</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\"></p>
+              </button></div>
           </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>1</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">2</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\">1</p>
-            </button></div>
-        </div>
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/danmolloy\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/danmolloy\\">
-                    <h3 class=\\"font-bold hover:underline\\">Dan Molloy</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@danmolloy</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Wed Sep 29 2021</h4>
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/danmolloy\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/danmolloy\\">
+                      <h3 class=\\"font-bold hover:underline\\">Dan Molloy</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@danmolloy</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Fri Oct 15 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">New tweet!</p>
+                <div>
+                  <p class=\\" mr-2\\">Another tweet..</p>
+                </div>
               </div>
             </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>1</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">1</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\">2</p>
+              </button></div>
           </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>1</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">1</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\">1</p>
-            </button></div>
-        </div>
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/egg\\"><img src=\\"/eoghan.png\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/egg\\">
-                    <h3 class=\\"font-bold hover:underline\\">Eoghan</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@egg</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/danmolloy\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/danmolloy\\">
+                      <h3 class=\\"font-bold hover:underline\\">Dan Molloy</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@danmolloy</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Thu Oct 14 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">I don't eat fish</p>
+                <div>
+                  <p class=\\" mr-2\\">Hi!</p>
+                </div>
               </div>
             </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>1</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">2</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\">1</p>
+              </button></div>
           </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>2</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">1</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\">2</p>
-            </button></div>
-        </div>
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/thebigfirkinband\\"><img src=\\"/eoghan.png\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/thebigfirkinband\\">
-                    <h3 class=\\"font-bold hover:underline\\">The Big Firkin Band</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@thebigfirkinband</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/danmolloy\\"><img src=\\"/profilePic.jpg\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/danmolloy\\">
+                      <h3 class=\\"font-bold hover:underline\\">Dan Molloy</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@danmolloy</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Wed Sep 29 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">Live! First Sunday of each month. Venue TBC</p>
+                <div>
+                  <p class=\\" mr-2\\">New tweet!</p>
+                </div>
               </div>
             </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>1</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">1</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\">1</p>
+              </button></div>
           </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>2</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">1</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\">2</p>
-            </button></div>
-        </div>
-        <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
-          <div class=\\"flex flex-row mt-4 w-full\\"><a href=\\"/fizzlekelly\\"><img src=\\"/fiona.png\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
-            <div class=\\"ml-3 flex flex-col w-full\\">
-              <div class=\\"flex flex-row w-full justify-between\\">
-                <div class=\\"flex flex-col sm:flex-row \\"><a id=\\"user-profile-link\\" class=\\"flex flex-row flex-wrap\\" href=\\"/fizzlekelly\\">
-                    <h3 class=\\"font-bold hover:underline\\">Fiona Kelly</h3>
-                    <h4 class=\\"text-gray-500 ml-1\\">@fizzlekelly</h4>
-                  </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
-                  <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/egg\\"><img src=\\"/eoghan.png\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/egg\\">
+                      <h3 class=\\"font-bold hover:underline\\">Eoghan</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@egg</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
-                <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
-              </div>
-              <div>
-                <p class=\\" mr-2\\">I play the flute!</p>
+                <div>
+                  <p class=\\" mr-2\\">I don't eat fish</p>
+                </div>
               </div>
             </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>2</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">1</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\">2</p>
+              </button></div>
           </div>
-          <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
-              </svg>
-              <p>1</p>
-            </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
-              </svg>
-              <p id=\\"retweet-count\\">1</p>
-            </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
-                <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
-              </svg>
-              <p id=\\"like-count\\">1</p>
-            </button></div>
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/thebigfirkinband\\"><img src=\\"/eoghan.png\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/thebigfirkinband\\">
+                      <h3 class=\\"font-bold hover:underline\\">The Big Firkin Band</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@thebigfirkinband</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                </div>
+                <div>
+                  <p class=\\" mr-2\\">Live! First Sunday of each month. Venue TBC</p>
+                </div>
+              </div>
+            </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>2</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">1</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\">2</p>
+              </button></div>
+          </div>
+          <div id=\\"single-tweet\\" class=\\"border-b hover:bg-gray-50 flex flex-col items-center\\">
+            <div class=\\"flex flex-row mt-4 w-full\\"><a class=\\"user-profile-link\\" href=\\"/fizzlekelly\\"><img src=\\"/fiona.png\\" class=\\"w-14 h-auto mx-3 rounded-full\\"></a>
+              <div class=\\"ml-3 flex flex-col w-full\\">
+                <div class=\\"flex flex-row w-full justify-between\\">
+                  <div class=\\"flex flex-col sm:flex-row \\"><a class=\\"user-profile-link flex flex-row flex-wrap\\" href=\\"/fizzlekelly\\">
+                      <h3 class=\\"font-bold hover:underline\\">Fiona Kelly</h3>
+                      <h4 class=\\"text-gray-500 ml-1\\">@fizzlekelly</h4>
+                    </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
+                    <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
+                  </div>
+                  <div id=\\"tweet-options\\"><button class=\\"text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                </div>
+                <div>
+                  <p class=\\" mr-2\\">I play the flute!</p>
+                </div>
+              </div>
+            </div>
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
+                </svg>
+                <p>1</p>
+              </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
+                </svg>
+                <p id=\\"retweet-count\\">1</p>
+              </button><button id=\\"like-button\\" class=\\"flex flex-row  items-center hover:text-red-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-red-50 tweet-options\\">
+                  <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\\"></path>
+                </svg>
+                <p id=\\"like-count\\">1</p>
+              </button></div>
+          </div>
         </div>
       </div>
     </div>

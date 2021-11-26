@@ -24,19 +24,19 @@ export const DELETE_USER = gql`
 `;
 
 export const GET_USER = gql`
-  query Query {
-    currentUser {
+  query {
+    getNotifications {
       notifications {
-        read
-      }
-      chats {
-        content {
           read
-          authorHandle
         }
-      }
-      handle
-      profilePic
+        chats {
+          content {
+            read
+            authorHandle
+          }
+        }
+        handle
+        profilePic
     }
   }
 `;
@@ -53,6 +53,7 @@ export const Sidebar = () => {
   }
 
   if (error) {
+    console.log(error)
     return <Error />
   }
 
@@ -75,16 +76,16 @@ export const Sidebar = () => {
         <label htmlFor="explore-link" className="sidebar-text">Explore</label>
       </Link>
       <Link to="/notifications" title="Notifications" className="lg-side-icon" id="notifications-link">
-      {data && data.currentUser.notifications.map(
+      {data && data.getNotifications.notifications.map(
         (i: Notification) => i.read).includes(false) 
       && <div className="bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0" />}
         <BellIcon className="side-icon"/>
         <label htmlFor="notifications-link" className="sidebar-text">Notifications</label>
       </Link>
       <Link to="/messages" title="Messages" className="lg-side-icon">
-      {data && data.currentUser.chats[0] !== undefined
-      && data.currentUser.chats[0].content.filter(
-        (i:Message) => i.read === false && i.authorHandle !== data.currentUser.handle).length > 0
+      {data && data.getNotifications.chats[0] !== undefined
+      && data.getNotifications.chats[0].content.filter(
+        (i:Message) => i.read === false && i.authorHandle !== data.getNotifications.handle).length > 0
         && <div className="bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0" />}
         <InboxIcon className="side-icon"/>
         <label htmlFor="messages-link" className="sidebar-text">Messages</label>
@@ -92,12 +93,12 @@ export const Sidebar = () => {
       <button className="sm:hidden lg-side-icon" title="User options" onClick={() => setShowUserOptions(!showUserOptions)} >
         {showUserOptions 
         && <UserOptions 
-        currentUser={data && data.currentUser} 
+        currentUser={data && data.getNotifications} 
         onSignOut={() => onSignOut()} 
         close={() => setShowUserOptions(false)}/>}
-        <img src={data && data.currentUser?.profilePic} className="side-icon rounded-full"/>
+        <img src={data && data.getNotifications?.profilePic} className="side-icon rounded-full"/>
       </button>
-      <Link id="profile-link" to={data ? `/${data.currentUser.handle.slice(1)}`: '/'} title="Profile" className="hidden sm:flex lg-side-icon">
+      <Link id="profile-link" to={data ? `/${data.getNotifications.handle.slice(1)}`: '/'} title="Profile" className="hidden sm:flex lg-side-icon">
         <UserIcon className="side-icon hidden sm:flex"/>
         <label htmlFor="profile-link" className="sidebar-text">Profile</label>
       </Link>

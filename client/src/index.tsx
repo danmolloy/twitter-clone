@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { AUTH_TOKEN } from './constants';
+import { BrowserRouter } from 'react-router-dom';
 
 const httpLink = createHttpLink({
   uri: 'https://twitr-clone.herokuapp.com/'
@@ -29,7 +30,8 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+
+        <App />
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -341,6 +341,45 @@ async function getChatById(_, arg, context) {
   }
 }
 
+async function getNotifications(_, __, context) {
+  try {
+    const user = await context.prisma.user.findUnique({
+    where: {
+      handle: context.user.userHandle
+      },
+    include: {
+      notifications: {
+        orderBy: {
+          time: "desc"
+        }
+      },
+      chats: {
+        select: {
+          content: {
+            select: {
+              read: true,
+              authorHandle: true
+            }
+          },
+          users: {
+            select: {
+              handle: true
+            }
+          }
+        }
+      },
+    }
+  })
+  if (!user) {
+    throw new Error('No such user found')
+  }
+  return user
+  }
+  catch(e) {
+    throw e
+  }
+}
+
 module.exports = {
   getAllHandles,
   currentUser,
@@ -349,5 +388,6 @@ module.exports = {
   getUserProfile,
   getPost,
   getChats,
-  getChatById
+  getChatById,
+  getNotifications
 }

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 export const GET_NOTIFICATIONS = gql`
   query Query {
     currentUser {
+      handle
       notifications {
         id
         text

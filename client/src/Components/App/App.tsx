@@ -105,9 +105,7 @@ function App() {
           </Route>
         </Switch>
         </div>
-
-{/*         <img src="/favico.ico" className="hidden lg:flex h-96 opacity-70 grayscale w-auto self-end	place-self-end"/>
- */}        </div>
+      </div>
     </Router>
   );
 }

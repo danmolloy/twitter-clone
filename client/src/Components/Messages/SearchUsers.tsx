@@ -21,7 +21,6 @@ export const GET_CREATE_CHAT = gql`
       id
     }
   }
-  
 `;
 
 export const SearchUsers = (props: {close: any}) => {
@@ -42,6 +41,7 @@ export const SearchUsers = (props: {close: any}) => {
   }
 
   if (error) {
+    console.log(error)
     return <Error />
   }
 
@@ -54,7 +54,7 @@ export const SearchUsers = (props: {close: any}) => {
         </button>
       </div>
       {data && data.currentUser.follows.map((i: any) => 
-        <button key={i.handle} onClick={() => handleClick(i.handle)} className="border-b w-full hover:bg-gray-100 flex flex-row items-center p-2">
+        <button key={i.handle} onClick={() => handleClick(i.handle)} className="chat-link border-b w-full hover:bg-gray-100 flex flex-row items-center p-2">
           <img src={i.profilePic} className="w-8 h-auto rounded-full"/>
           <p className="px-2">{i.name}</p>
         </button>

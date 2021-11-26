@@ -10,7 +10,7 @@ const typeDefs = gql`
     getPost(postID: String): Post
     getChats: [Chat]
     getChatById(chatId: String!): Chat
-
+    getNotifications: User
   }
 
   type Mutation {
