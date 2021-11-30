@@ -10,8 +10,11 @@ import { Home } from "../Home";
 import { userMock } from '../../App/Tests/AppTestMocks'
 import { HomeFeed } from "../HomeFeed";
 import { SingleTweet } from "../SingleTweet";
-import { fireEvent } from "@testing-library/dom";
+import { fireEvent, screen } from "@testing-library/dom";
 import { TweetComments } from "../TweetComments";
+import App from "../../App/App";
+import { getByText } from "@testing-library/dom";
+import { getAllByText } from "@testing-library/dom";
 
 let container: any = null
 
@@ -30,134 +33,195 @@ afterEach(() => {
   global.localStorage.removeItem(AUTH_TOKEN)
 })
 
-describe("ComposeTweet component", () => {
-  it("renders without error", () => {
-    act(() => {
-      render(
-      <MockedProvider>
+// Successful fetches and refetches of "followsTeets" are dependent on order of mock calls. 
+it("likes a post on like btn click in home feed", async () => {
+  act(() => {
+    render(
+      <MockedProvider mocks={HomeMock} addTypename={false}>
         <MemoryRouter>
-          <ComposeTweet currentUser={undefined}/>
+          <App />
         </MemoryRouter>
-      </MockedProvider>, container)
-    })
-    expect(container.textContent).toMatch(/Tweet/gi)
-    expect(pretty(container.innerHTML)).toMatchSnapshot();
+      </MockedProvider>, container
+    )
   })
+
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  expect(container.querySelector("#like-count").textContent).toMatch(/^1$/)
+  
+  await act(async () => {
+    fireEvent.click(container.querySelector("#like-button"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  }) 
+  expect(container.querySelector("#like-count").textContent).toMatch(/^2$/)
 })
 
-describe("Home component", () => {
-  it("renders without error", async () => {
-    act(() => {
-      render(
-        <MockedProvider mocks={HomeMock} addTypename={false}>
-          <MemoryRouter>
-            <Home currentUser={currentUser}/>
-          </MemoryRouter>
-        </MockedProvider>, container
-      )
-    })
 
-    await act(async() => {
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
+it("retweets a post on retweet btn click in home feed", async () => {
+  jest.spyOn(window, 'alert').mockImplementation(() => {});
 
-    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  act(() => {
+    render(
+      <MockedProvider mocks={HomeMock} addTypename={false}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
   })
+
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  expect(container.querySelector("#retweet-count").textContent).toMatch(/^1$/)
+  
+ await act(async () => {
+    fireEvent.click(container.querySelector("#retweet-button"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })  
+  expect(container.querySelector("#retweet-count").textContent).toMatch(/^2$/)
+  expect(window.alert).toHaveBeenCalled()
 })
 
-describe("HomeFeed component", () => {
-  it("renders without error", async() => {
-    act(() => {
-      render(
-        <MockedProvider mocks={HomeMock} addTypename={false}>
-          <MemoryRouter>
-            <HomeFeed
-            updatePage={() => jest.fn()} 
-            currentUser={currentUser} 
-            followsTweets={HomeMock[0].result.data.followsTweets}/>
-          </MemoryRouter>
-        </MockedProvider>, container
-      )
-    })
 
-    await act(async() => {
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
-
-    expect(pretty(container.innerHTML)).toMatchSnapshot();
-
+it("shows comments on comment btn click", async() => {
+  act(() => {
+    render(
+      <MockedProvider mocks={HomeMock} addTypename={false}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
   })
+
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  expect(container.textContent).not.toMatch(/Can I please have lessons\?/g)
+  act(() => {
+    fireEvent.click(container.querySelector(".show-comments"))
+  })
+  expect(container.textContent).toMatch(/Can I please have lessons\?/g)
+  
 })
 
-describe("SingleTweet component", () => {
-  it("renders without error", async () => {
-    act(() => {
-      render(
-        <MockedProvider mocks={HomeMock} addTypename={false}>
-          <MemoryRouter>
-            <SingleTweet 
-            updatePage={() => jest.fn()}
-            tweet={HomeMock[0].result.data.followsTweets[0]} 
-            author={HomeMock[0].result.data.followsTweets[0].author}
-            currentUser={currentUser}/>
-          </MemoryRouter>
-        </MockedProvider>, container
-      )
-    })
 
-    await act(async() => {
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
-
-    expect(pretty(container.innerHTML)).toMatchSnapshot();
-
+it("posts comment without error", async () => {
+  act(() => {
+    render(
+      <MockedProvider mocks={HomeMock} addTypename={false}>
+        <MemoryRouter initialEntries={["/home"]}>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
   })
 
-  it("links to user's profile", async () => {
-    act(() => {
-      render(
-        <MockedProvider mocks={HomeMock} addTypename={false}>
-          <MemoryRouter>
-            <SingleTweet 
-            updatePage={() => jest.fn()}
-            tweet={HomeMock[0].result.data.followsTweets[0]} 
-            author={HomeMock[0].result.data.followsTweets[0].author}
-            currentUser={currentUser}/>
-          </MemoryRouter>
-        </MockedProvider>, container
-      )
-    })
-    await act(async() => {
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
-    console.log(pretty(container.querySelector(".user-profile-link").innerHTML))
-    expect(document.location.pathname).toMatch(/\//)
-    await act(async() => {
-      fireEvent.click(container.querySelector(".user-profile-link"))
-
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
-    console.log(document.location.pathname)
-
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
   })
+  
+  act(() => {
+    fireEvent.click(container.querySelector(".show-comments"))
+  })
+  expect(container.textContent).toMatch(/Can I please have lessons\?/g)
+  expect(container.textContent).not.toMatch(/Jest@jest•Thu Nov 11 2021Jest wants lessons/g)
+  act(() => {
+    fireEvent.change(container.querySelector(".comment-input"), {target: {value: "Jest wants lessons"}})
+  })
+  await act(async () => {
+    fireEvent.click(container.querySelector(".reply-button"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  expect(container.textContent).toMatch(/Can I please have lessons\?/g)
+  expect(container.textContent).toMatch(/Jest@jest•Thu Nov 11 2021Jest wants lessons/g)
 })
 
-describe("TweetComment component", () => {
-  it("renders without error", async () => {
-    act(() => {
-      render(
-        <MockedProvider mocks={HomeMock}>
-          <MemoryRouter>
-            <TweetComments tweet={HomeMock[0].result.data.followsTweets[0]}/>
-          </MemoryRouter>
-        </MockedProvider>, container
-      )
-    })
 
-    await act(async() => {
-      await new Promise(resolve => setTimeout(resolve, 100))
-    })
-    
-    expect(pretty(container.textContent)).toMatchSnapshot();
+it("deletes post in home feed", async () => {
+  act(() => {
+    render(
+      <MockedProvider mocks={HomeMock} addTypename={false}>
+        <MemoryRouter initialEntries={["/home"]}>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
   })
+
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+
+  expect(container.textContent).toMatch(/My tweet/g)
+  let currentUserTweet = container.querySelector("#single-tweet:nth-child(2)")
+  
+  currentUserTweet.querySelector(".post-options").focus()
+  expect(container.textContent).toMatch(/Delete/g)
+  await act(async() => {
+    fireEvent.click(container.querySelector("#delete-button"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  expect(container.textContent).not.toMatch(/My tweet/g)
+})
+
+it("unfollows user in home feed", async () => {
+  Object.defineProperty(window, 'location', {
+    value: { reload: jest.fn() }
+  });
+  act(() => {
+    render(
+      <MockedProvider mocks={HomeMock} addTypename={false}>
+        <MemoryRouter initialEntries={["/home"]}>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
+  })
+
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+
+  act(() => {
+    container.querySelector(".post-options").focus()
+  })
+  expect(container.querySelector("#options-button").textContent).toMatch(/^Unfollow$/)
+  
+  await act(async () => {
+    fireEvent.click(container.querySelector(".unfollow-post"))
+    await new Promise(resolve => setTimeout(resolve, 200))
+  })
+
+  expect(window.location.reload).toHaveBeenCalled();
+ 
+})
+
+it("posts tweet", async () => {
+  act(() => {
+    render(
+      <MockedProvider mocks={HomeMock} addTypename={false}>
+        <MemoryRouter initialEntries={["/home"]}>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
+  })
+
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+
+  act(() => {
+    fireEvent.change(container.querySelector("#compose-tweet-content"), {target: {value: "Jest is tweeting."}})
+  })
+  expect(container.textContent).not.toMatch(/Jest@jest•Tue Sep 28 2021•••Jest is tweeting/g)
+  await act(async() => {
+    fireEvent.click(container.querySelector(".tweet-btn"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  expect(container.textContent).toMatch(/Jest@jest•Tue Sep 28 2021•••Jest is tweeting/g)
+  
 })

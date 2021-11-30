@@ -7,6 +7,9 @@ import { ExploreMock, user } from "./ExploreMock";
 import { Explore } from "../Explore";
 import { UserExplore } from "../UserExplore";
 import pretty from "pretty";
+import App from '../../App/App'
+import { fireEvent } from "@testing-library/dom";
+import { getByText } from "@testing-library/dom";
 
 let container: any = null;
 
@@ -23,61 +26,71 @@ afterEach(() => {
   global.localStorage.removeItem(AUTH_TOKEN);
 });
 
-describe("Explore component", () => {
-  it("renders without error", () => {
-    act(() => {
-      render(
-        <MockedProvider mocks={ExploreMock}>
-          <MemoryRouter>
-            <Explore currentUserHandle="@ed" />
-          </MemoryRouter>
-        </MockedProvider>,
-        container
-      );
-    });
-    expect(pretty(container.innerHTML)).toMatchSnapshot();
-  });
 
-  it("follows a user", () => {
+
+describe("Explore page", () => {
+  // "follows or unfollows.." must be first test for mutation and succeeding snapshots to work correctly.
+  it("follows or unfollows user on follow/unfollow btn click", async () => {
     act(() => {
       render(
-        <MockedProvider mocks={ExploreMock} addTypename={false}>
-          <MemoryRouter>
-            <Explore currentUserHandle="@ed"/>
+        <MockedProvider addTypename={false} mocks={ExploreMock}>
+          <MemoryRouter initialEntries={["/explore"]}>
+            <App />
           </MemoryRouter>
         </MockedProvider>, container
       )
     })
+    
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 200))
+    })
+    expect(container.textContent).toMatch(/ExploreA complete list of users/g);
+    let btn = container.querySelector(".follow-unfollow-btn")
+    expect(btn.textContent).toMatch(/^Unfollow$/)
 
-    console.log(pretty(container.innerHTML))
-  });
+    await act(async () => {
+      fireEvent.click(container.querySelector(".unfollow-btn"));
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }) 
+    expect(btn.textContent).toMatch(/^Follow$/)
+     
+  })
 
-  it("Unfollows a user", () => {})
-});
-
-describe("UserExplore component", () => {
-  it("renders without error", () => {
+  it("renders without error", async () => {
     act(() => {
       render(
-        <MockedProvider mocks={ExploreMock}>
-          <MemoryRouter>
-            <UserExplore user={user} currentUserHandle="@ed" />
+        <MockedProvider addTypename={false} mocks={ExploreMock}>
+          <MemoryRouter initialEntries={["/explore"]}>
+            <App />
           </MemoryRouter>
-        </MockedProvider>,
-        container
-      );
-      expect(container.textContent).toMatch(/Poe/gi);
-      expect(pretty(container.innerHTML)).toMatchInlineSnapshot(`
-        "<div class=\\"border-b flex flex-row justify-between hover:bg-gray-100 \\"><a class=\\"flex flex-row m-4\\" href=\\"/ed\\"><img src=\\"profilePic.jpg\\" class=\\"w-12 sm:w-16 h-auto rounded-full \\">
-            <div class=\\"flex flex-col ml-4\\">
-              <h3 class=\\"font-semibold\\">Edgar Poe</h3>
-              <p class=\\"text-gray-500\\">@ed</p>
-              <p>Hello world</p>
-            </div>
-          </a>
-          <div><button class=\\"follow-btn\\">Follow</button></div>
-        </div>"
-      `);
-    });
-  });
+        </MockedProvider>, container
+      )
+    })
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    expect(container.textContent).toMatchSnapshot();
+  })
+
+
+  it("user link redirects to profile", async () => {
+    act(() => {
+      render(
+        <MockedProvider addTypename={false} mocks={ExploreMock}>
+          <MemoryRouter initialEntries={["/explore"]}>
+            <App />
+          </MemoryRouter>
+        </MockedProvider>, container
+      )
+    })
+    await act(async() => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    })
+    expect(container.textContent).toMatch(/ExploreA complete list of users/g);
+    act(() => {
+      fireEvent.click(container.querySelector("#explore-user-link"))
+    })
+    expect(pretty(container.innerHTML)).toMatch(/profile-component/g);
+    
+  })
 });

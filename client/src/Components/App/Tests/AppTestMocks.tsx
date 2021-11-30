@@ -9,9 +9,8 @@ export interface Mock {
     variables?: {}
   },
   error?: any
-  result: {
-    data: any
-  }
+  result?: any
+  newData?: any
 }
 
 export const userMock: Mock[] = [{

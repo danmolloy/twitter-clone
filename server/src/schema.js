@@ -6,6 +6,7 @@ const typeDefs = gql`
     currentUser: User
     getAllUsers: [User]
     followsTweets: [Post]
+    getFollowsUsers: User
     getUserProfile(handle: String!): User
     getPost(postID: String): Post
     getChats: [Chat]

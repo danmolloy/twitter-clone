@@ -6,7 +6,7 @@ import { Header } from "../App/Header";
 import { Loading } from "../App/Loading";
 
 export const ALL_USERS = gql`
-  query Query {
+  query {
     getAllUsers {
       name
       handle
@@ -37,7 +37,10 @@ export const Explore = (props: {currentUserHandle: string | undefined}) => {
       <Header pageTitle="Explore" blurb="A complete list of users"/>
       <div className="border-r min-h-screen">
       {data && data.getAllUsers.map((i: ExploreUser) => {
-        return <UserExplore currentUserHandle={props.currentUserHandle && props.currentUserHandle} user={i} key={i.handle}/>
+        return <UserExplore 
+        currentUserHandle={props.currentUserHandle && props.currentUserHandle} 
+        user={i} 
+        key={i.handle}/>
       })}
       </div>
     </div>

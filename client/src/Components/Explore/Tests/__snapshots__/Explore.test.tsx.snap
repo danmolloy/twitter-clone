@@ -1,11 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Explore component renders without error 1`] = `
-"<div class=\\"w-full h-screen\\" id=\\"explore-component\\">
-  <div class=\\"w-full p-2 border-b border-r\\">
-    <h2 class=\\"text-xl font-semibold\\">Explore</h2>
-    <p>A complete list of users</p>
-  </div>
-  <div class=\\"border-r min-h-screen\\"></div>
-</div>"
-`;
+exports[`Explore page renders without error 1`] = `"HomeExploreNotificationsMessagesProfileSign OutExploreA complete list of usersDan Molloy@danmolloyHi! Click edit profileUnfollowFiona Kelly@fizzlekellyhelloUnfollowEoghan@eggI am an eggUnfollowThe Big Firkin Band@thebigfirkinband17-piece jazz big bandUnfollow"`;

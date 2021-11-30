@@ -36,7 +36,7 @@ export const TweetComments = (props: {
           postId: props.tweet?.id,
           text: commentText
         },
-        refetchQueries: window.location.pathname === "/home" 
+        refetchQueries: window.location.pathname === "/home" || window.location.pathname === "/" 
         ? [FOLLOWINGPOSTS,
           "followsTweets"]
         : [GETUSER,
@@ -68,9 +68,9 @@ export const TweetComments = (props: {
         </button>
       </div>
       <div className="flex flex-row mt-4 py-2 justify-between items-center border-b">
-        <img src={props.currentUser && props.currentUser.profilePic} alt="Your profile picture." className="w-14 h-auto rounded-full"/>
-        <input placeholder="Tweet your reply" maxLength={50} className="mx-4 h-8 w-full p-1 rounded-full border" value={commentText} onChange={(e) => setCommentText(e.target.value) }/>
-        <button className="tweet-btn h-8" onClick={() => handleClick()}>Reply</button>
+        <img src={props.currentUser && props.currentUser.profilePic} alt="Logged in user" className="w-14 h-auto rounded-full"/>
+        <input placeholder="Tweet your reply" maxLength={50} className="comment-input mx-4 h-8 w-full p-1 rounded-full border" value={commentText} onChange={(e) => setCommentText(e.target.value) }/>
+        <button className="reply-button tweet-btn h-8" onClick={() => handleClick()}>Reply</button>
       </div>
       {props.tweet && props.tweet.comments?.map((i: Comment) => {
         return <div key={i.commentId}>

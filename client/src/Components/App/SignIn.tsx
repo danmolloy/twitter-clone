@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useQuery, useMutation, gql } from '@apollo/client'
 import { AUTH_TOKEN } from "../../constants";
-import { Redirect, useHistory } from "react-router-dom";
 import { UserHandles } from "../../types";
 
 
@@ -40,7 +39,6 @@ const regExFullName = new RegExp(/^[a-z]{2,}(\s)[a-z]{2,}$/i);
 const regexUserName = new RegExp(/^[a-zA-Z0-9_]{3,}$/gi);
 
 export const SignIn = () => {
-  const [pageView, setPageView] = useState("Welcome")
   const [signUpForm, setSignUpForm] = useState(true)
   const [name, setName] = useState("")
   const [handle, setHandle] = useState("")
@@ -101,7 +99,7 @@ export const SignIn = () => {
   return (
     <div className="welcome-background flex flex-col items-center border fixed w-full h-full">
       <div className="sm:hidden flex flex-row items-center">
-      <img src="/whiteTwitterLogo.png" className="w-8 h-auto"/>
+      <img alt="White Twitter bird" src="/whiteTwitterLogo.png" className="w-8 h-auto"/>
       </div>
       <div className="flex rounded shadow-md flex-col sm:self-start sm:ml-8 sm:ml-24 items-center sm:mt-8 border bg-white z-10">
       <h2 className="text-lg font-semibold">{signUpForm ? "Sign Up" : "Sign In"}</h2>
@@ -137,7 +135,7 @@ export const SignIn = () => {
       </div>
       <button onClick={() => setSignUpForm(!signUpForm)} className="hover:underline twitter-blue py-2">{signUpForm ? "Already have an account?" : "Create an account"}</button>
     </div>
-    <img src="/whiteTwitterLogo.png" className="hidden sm:flex sm:fixed w-1/2 sm:w-3/4 h-auto sm:justify-end sm:ml-24 sm:ml-48 md:mt-48 lg:mt-0"/>
+    <img alt="Blue Twitter bird" src="/whiteTwitterLogo.png" className="hidden sm:flex sm:fixed w-1/2 sm:w-3/4 h-auto sm:justify-end sm:ml-24 sm:ml-48 md:mt-48 lg:mt-0"/>
     </div>
   )
 }

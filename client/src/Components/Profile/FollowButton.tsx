@@ -39,7 +39,7 @@ export const FollowButton = (props: {
 
 
   return (
-    <div>
+    <div className="follow-unfollow-btn">
       {props.user?.followers.filter((i: UserHandles) => i.handle === props.currentUserHandle).length ? 
       <button className="unfollow-btn" onClick={() => followUnfollowUser()}>Unfollow</button>
       : <button className="follow-btn" onClick={() => followUnfollowUser()}>Follow</button>}

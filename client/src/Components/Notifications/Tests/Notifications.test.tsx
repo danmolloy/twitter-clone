@@ -26,6 +26,12 @@ afterEach(() => {
   global.localStorage.removeItem(AUTH_TOKEN)
 })
 
+it("renders", () => {})
+it("unread is bold", () => {})
+it("marks as read", () => {})
+it("read is not bold", () => {})
+it("links to user profile", () => {})
+
 describe("Notifications", () => {
   it("renders page error", async () => {
     act(() => {

@@ -88,7 +88,7 @@ export const Chat = (props: {currentUser: User | undefined}) => {
         READ_MESSAGE,
         "readMessages",
         GET_USER,
-        "currentUser"
+        "getNotifications"
       ]
     }), 1000)
   }, [])
@@ -104,7 +104,7 @@ export const Chat = (props: {currentUser: User | undefined}) => {
     <div className="border-r min-h-full w-full flex flex-col justify-between ">
       <div id="chat-header" className="border-b border-r p-2 flex flex-row items-center z-10 bg-white w-full fixed max-w-2xl">
         <Link to="/messages">
-        <ArrowLeftIcon className="w-10 hover:bg-gray-100 rounded p-1"/>
+        <ArrowLeftIcon id="messages-link" className="w-10 hover:bg-gray-100 rounded p-1"/>
         </Link>
         <button className="flex flex-row items-center hover:bg-gray-100 rounded justify-center" onClick={() => handleLink()}>
           <img src={data && `${data.getChatById.users.filter((i: any) => i.handle !== props.currentUser?.handle)[0].profilePic}`} className="rounded-full w-12 h-12 ml-4" />

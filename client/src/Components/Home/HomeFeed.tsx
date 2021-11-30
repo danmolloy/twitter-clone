@@ -6,7 +6,7 @@ export const HomeFeed = (props: {
   followsTweets: Post[] | undefined, 
   updatePage: any}) => {
   return (
-    <div className="h-screen w-full flex flex-col mt-0 border-r">
+    <div className="home-feed h-screen w-full flex flex-col mt-0 border-r">
       {props.followsTweets && props.followsTweets.length > 0 
       ? props.followsTweets.map((tweet: Post) => {
         return <SingleTweet 

@@ -4,11 +4,10 @@ import { HashtagIcon,
   BellIcon,
   InboxIcon,
   LogoutIcon,
-  TrashIcon
 } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { AUTH_TOKEN } from '../../constants'
-import { useMutation, gql, useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 import { Error } from './Error'
 import { Loading } from './Loading'
 import { useState } from 'react'
@@ -65,7 +64,7 @@ export const Sidebar = () => {
     <div id="side-bar" 
     className="side-bar">
       <Link to="/home" className="md:ml-2" id="twitter-home-link" title="Home">
-        <img src="/favico.ico" className="hidden sm:flex w-12 h-auto mx-6 my-4 p-2 rounded hover:bg-blue-50"/>
+        <img src="/favico.ico" alt="Blue Twitter bird" className="hidden sm:flex w-12 h-auto mx-6 my-4 p-2 rounded hover:bg-blue-50"/>
       </Link>
       <Link to="/home" className="lg-side-icon" id="home-link" title="Home">
         <HomeIcon className="side-icon"/>
@@ -86,7 +85,7 @@ export const Sidebar = () => {
       {data && data.getNotifications.chats[0] !== undefined
       && data.getNotifications.chats[0].content.filter(
         (i:Message) => i.read === false && i.authorHandle !== data.getNotifications.handle).length > 0
-        && <div className="bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0" />}
+        && <div id="unread-msg-alert" className="bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0" />}
         <InboxIcon className="side-icon"/>
         <label htmlFor="messages-link" className="sidebar-text">Messages</label>
       </Link>
@@ -96,7 +95,7 @@ export const Sidebar = () => {
         currentUser={data && data.getNotifications} 
         onSignOut={() => onSignOut()} 
         close={() => setShowUserOptions(false)}/>}
-        <img src={data && data.getNotifications?.profilePic} className="side-icon rounded-full"/>
+        <img alt={data.getNotifications?.name ? data.getNotifications?.name : "Current user"} src={data && data.getNotifications?.profilePic} className="side-icon rounded-full"/>
       </button>
       <Link id="profile-link" to={data ? `/${data.getNotifications.handle.slice(1)}`: '/'} title="Profile" className="hidden sm:flex lg-side-icon">
         <UserIcon className="side-icon hidden sm:flex"/>

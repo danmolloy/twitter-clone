@@ -11,7 +11,6 @@ import { Notifications } from '../Notifications/Notifications'
 import { Profile } from '../Profile/Profile'
 import { Sidebar } from "./Sidebar";
 import { useQuery, gql } from '@apollo/client'
-import { ComposeTweet } from "../Home/ComposeTweet";
 import { Loading } from "./Loading";
 import { Error } from "./Error";
 import { CurrentUserData, CurrentUserVar } from '../../types'
@@ -76,7 +75,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <div>
       <div id="main-content" className="flex flex-row w-screen h-screen justify-start">
         {authToken && <Sidebar />}
         <div className="sm:ml-24 md:ml-60 mb-0 w-full max-w-2xl sm:mr-2 md:mr-0">
@@ -106,7 +105,7 @@ function App() {
         </Switch>
         </div>
       </div>
-    </Router>
+    </div>
   );
 }
 

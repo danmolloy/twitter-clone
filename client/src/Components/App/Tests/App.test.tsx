@@ -11,11 +11,8 @@ import pretty from "pretty";
 import { Header } from "../Header";
 import { Sidebar } from "../Sidebar";
 import { fireEvent, getByText } from "@testing-library/dom";
-import { UserOptions } from "../UserOptions";
-import { InMemoryCache } from "@apollo/client";
 
 let container: any = null;
-
 
 beforeEach(() => {
   container = document.createElement("div");
@@ -48,9 +45,8 @@ describe("App component", () => {
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 100));
     });
-    console.log(container.textContent)
-    /* expect(container.textContent).toMatch(/Home/gi);
-    expect(pretty(container.innerHTML)).toMatchSnapshot(); */
+    expect(container.textContent).toMatch(/Home/gi);
+    expect(pretty(container.innerHTML)).toMatchSnapshot(); 
   });
 });
 
@@ -74,9 +70,17 @@ describe("Sign in component", () => {
     expect(container.textContent).toMatch(/password/gi);
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
+
+  it("on signup/login there is a loading signal", () => {})
+  it("calls alert if new username already in use", () => {})
+  it("calls alert if new username invalid", () => {})
+  it("calls alert if new full name invalid", () => {})
+  it("calls signup if new user info valid", () => {})
+  it("calls alert if username invalid on login attempt", () => {})
+  it("calls login if username valid on login attempt", () => {})
 });
 
-/* describe("Loading component", () => {
+describe("Loading component", () => {
   it("renders without error", () => {
     act(() => {
       render(<Loading />, container);
@@ -94,6 +98,9 @@ describe("Error component", () => {
     expect(container.textContent).toMatch(/An error occurred/gi);
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
+
+  it("Retry click calls location.reload", () => {})
+  it("Sign-out click removes location.storage(auth-token) and calls location.reload", () => {})
 });
 
 describe("Header component", () => {
@@ -130,6 +137,10 @@ describe("Sidebar component", () => {
 
   it("clicking links return expected pathnames", async() => {
 
+    Object.defineProperty(window, 'location', {
+      value: { reload: jest.fn() }
+    });
+
     act(() => {
       render(
       <MockedProvider mocks={userMock}>
@@ -139,32 +150,27 @@ describe("Sidebar component", () => {
       </MockedProvider>, container)
     })
 
-
     await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 200));
     });
+
+    fireEvent.click(container.querySelector("#twitter-home-link"))
+    expect(document.location.pathname).toMatch(/\/home/)
 
     fireEvent.click(getByText(container, 'Notifications'))
     expect(document.location.pathname).toMatch(/\/notifications/)
 
-    fireEvent.click(container.querySelector("#twitter-home-link"))
-    expect(document.location.pathname).toMatch(/\/home/)
-    
     fireEvent.click(container.querySelector("#home-link"))
     expect(document.location.pathname).toMatch(/\/home/)
 
     fireEvent.click(getByText(container, 'Messages'))
     expect(document.location.pathname).toMatch(/\/messages/)
 
+    fireEvent.click(getByText(container, 'Profile'))
+    expect(document.location.pathname).toMatch(/\/leGuin/)
+
     fireEvent.click(container.querySelector("#sign-out-btn"))
     expect(document.location.pathname).toMatch(/\/home/)
-
-    fireEvent.click(getByText(container, 'Delete User'))
-    expect(document.location.pathname).toMatch(/\/home/)
-
-    fireEvent.click(getByText(container, 'Profile'))
-    expect(document.location.pathname).toMatch(/\/ed/)
+    expect(window.location.reload).toHaveBeenCalled();
   })
 });
-
- */

@@ -71,7 +71,17 @@ describe("FollowButton component", () => {
     console.log(location.pathname)
   })
 })
-describe("ProfileDetails component", () => {})
-describe("ProfileFollowers component", () => {})
-describe("ProfileHeader component", () => {})
-describe("ProfileTweets components", () => {})
+
+it("likes tweet in profile page",() => {})
+it("retweets post in profile page")
+it("posts comment without error", () => {})
+it("deletes post", () => {})
+it("unfollows user from tweet options", () => {})
+it("follows user from tweet options", () => {})
+
+it("follows and unfollows user from follow btn", () => {})
+
+it("shows following", () => {})
+it("shows followers", () => {})
+it("shows retweets", () => {})
+it("shows tweets", () => {})

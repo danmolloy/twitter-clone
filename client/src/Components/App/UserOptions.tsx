@@ -1,4 +1,4 @@
-import { LogoutIcon, TrashIcon, UserIcon, XCircleIcon } from "@heroicons/react/outline"
+import { LogoutIcon, UserIcon, XCircleIcon } from "@heroicons/react/outline"
 import { Link } from "react-router-dom"
 import { User } from "../../types"
 

@@ -40,7 +40,18 @@ export const DELETE_POST = gql`
       id
     }
   }
-`
+`;
+
+export const FOLLOWS_UNFOLLOWS = gql`
+  mutation Mutation($followHandle: String) {
+    followUnfollowUser(followHandle: $followHandle) {
+      name
+      followers {
+        handle
+      }
+    }
+  }
+`;
 
 
 export const SingleTweet = (props: {
@@ -53,7 +64,7 @@ export const SingleTweet = (props: {
   const [likePost] = useMutation(LIKE_POST, {
     variables: {
       likePostPostId: props.tweet && props.tweet.id
-    }, refetchQueries: window.location.pathname === "/home" 
+    }, refetchQueries: window.location.pathname === "/home" || window.location.pathname === "/"
     ? [
       FOLLOWINGPOSTS,
       "followsTweets"
@@ -67,7 +78,7 @@ export const SingleTweet = (props: {
   const [retweetPost] = useMutation(RETWEET_POST, {
     variables: {
       retweetPostPostId: props.tweet && props.tweet.id
-    }, refetchQueries: window.location.pathname === "/home" 
+    }, refetchQueries: window.location.pathname === "/home" || window.location.pathname === "/"
     ? [
       FOLLOWINGPOSTS,
       "followsTweets"
@@ -83,7 +94,7 @@ export const SingleTweet = (props: {
     variables: {
       postId: props.tweet && props.tweet.id
     },
-    refetchQueries: window.location.pathname === "/home" 
+    refetchQueries: window.location.pathname === "/home"  || window.location.pathname === "/"
     ? [
       FOLLOWINGPOSTS,
       "followsTweets"
@@ -94,6 +105,12 @@ export const SingleTweet = (props: {
     ]
   })
 
+  const [followsUnfollows] = useMutation(FOLLOWS_UNFOLLOWS, {
+    variables: {
+      followHandle: props.author?.handle
+    },
+    onCompleted: () => {window.location.reload()}
+  })
   
   return (
     <div id="single-tweet" className={`border-b ${!showMenu && "hover:bg-gray-50"} flex flex-col items-center`}>
@@ -120,8 +137,8 @@ export const SingleTweet = (props: {
           onFocus={() => setShowMenu(true)}
           >
             {showMenu && <div id="options-button" className="shadow z-10 bg-white absolute -ml-24 w-32 rounded">
-            { props.author && props.currentUser && props.currentUser.handle === props.author.handle ?
-            <button 
+            { props.author && props.currentUser && props.currentUser.handle === props.author.handle 
+            ? <button 
             id="delete-button"
             className="hover:bg-gray-50 p-2" 
             onClick={async() => {
@@ -129,11 +146,13 @@ export const SingleTweet = (props: {
               props.updatePage()
               }}>
               Delete Tweet
-              </button> :
-            <button className="hover:bg-gray-50 p-2">Unfollow</button>}
+              </button> 
+              : props.currentUser && props.currentUser?.follows.filter((i: any) => i.handle === props.author?.handle).length > 0
+              ? <button className="unfollow-post hover:bg-gray-50 p-2" onClick={() => followsUnfollows()}>Unfollow</button>
+              : <button className="follow-post hover:bg-gray-50 p-2" onClick={() => followsUnfollows()}>Follow</button>}
           </div>}
           <button 
-          className="text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
+          className="post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
             •••
           </button>
           </div>
@@ -144,7 +163,7 @@ export const SingleTweet = (props: {
       </div>
       </div>
       <div className="flex flex-row justify-between px-12 my-2 text-gray-500 w-full">
-          <button className="flex flex-row items-center hover:text-blue-500" onClick={() => setShowComments(true)}>
+          <button className="show-comments flex flex-row items-center hover:text-blue-500" onClick={() => setShowComments(true)}>
             <ChatIcon className=" hover:bg-blue-50 tweet-options" />
             <p>{props.tweet && props.tweet.comments ? props.tweet.comments.length : null}</p>
           </button>
