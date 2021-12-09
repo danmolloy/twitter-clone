@@ -36,7 +36,7 @@ export const ProfileFollowers = (props: {getUserProfile: User | undefined}) => {
         <h3 className="text-md font-bold m-8">Find more users in Explore.</h3>
       </div>
       </div>}
-      <button>
+      <button id="following-btn">
         <span className="font-bold text-black">
         {props.getUserProfile?.follows ?
         props.getUserProfile.follows.length :
@@ -62,7 +62,7 @@ export const ProfileFollowers = (props: {getUserProfile: User | undefined}) => {
         })}
         <h3 className="text-md font-bold m-8">Find more users in Explore.</h3>
       </div>}
-      <button>
+      <button id="followers-btn">
         <span className="font-bold text-black ml-2">
           {props.getUserProfile && props.getUserProfile.followers ?
           props.getUserProfile.followers.length : 0}

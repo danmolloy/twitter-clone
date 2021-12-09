@@ -13,6 +13,7 @@ export const ProfileTweets = (props: {
     <div id="profile-tweets" className="w-full flex flex-col items-center min-h-screen">
       <div className="w-full h-12 mt-4 flex flex-row">
       <Link 
+      id="profile-tweets-link"
       className={props.tweetFilter === 'tweets' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
       to={props.getUserProfile ? `/${props.getUserProfile.handle.slice(1)}` : '/home'}
       onClick={() => props.setTweetFilter('tweets')}>
@@ -20,6 +21,7 @@ export const ProfileTweets = (props: {
         {props.tweetFilter === 'tweets' && <span className="tab-line"/>}
       </Link>
       <Link 
+        id="profile-retweets-link"
         className={props.tweetFilter === 'retweets' ? 'selected-tweet-filter' : 'deselected-tweet-filter'}
       to={props.getUserProfile ? `/${props.getUserProfile.handle.slice(1)}/retweets` : `/home`}
       onClick={() => props.setTweetFilter('retweets')}>
@@ -28,7 +30,7 @@ export const ProfileTweets = (props: {
       </Link>
       </div>
       {props.tweetFilter === 'retweets' 
-      ? <div className="h-full w-full flex flex-col mt-0">
+      ? <div id="profile-retweets" className="h-full w-full flex flex-col mt-0">
       {props.getUserProfile?.retweets && 
       props.getUserProfile.retweets.length > 0 &&
       props.getUserProfile.retweets.map((tweet: Post) => {
@@ -36,7 +38,7 @@ export const ProfileTweets = (props: {
         })
       }
     </div>
-      : <div className="h-full w-full flex flex-col mt-0">
+      : <div id="profile-tweets" className="h-full w-full flex flex-col mt-0">
         {props.getUserProfile && 
         props.getUserProfile.writtenPosts && 
         props.getUserProfile.writtenPosts.length > 0 &&

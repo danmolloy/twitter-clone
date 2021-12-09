@@ -3,10 +3,11 @@ import { gql, useQuery, useMutation } from "@apollo/client"
 import { Error } from "../App/Error";
 import { SingleNotification } from "./SingleNotification";
 import { useEffect } from "react";
+import { GET_USER } from '../App/Sidebar'
 
 export const GET_NOTIFICATIONS = gql`
-  query Query {
-    currentUser {
+  query {
+    getNotificationList {
       handle
       notifications {
         id
@@ -19,7 +20,7 @@ export const GET_NOTIFICATIONS = gql`
     }
   }
 `;
-
+       
 export const READ_NOTIFICATIONS = gql`
   mutation Mutation {
     readNotifications {
@@ -34,12 +35,12 @@ export const Notifications = () => {
 
   useEffect(() => {
     setTimeout(() => 
-    
-    
     readNotifications({
       refetchQueries: [
         GET_NOTIFICATIONS,
-        "currentUser"
+        "getNotificationList",
+        GET_USER,
+        "getNotifications"
       ]}), 1000)
     
   }, [])
@@ -49,6 +50,7 @@ export const Notifications = () => {
   }
 
   if (error) {
+    console.log(error)
     return <Error />
   }
 
@@ -60,7 +62,7 @@ export const Notifications = () => {
         </h2>
       </div>
       <div className="w-full h-screen flex flex-col border-r">
-        {data && data.currentUser.notifications.map((i: any) => {
+        {data && data.getNotificationList.notifications.map((i: any) => {
           return <SingleNotification notification={i} key={i.id}/>
         })}
       </div>

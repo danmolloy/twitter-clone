@@ -6,8 +6,6 @@ import { AUTH_TOKEN } from "../../../constants";
 import pretty from "pretty";
 import { fireEvent, getByText } from "@testing-library/dom";
 import { MessagesMock } from "./MessagesMock"
-import { Messages } from "../Messages";
-import { Chat } from "../Chat";
 import App from "../../App/App";
 
 
@@ -125,6 +123,77 @@ it("+ btn click shows list of users being followed", async() => {
   expect(container.textContent).toMatch(/Send message to:Dan MolloyYou can only contact users you follow.Find others in Explore./g)
 })
 
-it("clicking user in searchUser panel redirects to a chat with user", () => {})
-it("Send button sends msg", () => {})
-it("click on user name redirects to user profile", () => {})
+it("clicking user in searchUser panel redirects to a chat with user", async() => {
+  act(() => {
+    render(
+      <MockedProvider mocks={MessagesMock} addTypename={false}>
+        <MemoryRouter initialEntries={["/messages"]}>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
+  })
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  await act(async () => {
+    fireEvent.click(container.querySelector(".search-following"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  await act(async() => {
+    fireEvent.click(container.querySelector(".chat-link"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  //console.log(document.location.pathname)
+})
+
+it("Send button sends msg", async() => {
+  act(() => {
+    render(
+      <MockedProvider mocks={MessagesMock} addTypename={false}>
+        <MemoryRouter initialEntries={["/messages"]}>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
+  })
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  await act(async() => {
+    fireEvent.click(container.querySelector(".chat-preview"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  act(() => {
+    fireEvent.change(container.querySelector("#chat-input"), {target: {value: "Hi! Cheers, Jest"}})
+  })
+  await act(async () => {
+    fireEvent.click(container.querySelector("#send-msg-btn"))
+    await new Promise(resolve => setTimeout(resolve, 1000))
+  })
+  expect(container.textContent).toMatch(/Cheers, Jest/g)
+})
+
+it("click on user name redirects to user profile", async () => {
+  act(() => {
+    render(
+      <MockedProvider mocks={MessagesMock} addTypename={false}>
+        <MemoryRouter initialEntries={["/messages"]}>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
+  })
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  await act(async() => {
+    fireEvent.click(container.querySelector(".chat-preview"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  await act(async() => {
+    fireEvent.click(container.querySelector(".chat-profile-link"))
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  expect(container.textContent).toMatch(/I call it 'Twitter'/g)
+})

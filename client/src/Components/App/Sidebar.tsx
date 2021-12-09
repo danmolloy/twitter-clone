@@ -77,7 +77,7 @@ export const Sidebar = () => {
       <Link to="/notifications" title="Notifications" className="lg-side-icon" id="notifications-link">
       {data && data.getNotifications.notifications.map(
         (i: Notification) => i.read).includes(false) 
-      && <div className="bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0" />}
+      && <div id="notifications-alert" className="bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0" />}
         <BellIcon className="side-icon"/>
         <label htmlFor="notifications-link" className="sidebar-text">Notifications</label>
       </Link>

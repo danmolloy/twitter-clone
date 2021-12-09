@@ -4,8 +4,10 @@ import { GET_CHAT_BY_ID, READ_MESSAGE, NEW_MESSAGE } from '../Chat'
 import { GET_FOLLOWING, GET_CREATE_CHAT } from '../SearchUsers'
 import { CURRENTUSER } from '../../App/App'
 import { GET_USER } from '../../App/Sidebar'
+import { GETUSER } from '../../Profile/Profile'
 
 let getNotificationsCount = 0;
+let messageSent = false;
 
 export const MessagesMock: Mock[] = [
   {
@@ -235,7 +237,10 @@ export const MessagesMock: Mock[] = [
         chatId: "395ed01a-5e12-4220-b94e-ab0bc76a691c"
       }
     },
-    result: {
+    newData: () => {
+      if (messageSent = true) {
+        messageSent = false;
+      return {
       data: {
         "getChatById": {
           "id": "395ed01a-5e12-4220-b94e-ab0bc76a691c",
@@ -294,8 +299,80 @@ export const MessagesMock: Mock[] = [
             }
           ]
         }
-      }
+      }}
+    } else {
+      return {
+      data: {
+        "getChatById": {
+          "id": "395ed01a-5e12-4220-b94e-ab0bc76a691c",
+          "content": [
+            {
+              "messageText": "Hi @leGuin! Welcome to Twitter. To get you started, we are following each other. You can unfollow me by navigating to my profile.",
+              "authorHandle": "@danmolloy",
+              "messageId": "14ae81d6-bb48-41c0-847f-96e63bbe7f05",
+              "read": true,
+              "author": {
+                "name": "Dan Molloy",
+                "profilePic": "/dan.jpg"
+              }
+            },
+            {
+              "messageText": "Find other users to follow in Explore. You can comment, like and retweet their posts, as well as message them. We have some interesting users here!",
+              "authorHandle": "@danmolloy",
+              "messageId": "9c516d09-0c28-4070-be1b-a0eecb5ddd48",
+              "read": true,
+              "author": {
+                "name": "Dan Molloy",
+                "profilePic": "/dan.jpg"
+              }
+            },
+            {
+              "messageText": "Check out your profile - you can view your posts, retweets, and edit some of your user details.",
+              "authorHandle": "@danmolloy",
+              "messageId": "552b829d-df62-4f36-b439-11da8d290fa0",
+              "read": true,
+              "author": {
+                "name": "Dan Molloy",
+                "profilePic": "/dan.jpg"
+              }
+            },
+            {
+              "messageText": "Once finished, you can sign out. Soon afterwards your account will be automatically deleted. Cheers, Dan",
+              "authorHandle": "@danmolloy",
+              "messageId": "9b5a30f5-df02-4001-87e2-714b9448e4cf",
+              "read": true,
+              "author": {
+                "name": "Dan Molloy",
+                "profilePic": "/dan.jpg"
+              }
+            },
+            {
+              "messageText": "Hi! Cheers, Jest",
+              "authorHandle": "@jest",
+              "messageId": "ek2",
+              "read": true,
+              "author": {
+                "name": "Jest",
+                "profilePic": "/jest.jpg"
+              }
+            }
+          ],
+          "users": [
+            {
+              "handle": "@danmolloy",
+              "name": "Dan Molloy",
+              "profilePic": "/dan.jpg"
+            },
+            {
+              "handle": "@leGuin",
+              "name": "Ursula LeGuin",
+              "profilePic": "profilePic.jpg"
+            }
+          ]
+        }
+      }}
     }
+  }
   },
   {
     request: {
@@ -318,11 +395,13 @@ export const MessagesMock: Mock[] = [
     request: {
       query: NEW_MESSAGE,
       variables: {
-        content:  "Hi Dan!",
+        content:  "Hi! Cheers, Jest",
         chatId: "395ed01a-5e12-4220-b94e-ab0bc76a691c"
       }
     },
-    result: {
+    result: () => {
+      messageSent = true
+      return {
       data: {
         "newMessage": {
           "author": null,
@@ -332,7 +411,7 @@ export const MessagesMock: Mock[] = [
           "authorHandle": null
         }
       }
-    }
+    }}
   },
   {
     request: {
@@ -363,6 +442,104 @@ export const MessagesMock: Mock[] = [
       data: {
         "createOrGetChat": {
           "id": "395ed01a-5e12-4220-b94e-ab0bc76a691c"
+        }
+      }
+    }
+  },
+  {
+    request: {
+      query: GETUSER,
+      variables: {
+        "getUserProfileHandle": "@danmolloy"
+      }
+    },
+    result: {
+      data: {
+        "getUserProfile": {
+          "name": "Dan Molloy",
+          "handle": "@danmolloy",
+          "blurb": "I call it 'Twitter'.",
+          "joinDate": "1632811919",
+          "bgPic": "bgPic.jpg",
+          "profilePic": "/dan.jpg",
+          "follows": [
+            {
+              "handle": "@artVandelay",
+              "name": "George Costanza",
+              "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+            },
+            {
+              "handle": "@leGuin",
+              "name": "Ursula LeGuin",
+              "profilePic": "profilePic.jpg"
+            },
+            {
+              "handle": "@tony",
+              "name": "Tony Pepperoni",
+              "profilePic": "profilePic.jpg"
+            }
+          ],
+          "followers": [
+            {
+              "handle": "@artVandelay",
+              "name": "George Costanza",
+              "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+            },
+            {
+              "handle": "@jsbach",
+              "name": "JS Bach",
+              "profilePic": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Johann_Sebastian_Bach.jpg"
+            },
+            {
+              "handle": "@leGuin",
+              "name": "Ursula LeGuin",
+              "profilePic": "profilePic.jpg"
+            },
+            {
+              "handle": "@tony",
+              "name": "Tony Pepperoni",
+              "profilePic": "profilePic.jpg"
+            }
+          ],
+          "writtenPosts": [
+            {
+              "id": "294465ac-a384-483c-acc1-6d2d9d132742",
+              "content": "I recently joined Dulwich Squash Club. What a hoot!",
+              "postDate": "1632811920",
+              "authorHandle": "@danmolloy",
+              "author": {
+                "name": "Dan Molloy",
+                "handle": "@danmolloy",
+                "profilePic": "/dan.jpg"
+              },
+              "likes": [],
+              "comments": [
+                {
+                  "commentId": "26900e89-808a-4c21-8733-979aaca9660c",
+                  "text": "Fancy a match?",
+                  "time": "1632812020",
+                  "author": {
+                    "name": "JS Bach",
+                    "handle": "@jsbach",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Johann_Sebastian_Bach.jpg"
+                  }
+                }
+              ],
+              "retweets": []
+            }
+          ],
+          "retweets": [
+            {
+              "id": "51195034-c503-418d-92e6-9588946dbe04",
+              "content": "It's not a lie if you believe it.",
+              "postDate": "1632811931",
+              "author": {
+                "name": "George Costanza",
+                "handle": "@artVandelay",
+                "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+              }
+            }
+          ]
         }
       }
     }

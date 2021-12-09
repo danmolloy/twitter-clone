@@ -106,7 +106,7 @@ export const Chat = (props: {currentUser: User | undefined}) => {
         <Link to="/messages">
         <ArrowLeftIcon id="messages-link" className="w-10 hover:bg-gray-100 rounded p-1"/>
         </Link>
-        <button className="flex flex-row items-center hover:bg-gray-100 rounded justify-center" onClick={() => handleLink()}>
+        <button className="chat-profile-link flex flex-row items-center hover:bg-gray-100 rounded justify-center" onClick={() => handleLink()}>
           <img src={data && `${data.getChatById.users.filter((i: any) => i.handle !== props.currentUser?.handle)[0].profilePic}`} className="rounded-full w-12 h-12 ml-4" />
           <h3 className="mx-4 font-semibold">
           { data && data.getChatById.users.map((i: any) => i.name !== props.currentUser?.name && i.name)}
@@ -119,8 +119,8 @@ export const Chat = (props: {currentUser: User | undefined}) => {
         })}
       </div>
       <div className="flex flex-row justify-center items-center mb-16 bottom-0 sm:mb-0 flex border-t border-r bg-white z-10 fixed w-full md:-ml-0 max-w-2xl"> 
-        <input className="border rounded-full m-4 p-2" placeholder="hello" value={newMessage} onKeyDown={(e) => e.key === "Enter" && handleClick()} onChange={(e) => setNewMessage(e.target.value)}/>
-        <button className="tweet-btn" onClick={() => handleClick()}>Send</button>
+        <input id="chat-input" className="border rounded-full m-4 p-2" placeholder="hello" value={newMessage} onKeyDown={(e) => e.key === "Enter" && handleClick()} onChange={(e) => setNewMessage(e.target.value)}/>
+        <button id="send-msg-btn" className="tweet-btn" onClick={() => handleClick()}>Send</button>
       </div>
     </div>
   )

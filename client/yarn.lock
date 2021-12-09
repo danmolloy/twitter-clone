@@ -2049,10 +2049,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16", "@types/react@^16.8.6 || ^17.0.0", "@types/react@^16.9.0":
-  "integrity" "sha512-7nOJgNsRbARhZhvwPm7cnzahtzEi5VJ9OvcQk8ExEEb1t+zaFklwLVkJz7G1kfxX4X/mDa/icTmzE0vTmqsqBg=="
-  "resolved" "https://registry.npmjs.org/@types/react/-/react-16.14.12.tgz"
-  "version" "16.14.12"
+"@types/react@*", "@types/react@^16", "@types/react@^16.14.21", "@types/react@^16.8.6 || ^17.0.0":
+  "integrity" "sha512-rY4DzPKK/4aohyWiDRHS2fotN5rhBSK6/rz1X37KzNna9HJyqtaGAbq9fVttrEPWF5ywpfIP1ITL8Xi2QZn6Eg=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-16.14.21.tgz"
+  "version" "16.14.21"
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"

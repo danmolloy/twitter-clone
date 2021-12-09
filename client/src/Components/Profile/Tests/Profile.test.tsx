@@ -8,8 +8,8 @@ import { fireEvent, getByText } from "@testing-library/dom";
 import { ProfileMock } from './ProfileMock'
 import { Profile } from "../Profile";
 import { userMock } from '../../App/Tests/AppTestMocks'
+import App from "../../App/App";
 
-const currentUser = userMock[0].result.data.currentUser
 
 let container: any = null;
 
@@ -26,62 +26,107 @@ afterEach(() => {
   global.localStorage.removeItem(AUTH_TOKEN);
 });
 
-describe("Profile component", () => {
-  it("renders without error", async () => {
-    act(() => {
-      render(
-        <MockedProvider mocks={ProfileMock} addTypename={false}>
-          <MemoryRouter>
-            <Profile currentUser={currentUser}/>
-          </MemoryRouter>
-        </MockedProvider>, container
-      )
-    })
-
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    });
-
-    expect(pretty(container.innerHTML)).toMatchSnapshot();
+it("renders without error", async () => {
+  act(() => {
+    render(
+      <MockedProvider mocks={ProfileMock} addTypename={false}>
+        <MemoryRouter>
+          <App /> 
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
   })
-})
-
-describe("EditProfile component", () => {
-})
-
-describe("FollowButton component", () => {
-  it("Edits profile without error", async () => {
-    act(() => {
-      render(
-        <MockedProvider mocks={ProfileMock} addTypename={false}>
-          <MemoryRouter initialEntries={["/artVandelay"]}>
-            <Profile currentUser={currentUser}/>
-          </MemoryRouter>
-        </MockedProvider>, container
-      )
-    })
-
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    });
-    fireEvent.click(getByText(container, "Follow"))
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    });
-    console.log(location.pathname)
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
   })
+  fireEvent.click(container.querySelector("#profile-link"))
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  expect(pretty(container.innerHTML)).toMatchSnapshot();
 })
 
-it("likes tweet in profile page",() => {})
-it("retweets post in profile page")
+it("arrow button links to home", async () => {
+  act(() => {
+    render(
+      <MockedProvider mocks={ProfileMock} addTypename={false}>
+        <MemoryRouter>
+          <App /> 
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
+  })
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  fireEvent.click(container.querySelector("#profile-link"))
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  fireEvent.click(container.querySelector("#profile-home-link"))
+  expect(pretty(container.innerHTML)).toMatch(/id="home/g)
+})
+
+it("shows following", async() => {
+  act(() => {
+    render(
+      <MockedProvider mocks={ProfileMock} addTypename={false}>
+        <MemoryRouter>
+          <App /> 
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
+  })
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  fireEvent.click(container.querySelector("#profile-link"))
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  fireEvent.click(container.querySelector("#following-btn"))
+  expect(container.textContent).toMatch(/FollowersGeorge CostanzaDan MolloyFind more users in Explore./g)
+  //fireEvent.click(container.querySelector("#following-btn"))
+  console.log(container.textContent)
+  //expect(container.textContent).toMatch(/FollowersGeorge CostanzaDan MolloyFind more users in Explore./g)
+
+})
+
+it("shows followers", () => {})
+
+it("filters retweets and tweets", async () => {
+  act(() => {
+    render(
+      <MockedProvider mocks={ProfileMock} addTypename={false}>
+        <MemoryRouter>
+          <App /> 
+        </MemoryRouter>
+      </MockedProvider>, container
+    )
+  })
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  fireEvent.click(container.querySelector("#profile-link"))
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })
+  expect(container.textContent).toMatch(/A profound love between two people/g)
+  expect(container.textContent).not.toMatch(/This user hasn't retweeted any posts./g)
+
+  fireEvent.click(container.querySelector("#profile-retweets-link"))
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  })  
+  expect(container.textContent).not.toMatch(/A profound love between two people/g)
+  expect(container.textContent).toMatch(/This user hasn't retweeted any posts./g)
+})
+
+it("likes tweet in profile page", () => {})
+it("retweets post in profile page", () => {})
 it("posts comment without error", () => {})
 it("deletes post", () => {})
-it("unfollows user from tweet options", () => {})
-it("follows user from tweet options", () => {})
-
+it("follows & unfollows user from tweet options", () => {})
 it("follows and unfollows user from follow btn", () => {})
+it("Edits profile without error", () => {})
 
-it("shows following", () => {})
-it("shows followers", () => {})
-it("shows retweets", () => {})
-it("shows tweets", () => {})

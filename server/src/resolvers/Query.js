@@ -364,6 +364,24 @@ async function getFollowsUsers(_, __, context) {
   }
 }
 
+async function getNotificationList(_, __, context) {
+  try {
+    const user = await context.prisma.user.findUnique({
+      where: {
+        handle: context.user.userHandle
+      }, include: {
+        notifications: {
+          orderBy: {
+            time: "desc"
+          }
+        }
+      }
+    })
+    return user
+  }
+  catch(e) { return e }
+}
+
 async function getNotifications(_, __, context) {
   try {
     const user = await context.prisma.user.findUnique({
@@ -413,5 +431,6 @@ module.exports = {
   getChats,
   getChatById,
   getNotifications,
-  getFollowsUsers
+  getFollowsUsers,
+  getNotificationList
 }

@@ -56,7 +56,7 @@ export const SearchUsers = (props: {close: any}) => {
       {data && data.getFollowsUsers.follows.map((i: any) => 
         <button key={i.handle} onClick={() => handleClick(i.handle)} className="chat-link border-b w-full hover:bg-gray-100 flex flex-row items-center p-2">
           <img src={i.profilePic} className="w-8 h-auto rounded-full"/>
-          <p className="px-2">{i.name}</p>
+          <p className="search-user-name px-2">{i.name}</p>
         </button>
       )} 
       <div className="m-8">

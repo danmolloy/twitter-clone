@@ -5,8 +5,8 @@ import { User } from "../../types"
 export const ProfileHeader = (props: {getUserProfile: User | undefined}) => {
   return (
     <div id="profile-header" className="border-b flex flex-row">
-        <Link to="/home">
-        <ArrowLeftIcon className="w-10 p-2 h-auto ml-4 my-2" />
+        <Link to="/home" id="profile-home-link">
+          <ArrowLeftIcon className="w-10 p-2 h-auto ml-4 my-2" />
         </Link>
         <div className=" ml-2 mt-1"> 
         <h3 className="text-xl font-bold">

@@ -1,6 +1,11 @@
 import { Mock } from '../../App/Tests/AppTestMocks'
 import {GET_NOTIFICATIONS, READ_NOTIFICATIONS} from '../Notifications'
 import { CURRENTUSER } from '../../App/App'
+import { GET_USER } from '../../App/Sidebar'
+import { GETUSER } from '../../Profile/Profile'
+
+let getNotificationsCalled = 0;
+let sidebarCalled = 0;
 
 export const NotificationsMock: Mock[] = [
   {
@@ -88,20 +93,250 @@ export const NotificationsMock: Mock[] = [
         }
       }
     },
-  {
-    request: {
-      query: GET_NOTIFICATIONS
-    },
-    result: {
-      data: {}
-    }
-  },
+    {
+      request: {
+        query: GET_NOTIFICATIONS
+      },
+      newData: () => {
+        getNotificationsCalled += 1
+        if(getNotificationsCalled === 5) {
+          return {
+            data: {
+                "getNotificationList": {
+                  "handle": "@leGuin",
+                  "notifications": [
+                    {
+                      "id": "17ffafa4-d6b5-4684-8b58-37584a62d605",
+                      "text": "@danmolloy has started following you.",
+                      "time": "1637751839",
+                      "sentFromUser": "@danmolloy",
+                      "read": true,
+                      "tweetId": null
+                    }
+                  ]
+                }
+              }
+            }
+        }
+        else {
+          return {
+            data: {
+                "getNotificationList": {
+                  "handle": "@leGuin",
+                  "notifications": [
+                    {
+                      "id": "17ffafa4-d6b5-4684-8b58-37584a62d605",
+                      "text": "@danmolloy has started following you.",
+                      "time": "1637751839",
+                      "sentFromUser": "@danmolloy",
+                      "read": false,
+                      "tweetId": null
+                    }
+                  ]
+                }
+              }
+            }
+        }
+        }
+      },
+      {
+        request: {
+          query: GET_USER
+        },
+        newData: () => {
+          sidebarCalled += 1
+          if (sidebarCalled == 5) {
+            return {
+              data: {
+                "getNotifications": {
+                  "notifications": [
+                    {
+                      "read": true
+                    }
+                  ],
+                  "chats": [
+                    {
+                      "content": [
+                        {
+                          "read": true,
+                          "authorHandle": "@danmolloy"
+                        },
+                        {
+                          "read": true,
+                          "authorHandle": "@danmolloy"
+                        },
+                        {
+                          "read": true,
+                          "authorHandle": "@danmolloy"
+                        },
+                        {
+                          "read": true,
+                          "authorHandle": "@danmolloy"
+                        },
+                        {
+                          "read": false,
+                          "authorHandle": "@leGuin"
+                        }
+                      ]
+                    }
+                  ],
+                  "handle": "@leGuin",
+                  "profilePic": "profilePic.jpg"
+                }
+              }
+            }
+          } else {
+            return {
+              data: {
+                "getNotifications": {
+                  "notifications": [
+                    {
+                      "read": false
+                    }
+                  ],
+                  "chats": [
+                    {
+                      "content": [
+                        {
+                          "read": true,
+                          "authorHandle": "@danmolloy"
+                        },
+                        {
+                          "read": true,
+                          "authorHandle": "@danmolloy"
+                        },
+                        {
+                          "read": true,
+                          "authorHandle": "@danmolloy"
+                        },
+                        {
+                          "read": true,
+                          "authorHandle": "@danmolloy"
+                        },
+                        {
+                          "read": false,
+                          "authorHandle": "@leGuin"
+                        }
+                      ]
+                    }
+                  ],
+                  "handle": "@leGuin",
+                  "profilePic": "profilePic.jpg"
+                }
+              }
+            }
+          }
+        }
+      },
   {
     request: {
       query: READ_NOTIFICATIONS
     },
     result: {
-      data: {}
+      data: {
+        "readNotifications": {
+          "count": 1
+        }
+      }
     }
+  },
+  {
+    request: {
+      query: GETUSER,
+      variables: {
+        "getUserProfileHandle":"@danmolloy"
+      }
+    },
+    result: {
+      "data": {
+        "getUserProfile": {
+          "name": "Dan Molloy",
+          "handle": "@danmolloy",
+          "blurb": "I call it 'Twitter'.",
+          "joinDate": "1632811919",
+          "bgPic": "bgPic.jpg",
+          "profilePic": "/dan.jpg",
+          "follows": [
+            {
+              "handle": "@artVandelay",
+              "name": "George Costanza",
+              "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+            },
+            {
+              "handle": "@leGuin",
+              "name": "Ursula LeGuin",
+              "profilePic": "profilePic.jpg"
+            },
+            {
+              "handle": "@tony",
+              "name": "Tony Pepperoni",
+              "profilePic": "profilePic.jpg"
+            }
+          ],
+          "followers": [
+            {
+              "handle": "@artVandelay",
+              "name": "George Costanza",
+              "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+            },
+            {
+              "handle": "@jsbach",
+              "name": "JS Bach",
+              "profilePic": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Johann_Sebastian_Bach.jpg"
+            },
+            {
+              "handle": "@leGuin",
+              "name": "Ursula LeGuin",
+              "profilePic": "profilePic.jpg"
+            },
+            {
+              "handle": "@tony",
+              "name": "Tony Pepperoni",
+              "profilePic": "profilePic.jpg"
+            }
+          ],
+          "writtenPosts": [
+            {
+              "id": "294465ac-a384-483c-acc1-6d2d9d132742",
+              "content": "I recently joined Dulwich Squash Club. What a hoot!",
+              "postDate": "1632811920",
+              "authorHandle": "@danmolloy",
+              "author": {
+                "name": "Dan Molloy",
+                "handle": "@danmolloy",
+                "profilePic": "/dan.jpg"
+              },
+              "likes": [],
+              "comments": [
+                {
+                  "commentId": "26900e89-808a-4c21-8733-979aaca9660c",
+                  "text": "Fancy a match?",
+                  "time": "1632812020",
+                  "author": {
+                    "name": "JS Bach",
+                    "handle": "@jsbach",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Johann_Sebastian_Bach.jpg"
+                  }
+                }
+              ],
+              "retweets": []
+            }
+          ],
+          "retweets": [
+            {
+              "id": "51195034-c503-418d-92e6-9588946dbe04",
+              "content": "It's not a lie if you believe it.",
+              "postDate": "1632811931",
+              "author": {
+                "name": "George Costanza",
+                "handle": "@artVandelay",
+                "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+              }
+            }
+          ]
+        }
+      }
+    }
+
   }
 ]

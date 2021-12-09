@@ -12,6 +12,7 @@ const typeDefs = gql`
     getChats: [Chat]
     getChatById(chatId: String!): Chat
     getNotifications: User
+    getNotificationList: User
   }
 
   type Mutation {
