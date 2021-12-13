@@ -6,8 +6,6 @@ import { MemoryRouter } from "react-router";
 import pretty from "pretty";
 import { fireEvent } from "@testing-library/dom";
 import { NotificationsMock } from "./NotificationsMock";
-import { Notifications } from "../Notifications";
-import { SingleNotification } from "../SingleNotification";
 import App from "../../App/App";
 
 let container: any = null

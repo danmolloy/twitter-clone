@@ -61,10 +61,10 @@ export const EditProfile = () => {
         <input id="name-input" placeholder="Dan Molloy" maxLength={20} className="border" value={newName} onChange={e => setNewName(e.target.value)}/>
         <label htmlFor="blurb-input">Blurb</label>
         <input id="blurb-input" maxLength={40} placeholder="Hello World" className="border" value={newBlurb} onChange={e => setNewBlurb(e.target.value)}/>
-        <button className="border tweet-btn" onClick={() => validateForm()}>Submit</button>
+        <button id="submit-edit-btn" className="border tweet-btn" onClick={() => validateForm()}>Submit</button>
       </div> 
       : 
-      <button className="border tweet-btn" onClick={() => setEditProfile(true)}>
+      <button id="edit-profile-btn" className="border tweet-btn" onClick={() => setEditProfile(true)}>
       Edit profile
       </button>
       }

@@ -2,6 +2,7 @@ import { DocumentNode } from 'graphql';
 import { FOLLOWINGPOSTS } from '../../Home/Home';
 import { CURRENTUSER } from '../App'
 import { DELETE_USER, GET_USER } from '../Sidebar';
+import { USER_HANDLES } from '../SignIn';
 
 export interface Mock {
   request: {
@@ -13,7 +14,34 @@ export interface Mock {
   newData?: any
 }
 
-export const userMock: Mock[] = [{
+export const userMock: Mock[] = [
+  {
+    request: {
+      query: USER_HANDLES
+    },
+    result: {
+      data: {
+        "getAllHandles": [
+          {
+            "handle": "@artVandelay"
+          },
+          {
+            "handle": "@danmolloy"
+          },
+          {
+            "handle": "@jsbach"
+          },
+          {
+            "handle": "@leGuin"
+          },
+          {
+            "handle": "@watson"
+          }
+        ]
+      }
+    }
+  },
+  {
     request: {
       query: CURRENTUSER,
     },

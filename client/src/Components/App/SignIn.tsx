@@ -4,7 +4,7 @@ import { AUTH_TOKEN } from "../../constants";
 import { UserHandles } from "../../types";
 
 
-const USER_HANDLES = gql`
+export const USER_HANDLES = gql`
   query GetAllHandles {
     getAllHandles {
       handle
@@ -23,7 +23,7 @@ const LOGIN = gql`
   }
 `;
 
-const SIGNUP = gql`
+export const SIGNUP = gql`
   mutation Mutation($handle: String!, $password: String!, $name: String!) {
     signUp(handle: $handle, password: $password, name: $name) {
       token
@@ -131,9 +131,9 @@ export const SignIn = () => {
           ValidateSignUp(name, handle)}
           : () => {
             checkUser()}
-          } className="tweet-btn shadow-md">Submit</button>
+          } id="signup-submit-btn" className="tweet-btn shadow-md">Submit</button>
       </div>
-      <button onClick={() => setSignUpForm(!signUpForm)} className="hover:underline twitter-blue py-2">{signUpForm ? "Already have an account?" : "Create an account"}</button>
+      <button id="form-selector" onClick={() => setSignUpForm(!signUpForm)} className="hover:underline twitter-blue py-2">{signUpForm ? "Already have an account?" : "Create an account"}</button>
     </div>
     <img alt="Blue Twitter bird" src="/whiteTwitterLogo.png" className="hidden sm:flex sm:fixed w-1/2 sm:w-3/4 h-auto sm:justify-end sm:ml-24 sm:ml-48 md:mt-48 lg:mt-0"/>
     </div>

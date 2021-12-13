@@ -7,7 +7,7 @@ import { GET_USER } from '../../App/Sidebar'
 import { GETUSER } from '../../Profile/Profile'
 
 let getNotificationsCount = 0;
-let messageSent = false;
+let getChatCount = 0;
 
 export const MessagesMock: Mock[] = [
   {
@@ -15,8 +15,8 @@ export const MessagesMock: Mock[] = [
       query: GET_USER
     },
     newData: () => {
-      if (getNotificationsCount === 1) {
-        getNotificationsCount += 1
+      getNotificationsCount += 1
+      if (getNotificationsCount === 2) {
       return {
         data: {
           "getNotifications": {
@@ -53,7 +53,6 @@ export const MessagesMock: Mock[] = [
         }
       }
     } else {
-      getNotificationsCount += 1
       return {
         data: {
           "getNotifications": {
@@ -238,8 +237,8 @@ export const MessagesMock: Mock[] = [
       }
     },
     newData: () => {
-      if (messageSent = true) {
-        messageSent = false;
+      getChatCount += 1;
+      if (getChatCount === 4) {
       return {
       data: {
         "getChatById": {
@@ -283,6 +282,16 @@ export const MessagesMock: Mock[] = [
               "author": {
                 "name": "Dan Molloy",
                 "profilePic": "/dan.jpg"
+              }
+            },
+            {
+              "messageText": "Hi! Cheers, Jest",
+              "authorHandle": "@jest",
+              "messageId": "ek2",
+              "read": true,
+              "author": {
+                "name": "Jest",
+                "profilePic": "/jest.jpg"
               }
             }
           ],
@@ -346,16 +355,6 @@ export const MessagesMock: Mock[] = [
                 "profilePic": "/dan.jpg"
               }
             },
-            {
-              "messageText": "Hi! Cheers, Jest",
-              "authorHandle": "@jest",
-              "messageId": "ek2",
-              "read": true,
-              "author": {
-                "name": "Jest",
-                "profilePic": "/jest.jpg"
-              }
-            }
           ],
           "users": [
             {
@@ -400,7 +399,6 @@ export const MessagesMock: Mock[] = [
       }
     },
     result: () => {
-      messageSent = true
       return {
       data: {
         "newMessage": {

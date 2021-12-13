@@ -4,6 +4,7 @@ import { Loading } from '../App/Loading'
 import { Error } from '../App/Error'
 import { User } from '../../types'
 import { HomeFeed } from './HomeFeed'
+import { useEffect } from 'react'
 
 export const FOLLOWINGPOSTS =  gql`
   query Query {

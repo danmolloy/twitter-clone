@@ -2,10 +2,14 @@ import { CURRENTUSER } from '../../App/App'
 import { GET_USER } from '../../App/Sidebar'
 import { Mock } from '../../App/Tests/AppTestMocks'
 import { FOLLOWINGPOSTS } from '../../Home/Home'
+import { DELETE_POST, LIKE_POST, RETWEET_POST } from '../../Home/SingleTweet'
+import { POST_COMMENT } from '../../Home/TweetComments'
 import { GET_NOTIFICATIONS } from '../../Notifications/Notifications'
 import { EDIT_PROFILE } from '../EditProfile'
 import { FOLLOW_UNFOLLOW } from '../FollowButton'
 import { GETUSER } from '../Profile'
+
+export let getUserProfileCount = 0;
 
 export const ProfileMock: Mock[] = [
   {
@@ -15,12 +19,12 @@ export const ProfileMock: Mock[] = [
     result: {
       data: {
         "currentUser": {
-          "name": "Edward Parr",
-          "handle": "@ed",
-          "blurb": "Hello there",
-          "joinDate": "1632811919",
+          "name": "Ursula LeGuin",
+          "handle": "@leGuin",
+          "blurb": "Click Edit Profile!",
+          "joinDate": "1637751839",
           "bgPic": "bgPic.jpg",
-          "profilePic": "/profilePic.jpg",
+          "profilePic": "profilePic.jpg",
           "chats": [
             {
               "content": [
@@ -29,66 +33,42 @@ export const ProfileMock: Mock[] = [
                 },
                 {
                   "read": true
-                }
-              ]
-            },
-            {
-              "content": [
+                },
                 {
                   "read": true
+                },
+                {
+                  "read": true
+                },
+                {
+                  "read": false
                 }
               ]
             }
           ],
           "follows": [
             {
-              "handle": "@ted"
+              "handle": "@artVandelay"
             },
             {
-              "handle": "@thebigfirkinband"
+              "handle": "@danmolloy"
             }
           ],
           "followers": [
             {
-              "handle": "@egg"
+              "handle": "@danmolloy"
             }
           ],
           "notifications": [
             {
-              "id": "c03de202-5c7e-416d-93e8-3d512c72f630",
-              "text": "@ed liked your tweet: Hi!",
-              "sentFromUser": "@ed",
+              "id": "17ffafa4-d6b5-4684-8b58-37584a62d605",
+              "text": "@danmolloy has started following you.",
+              "sentFromUser": "@danmolloy",
               "read": true,
-              "tweetId": "4cd2e6a9-7875-41a3-aed2-7472a8082276"
-            },
-            {
-              "id": "36cbb9f3-a157-424f-8b55-b24f6207467e",
-              "text": "@ed liked your tweet: hi",
-              "sentFromUser": "@ed",
-              "read": true,
-              "tweetId": "59044071-7429-4d73-a192-a8a5ae8502b3"
+              "tweetId": null
             }
           ],
-          "writtenPosts": [
-            {
-              "id": "6ee2985b-ba42-4159-944f-2d9fc59410cf",
-              "content": "Hello",
-              "postDate": "1634385565",
-              "likes": null
-            },
-            {
-              "id": "11706fc0-9a2e-49a3-9948-6b9d1488d114",
-              "content": "A new post...",
-              "postDate": "1636280554",
-              "likes": null
-            },
-            {
-              "id": "1d457f07-8da7-4ad3-9dc7-d2e00886fd04",
-              "content": "Context.user!",
-              "postDate": "1636645080",
-              "likes": null
-            }
-          ]
+          "writtenPosts": []
         }
       }
     }
@@ -447,10 +427,9 @@ export const ProfileMock: Mock[] = [
     request: {
       query: EDIT_PROFILE,
       variables: {
-        handle: "@artVandelay", 
-        userName: "Art Vandelay",
-        blurb: "Hi my name is Art",
-        profilePic: "dan.jpeg"
+        "userName":"Jesty Jest",
+        "blurb":"Jest changed the blurb!",
+        "profilePic":"jest.jpg"
       }
     },
     result: {
@@ -485,58 +464,508 @@ export const ProfileMock: Mock[] = [
   },
   {
     request: {
+      query: RETWEET_POST,
+      variables: {
+        retweetPostPostId: "51195034-c503-418d-92e6-9588946dbe04"
+      }
+    },
+    result: {
+      data: {
+        "retweetPost": {
+          "retweets": [
+            {
+              "handle": "@leGuin"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    request: {
       query: GETUSER,
       variables: {
         getUserProfileHandle: "@leGuin"
       }
     },
-    result: {
-      data: {
-        "getUserProfile": {
-          "name": "Ursula LeGuin",
-          "handle": "@leGuin",
-          "blurb": "Click Edit Profile!",
-          "joinDate": "1637751839",
-          "bgPic": "bgPic.jpg",
-          "profilePic": "profilePic.jpg",
-          "follows": [
-            {
-              "handle": "@artVandelay",
-              "name": "George Costanza",
-              "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
-            },
-            {
-              "handle": "@danmolloy",
-              "name": "Dan Molloy",
-              "profilePic": "/dan.jpg"
+    newData: () => {
+      getUserProfileCount += 1;
+      if (getUserProfileCount === 7 
+        || getUserProfileCount === 9) {
+        return {
+          data: {
+            "getUserProfile": {
+              "name": "Ursula LeGuin",
+              "handle": "@leGuin",
+              "blurb": "Click Edit Profile!",
+              "joinDate": "1637751839",
+              "bgPic": "bgPic.jpg",
+              "profilePic": "profilePic.jpg",
+              "follows": [
+                {
+                  "handle": "@artVandelay",
+                  "name": "George Costanza",
+                  "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                },
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "followers": [
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "writtenPosts": [
+                {
+                  "id": "51195034-c503-418d-92e6-9588946dbe04",
+                  "content": "A profound love between two people involves, after all, the power and chance of doing profound hurt.",
+                  "postDate": "1632811931",
+                  "authorHandle": "@leGuin",
+                  "author": {
+                    "name": "Ursula leGuin",
+                    "handle": "@leGuin",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                  },
+                  "likes": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ],
+                  "comments": [],
+                  "retweets": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ]
+                }
+              ],
+              "retweets": [
+                {
+                  "id": "51195034-c503-418d-92e6-9588946dbe04",
+                  "content": "A profound love between two people involves, after all, the power and chance of doing profound hurt.",
+                  "postDate": "1632811931",
+                  "authorHandle": "@leGuin",
+                  "author": {
+                    "name": "Ursula leGuin",
+                    "handle": "@leGuin",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                  },
+                  "likes": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ],
+                  "comments": [],
+                  "retweets": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ]
+                }
+              ]
             }
-          ],
-          "followers": [
-            {
-              "handle": "@danmolloy",
-              "name": "Dan Molloy",
-              "profilePic": "/dan.jpg"
+          }
+        }
+      }
+      else if (getUserProfileCount === 11) {
+        return {
+          data: {
+            "getUserProfile": {
+              "name": "Ursula LeGuin",
+              "handle": "@leGuin",
+              "blurb": "Click Edit Profile!",
+              "joinDate": "1637751839",
+              "bgPic": "bgPic.jpg",
+              "profilePic": "profilePic.jpg",
+              "follows": [
+                {
+                  "handle": "@artVandelay",
+                  "name": "George Costanza",
+                  "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                },
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "followers": [
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "writtenPosts": [
+                {
+                  "id": "51195034-c503-418d-92e6-9588946dbe04",
+                  "content": "A profound love between two people involves, after all, the power and chance of doing profound hurt.",
+                  "postDate": "1632811931",
+                  "authorHandle": "@leGuin",
+                  "author": {
+                    "name": "Ursula leGuin",
+                    "handle": "@leGuin",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                  },
+                  "likes": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ],
+                  "comments": [
+                    {
+                      "commentId": "ab95b719-60b2-44be-9b01-1e68fcab379b",
+                      "text": "A comment from Jest!",
+                      "time": "1636633457",
+                      "author": {
+                        "name": "Jest",
+                        "handle": "@jest",
+                        "profilePic": "/jest.jpg"
+                      }
+                    }
+                  ],
+                  "retweets": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ]
+                }
+              ],
+              "retweets": [
+                {
+                  "id": "51195034-c503-418d-92e6-9588946dbe04",
+                  "content": "A profound love between two people involves, after all, the power and chance of doing profound hurt.",
+                  "postDate": "1632811931",
+                  "authorHandle": "@leGuin",
+                  "author": {
+                    "name": "Ursula leGuin",
+                    "handle": "@leGuin",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                  },
+                  "likes": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ],
+                  "comments": [],
+                  "retweets": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ]
+                }
+              ]
             }
-          ],
-          "writtenPosts": [
-            {
-              "id": "51195034-c503-418d-92e6-9588946dbe04",
-              "content": "A profound love between two people involves, after all, the power and chance of doing profound hurt.",
-              "postDate": "1632811931",
-              "authorHandle": "@leGuin",
-              "author": {
-                "name": "Ursula leGuin",
-                "handle": "@leGuin",
+          }
+        }
+      }
+      else if (getUserProfileCount === 13) {
+        return {
+          data: {
+            "getUserProfile": {
+              "name": "Ursula LeGuin",
+              "handle": "@leGuin",
+              "blurb": "Click Edit Profile!",
+              "joinDate": "1637751839",
+              "bgPic": "bgPic.jpg",
+              "profilePic": "profilePic.jpg",
+              "follows": [
+                {
+                  "handle": "@artVandelay",
+                  "name": "George Costanza",
+                  "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                },
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "followers": [
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "writtenPosts": [],
+              "retweets": [
+                {
+                  "id": "51195034-c503-418d-92e6-9588946dbe04",
+                  "content": "A profound love between two people involves, after all, the power and chance of doing profound hurt.",
+                  "postDate": "1632811931",
+                  "authorHandle": "@leGuin",
+                  "author": {
+                    "name": "Ursula leGuin",
+                    "handle": "@leGuin",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                  },
+                  "likes": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ],
+                  "comments": [],
+                  "retweets": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+      else if (getUserProfileCount === 14) {
+        return {
+          data: {
+            "getUserProfile": {
+              "name": "Jesty Jest",
+              "handle": "@jest",
+              "blurb": "Jest changed the blurb!",
+              "joinDate": "1637751839",
+              "bgPic": "bgPic.jpg",
+              "profilePic": "jest.jpg",
+              "follows": [
+                {
+                  "handle": "@artVandelay",
+                  "name": "George Costanza",
+                  "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                },
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "followers": [
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "writtenPosts": [
+                {
+                  "id": "51195034-c503-418d-92e6-9588946dbe04",
+                  "content": "A post by Jest.",
+                  "postDate": "1632811931",
+                  "authorHandle": "@leGuin",
+                  "author": {
+                    "name": "Ursula leGuin",
+                    "handle": "@leGuin",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                  },
+                  "likes": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ],
+                  "comments": [],
+                  "retweets": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ],
+                }],
+              "retweets": [
+                {
+                  "id": "51195034-c503-418d-92e6-9588946dbe04",
+                  "content": "A post by Jest.",
+                  "postDate": "1632811931",
+                  "authorHandle": "@leGuin",
+                  "author": {
+                    "name": "Ursula leGuin",
+                    "handle": "@leGuin",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                  },
+                  "likes": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ],
+                  "comments": [],
+                  "retweets": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+      else if (getUserProfileCount === 15) {
+        return {
+          data: {
+            "getUserProfile": {
+              "name": "Jesty Jest",
+              "handle": "@jest",
+              "blurb": "Jest changed the blurb!",
+              "joinDate": "1637751839",
+              "bgPic": "bgPic.jpg",
+              "profilePic": "jest.jpg",
+              "follows": [
+                {
+                  "handle": "@artVandelay",
+                  "name": "George Costanza",
+                  "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                },
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "followers": [
+                {
+                  "handle": "@danmolloy",
+                  "name": "Dan Molloy",
+                  "profilePic": "/dan.jpg"
+                }
+              ],
+              "writtenPosts": [],
+              "retweets": [
+                {
+                  "id": "51195034-c503-418d-92e6-9588946dbe04",
+                  "content": "A post by Jest.",
+                  "postDate": "1632811931",
+                  "authorHandle": "@leGuin",
+                  "author": {
+                    "name": "Ursula leGuin",
+                    "handle": "@leGuin",
+                    "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                  },
+                  "likes": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ],
+                  "comments": [],
+                  "retweets": [
+                    {
+                      "handle": "@leGuin"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+      else {
+      return {
+        data: {
+          "getUserProfile": {
+            "name": "Ursula LeGuin",
+            "handle": "@leGuin",
+            "blurb": "Click Edit Profile!",
+            "joinDate": "1637751839",
+            "bgPic": "bgPic.jpg",
+            "profilePic": "profilePic.jpg",
+            "follows": [
+              {
+                "handle": "@artVandelay",
+                "name": "George Costanza",
                 "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
               },
-              "likes": [],
-              "comments": [],
-              "retweets": []
+              {
+                "handle": "@danmolloy",
+                "name": "Dan Molloy",
+                "profilePic": "/dan.jpg"
+              }
+            ],
+            "followers": [
+              {
+                "handle": "@danmolloy",
+                "name": "Dan Molloy",
+                "profilePic": "/dan.jpg"
+              }
+            ],
+            "writtenPosts": [
+              {
+                "id": "51195034-c503-418d-92e6-9588946dbe04",
+                "content": "A profound love between two people involves, after all, the power and chance of doing profound hurt.",
+                "postDate": "1632811931",
+                "authorHandle": "@leGuin",
+                "author": {
+                  "name": "Ursula leGuin",
+                  "handle": "@leGuin",
+                  "profilePic": "https://upload.wikimedia.org/wikipedia/en/7/70/George_Costanza.jpg"
+                },
+                "likes": [],
+                "comments": [],
+                "retweets": null
+              }
+            ],
+            "retweets": []
+          }
+        }
+      }}
+    }
+},
+  {
+    request: {
+      query: LIKE_POST,
+      variables: {
+        "likePostPostId":"51195034-c503-418d-92e6-9588946dbe04"
+      }
+    },
+    result: {
+      data: {
+        "likePost": {
+          "likes": [
+            {
+              "handle": "@danmolloy"
             }
-          ],
-          "retweets": []
+          ]
         }
       }
     }
-  }
+  },
+  {
+    request: {
+      query:  DELETE_POST,
+      variables: {
+        "postId":"51195034-c503-418d-92e6-9588946dbe04"
+      }
+    },
+    result: {
+      data: {
+        "deletePost": {
+          "id": "51195034-c503-418d-92e6-9588946dbe04"
+        }
+      }
+    }
+  },
+  {
+    request: {
+      query: POST_COMMENT,
+      variables: {
+        postId: "51195034-c503-418d-92e6-9588946dbe04", 
+        text: "A comment from Jest!"
+      }
+    },
+    result: {
+      data: {
+        "newComment": {
+          "commentId": "1",
+          "author": {
+            "name": "Jest",
+            "handle": "@jest",
+            "profilePic": "jest.jpg"
+          },
+          "time": "1636970945",
+          "text": "A comment from Jest!"
+        }
+      }
+    }
+  },
 ]

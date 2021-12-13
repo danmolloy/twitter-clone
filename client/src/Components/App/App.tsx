@@ -78,7 +78,7 @@ function App() {
     <div>
       <div id="main-content" className="flex flex-row w-screen h-screen justify-start">
         {authToken && <Sidebar />}
-        <div className="sm:ml-24 md:ml-60 mb-0 w-full max-w-2xl sm:mr-2 md:mr-0">
+        <div id="app-page" className="sm:ml-24 md:ml-60 mb-0 w-full max-w-2xl sm:mr-2 md:mr-0">
         <Switch>
           <Route path="/explore">
             <Explore currentUserHandle={data && data.currentUser.handle}/>

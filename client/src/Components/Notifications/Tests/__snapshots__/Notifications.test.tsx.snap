@@ -18,7 +18,7 @@ exports[`notifications renders page 1`] = `
         </svg><label for=\\"profile-link\\" class=\\"sidebar-text\\">Profile</label></a><a title=\\"Sign out\\" id=\\"sign-out-btn\\" class=\\"hidden sm:flex lg-side-icon\\" href=\\"/home\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon hidden sm:flex\\" id=\\"more-icon\\">
           <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1\\"></path>
         </svg><label for=\\"sign-out\\" class=\\"sidebar-text\\">Sign Out</label></a></div>
-    <div class=\\"sm:ml-24 md:ml-60 mb-0 w-full max-w-2xl sm:mr-2 md:mr-0\\">
+    <div id=\\"app-page\\" class=\\"sm:ml-24 md:ml-60 mb-0 w-full max-w-2xl sm:mr-2 md:mr-0\\">
       <div id=\\"notifications-component\\" class=\\"w-full h-full flex flex-col\\">
         <div class=\\"flex flex-col border-b border-r\\">
           <h2 class=\\"text-xl font-semibold pl-3 pt-3 pb-3\\">Notifications</h2>

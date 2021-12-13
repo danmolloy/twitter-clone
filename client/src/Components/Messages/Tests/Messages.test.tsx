@@ -44,11 +44,13 @@ it("marks message as read upon opening chat, updating sidebar & chat preview", a
     await new Promise(resolve => setTimeout(resolve, 1100))
   })
   expect(pretty(container.innerHTML)).not.toMatch(/unread-msg-alert/g)
-  act(() => {
-    fireEvent.click(container.querySelector("#messages-link"))
+  
+  fireEvent.click(container.querySelector("#messages-link"))
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 200))
   })
-  //expect(container.querySelector("#msg-text-preview").className).not.toMatch(/^font-bold$/)
-
+  expect(container.querySelector("#msg-text-preview").className)//.not.toMatch(/^font-bold$/)
+  
 })
 
 it("shows chat previews", async () => {
@@ -167,9 +169,10 @@ it("Send button sends msg", async() => {
   act(() => {
     fireEvent.change(container.querySelector("#chat-input"), {target: {value: "Hi! Cheers, Jest"}})
   })
-  await act(async () => {
-    fireEvent.click(container.querySelector("#send-msg-btn"))
-    await new Promise(resolve => setTimeout(resolve, 1000))
+ 
+  fireEvent.click(container.querySelector("#send-msg-btn"))
+  await act(async() => {
+    await new Promise(resolve => setTimeout(resolve, 100))
   })
   expect(container.textContent).toMatch(/Cheers, Jest/g)
 })
@@ -197,3 +200,4 @@ it("click on user name redirects to user profile", async () => {
   })
   expect(container.textContent).toMatch(/I call it 'Twitter'/g)
 })
+  

@@ -19,12 +19,12 @@ export const ProfileFollowers = (props: {getUserProfile: User | undefined}) => {
       onClick={() => setShowFollowing(true)}
       onBlur={() => setTimeout(() => setShowFollowing(false), 150)}>
         {showFollowing && 
-      <div className=" text-black w-3/4 sm:w-1/2 border shadow -mt-72 z-10 fixed bg-white">
+      <div id="profile-following-list" className=" text-black w-3/4 sm:w-1/2 border shadow -mt-72 z-10 fixed bg-white">
         <div className="border-b shadow-sm flex flex-row justify-between">
-          <h3 className="p-2 font-semibold text-lg">Followers</h3>
-          <button onClick={() => setShowFollowing(false)}>
-          <XCircleIcon className="w-10 p-1 h-auto text-red-500 hover:bg-red-50 rounded-full mr-2"/>
-        </button>
+          <h3 className="p-2 font-semibold text-lg">Following</h3>
+          <button id="following-close-btn" onClick={() => setShowFollowing(false)}>
+            <XCircleIcon className="w-10 p-1 h-auto text-red-500 hover:bg-red-50 rounded-full mr-2"/>
+          </button>
         </div>        
         {props.getUserProfile?.follows.map((user: any) => {
           return <button key={user.handle} onClick={() => handleClick(user.handle)} className=" p-2 border-b w-full hover:bg-gray-100 flex flex-row items-center">
@@ -50,7 +50,7 @@ export const ProfileFollowers = (props: {getUserProfile: User | undefined}) => {
       <div className="text-black -ml-12 w-3/4 sm:w-1/2 border shadow -mt-72 z-10 fixed bg-white">
         <div className="border-b shadow-sm flex flex-row justify-between">
         <h3 className="p-2 font-semibold text-lg">Followers</h3>
-        <button onClick={() => setShowFollowers(false)}>
+        <button id="followers-close-btn" onClick={() => setShowFollowers(false)}>
           <XCircleIcon className="w-10 p-1 h-auto text-red-500 hover:bg-red-50 rounded-full mr-2"/>
         </button>
         </div>

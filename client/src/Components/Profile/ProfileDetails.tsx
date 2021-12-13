@@ -40,7 +40,7 @@ export const ProfileDetails = (props: {
         <img id="profile-banner" alt="Default profile background" className="w-full h-48" src={`/${props.getUserProfile?.bgPic}`}/>
         <div className="flex flex-row justify-between">
           {props.getUserProfile?.profilePic ?
-            <img src={props.getUserProfile.profilePic} alt={`Profile picture of ${props.getUserProfile.name}`} className="rounded-full w-36 h-auto ml-4 -mt-12 -p border-4 border-white"/> :
+            <img id="profile-pic" src={props.getUserProfile.profilePic} alt={`Profile picture of ${props.getUserProfile.name}`} className="rounded-full w-36 h-auto ml-4 -mt-12 -p border-4 border-white"/> :
             <UserCircleIcon className="w-28 h-auto ml-12 -mt-12 border -p rounded-full"/>}
         {props.profileHandle === props.currentUser?.handle.slice(1) 
         ? <EditProfile />

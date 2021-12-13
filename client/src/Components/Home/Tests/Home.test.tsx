@@ -3,18 +3,11 @@ import { unmountComponentAtNode, render } from "react-dom";
 import { AUTH_TOKEN } from "../../../constants";
 import { MockedProvider } from "@apollo/client/testing";
 import { MemoryRouter } from "react-router";
-import { ComposeTweet } from "../ComposeTweet";
-import pretty from "pretty";
 import { HomeMock } from "./HomeMocks";
-import { Home } from "../Home";
 import { userMock } from '../../App/Tests/AppTestMocks'
-import { HomeFeed } from "../HomeFeed";
-import { SingleTweet } from "../SingleTweet";
-import { fireEvent, screen } from "@testing-library/dom";
-import { TweetComments } from "../TweetComments";
+import { fireEvent } from "@testing-library/dom";
 import App from "../../App/App";
-import { getByText } from "@testing-library/dom";
-import { getAllByText } from "@testing-library/dom";
+import pretty from "pretty";
 
 let container: any = null
 
@@ -38,7 +31,7 @@ it("likes a post on like btn click in home feed", async () => {
   act(() => {
     render(
       <MockedProvider mocks={HomeMock} addTypename={false}>
-        <MemoryRouter>
+        <MemoryRouter initialEntries={["/home"]}>
           <App />
         </MemoryRouter>
       </MockedProvider>, container
@@ -49,12 +42,12 @@ it("likes a post on like btn click in home feed", async () => {
     await new Promise(resolve => setTimeout(resolve, 100))
   })
   expect(container.querySelector("#like-count").textContent).toMatch(/^1$/)
-  
+ 
+  fireEvent.click(container.querySelector("#like-button"))
   await act(async () => {
-    fireEvent.click(container.querySelector("#like-button"))
     await new Promise(resolve => setTimeout(resolve, 100))
   }) 
-  expect(container.querySelector("#like-count").textContent).toMatch(/^2$/)
+  expect(container.querySelector("#like-count").textContent).toMatch(/^2$/) 
 })
 
 
@@ -224,4 +217,4 @@ it("posts tweet", async () => {
   })
   expect(container.textContent).toMatch(/Jest@jest•Tue Sep 28 2021•••Jest is tweeting/g)
   
-})
+}) 

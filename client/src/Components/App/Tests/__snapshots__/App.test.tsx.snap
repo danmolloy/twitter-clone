@@ -8,7 +8,7 @@ exports[`App component fetches user data and renders Home component after Loadin
         </svg><label for=\\"home-link\\" class=\\"sidebar-text\\">Home</label></a><a title=\\"Explore\\" class=\\"lg-side-icon\\" id=\\"explore-link\\" href=\\"/explore\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
           <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M7 20l4-16m2 16l4-16M6 9h14M4 15h14\\"></path>
         </svg><label for=\\"explore-link\\" class=\\"sidebar-text\\">Explore</label></a><a title=\\"Notifications\\" class=\\"lg-side-icon\\" id=\\"notifications-link\\" href=\\"/notifications\\">
-        <div class=\\"bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0\\"></div><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
+        <div id=\\"notifications-alert\\" class=\\"bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0\\"></div><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
           <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9\\"></path>
         </svg><label for=\\"notifications-link\\" class=\\"sidebar-text\\">Notifications</label>
       </a><a title=\\"Messages\\" class=\\"lg-side-icon\\" href=\\"/messages\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
@@ -18,7 +18,7 @@ exports[`App component fetches user data and renders Home component after Loadin
         </svg><label for=\\"profile-link\\" class=\\"sidebar-text\\">Profile</label></a><a title=\\"Sign out\\" id=\\"sign-out-btn\\" class=\\"hidden sm:flex lg-side-icon\\" href=\\"/home\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon hidden sm:flex\\" id=\\"more-icon\\">
           <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1\\"></path>
         </svg><label for=\\"sign-out\\" class=\\"sidebar-text\\">Sign Out</label></a></div>
-    <div class=\\"sm:ml-24 md:ml-60 mb-0 w-full max-w-2xl sm:mr-2 md:mr-0\\">
+    <div id=\\"app-page\\" class=\\"sm:ml-24 md:ml-60 mb-0 w-full max-w-2xl sm:mr-2 md:mr-0\\">
       <div id=\\"home border-r min-h-screen border-r\\">
         <div id=\\"home-header\\" class=\\"home-header border-r\\">
           <h2 class=\\"h2 p-4\\">Home</h2>
@@ -38,17 +38,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Sun Nov 07 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">A new post...</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>5</p>
+                <p id=\\"comments-count\\">5</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -69,17 +69,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Thu Nov 04 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">hi</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>3</p>
+                <p id=\\"comments-count\\">3</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -100,17 +100,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Oct 26 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">Hi!</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>4</p>
+                <p id=\\"comments-count\\">4</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -131,17 +131,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Sat Oct 16 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">Hello</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>2</p>
+                <p id=\\"comments-count\\">2</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -162,17 +162,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Fri Oct 15 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">Another tweet..</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>1</p>
+                <p id=\\"comments-count\\">1</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -193,17 +193,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Thu Oct 14 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">Hi!</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>1</p>
+                <p id=\\"comments-count\\">1</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -224,17 +224,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Wed Sep 29 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">New tweet!</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>1</p>
+                <p id=\\"comments-count\\">1</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -255,17 +255,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">I don't eat fish</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>2</p>
+                <p id=\\"comments-count\\">2</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -286,17 +286,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">Live! First Sunday of each month. Venue TBC</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>2</p>
+                <p id=\\"comments-count\\">2</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -317,17 +317,17 @@ exports[`App component fetches user data and renders Home component after Loadin
                     </a><span class=\\"hidden sm:flex text-gray-500 ml-1\\">•</span>
                     <h4 class=\\"text-gray-500 ml-1 hover:underline\\">Tue Sep 28 2021</h4>
                   </div>
-                  <div id=\\"tweet-options\\"><button class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
+                  <div id=\\"tweet-options\\"><button id=\\"post-options-btn\\" class=\\"post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2\\">•••</button></div>
                 </div>
                 <div>
                   <p class=\\" mr-2\\">I play the flute!</p>
                 </div>
               </div>
             </div>
-            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
+            <div class=\\"flex flex-row justify-between px-12 my-2 text-gray-500 w-full\\"><button id=\\"tweet-comments-btn\\" class=\\"show-comments flex flex-row items-center hover:text-blue-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\" hover:bg-blue-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z\\"></path>
                 </svg>
-                <p>1</p>
+                <p id=\\"comments-count\\">1</p>
               </button><button id=\\"retweet-button\\" class=\\"flex flex-row items-center hover:text-green-500\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"hover:bg-green-50 tweet-options\\">
                   <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\\"></path>
                 </svg>
@@ -371,7 +371,7 @@ exports[`Sidebar component renders without error 1`] = `
     </svg><label for=\\"home-link\\" class=\\"sidebar-text\\">Home</label></a><a title=\\"Explore\\" class=\\"lg-side-icon\\" id=\\"explore-link\\" href=\\"/explore\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
       <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M7 20l4-16m2 16l4-16M6 9h14M4 15h14\\"></path>
     </svg><label for=\\"explore-link\\" class=\\"sidebar-text\\">Explore</label></a><a title=\\"Notifications\\" class=\\"lg-side-icon\\" id=\\"notifications-link\\" href=\\"/notifications\\">
-    <div class=\\"bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0\\"></div><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
+    <div id=\\"notifications-alert\\" class=\\"bg-blue-600 h-2 w-2 rounded-full z-10 -mr-8 sm:-mr-2 -mt-6 sm:-mt-0\\"></div><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
       <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9\\"></path>
     </svg><label for=\\"notifications-link\\" class=\\"sidebar-text\\">Notifications</label>
   </a><a title=\\"Messages\\" class=\\"lg-side-icon\\" href=\\"/messages\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\" class=\\"side-icon\\">
@@ -397,8 +397,8 @@ exports[`Sign in component renders if no auth-token 1`] = `
       </div>
       <div class=\\"flex flex-col py-4\\"><label for=\\"password-input\\">Password</label><input type=\\"password\\" maxlength=\\"20\\" id=\\"password-input\\" class=\\"px-2 border m-2 rounded-full\\" value=\\"\\">
         <p class=\\"text-xs text-gray-500 px-2\\">Must be 3-20 characters long</p><button type=\\"button\\" class=\\"text-sm hover:underline\\">Show password</button>
-      </div><button class=\\"tweet-btn shadow-md\\">Submit</button>
-    </div><button class=\\"hover:underline twitter-blue py-2\\">Already have an account?</button>
+      </div><button id=\\"signup-submit-btn\\" class=\\"tweet-btn shadow-md\\">Submit</button>
+    </div><button id=\\"form-selector\\" class=\\"hover:underline twitter-blue py-2\\">Already have an account?</button>
   </div><img alt=\\"Blue Twitter bird\\" src=\\"/whiteTwitterLogo.png\\" class=\\"hidden sm:flex sm:fixed w-1/2 sm:w-3/4 h-auto sm:justify-end sm:ml-24 sm:ml-48 md:mt-48 lg:mt-0\\">
 </div>"
 `;

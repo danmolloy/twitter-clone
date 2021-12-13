@@ -12,9 +12,11 @@ export const ChatPreview = (props: {chat: Chat, currentUser: User | undefined}) 
         <div className="flex flex-row">
           {props.chat && props.chat.content.length > 0 
           ? 
-       <p id="msg-text-preview" className={props.chat && props.chat.content.filter((i: Message) => 
-        i.authorHandle !== props.currentUser?.handle
-        && i.read === false).length > 0 ? "font-bold": "font-normal"}>
+       <p id="msg-text-preview" 
+       className={props.chat && props.chat.content.filter((i: Message) => 
+        i.authorHandle !== props.currentUser?.handle && i.read === false).length > 0 
+        ? "font-bold"
+        : "font-normal"}>
           {`${props.chat.content[props.chat.content.length -1].authorHandle}: 
           ${props.chat.content[props.chat.content.length -1].messageText.slice(0, 20)}`
         }{props.chat && props.chat.content[props.chat.content.length -1].messageText.length > 19 && <span className="text-gray-400"> ...</span>}

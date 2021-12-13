@@ -93,7 +93,7 @@ export const Profile = (props: {currentUser: User | undefined}) => {
   }
 
   return (
-    <div id="profile-component"className="border-r w-full mr-2">
+    <div id="profile-component" className="border-r w-full mr-2">
       <ProfileHeader getUserProfile={dataProfileData?.getUserProfile}/>
       <ProfileDetails 
         getUserProfile={dataProfileData?.getUserProfile}

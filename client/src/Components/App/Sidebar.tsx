@@ -51,6 +51,8 @@ export const Sidebar = () => {
     window.location.reload()
   }
 
+  
+
   if (error) {
     console.log(error)
     return <Error />
@@ -63,10 +65,10 @@ export const Sidebar = () => {
   return (
     <div id="side-bar" 
     className="side-bar">
-      <Link to="/home" className="md:ml-2" id="twitter-home-link" title="Home">
+      <Link to="/home" onClick={() => setTimeout(() => window.location.reload(), 1)} className="md:ml-2" id="twitter-home-link" title="Home">
         <img src="/favico.ico" alt="Blue Twitter bird" className="hidden sm:flex w-12 h-auto mx-6 my-4 p-2 rounded hover:bg-blue-50"/>
       </Link>
-      <Link to="/home" className="lg-side-icon" id="home-link" title="Home">
+      <Link to="/home" onClick={() => setTimeout(() => window.location.reload(), 1)} className="lg-side-icon" id="home-link" title="Home">
         <HomeIcon className="side-icon"/>
         <label htmlFor="home-link" className="sidebar-text">Home</label>
       </Link>

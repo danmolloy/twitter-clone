@@ -2,7 +2,7 @@ import { act } from "react-dom/test-utils";
 import { unmountComponentAtNode, render } from "react-dom";
 import App from "../App";
 import { userMock } from "./AppTestMocks";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter, Route } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
 import { Error } from "../Error";
 import { Loading } from "../Loading";
@@ -51,6 +51,7 @@ describe("App component", () => {
 });
 
 describe("Sign in component", () => {
+
   it("renders if no auth-token", async () => {
     act(() => {
       global.localStorage.removeItem(AUTH_TOKEN);
@@ -72,11 +73,129 @@ describe("Sign in component", () => {
   });
 
   it("on signup/login there is a loading signal", () => {})
-  it("calls alert if new username already in use", () => {})
-  it("calls alert if new username invalid", () => {})
-  it("calls alert if new full name invalid", () => {})
+
+it("calls alert if new username already in use", async () => {
+  jest.spyOn(window, 'alert').mockImplementation(() => {});
+    act(() => {
+      global.localStorage.removeItem(AUTH_TOKEN);
+      render(
+        <MockedProvider mocks={userMock} addTypename={false}>
+          <MemoryRouter>
+            <App />
+          </MemoryRouter>
+        </MockedProvider>,
+        container
+      );
+    });
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+
+
+
+    fireEvent.change(container.querySelector("#name-input"), {target: {value: "Jesty Jest"}})
+    fireEvent.change(container.querySelector("#handle-input"), {target: {value: "leGuin"}})
+    fireEvent.change(container.querySelector("#password-input"), {target: {value: "password1"}})
+
+    fireEvent.click(container.querySelector("#signup-submit-btn"))
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+    expect(window.alert).toHaveBeenCalled();
+  })
+
+  it("calls alert if new username invalid", async() => {
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
+    act(() => {
+      global.localStorage.removeItem(AUTH_TOKEN);
+      render(
+        <MockedProvider mocks={userMock} addTypename={false}>
+          <MemoryRouter>
+            <App />
+          </MemoryRouter>
+        </MockedProvider>,
+        container
+      );
+    });
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+
+
+
+    fireEvent.change(container.querySelector("#name-input"), {target: {value: "Jesty Jest"}})
+    fireEvent.change(container.querySelector("#handle-input"), {target: {value: "l"}})
+    fireEvent.change(container.querySelector("#password-input"), {target: {value: "password1"}})
+
+    fireEvent.click(container.querySelector("#signup-submit-btn"))
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+    expect(window.alert).toHaveBeenCalled();
+  })
+
+  it("calls alert if new full name invalid", async () => {   
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
+    act(() => {
+      global.localStorage.removeItem(AUTH_TOKEN);
+      render(
+        <MockedProvider mocks={userMock} addTypename={false}>
+          <MemoryRouter>
+            <App />
+          </MemoryRouter>
+        </MockedProvider>,
+        container
+      );
+    });
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+
+
+
+    fireEvent.change(container.querySelector("#name-input"), {target: {value: "Jest"}})
+    fireEvent.change(container.querySelector("#handle-input"), {target: {value: "newUser"}})
+    fireEvent.change(container.querySelector("#password-input"), {target: {value: "password1"}})
+
+    fireEvent.click(container.querySelector("#signup-submit-btn"))
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+    expect(window.alert).toHaveBeenCalled();
+  })
+
   it("calls signup if new user info valid", () => {})
-  it("calls alert if username invalid on login attempt", () => {})
+  it("calls alert if username invalid on login attempt", async() => {
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
+    act(() => {
+      global.localStorage.removeItem(AUTH_TOKEN);
+      render(
+        <MockedProvider mocks={userMock} addTypename={false}>
+          <MemoryRouter>
+            <App />
+          </MemoryRouter>
+        </MockedProvider>,
+        container
+      );
+    });
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+    fireEvent.click(container.querySelector("#form-selector"))
+
+    fireEvent.change(container.querySelector("#handle-input"), {target: {value: "n"}})
+    fireEvent.change(container.querySelector("#password-input"), {target: {value: "password1"}})
+
+    fireEvent.click(container.querySelector("#signup-submit-btn"))
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+    expect(window.alert).toHaveBeenCalled();
+  })
   it("calls login if username valid on login attempt", () => {})
 });
 
@@ -136,6 +255,7 @@ describe("Sidebar component", () => {
   })
 
   it("clicking links return expected pathnames", async() => {
+    let testHistory, testLocation;
 
     Object.defineProperty(window, 'location', {
       value: { reload: jest.fn() }
@@ -146,6 +266,14 @@ describe("Sidebar component", () => {
       <MockedProvider mocks={userMock}>
         <MemoryRouter>
           <App />
+          <Route
+        path="*"
+        render={({ history, location }) => {
+          testHistory = history;
+          testLocation = location;
+          return null;
+        }}
+      />
         </MemoryRouter>
       </MockedProvider>, container)
     })
@@ -155,22 +283,23 @@ describe("Sidebar component", () => {
     });
 
     fireEvent.click(container.querySelector("#twitter-home-link"))
-    expect(document.location.pathname).toMatch(/\/home/)
+    expect(testLocation?.pathname).toBe('/home')
 
     fireEvent.click(getByText(container, 'Notifications'))
-    expect(document.location.pathname).toMatch(/\/notifications/)
+    expect(testLocation?.pathname).toBe('/notifications')
 
     fireEvent.click(container.querySelector("#home-link"))
-    expect(document.location.pathname).toMatch(/\/home/)
+    expect(testLocation?.pathname).toBe('/home')
 
     fireEvent.click(getByText(container, 'Messages'))
-    expect(document.location.pathname).toMatch(/\/messages/)
+    expect(testLocation?.pathname).toBe('/messages')
+
 
     fireEvent.click(getByText(container, 'Profile'))
-    expect(document.location.pathname).toMatch(/\/leGuin/)
+    expect(testLocation?.pathname).toBe('/leGuin')
 
     fireEvent.click(container.querySelector("#sign-out-btn"))
-    expect(document.location.pathname).toMatch(/\/home/)
+    expect(testLocation?.pathname).toBe('/home')
     expect(window.location.reload).toHaveBeenCalled();
   })
 });

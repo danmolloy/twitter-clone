@@ -64,7 +64,7 @@ export const SingleTweet = (props: {
   const [likePost] = useMutation(LIKE_POST, {
     variables: {
       likePostPostId: props.tweet && props.tweet.id
-    }, refetchQueries: window.location.pathname === "/home" || window.location.pathname === "/"
+    }, refetchQueries: window.location.pathname === "/home" || (/id="home/g).test(document.getElementById("app-page")!.outerHTML) || (/id="profile-component"/g).test(document.getElementById("app-page")!.outerHTML) === false
     ? [
       FOLLOWINGPOSTS,
       "followsTweets"
@@ -78,7 +78,7 @@ export const SingleTweet = (props: {
   const [retweetPost] = useMutation(RETWEET_POST, {
     variables: {
       retweetPostPostId: props.tweet && props.tweet.id
-    }, refetchQueries: window.location.pathname === "/home" || window.location.pathname === "/"
+    }, refetchQueries: window.location.pathname === "/home" || (/id="home/g).test(document.getElementById("app-page")!.outerHTML) || (/id="profile-component"/g).test(document.getElementById("app-page")!.outerHTML) === false
     ? [
       FOLLOWINGPOSTS,
       "followsTweets"
@@ -94,7 +94,7 @@ export const SingleTweet = (props: {
     variables: {
       postId: props.tweet && props.tweet.id
     },
-    refetchQueries: window.location.pathname === "/home"  || window.location.pathname === "/"
+    refetchQueries: window.location.pathname === "/home"  || (/id="home/g).test(document.getElementById("app-page")!.outerHTML) || (/id="profile-component"/g).test(document.getElementById("app-page")!.outerHTML) === false
     ? [
       FOLLOWINGPOSTS,
       "followsTweets"
@@ -152,6 +152,7 @@ export const SingleTweet = (props: {
               : <button className="follow-post hover:bg-gray-50 p-2" onClick={() => followsUnfollows()}>Follow</button>}
           </div>}
           <button 
+          id="post-options-btn"
           className="post-options text-gray-500 hover:bg-blue-50 hover:text-blue-500 rounded-full p-1 mr-2">
             •••
           </button>
@@ -163,9 +164,9 @@ export const SingleTweet = (props: {
       </div>
       </div>
       <div className="flex flex-row justify-between px-12 my-2 text-gray-500 w-full">
-          <button className="show-comments flex flex-row items-center hover:text-blue-500" onClick={() => setShowComments(true)}>
+          <button id="tweet-comments-btn" className="show-comments flex flex-row items-center hover:text-blue-500" onClick={() => setShowComments(true)}>
             <ChatIcon className=" hover:bg-blue-50 tweet-options" />
-            <p>{props.tweet && props.tweet.comments ? props.tweet.comments.length : null}</p>
+            <p id="comments-count">{props.tweet && props.tweet.comments ? props.tweet.comments.length : null}</p>
           </button>
           <button 
           id="retweet-button"
