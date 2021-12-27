@@ -169,7 +169,8 @@ async function followsTweets(_, __, context) {
 }
 
 async function getUserProfile(_, arg, context) {
-  return context.prisma.user.findUnique({
+  try {
+    return context.prisma.user.findUnique({
     where: {
       handle: arg.handle
     },
@@ -254,6 +255,10 @@ async function getUserProfile(_, arg, context) {
       }
     }
   })
+  }
+  catch(e) {
+    throw e
+  }
 }
 
 async function getPost(_, arg, context) {
@@ -266,7 +271,12 @@ async function getPost(_, arg, context) {
       author: true,
     }
   })
-  return getPost
+  try {
+    return getPost
+  }
+  catch(e) {
+    throw e 
+  }
 }
 
 async function getChats(_, __, context) {
@@ -299,7 +309,12 @@ async function getChats(_, __, context) {
       }
     }
   })
-  return getUserChats
+  try {
+    return getUserChats
+  } catch (e) {
+    return e
+  }
+  
 }
 
 async function getChatById(_, arg, context) {

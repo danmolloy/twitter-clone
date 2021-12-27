@@ -367,10 +367,15 @@ async function login(_, args, context) {
 
   const token = jwt.sign({ userHandle: user.handle }, APP_SECRET)
 
-  return {
-    token,
-    user,
+  try {
+    return {
+      token,
+      user,
+    }
+  } catch (e) {
+    return e
   }
+  
 }
 
 async function deleteUser(_, __, context) {
